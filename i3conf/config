@@ -44,6 +44,16 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+# Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -206,7 +216,7 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 
 bar {
-    status_command i3status
+    status_command i3status | ~/Documents/GitHubFiles/i3spotifystatus/pystatus.py
 	colors {
     		background #282A36
 		statusline #F8F8F2
@@ -220,20 +230,37 @@ bar {
   }
 }
 
-bindsym $mod+Escape exec i3lock -c 000000
+#bindsym $mod+Escape exec i3lock -c 000000 
+
+bindsym $mod+Escape exec i3lock -c 000000 & sleep 5 && xset dpms force off
 
 # Sreen brightness controls
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
+bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # decrease screen brightness
+
+exec steam
+exec discord
+exec Signal
+exec Spotify
 
 # sets mouse acceleration to flat
+# MX Master 3
 exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1 
+# G Pro
+exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
 # sets wallpaper
 exec_always feh --bg-scale /home/arminveres/Pictures/wallpaper.jpg
 # sets theme from gnome
 #exec --no-startup-id /usr/lib/gsd-xsettings
 
+### i3-gaps ###
 # You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 2
 
-gaps inner 15
+gaps inner 10
+gaps outer 1
+
+################# i3-radius #######################
+#smart_borders on
+#smart_borders no_gaps
+#border_radius 2
