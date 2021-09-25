@@ -1,3 +1,6 @@
 #!/bin/bash
-cp ~/.config/i3/config ~/Documents/GitHubFiles/dotconf-files/i3conf
-cp ~/.zshrc ~/Documents/GitHubFiles/dotconf-files/
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+cp ~/.config/i3/config $SCRIPT_DIR/i3conf
+cp ~/.zshrc $SCRIPT_DIR

@@ -13,8 +13,6 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:monospace 8
-#font pango: Source Code Pro Regular 11
 font pango: Canterell Regular 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -58,17 +56,12 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run
-
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -252,9 +245,20 @@ mode "$mode_system" {
     
 bindsym $mod+Escape mode "$mode_system"
 
+set $mode_display Secondary display on (1) - off (2)
+mode "$mode_display" {
+	bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
+	bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
+
+	bindsym Escape mode "default"
+}
+bindsym $mod+p mode "$mode_display"
+
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
 bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # decrease screen brightness
+
+exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
 
 #exec steam
 #exec discord
@@ -266,11 +270,19 @@ bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # d
 exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1 
 # G Pro
 exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
+# TODO could add a function, that searches in xinput list for each device and gets the ID number,
+# which then gets added to setting the mouse accel. to flat.
+
 # sets wallpaper
 exec_always feh --bg-scale /home/arminveres/Pictures/wallpaper.jpg
-# sets theme from gnome
-#exec --no-startup-id /usr/lib/gsd-xsettings
 
+# start polkit
+exec_always lxpolkit
+
+# swap escape and caps lock
+exec_always setxkbmap -option ctrl:swapcaps 
+
+# move workspaces to other monitors
 bindsym $mod+Shift+greater move workspace to output right
 bindsym $mod+Shift+less move workspace to output left
 
@@ -280,9 +292,3 @@ for_window [class=".*"] border pixel 2
 
 gaps inner 10
 gaps outer 1
-
-################# i3-radius #######################
-# currently not supported, as the I'm using the gaps fork of i3
-#smart_borders on
-#smart_borders no_gaps
-#border_radius 2
