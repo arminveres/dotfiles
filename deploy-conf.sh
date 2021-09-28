@@ -1,6 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-cp $SCRIPT_DIR/i3conf ~/.config/i3/config
-cp $SCRIPT_DIR ~/.zshrc
+cp ./i3conf/config ~/.config/i3/
+cp ./i3conf/i3status.conf /etc/
+cp ./.zshrc ~/
