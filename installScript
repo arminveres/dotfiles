@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# This is an install script for Fedora WS GNOME edition, which will use I3 
+# (thus x11) and zsh as main components
+
+sudo dnf install -y \
+    htop \
+    lm_sensors \
+    nm-applet \
+    neovim \
+    xrandr \
+    rofi \
+    ranger \
+    speedtest-cli \
+    xinput \
+    zsh \
+    i3-gaps \
+    chsh \
+    alacritty \
+    network-manager-applet \
+
+
+sudo chsh -s $(which zsh)
+
+#maybe needs sudo so that copying to etc workd TODO
+
+GIT_DIR = ~/GitFiles
+
+git clone https://github.com/arminveres/dotconf-files.git \
+    $GIT_DIR
+
+cd $GIT_DIR
+
+
+sh -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+sudo chmod +x deploy-conf.sh
+sudo chmod +x update-conf.sh
+
+# deploy conf files to according folders
+./deploy-conf.sh
+
+#zsh syntax highlighting and autosuggestion plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
