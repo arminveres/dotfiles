@@ -18,6 +18,8 @@ sudo dnf install -y \
     chsh \
     alacritty \
     network-manager-applet \
+    corectl \
+    playerctl
 
 
 sudo chsh -s $(which zsh)
