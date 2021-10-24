@@ -18,11 +18,16 @@ sudo dnf install -y \
     chsh \
     alacritty \
     network-manager-applet \
+    pasystray \
+    ffmpeg \
+    ffmpeg-devel \
+    gcc \
+    g++ \
+    cmake
 
-
+# change default shell to zsh and get ohmyzsh installed, as they are my fav.
+# shell combination for the moment
 sudo chsh -s $(which zsh)
-
-#maybe needs sudo so that copying to etc workd TODO
 
 GIT_DIR = ~/GitFiles
 
@@ -47,4 +52,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 
 git clone https://github.com/zsh-users/zsh-autosuggestions \
     ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
