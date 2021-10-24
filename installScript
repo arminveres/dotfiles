@@ -23,7 +23,9 @@ sudo dnf install -y \
     ffmpeg-devel \
     gcc \
     g++ \
-    cmake
+    cmake \
+    corectl \
+    playerctl
 
 # change default shell to zsh and get ohmyzsh installed, as they are my fav.
 # shell combination for the moment
