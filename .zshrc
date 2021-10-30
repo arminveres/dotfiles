@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -90,13 +90,32 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshconfig="vi ~/.zshrc"
+alias ohmyzsh="vi ~/.oh-my-zsh"
+alias i3conf="vi ~/.config/i3/config"
+alias i3st="sudo vi /etc/i3status.conf"
+
+alias vi="nvim"
+alias vim="nvim"
+
 alias hisgrep="history | grep" 
 
-function cnvHJ() {
-	for file in *.HEIC; do heif-convert $file ${file/%.HEIC/.jpg}; done
-	for file in *.heic; do heif-convert $file ${file/%.heic/.jpg}; done
+function convHeic () {
+    for file in *.(heic|HEIC); 
+    do heif-convert $file ${file/%.(heic|HEIC)/.jpg}; 
+    done
+}
+
+# set and change java versions
+function setjdk() {  
+  if [ $# -ne 0 ]; then  
+    removeFromPath '/System/Library/Frameworks/JavaVM.framework/Home/bin'  
+    if [ -n "${JAVA_HOME+x}" ]; then  
+      removeFromPath $JAVA_HOME  
+    fi  
+    export JAVA_HOME=`/usr/libexec/java_home -v $@`  
+    export PATH=$JAVA_HOME/bin:$PATH  
+  fi  
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
