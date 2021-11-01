@@ -28,34 +28,3 @@ sudo dnf install -y \
     cmake \
     playerctl \
     flatpak
-
-# change default shell to zsh and get ohmyzsh installed, as they are my fav.
-# shell combination for the moment
-sudo chsh -s $(which zsh)
-
-GIT_DIR = ~/GitFiles
-
-git clone https://github.com/arminveres/dotconf-files.git \
-    $GIT_DIR
-
-cd $GIT_DIR
-
-
-sh -c \
-    "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-#zsh syntax highlighting and autosuggestion plugins
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-git clone https://github.com/zsh-users/zsh-autosuggestions \
-    ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-sudo chmod +x deploy-conf.sh
-sudo chmod +x update-conf.sh
-
-# deploy conf files to according folders
-./deploy-conf.sh
-
-./installDocker
-./startSyncthing
