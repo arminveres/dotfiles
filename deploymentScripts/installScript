@@ -42,15 +42,18 @@ cd $GIT_DIR
 sh -c \
     "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-sudo chmod +x deploy-conf.sh
-sudo chmod +x update-conf.sh
-
-# deploy conf files to according folders
-./deploy-conf.sh
-
 #zsh syntax highlighting and autosuggestion plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
     ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 git clone https://github.com/zsh-users/zsh-autosuggestions \
     ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+sudo chmod +x deploy-conf.sh
+sudo chmod +x update-conf.sh
+
+# deploy conf files to according folders
+./deploy-conf.sh
+
+./installDocker
+./startSyncthing
