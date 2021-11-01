@@ -6,7 +6,6 @@
 sudo dnf install -y \
     htop \
     lm_sensors \
-    nm-applet \
     neovim \
     xrandr \
     rofi \
@@ -24,7 +23,6 @@ sudo dnf install -y \
     gcc \
     g++ \
     cmake \
-    corectl \
     playerctl \
     flatpak
 
