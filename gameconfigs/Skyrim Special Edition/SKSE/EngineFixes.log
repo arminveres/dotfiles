@@ -1,0 +1,90 @@
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(86): [info] Engine Fixes v5.6.0
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(89): [info] loaded config successfully
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 0B / 2048B (00.00%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 14B / 2048B (00.68%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 28B / 2048B (01.37%)
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(137): [info] beginning pre-load patches
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 36B / 2048B (01.76%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 58B / 2048B (02.83%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 66B / 2048B (03.22%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 89B / 2048B (04.35%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 97B / 2048B (04.74%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 121B / 2048B (05.91%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 129B / 2048B (06.30%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 151B / 2048B (07.37%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 159B / 2048B (07.76%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 167B / 2048B (08.15%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 220B / 2048B (10.74%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 228B / 2048B (11.13%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 268B / 2048B (13.09%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 276B / 2048B (13.48%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 290B / 2048B (14.16%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 362B / 2048B (17.68%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 376B / 2048B (18.36%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 400B / 2048B (19.53%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 408B / 2048B (19.92%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 438B / 2048B (21.39%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 446B / 2048B (21.78%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 460B / 2048B (22.46%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 474B / 2048B (23.14%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 509B / 2048B (24.85%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 523B / 2048B (25.54%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 560B / 2048B (27.34%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 568B / 2048B (27.73%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 625B / 2048B (30.52%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 633B / 2048B (30.91%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 675B / 2048B (32.96%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 683B / 2048B (33.35%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 732B / 2048B (35.74%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 746B / 2048B (36.43%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 822B / 2048B (40.14%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 830B / 2048B (40.53%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 844B / 2048B (41.21%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 858B / 2048B (41.89%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 872B / 2048B (42.58%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 889B / 2048B (43.41%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 903B / 2048B (44.09%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 957B / 2048B (46.73%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 965B / 2048B (47.12%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1019B / 2048B (49.76%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1027B / 2048B (50.15%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1081B / 2048B (52.78%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1089B / 2048B (53.17%)
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(143): [info] pre-load patches complete
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(13): [info] beginning post-load patches
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1113B / 2048B (54.35%)
+E:\Repos\skse64\CommonLibSSE\include\SKSE\Trampoline.cpp(114): [info] Default Trampoline => 1121B / 2048B (54.74%)
+E:\Repos\skse64\EngineFixesSkyrim64\src\main.cpp(33): [info] post-load patches complete
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2CastleKarstaagRuins01_031428_20210906194411_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2SolstheimWorld_031432_20210906194845_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_DLC2SolstheimWorld_031433_20210906194925_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2SolstheimWorld_031433_20210906194949_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2RRGloverMalloryHouse_031434_20210906195021_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_DLC2SolstheimWorld_031437_20210906195305_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2SolstheimWorld_031437_20210906195351_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2GyldenhulBarrow01_031439_20210906195527_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_DLC2GyldenhulBarrow01_031441_20210906195731_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2SolstheimWorld_031449_20210906200555_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2SolstheimWorld_031450_20210906200624_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_DLC2Frossel01_031451_20210906200727_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2SolstheimWorld_031456_20210906201233_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2SolstheimWorld_031457_20210906201323_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_DLC2AltarOfThrond01_031458_20210906201408_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_DLC2SolstheimWorld_031500_20210906201647_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_DLC2SolstheimWorld_031500_20210906201657_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_Tamriel_031501_20210906201716_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_WinterholdCollegeHallofTheElements_031501_20210906201735_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_WinterholdCollegeArcanaeum_031501_20210906201740_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_WinterholdCollegeHallofTheElements_031503_20210906201935_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_Tamriel_031503_20210906201942_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_Tamriel_031503_20210906201952_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Quicksave0_00000000_0_41726D696E_Tamriel_031505_20210906202150_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_Tamriel_031509_20210906202544_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Quicksave0_00000000_0_41726D696E_Tamriel_031509_20210906202558_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_RoriksteadFrostfruitInn_031509_20210906202601_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_MarkarthWorld_031511_20210906202802_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave1_00000000_0_41726D696E_MarkarthWorld_031512_20210906202813_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave2_00000000_0_41726D696E_Tamriel_031513_20210906202926_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Autosave3_00000000_0_41726D696E_Tamriel_031513_20210906202936_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Quicksave0_00000000_0_41726D696E_Tamriel_031515_20210906203142_54_1.ess.tmp, r+b), errno 2
+E:\Repos\skse64\EngineFixesSkyrim64\src\patches\miscpatches.cpp(125): [warning] Error occurred trying to open file: fopen_s(C:\users\steamuser\Documents\My Games\Skyrim Special Edition\Saves\Save96_00000000_0_41726D696E_Tamriel_031516_20210906203254_54_1.ess.tmp, r+b), errno 2
