@@ -27,4 +27,5 @@ sudo dnf install -y \
     g++ \
     cmake \
     playerctl \
+    stow \
     flatpak
