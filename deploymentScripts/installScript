@@ -28,4 +28,7 @@ sudo dnf install -y \
     cmake \
     playerctl \
     stow \
+    node \
+    rubygem \
+    fd-find \
     flatpak
