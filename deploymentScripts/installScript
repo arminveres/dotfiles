@@ -25,10 +25,13 @@ sudo dnf install -y \
     ffmpeg-devel \
     gcc \
     g++ \
+    clang \
+    clang-tools-extra \
     cmake \
     playerctl \
     stow \
     node \
+    python3-pip \
     rubygem \
     fd-find \
     flatpak
