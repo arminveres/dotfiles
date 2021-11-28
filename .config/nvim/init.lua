@@ -98,8 +98,10 @@ require('packer').startup(function()
   } -- Autocompletion plugin
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'mfussenegger/nvim-jdtls'
 end)
 
+-- local jdtls = require('jdtls')
 
 --Decrease update time
 vim.o.updatetime = 250
@@ -299,6 +301,8 @@ local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.settings({
     install_root_dir = ( vim.fn.stdpath"data" .. "/lsp_servers" )
 })
+
+-- require('lspconfig').jdtls.setup{}
 
 -- Example custom server
 local sumneko_root_path = vim.fn.getenv 'HOME' .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server' -- Change to your sumneko root installation
