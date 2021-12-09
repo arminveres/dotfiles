@@ -1,9 +1,0 @@
-import:
-  #  - ~/.config/alacritty/dracula.yml
-  - ~/.config/alacritty/colors/base16-gruvbox-dark-hard-256.yml
-  #  - ~/.config/alacritty/colors/base16-default-dark-256.yml
-font:
-  normal:
-    family: MesloLGS NF
-    
-  size: 16

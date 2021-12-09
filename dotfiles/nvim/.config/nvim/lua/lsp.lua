@@ -30,12 +30,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'bashls', 'pyright', 'dockerls', 'jdtls', }
+-- local servers = { 'clangd', 'bashls', 'pyright', 'dockerls', 'jdtls'}
+local servers = { 'clangd', 'bashls', 'pyright', 'dockerls' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+    nvim_lsp[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
 end
 
 -- nvim-lsp-installer setup
@@ -44,8 +45,6 @@ local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.settings({
     install_root_dir = ( vim.fn.stdpath"data" .. "/lsp_servers" )
 })
-
--- require('lspconfig').jdtls.setup{}
 
 -- Example custom server
 local sumneko_root_path = vim.fn.getenv 'HOME' .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server' -- Change to your sumneko root installation

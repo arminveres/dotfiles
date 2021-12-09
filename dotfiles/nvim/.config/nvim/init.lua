@@ -15,10 +15,15 @@ vim.o.mouse = 'a'
 vim.o.hidden = true --Do not save when switching buffers (note: this is now a default on master)
 
 -- buffer-local options
-vim.bo.tabstop = 8
-vim.bo.softtabstop = 4
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 4
+-- vim.bo.tabstop = 8
+-- vim.bo.softtabstop = 4
+-- vim.bo.expandtab = true
+-- vim.bo.shiftwidth = 4
+
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
 
 -- windows-local options
 vim.wo.relativenumber = true
@@ -54,13 +59,13 @@ vim.g.lightline = {
 
 -- Highlight on yank
 vim.api.nvim_exec(
-  [[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]],
-  false
+    [[
+        augroup YankHighlight
+            autocmd!
+            autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+        augroup end
+    ]],
+    false
 )
 
 --Map blankline

@@ -14,8 +14,8 @@ font pango: Canterell Regular 12
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# systray apps #
+# NetworkManager systray
 exec --no-startup-id nm-applet
 # pulseadio tray app
 exec --no-startup-id pasystray
@@ -38,9 +38,9 @@ bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow)
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
 
 # Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Insert exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -111,16 +111,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Editor"
-set $ws2 "2: Research"
-set $ws3 "3: Gaming"
-set $ws4 "4: Messaging"
-set $ws5 "5: Sound"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws9 "9: "
+set $ws10 "10:  + "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -147,11 +147,16 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # assigning applications to workspaces
-assign [class="Steam"] $ws3
-assign [class="discord"] $ws3
-assign [class="Signal"] $ws4
-assign [class="Franz"] $ws4
-for_window [class="Spotify"] move to workspace $ws5
+assign [class="Steam"] $ws9
+assign [class="discord"] $ws9
+assign [class="Signal"] $ws10
+assign [class="Franz"] $ws10
+assign [class="corectrl"] $ws8
+for_window [class="Spotify"] move to workspace $ws10
+# add floating to all origin windows
+for_window [instance="origin.exe"] floating enable
+# same for zoom
+for_window [instance="Zoom"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,7 +196,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)#
 
 bar {
-    status_command i3status | ~/GitHubFiles/i3spotifystatus/pystatus.py
+    status_command i3status -C ~/.config/i3/i3status.conf | ~/gitfiles/i3spotifystatus/pystatus.py
     tray_output DisplayPort-1 
     position top
     colors {
@@ -246,19 +251,12 @@ bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # d
 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
 exec xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
 
-#exec steam
-#exec discord
-#exec Signal
-#exec Spotify
-
 # sets mouse acceleration to flat
 # MX Master 3
 exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1 
 # G Pro
 exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
-# TODO could add a function, that searches in xinput list for each device and gets the ID number,
-# which then gets added to setting the mouse accel. to flat.
-
+# TODO change from id to name, so if the id changes it still can be adjusted
 # sets wallpaper
 exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper.jpg
 
@@ -266,9 +264,11 @@ exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper.jpg
 exec_always lxpolkit
 
 # start nordvpnd
-exec_always nordvpnd
+exec_always --no-startup-id nordvpnd
 # swap escape and caps lock
 exec_always setxkbmap -option ctrl:swapcaps 
+
+exec_always --no-startup-id corectrl
 
 # move workspaces to other monitors
 bindsym $mod+Shift+greater move workspace to output right

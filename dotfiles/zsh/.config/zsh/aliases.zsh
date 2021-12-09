@@ -6,4 +6,7 @@ alias i3st="sudo vi /etc/i3status.conf"
 alias vi="nvim"
 alias vim="nvim"
 
+alias la="exa -la"
+alias ll="exa -l"
+
 alias hisgrep="history | grep"
