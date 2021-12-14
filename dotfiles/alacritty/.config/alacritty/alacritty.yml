@@ -1,5 +1,6 @@
 import:
     - ~/.config/alacritty/gruvbox-dark-hard.yml
+
 # Spaces per Tab (changes require restart)
 #
 # This setting defines the width of a tab in cells.
@@ -8,11 +9,16 @@ import:
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
 tabspaces: 8
+
 font:
   normal:
     family: "MesloLGS NF"
+    # family: "Fira Code"
   size: 13
+ligatures: true
+
 window:
+
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -20,8 +26,16 @@ window:
   padding:
     x: 5
     y: 5
+
   # Spread additional padding evenly around the terminal content.
   dynamic_padding:  true
+
+  # Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+# background_opacity: 0.9 
+
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.

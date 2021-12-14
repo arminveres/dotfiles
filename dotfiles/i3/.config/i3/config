@@ -33,9 +33,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
+bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
+bindsym Shift+Insert exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
 
 # Clipboard Screenshots
 bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -196,7 +196,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)#
 
 bar {
-    status_command i3status -C ~/.config/i3/i3status.conf | ~/gitfiles/i3spotifystatus/pystatus.py
+    status_command i3status -c ~/.config/i3/i3status.conf | ~/gitfiles/i3spotifystatus/pystatus.py
     tray_output DisplayPort-1 
     position top
     colors {
@@ -268,7 +268,7 @@ exec_always --no-startup-id nordvpnd
 # swap escape and caps lock
 exec_always setxkbmap -option ctrl:swapcaps 
 
-exec_always --no-startup-id corectrl
+exec --no-startup-id corectrl
 
 # move workspaces to other monitors
 bindsym $mod+Shift+greater move workspace to output right
