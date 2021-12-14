@@ -24,11 +24,8 @@ require('packer').startup(function()
 
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
 
-  -- UI to select things (files, grep results, open buffers...)
-  use {
-      'nvim-telescope/telescope.nvim',
-      requires = { 'nvim-lua/plenary.nvim' }
-  }
+  use({ "nvim-telescope/telescope.nvim", commit = "80cdb00b221f69348afc4fb4b701f51eb8dd3120" })
+  use({ "nvim-lua/plenary.nvim", commit = "b5fd5cab51f8e30d669295ec361a48b13c245eb5" })
 
   -- colorschemes
   use 'joshdick/onedark.vim' -- Theme inspired by Atom
