@@ -22,6 +22,8 @@ require('packer').startup(function()
 
   use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
 
+  use 'tpope/vim-sleuth' -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+
   use 'ludovicchabant/vim-gutentags' -- Automatic tags management
 
   use({ "nvim-telescope/telescope.nvim", commit = "80cdb00b221f69348afc4fb4b701f51eb8dd3120" })
