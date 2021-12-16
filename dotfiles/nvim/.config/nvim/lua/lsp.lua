@@ -50,7 +50,9 @@ lsp_installer.settings({
 })
 
 -- Example custom server
-local sumneko_root_path = vim.fn.getenv 'HOME' .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server' -- Change to your sumneko root installation
+-- had to change it from sumneko_lua to lua, as the lsp installer was conflicting
+-- TODO add custom config to lsp_installer
+local sumneko_root_path = vim.fn.getenv 'HOME' .. '/.local/share/nvim/lsp_servers/lua/extension/server' -- Change to your sumneko root installation
 local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
 
 -- Make runtime files discoverable to the server
