@@ -7,7 +7,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Code 12
 font pango: Canterell Regular 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
@@ -47,6 +47,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -147,11 +148,15 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # assigning applications to workspaces
+assign [class="corectrl"] $ws8
+
 assign [class="Steam"] $ws9
 assign [class="discord"] $ws9
+assign [class="Lutris"] $ws9
+
 assign [class="Signal"] $ws10
 assign [class="Franz"] $ws10
-assign [class="corectrl"] $ws8
+
 for_window [class="Spotify"] move to workspace $ws10
 # add floating to all origin windows
 for_window [instance="origin.exe"] floating enable
