@@ -10,14 +10,25 @@ keymap('n', '<Up>', '<Nop>', opts)
 keymap('n', '<Down>', '<Nop>', opts)
 
 --  Left and right can switch buffers
-keymap('n', '<Left>', '<Cmd>tabp<CR>', opts)
-keymap('n', '<Right>', '<Cmd>tabn<CR>', opts)
-keymap('n', '<C-Left>', '<Cmd>bp<CR>', opts)
-keymap('n', '<C-Right>', '<Cmd>bn<CR>', opts)
+keymap('n', '<Left>', ':tabp<CR>', opts)
+keymap('n', '<Right>', ':tabn<CR>', opts)
+keymap('n', '<C-Left>', ':bp<CR>', opts)
+keymap('n', '<C-Right>', ':bn<CR>', opts)
 
 -- Map jj to the escape key
-keymap('i', 'jj', '<Esc>', opts)
+keymap('i', 'jk', '<Esc>', opts)
 
+-- Visual --
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+-- Move text up and down
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "p", '"_dP', opts) -- when pasting in visual, don't copy deleted word to register
+
+-- Leader --
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
@@ -27,7 +38,7 @@ vim.g.maplocalleader = ' '
 keymap('n', 'Y', 'y$', { noremap = true })
 
 --Add leader shortcuts
-keymap('n', '<leader>e', '[[<cmd>Lex 30<cr>]]', opts)
+keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- only leader e doesn't work, for whatever reason
 
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
 keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], opts)

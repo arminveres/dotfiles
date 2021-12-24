@@ -36,3 +36,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.termguicolors = true
 
 vim.opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("eol:↴")

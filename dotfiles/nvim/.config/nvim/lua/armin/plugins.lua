@@ -18,46 +18,45 @@ vim.api.nvim_exec(
 local use = require('packer').use
 require('packer').startup(function()
 
-  use 'wbthomason/packer.nvim' -- Package manager
+  use 'wbthomason/packer.nvim'                  -- Package manager
 
-  use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
+  use 'tpope/vim-commentary'                    -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
 
-  use 'tpope/vim-sleuth' -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
-
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
+  use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
 
   use({
     "nvim-telescope/telescope.nvim",
-    requires = "nvim-lua/plenary.nvim"})
+    requires = "nvim-lua/plenary.nvim"
+  })
 
   -- colorschemes
-  use 'joshdick/onedark.vim' -- Theme inspired by Atom
+  use 'joshdick/onedark.vim'                    -- Theme inspired by Atom
   use 'morhetz/gruvbox'
 
-  use 'itchyny/lightline.vim' -- Fancier statusline
-  -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
-  -- Add git related info in the signs columns and popups
-  use {
+  use 'itchyny/lightline.vim'                   -- Fancier statusline
+
+  use 'lukas-reineke/indent-blankline.nvim'     -- Add indentation guides even on blank lines
+
+  use {                                         -- Add git related info in the signs columns and popups
       'lewis6991/gitsigns.nvim',
       requires = { 'nvim-lua/plenary.nvim' }
   }
-  -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use {
+
+  use {                                         -- Highlight, edit, and navigate code using a fast incremental parsing library
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
- -- Additional textobjects for treesitter
-    require = {
-	{'nvim-treesitter/nvim-treesitter-textobjects'}
+    require = {                                 -- Additional textobjects for treesitter
+      {'nvim-treesitter/nvim-treesitter-textobjects'}
     }
   }
 
-  use {
+  use {                                         -- Collection of configurations for built-in LSP client
     'neovim/nvim-lspconfig',
     requires = {'williamboman/nvim-lsp-installer'}
-  } -- Collection of configurations for built-in LSP client
+  }
 
-  use {
+  use {                                         -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     requires = {
         {'hrsh7th/cmp-buffer'},
@@ -67,8 +66,7 @@ require('packer').startup(function()
         {'hrsh7th/cmp-vsnip'},
         {'hrsh7th/cmp-cmdline'}
     }
-  } -- Autocompletion plugins
-
+  }
   -- use {
   --   'hrsh7th/vim-vsnip',
   --   requires = {
@@ -77,7 +75,7 @@ require('packer').startup(function()
   -- }
 
   use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  use 'L3MON4D3/LuaSnip'                        -- Snippets plugin
   use 'mfussenegger/nvim-jdtls'
 
 -- plugins which could be activated
