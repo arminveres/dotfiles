@@ -1,45 +1,9 @@
-require('plugins')
-require('mappings')
-require('lsp')
-
--- global option
-vim.o.ignorecase = true
-vim.o.smartcase = true --Case insensitive searching UNLESS /C or capital in search
-vim.o.smarttab = true
-vim.o.hlsearch = false
-vim.o.backup = true
-vim.o.writebackup = true
-vim.o.breakindent = true
-vim.o.inccommand = 'nosplit'
-vim.o.mouse = 'a'
-vim.o.hidden = true --Do not save when switching buffers (note: this is now a default on master)
-
--- buffer-local options
--- vim.bo.tabstop = 8
--- vim.bo.softtabstop = 4
--- vim.bo.expandtab = true
--- vim.bo.shiftwidth = 4
-
-vim.opt.tabstop = 8
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-
--- windows-local options
-vim.wo.relativenumber = true
-vim.wo.number = true
-vim.wo.colorcolumn = '80,100'
-
-vim.opt.undofile = true --Save undo history
-vim.opt.undodir = '/tmp//' --'~/.cache/nvim/undo//' doesn't work
-vim.opt.backupdir = '/tmp//' --'~/.cache/nvim/backup//'
-
---Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+require('armin.options')
+require('armin.plugins')
+require('armin.mappings')
+require('armin.lsp')
 
 --Set colorscheme (order is important here)
-vim.o.termguicolors = true
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_contrast_dark = 'hard'
 vim.cmd [[colorscheme gruvbox]]

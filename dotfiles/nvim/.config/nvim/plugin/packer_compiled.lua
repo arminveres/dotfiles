@@ -183,6 +183,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/arminveres/.local/share/nvim/site/pack/packer/start/vim-gutentags",
     url = "https://github.com/ludovicchabant/vim-gutentags"
+  },
+  ["vim-sleuth"] = {
+    loaded = true,
+    path = "/home/arminveres/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    url = "https://github.com/tpope/vim-sleuth"
   }
 }
 
