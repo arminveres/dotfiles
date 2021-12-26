@@ -1,5 +1,8 @@
 # dotconf-files
 
-first run (after the first run adopt may be left out):
+first run:
+Move or delete dotfiles which should be changed and then do:
+stow -vt ~ dotfiles/*
 
+Use following if you want to overwrite files in repo:
 stow --adopt -vt ~ dotfiles/*
