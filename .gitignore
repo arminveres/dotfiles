@@ -1,3 +1,7 @@
-*~
-*/packer_compiled.lua
+# general files
+**/*~
+# specific files
+**/packer_compiled.lua
+**/zsh_history
 tags
+
