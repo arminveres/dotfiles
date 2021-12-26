@@ -46,8 +46,8 @@ bindsym Ctrl+Shift+Insert exec --no-startup-id maim --select | xclip -selection 
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-# bindsym $mod+Return exec kitty
+# bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -272,6 +272,8 @@ exec_always lxpolkit
 exec_always --no-startup-id nordvpnd
 # swap escape and caps lock
 exec_always setxkbmap -option ctrl:swapcaps 
+# start picom compositor
+exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
 
 exec --no-startup-id corectrl
 
