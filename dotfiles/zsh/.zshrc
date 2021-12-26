@@ -97,7 +97,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 
-bindkey -v
+# bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
