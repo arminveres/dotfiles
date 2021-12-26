@@ -1,14 +1,14 @@
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
+export VISUAL=nvim
+export EDITOR=nvim
+#
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
 
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -22,24 +22,29 @@ antigen bundle command-not-found
 antigen bundle docker
 antigen bundle docker-compose
 
+antigen bundle Aloxaf/fzf-tab
+
+antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-completions
 
 antigen theme romkatv/powerlevel10k
 
 antigen apply
 
-export VISUAL=nvim
-export EDITOR=nvim
+#history
+HISTFILE=~/.config/zsh/zsh_history
+HISTSIZE=20000
+SAVEHIST=20000
+setopt appendhistory
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # bindkey -v
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey '^k' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -58,4 +63,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
