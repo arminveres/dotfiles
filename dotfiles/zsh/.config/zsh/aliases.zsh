@@ -9,4 +9,9 @@ alias vim="nvim"
 alias la="exa -la"
 alias ll="exa -l"
 
-alias hisgrep="history | grep"
+alias hisgr="history | rg"
+
+if [[ $TERM = "xterm-kitty" ]]
+then
+  alias ssh="kitty +kitten ssh"
+fi
