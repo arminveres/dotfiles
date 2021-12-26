@@ -2,18 +2,25 @@
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  PACKER_BOOTSTRAP = vim.fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
 
-vim.api.nvim_exec(
-  [[
-  augroup Packer
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
     autocmd!
-    autocmd BufWritePost init.lua PackerCompile
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
   augroup end
-]],
-  false
-)
+]]
 
 local use = require('packer').use
 require('packer').startup(function()
@@ -21,7 +28,10 @@ require('packer').startup(function()
   use 'wbthomason/packer.nvim'                  -- Package manager
 
   use 'tpope/vim-commentary'                    -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+  use({
+    'tpope/vim-sleuth',
+    commit = "e362d3552ba2fcf0bc1830a1c59e869b1c6f2067" -- had some issues
+  })                         -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
 
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
 
@@ -39,8 +49,8 @@ require('packer').startup(function()
   use 'lukas-reineke/indent-blankline.nvim'     -- Add indentation guides even on blank lines
 
   use {                                         -- Add git related info in the signs columns and popups
-      'lewis6991/gitsigns.nvim',
-      requires = { 'nvim-lua/plenary.nvim' }
+    'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 
   use {                                         -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -59,27 +69,30 @@ require('packer').startup(function()
   use {                                         -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     requires = {
-        {'hrsh7th/cmp-buffer'},
-        {'hrsh7th/cmp-path'},
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'hrsh7th/cmp-nvim-lua'},
-        {'hrsh7th/cmp-vsnip'},
-        {'hrsh7th/cmp-cmdline'}
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+      {'rafamadriz/friendly-snippets'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'L3MON4D3/LuaSnip'}
+      -- {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
+      -- {'hrsh7th/cmp-vsnip'},
+      -- {'hrsh7th/cmp-cmdline'},
     }
   }
-  -- use {
-  --   'hrsh7th/vim-vsnip',
-  --   requires = {
-  --       {'rafamadriz/friendly-snippets'}
-  --   }
-  -- }
 
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'                        -- Snippets plugin
-  use 'mfussenegger/nvim-jdtls'
+  -- use 'L3MON4D3/LuaSnip'                        -- Snippets plugin
+
+  use 'mfussenegger/nvim-jdtls'                 -- Java LSP
 
 -- plugins which could be activated
   -- use 'tpope/vim-fugitive' -- Git commands in nvim
   -- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-end)
 
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
+end)

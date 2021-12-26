@@ -14,6 +14,7 @@ vim.opt.tabstop = 8
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
+
 vim.opt.showtabline = 2             -- always show tabs
 
 vim.opt.splitbelow = true           -- force all horizontal splits to go below current window

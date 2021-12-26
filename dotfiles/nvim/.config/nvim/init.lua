@@ -1,12 +1,9 @@
 require('armin.options')
 require('armin.plugins')
 require('armin.mappings')
+require('armin.colorscheme')
+require('armin.cmp')
 require('armin.lsp')
-
---Set colorscheme (order is important here)
-vim.g.gruvbox_italic = 1
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.cmd [[colorscheme gruvbox]]
 
 --Set statusbar
 vim.g.lightline = {
