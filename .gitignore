@@ -1,5 +1,7 @@
 # general files
 **/*~
+# specific folders
+**/nvim/plugin/**
 # specific files
 **/packer_compiled.lua
 **/zsh_history
