@@ -4,6 +4,7 @@ require('armin.mappings')
 require('armin.colorscheme')
 require('armin.cmp')
 require('armin.lsp')
+require('armin.telescope')
 
 --Set statusbar
 vim.g.lightline = {
@@ -43,18 +44,6 @@ require('gitsigns').setup {
     delete = { hl = 'GitGutterDelete', text = '_' },
     topdelete = { hl = 'GitGutterDelete', text = '‾' },
     changedelete = { hl = 'GitGutterChange', text = '~' },
-  },
-}
-
--- Telescope
-require('telescope').setup {
-  defaults = {
-    mapings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
   },
 }
 
