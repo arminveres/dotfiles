@@ -42,6 +42,7 @@ require('packer').startup(function()
 
   -- colorschemes
   use 'joshdick/onedark.vim'                    -- Theme inspired by Atom
+  use 'rebelot/kanagawa.nvim'
   use 'morhetz/gruvbox'
 
   use 'itchyny/lightline.vim'                   -- Fancier statusline

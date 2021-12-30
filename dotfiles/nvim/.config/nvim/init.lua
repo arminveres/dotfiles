@@ -7,8 +7,7 @@ require('armin.lsp')
 
 --Set statusbar
 vim.g.lightline = {
---  colorscheme = 'onedark',
-  colorscheme = 'gruvbox',
+  colorscheme = 'jellybeans',
   active = {
       left = {
           { 'mode', 'paste' },
