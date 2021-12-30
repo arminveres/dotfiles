@@ -202,8 +202,9 @@ bindsym $mod+r mode "resize"
 
 bar {
     status_command i3status -c ~/.config/i3/i3status.conf | ~/gitfiles/i3spotifystatus/pystatus.py
-    tray_output DisplayPort-1 
+    tray_output DisplayPort-1
     position top
+    height 25
     colors {
         background $base00
         separator  $base01

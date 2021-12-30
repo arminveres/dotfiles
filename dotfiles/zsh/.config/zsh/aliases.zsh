@@ -9,6 +9,11 @@ alias vim="nvim"
 alias la="exa -la"
 alias ll="exa -l"
 
+alias g="git"
+alias gla="git status"
+alias ga="git add"
+alias glo="git log --graph --oneline"
+
 alias hisgr="history | rg"
 
 if [[ $TERM = "xterm-kitty" ]]
