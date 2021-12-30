@@ -37,7 +37,10 @@ require('packer').startup(function()
 
   use({
     "nvim-telescope/telescope.nvim",
-    requires = "nvim-lua/plenary.nvim"
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons"
+    }
   })
 
   use {                                         -- colorschemes
@@ -55,9 +58,6 @@ require('packer').startup(function()
   use {                                         -- Highlight, edit, and navigate code using a fast incremental parsing library
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    require = {                                 -- Additional textobjects for treesitter
-      {'nvim-treesitter/nvim-treesitter-textobjects'}
-    }
   }
 
   use {                                         -- Collection of configurations for built-in LSP client
