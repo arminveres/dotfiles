@@ -34,4 +34,5 @@ sudo dnf install -y \
     python3-pip \
     rubygem \
     fd-find \
-    flatpak
+    flatpak \
+    pandoc
