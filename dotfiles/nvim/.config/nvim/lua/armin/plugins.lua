@@ -85,6 +85,8 @@ require('packer').startup(function()
 
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
 
+  use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
+
 -- plugins which could be activated
   -- use 'tpope/vim-fugitive' -- Git commands in nvim
   -- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
