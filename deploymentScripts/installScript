@@ -35,4 +35,6 @@ sudo dnf install -y \
     rubygem \
     fd-find \
     flatpak \
-    pandoc
+    pandoc \
+    texlive-scheme-basic \
+    xclip
