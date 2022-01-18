@@ -6,8 +6,10 @@ alias i3st="sudo vi /etc/i3status.conf"
 alias vi="nvim"
 alias vim="nvim"
 
-alias la="exa -la"
-alias ll="exa -l"
+alias la="exa -la --header"
+alias ll="exa -l --header"
+
+alias btop="bpytop"
 
 alias g="git"
 alias gla="git status"
