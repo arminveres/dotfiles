@@ -10,19 +10,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/antigen.zsh
 
-# OMZ plugins
-antigen use oh-my-zsh
-antigen bundle command-not-found
-antigen bundle docker
-antigen bundle docker-compose
-
-antigen bundle Aloxaf/fzf-tab
+# antigen bundle Aloxaf/fzf-tab
 
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -39,11 +31,11 @@ HISTSIZE=20000
 SAVEHIST=20000
 setopt appendhistory
 
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 # bindkey -v
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 bindkey '^k' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
