@@ -3,6 +3,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
+# bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M menuselect '^h' vi-backward-char
 bindkey -M menuselect '^k' vi-up-line-or-history
 bindkey -M menuselect '^l' vi-forward-char
