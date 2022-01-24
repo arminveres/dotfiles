@@ -12,7 +12,7 @@ font pango: Canterell Regular 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
 
 # systray apps #
 # NetworkManager systray
@@ -148,6 +148,8 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # assigning applications to workspaces
+assign [class="Firefox"] $ws2
+
 assign [class="corectrl"] $ws8
 
 assign [class="Steam"] $ws9
@@ -161,14 +163,17 @@ for_window [class="Spotify"] move to workspace $ws10
 # add floating to all origin windows
 for_window [instance="origin.exe"] floating enable
 # same for zoom
-for_window [instance="Zoom"] floating enable
+# for_window [instance="zoom"] floating enable
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom - Licensed Account"] floating disable
+for_window [class="zoom" title="Zoom Meeting"] floating disable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
