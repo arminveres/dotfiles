@@ -37,10 +37,13 @@ function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")
 }
 
-PROMPT="%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%$(collapse_pwd)%{$reset_color%}"
+PROMPT="
+%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%$(collapse_pwd)%{$reset_color%}"
 PROMPT+="\$vcs_info_msg_0_ "
 PROMPT+="
 %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+
+RPROMPT="%t"
 
 # TODO look into this for more colors
 # https://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/

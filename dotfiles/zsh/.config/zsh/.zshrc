@@ -1,9 +1,9 @@
 export ZDOTDIR=$HOME/.config/zsh
 
 # some useful options (man zshoptions)
-setopt autocd extendedglob nomatch menucomplete
+setopt AUTO_CD EXTENDED_GLOB NOMATCH MENU_COMPLETE
 setopt interactive_comments
-stty stop undef		# Disable ctrl-s to freeze terminal.
+stty stop undef                # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
 # beeping is annoying
@@ -12,10 +12,12 @@ unsetopt BEEP
 # completions
 autoload -Uz compinit
 zstyle ':completion:*' menu select
+# insensitive tab completion
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 # compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)      # Include hidden files.
 
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
