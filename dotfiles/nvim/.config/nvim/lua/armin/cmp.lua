@@ -115,8 +115,8 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "path" },
-    -- { name = "dictionary",
-    --   keyword_length = 2 },
+    { name = "dictionary",
+      keyword_length = 2 },
     { name = "buffer" }
   },
   confirm_opts = {
@@ -134,13 +134,22 @@ cmp.setup {
 
 -- dictionary setup
 
--- require("cmp_dictionary").setup({
---   dic = {
---       ["*"] = "/usr/share/dict/words"
---   },
---   -- The following are default values, so you don't need to write them if you don't want to change them
---   exact = 2,
---   async = false,
---   capacity = 5,
---   debug = false,
--- })
+require("cmp_dictionary").setup({
+    dic = {
+        ["*"] = { "/usr/share/dict/words" },
+        -- ["lua"] = "path/to/lua.dic",
+        -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+        -- filename = {
+        --     ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+        -- },
+        -- filepath = {
+        --     ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+        -- },
+    },
+    -- The following are default values, so you don't need to write them if you don't want to change them
+    exact = 2,
+    first_case_insensitive = false,
+    async = false,
+    capacity = 5,
+    debug = false,
+})

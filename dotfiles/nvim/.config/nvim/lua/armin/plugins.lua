@@ -74,8 +74,8 @@ require('packer').startup(function()
       {'hrsh7th/cmp-nvim-lua'},
       {'rafamadriz/friendly-snippets'},
       {'saadparwaiz1/cmp_luasnip'},
-      {'L3MON4D3/LuaSnip'}
-      -- {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
+      {'L3MON4D3/LuaSnip'},
+      {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
       -- {'hrsh7th/cmp-vsnip'},
       -- {'hrsh7th/cmp-cmdline'},
     }
