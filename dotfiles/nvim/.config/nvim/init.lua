@@ -6,6 +6,7 @@ require('armin.cmp')
 require('armin.lsp')
 require('armin.telescope')
 require('armin.treesitter')
+require('armin.autopairs')
 
 --Set statusbar
 vim.g.lightline = {

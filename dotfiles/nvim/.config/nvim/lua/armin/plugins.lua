@@ -31,9 +31,10 @@ require('packer').startup(function()
   use({
     'tpope/vim-sleuth',
     commit = "e362d3552ba2fcf0bc1830a1c59e869b1c6f2067" -- had some issues
-  })                         -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+  })                                            -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
 
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
+  use 'windwp/nvim-autopairs'                   -- Autopairs {}, [], () etc
 
   use({
     "nvim-telescope/telescope.nvim",
