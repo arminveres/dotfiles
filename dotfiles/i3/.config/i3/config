@@ -54,7 +54,7 @@ bindsym $mod+Shift+q kill
 
 # A more modern dmenu replacement is rofi:
 bindsym $mod+d exec "rofi -modi drun,run -show drun"
-bindsym $mod+Tab exec "rofi -modi window, run -show window"
+# bindsym $mod+Tab exec "rofi -modi window, run -show window"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -146,6 +146,10 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# cycle through workspaces
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
 
 # assigning applications to workspaces
 assign [class="Firefox"] $ws2
