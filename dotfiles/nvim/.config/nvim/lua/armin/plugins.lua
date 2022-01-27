@@ -77,6 +77,7 @@ require('packer').startup(function()
       {'saadparwaiz1/cmp_luasnip'},
       {'L3MON4D3/LuaSnip'},
       {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
+      {'f3fora/cmp-spell'}                      -- spelling plugin
       -- {'hrsh7th/cmp-vsnip'},
       -- {'hrsh7th/cmp-cmdline'},
     }

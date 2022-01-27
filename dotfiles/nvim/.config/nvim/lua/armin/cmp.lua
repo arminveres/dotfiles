@@ -106,6 +106,7 @@ cmp.setup {
         nvim_lua = "[NV_Lua]",
         path = "[Path]",
         buffer = "[Buffer]",
+        dictionary = "[Dictionary]"
       })[entry.source.name]
       return vim_item
     end,
@@ -117,7 +118,8 @@ cmp.setup {
     { name = "path" },
     { name = "dictionary",
       keyword_length = 2 },
-    { name = "buffer" }
+    { name = "buffer" },
+    { name = "spell" }
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
@@ -131,12 +133,15 @@ cmp.setup {
     native_menu = false,
   },
 }
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
 
 -- dictionary setup
 
 require("cmp_dictionary").setup({
     dic = {
-        ["md"] = { "/usr/share/dict/words" },
+        ["markdown"] = { "~/.local/share/dict/eng.dict" },
+        -- ["*"] = { "/usr/share/dict/words" },
         -- ["lua"] = "path/to/lua.dic",
         -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
         -- filename = {

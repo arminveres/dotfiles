@@ -35,6 +35,11 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+-- Spell Checking --
+keymap("n", "<F11>", ":set spell!<CR>", opts)
+keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
+-- replacing is done in insertmode <C-x>s
+
 -- Leader --
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
