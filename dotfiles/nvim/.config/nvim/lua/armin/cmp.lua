@@ -136,7 +136,7 @@ cmp.setup {
 
 require("cmp_dictionary").setup({
     dic = {
-        ["*"] = { "/usr/share/dict/words" },
+        ["md"] = { "/usr/share/dict/words" },
         -- ["lua"] = "path/to/lua.dic",
         -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
         -- filename = {
