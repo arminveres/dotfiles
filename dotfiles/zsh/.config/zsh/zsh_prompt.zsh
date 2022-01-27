@@ -38,7 +38,7 @@ function collapse_pwd {
 }
 
 PROMPT="
-%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%$(collapse_pwd)%{$reset_color%}"
+%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%~%{$reset_color%}"
 PROMPT+="\$vcs_info_msg_0_ "
 PROMPT+="
 %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"

@@ -1,4 +1,4 @@
-alias zshconfig="vi ~/.config/zsh/.zshrc"
+alias zconf="vi ~/.config/zsh/.zshrc"
 alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"
 
