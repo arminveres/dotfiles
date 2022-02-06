@@ -83,9 +83,9 @@ require('packer').startup(function()
 
   use 'kyazdani42/nvim-tree.lua'                -- Replacement for Netrw
 
-  use "akinsho/bufferline.nvim"                 -- Prettier (and more versatile) Bufferlines
-  use "moll/vim-bbye"                           -- allows you to do delete buffers (close files) without closing your windows
--- potentially replace with barbar.nvim
+  -- use "akinsho/bufferline.nvim"                 -- Prettier (and more versatile) Bufferlines
+  -- use "moll/vim-bbye"                           -- allows you to do delete buffers (close files) without closing your windows
+  use 'kdheepak/tabline.nvim'
 
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
 

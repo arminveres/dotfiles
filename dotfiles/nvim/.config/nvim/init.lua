@@ -12,7 +12,8 @@ require('armin.nvim-tree')
 require('armin.comment')
 require('armin.lualine')
 require('armin.blankline')
-require('armin.bufferline') -- potentially replace with barbar.nvim
+require('armin.tabline')
+-- require('armin.bufferline') -- potentially replace with tabline.nvim
 
 -- Highlight on yank
 vim.api.nvim_exec(
