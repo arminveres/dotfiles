@@ -1,4 +1,4 @@
-local opts = { noremap = true, silent=true }
+local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap for dealing with word wrap
@@ -52,6 +52,7 @@ keymap('n', 'Y', 'y$', { noremap = true })
 --Add leader shortcuts
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>q", ":Bdelete<CR>", opts)
 
 -- telescope shortcuts
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)

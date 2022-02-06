@@ -33,8 +33,9 @@ require('packer').startup(function()
 
   use 'wbthomason/packer.nvim'                  -- Package manager
 
-  use 'tpope/vim-commentary'                    -- "gc" to comment visual regions/lines
+  -- use 'tpope/vim-commentary'                 -- replaced by comment.nvim
   use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+  use "numToStr/Comment.nvim"                   -- Easily comment stuff gc/gcc
 
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
   use 'windwp/nvim-autopairs'                   -- Autopairs {}, [], () etc
@@ -57,6 +58,7 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- better context aware commenting
 
   use {                                         -- Collection of configurations for built-in LSP client
     'neovim/nvim-lspconfig',
@@ -81,6 +83,10 @@ require('packer').startup(function()
   }
 
   use 'kyazdani42/nvim-tree.lua'                -- Replacement for Netrw
+
+  use "akinsho/bufferline.nvim"                 -- Prettier (and more versatile) Bufferlines
+  use "moll/vim-bbye"                           -- allows you to do delete buffers (close files) without closing your windows
+-- potentially replace with barbar.nvim
 
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
 

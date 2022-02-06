@@ -9,6 +9,8 @@ require('armin.treesitter')
 require('armin.autopairs')
 require('armin.gitsigns')
 require('armin.nvim-tree')
+require('armin.comment')
+require('armin.bufferline') -- potentially replace with barbar.nvim
 
 --Set statusbar
 vim.g.lightline = {
