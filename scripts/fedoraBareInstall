@@ -9,10 +9,13 @@ dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-
 
  # first install bare packages
 dnf install -y \
-    xorg-x11-server-xorg \
+    xorg-x11-server-Xorg \
     xorg-x11-xinit \
     xorg-x11-drv-* \
     mesa-dri-drivers\
+
+# necessary packages
+dnf install -y \
     abattis-cantarell-fonts \
     sqlite \
     xrandr \
@@ -39,7 +42,7 @@ dnf install -y \
     picom \
     rofi \
     sxhkd \
-    bspwm \
+    bspwm
 
 # basic apps
 dnf install -y \
