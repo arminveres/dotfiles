@@ -27,6 +27,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+z exec --no-startup-id zathura
+
 #Media Keys
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -53,8 +56,8 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
-# bindsym $mod+Tab exec "rofi -modi window, run -show window"
+bindsym $mod+space exec "rofi -modi drun,run -show drun"
+bindsym $mod+Tab exec "rofi -modi window, run -show window"
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -66,23 +69,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Shift+Left move left
-# bindsym $mod+Shift+Down move down
-# bindsym $mod+Shift+Up move up
-# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+semicolon split h
@@ -102,7 +93,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+d focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -273,7 +264,7 @@ exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1
 exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
 # TODO change from id to name, so if the id changes it still can be adjusted
 # sets wallpaper
-exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper.jpg
+exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper3.jpg
 
 # start polkit
 exec_always lxpolkit
@@ -281,7 +272,7 @@ exec_always lxpolkit
 # start nordvpnd
 exec_always --no-startup-id nordvpnd
 # swap escape and caps lock
-exec_always setxkbmap -option ctrl:swapcaps 
+# exec_always setxkbmap -option ctrl:swapcaps 
 # start picom compositor
 exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
 
