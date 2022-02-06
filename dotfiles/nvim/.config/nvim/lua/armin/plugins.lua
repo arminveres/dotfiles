@@ -91,6 +91,8 @@ require('packer').startup(function()
 
   use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
 
+  use 'jose-elias-alvarez/null-ls.nvim'         -- Null LS
+
 -- plugins which could be activated
   -- use 'tpope/vim-fugitive' -- Git commands in nvim
   -- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
