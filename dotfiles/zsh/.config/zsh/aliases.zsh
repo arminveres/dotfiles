@@ -1,7 +1,9 @@
+# configs
 alias zconf="vi ~/.config/zsh/.zshrc"
 alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"
 
+# applications
 alias vi="nvim"
 alias vim="nvim"
 
@@ -15,12 +17,15 @@ alias gla="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline"
 
-alias hisgr="history | rg"
+# alias hisgr="history | rg"
+
+alias mkdir="mkdir -pv"
 
 # confirm before overwriting something
 alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+alias mv="mv -i"
+alias rm="rm -ir"
+alias ln="ln -i"
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
@@ -42,6 +47,7 @@ Darwin)
 
 Linux)
 	alias ls='ls --color=auto'
+	alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 	;;
 
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
