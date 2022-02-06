@@ -25,13 +25,16 @@ vim.cmd [[
 local use = require('packer').use
 require('packer').startup(function()
 
+  use {                                         -- colorschemes
+    'joshdick/onedark.vim',
+    'rebelot/kanagawa.nvim',
+    'morhetz/gruvbox'
+  }
+
   use 'wbthomason/packer.nvim'                  -- Package manager
 
   use 'tpope/vim-commentary'                    -- "gc" to comment visual regions/lines
-  use({
-    'tpope/vim-sleuth',
-    commit = "e362d3552ba2fcf0bc1830a1c59e869b1c6f2067" -- had some issues
-  })                                            -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+  use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
 
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
   use 'windwp/nvim-autopairs'                   -- Autopairs {}, [], () etc
@@ -43,12 +46,6 @@ require('packer').startup(function()
       "kyazdani42/nvim-web-devicons"
     }
   })
-
-  use {                                         -- colorschemes
-    'joshdick/onedark.vim',
-    'rebelot/kanagawa.nvim',
-    'morhetz/gruvbox'
-  }
 
   use 'itchyny/lightline.vim'                   -- Fancier statusline
 
@@ -83,7 +80,7 @@ require('packer').startup(function()
     }
   }
 
-  -- use 'L3MON4D3/LuaSnip'                        -- Snippets plugin
+  use 'kyazdani42/nvim-tree.lua'                -- Replacement for Netrw
 
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
 

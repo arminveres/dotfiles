@@ -50,7 +50,8 @@ vim.g.maplocalleader = ' '
 keymap('n', 'Y', 'y$', { noremap = true })
 
 --Add leader shortcuts
-keymap('n', '<leader>fe', ':Lex 30<cr>', opts)
+-- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- telescope shortcuts
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
