@@ -33,7 +33,6 @@ require('packer').startup(function()
 
   use 'wbthomason/packer.nvim'                  -- Package manager
 
-  -- use 'tpope/vim-commentary'                 -- replaced by comment.nvim
   use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
   use "numToStr/Comment.nvim"                   -- Easily comment stuff gc/gcc
 
@@ -48,7 +47,7 @@ require('packer').startup(function()
     }
   })
 
-  use 'itchyny/lightline.vim'                   -- Fancier statusline
+  use 'nvim-lualine/lualine.nvim'               -- Fancier statusline
 
   use 'lukas-reineke/indent-blankline.nvim'     -- Add indentation guides even on blank lines
 
