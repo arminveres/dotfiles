@@ -7,44 +7,21 @@ require('armin.lsp')
 require('armin.telescope')
 require('armin.treesitter')
 require('armin.autopairs')
-
---Set statusbar
-vim.g.lightline = {
-  colorscheme = 'jellybeans',
-  active = {
-      left = {
-          { 'mode', 'paste' },
-          { 'gitbranch', 'readonly', 'filename', 'modified' }
-      }
-  },
-  component_function = { gitbranch = 'fugitive#head' },
-}
+require('armin.gitsigns')
+require('armin.nvim-tree')
+require('armin.comment')
+require('armin.lualine')
+require('armin.blankline')
+require('armin.tabline')
+-- require('armin.bufferline') -- potentially replace with tabline.nvim
 
 -- Highlight on yank
 vim.api.nvim_exec(
-    [[
-        augroup YankHighlight
-            autocmd!
-            autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-        augroup end
-    ]],
-    false
+  [[
+    augroup YankHighlight
+        autocmd!
+        autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+    augroup end
+  ]],
+  false
 )
-
---Map blankline
-vim.g.indent_blankline_char = '┊'
-vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
-vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
-vim.g.indent_blankline_char_highlight = 'LineNr'
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-
--- Gitsigns
-require('gitsigns').setup {
-  signs = {
-    add = { hl = 'GitGutterAdd', text = '+' },
-    change = { hl = 'GitGutterChange', text = '~' },
-    delete = { hl = 'GitGutterDelete', text = '_' },
-    topdelete = { hl = 'GitGutterDelete', text = '‾' },
-    changedelete = { hl = 'GitGutterChange', text = '~' },
-  },
-}
