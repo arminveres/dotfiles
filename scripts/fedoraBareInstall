@@ -18,38 +18,52 @@ dnf install -y \
     xrandr \
     xinput \
     xclip \
-    zsh \
-    feh \
-    picom \
-    rofi \
-    sxhkd \
-    bspwm \
-    kitty \
-    firefox \
     git \
     gcc \
     g++ \
     clang \
     clang-tools-extra \
     stow \
+    make \
     cmake \
     util-linux-user \
     unzip\
     wget \
+    lm_sensors \
+    flatpak \
+    zsh
+
+# window manager specifics
+dnf install -y \
+    feh \
+    picom \
+    rofi \
+    sxhkd \
+    bspwm \
+
+# basic apps
+dnf install -y \
+    kitty \
+    firefox \
     htop \
     bpytop \
-    lm_sensors \
+    speedtest-cli \
+    playerctl \
+    vlc \
+    tldr
+
+# ranger dependencies
+dnf install -y \
+    ranger \
+    w3m
+
+# neovim dependencies
+dnf install -y \
     neovim \
     ruby \
     nodejs \
     ctags \
-    ranger \
-    speedtest-cli \
-    playerctl \
-    flatpak \
-    pandoc \
-    vlc \
-    tldr
+    pandoc
 
 # neomutt copr
 # dnf copr enable flatcap/neomutt
@@ -73,7 +87,8 @@ cargo install \
     bat \
     exa \
     zoxide
+    # alacritty
 
-#install fzf
+# install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/gitfiles/fzf
 ~/gitfiles/fzf/install
