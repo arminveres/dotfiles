@@ -1,6 +1,12 @@
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
+-- Leader --
+--Remap space as leader key
+keymap('', '<Space>', '<Nop>', opts)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Normal Mode --
 --Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
@@ -32,6 +38,17 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+
+-- Navigate tabs
+keymap("n", "<leader>ta", ":$tabnew<CR>", opts)
+keymap("n", "<leader>tc", ":tabclose<CR>", opts)
+keymap("n", "<leader>to", ":tabonly<CR>", opts)
+keymap("n", "<leader>tn", ":tabn<CR>", opts)
+keymap("n", "<leader>tp", ":tabp<CR>", opts)
+-- move current tab to previous position
+keymap("n", "<leader>tmp", ":-tabmove<CR>", opts)
+-- move current tab to next position
+keymap("n", "<leader>tmn", ":+tabmove<CR>", opts)
 
 --  Left and right can switch buffers
 -- keymap('n', '<Left>', ':tabp<CR>', opts)
@@ -68,12 +85,6 @@ keymap("n", "<F11>", ":set spell!<CR>", opts)
 keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 -- replacing is done in insertmode <C-x>s
 
-
--- Leader --
---Remap space as leader key
-keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 --Add leader shortcuts
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
