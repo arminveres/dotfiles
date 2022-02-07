@@ -42,7 +42,8 @@ dnf install -y \
     picom \
     rofi \
     sxhkd \
-    bspwm
+    bspwm \
+    polybar
 
 # basic apps
 dnf install -y \
