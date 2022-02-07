@@ -1,0 +1,18 @@
+#!/bin/env sh
+
+if [ $# -eq 0 ];
+then
+    echo "Give Nerd Font name e.g. JetBrainsMono"
+else
+  FONTNAME="$1"
+  PATHNAME="$HOME/.local/share/fonts/$FONTNAME"
+  if ! [ -f $PATHNAME ]; then
+    mkdir -p $PATHNAME
+
+    wget -P $PATHNAME https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/$FONTNAME.zip
+
+    unzip -d $PATHNAME $PATHNAME/$FONTNAME.zip
+
+    rm $PATHNAME/$FONTNAME.zip
+  fi
+fi

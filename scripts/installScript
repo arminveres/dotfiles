@@ -9,6 +9,7 @@ sudo dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-non
 
 sudo dnf install -y \
     htop \
+    bpytop \
     lm_sensors \
     neovim \
     xrandr \
@@ -38,3 +39,13 @@ sudo dnf install -y \
     pandoc \
     texlive-scheme-basic \
     xclip
+
+mkdir ~/gitfiles
+
+# add rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# fzf install
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/gitfiles/fzf
+~/gitfiles/fzf/install
+

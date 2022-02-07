@@ -24,17 +24,24 @@ vim.cmd [[
 
 local use = require('packer').use
 require('packer').startup(function()
-
   use 'wbthomason/packer.nvim'                  -- Package manager
+  use {                                         -- colorschemes
+    'joshdick/onedark.vim',
+    'rebelot/kanagawa.nvim',
+    'morhetz/gruvbox'
+  }
 
-  use 'tpope/vim-commentary'                    -- "gc" to comment visual regions/lines
-  use({
-    'tpope/vim-sleuth',
-    commit = "e362d3552ba2fcf0bc1830a1c59e869b1c6f2067" -- had some issues
-  })                                            -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
-
+  -- vim plugins
+  use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
+
+  use "numToStr/Comment.nvim"                   -- Easily comment stuff gc/gcc
   use 'windwp/nvim-autopairs'                   -- Autopairs {}, [], () etc
+  use 'akinsho/toggleterm.nvim'
+  use 'kyazdani42/nvim-tree.lua'                -- Replacement for Netrw
+  use 'mfussenegger/nvim-jdtls'                 -- Java LSP
+  use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
+  use 'jose-elias-alvarez/null-ls.nvim'         -- Null LS
 
   use({
     "nvim-telescope/telescope.nvim",
@@ -44,28 +51,18 @@ require('packer').startup(function()
     }
   })
 
-  use {                                         -- colorschemes
-    'joshdick/onedark.vim',
-    'rebelot/kanagawa.nvim',
-    'morhetz/gruvbox'
-  }
-
-  use 'itchyny/lightline.vim'                   -- Fancier statusline
-
+  use 'nvim-lualine/lualine.nvim'               -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim'     -- Add indentation guides even on blank lines
-
   use 'lewis6991/gitsigns.nvim'                 -- Add git related info in the signs columns and popups
-
   use {                                         -- Highlight, edit, and navigate code using a fast incremental parsing library
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
-
+  use 'JoosepAlviste/nvim-ts-context-commentstring' -- better context aware commenting
   use {                                         -- Collection of configurations for built-in LSP client
     'neovim/nvim-lspconfig',
     requires = {'williamboman/nvim-lsp-installer'}
   }
-
   use {                                         -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     requires = {
@@ -77,16 +74,16 @@ require('packer').startup(function()
       {'saadparwaiz1/cmp_luasnip'},
       {'L3MON4D3/LuaSnip'},
       {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
+      {'f3fora/cmp-spell'}                      -- spelling plugin
       -- {'hrsh7th/cmp-vsnip'},
       -- {'hrsh7th/cmp-cmdline'},
     }
   }
-
-  -- use 'L3MON4D3/LuaSnip'                        -- Snippets plugin
-
-  use 'mfussenegger/nvim-jdtls'                 -- Java LSP
-
-  use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
+  -- use "akinsho/bufferline.nvim"                 -- Prettier (and more versatile) Bufferlines
+  -- use 'kdheepak/tabline.nvim'
+  -- use 'alvarosevilla95/luatab.nvim'
+  use 'nanozuki/tabby.nvim'
+  use "moll/vim-bbye"                           -- allows you to do delete buffers (close files) without closing your windows
 
 -- plugins which could be activated
   -- use 'tpope/vim-fugitive' -- Git commands in nvim
