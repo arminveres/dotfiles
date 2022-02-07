@@ -12,7 +12,11 @@ require('armin.nvim-tree')
 require('armin.comment')
 require('armin.lualine')
 require('armin.blankline')
-require('armin.tabline')
+require('armin.toggleterm')
+require('armin.tabby')
+
+-- require('armin.luatab')
+-- require('armin.tabline')
 -- require('armin.bufferline') -- potentially replace with tabline.nvim
 
 -- Highlight on yank
