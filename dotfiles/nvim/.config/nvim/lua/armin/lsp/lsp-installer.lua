@@ -26,6 +26,14 @@ lsp_installer.on_server_ready(function(server)
     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
   end
 
+  if server.name == "arduino_language_server" then
+    opts.on_new_config = function (config, root_dir)
+      local partial_cmd = server:get_default_options().cmd
+      local MY_FQBN = "arduino:avr:nano"
+      config.cmd = vim.list_extend(partial_cmd, { "-fqbn", MY_FQBN })
+    end
+  end
+
 -- This setup() function is exactly the same as lspconfig's setup function.
 -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   server:setup(opts)
