@@ -6,3 +6,4 @@ end
 require('armin.lsp.lsp-installer')
 require('armin.lsp.handlers').setup()
 require('armin.lsp.null-ls')
+require('armin.lsp.clangd_extensions')
