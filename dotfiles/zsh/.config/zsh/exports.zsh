@@ -14,6 +14,7 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 eval "$(zoxide init zsh)"
+# eval "$(fnm env)"
 # eval "`pip completion --zsh`"
 
 # >>> conda initialize >>>

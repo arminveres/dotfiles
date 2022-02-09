@@ -37,6 +37,14 @@ then
   alias ssh="kitty +kitten ssh"
 fi
 
+# Work specific aliases
+alias tmux="tmux -2"
+alias croot="cd ~/voyager2"
+# alias qtcreator="~/Qt/Tools/QtCreator/bin/qtcreator.sh &"
+alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
+alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
+alias upd="sudo apt-get update && sudo apt-get upgrade -y"
+
 # OS Specific Aliases
 case "$(uname -s)" in
 
