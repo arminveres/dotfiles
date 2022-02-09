@@ -3,10 +3,10 @@ HISTFILE=~/.config/zsh/zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
 setopt appendhistory
-setopt hist_expire_dups_first   # first delete duplicate commands if HISTFILE exceeds HISTSIZE
-setopt hist_ignore_dups         # ignore duplicate commands
-setopt hist_ignore_space        # ignore commands starting with space
-setopt hist_verify              # show command with history expansion to user before running it
+setopt histexpiredupsfirst   # first delete duplicate commands if HISTFILE exceeds HISTSIZE
+setopt histignoredups         # ignore duplicate commands
+setopt histignorespace        # ignore commands starting with space
+setopt histverify              # show command with history expansion to user before running it
 
 export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"

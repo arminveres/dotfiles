@@ -63,6 +63,7 @@ require('packer').startup(function()
     'neovim/nvim-lspconfig',
     requires = {'williamboman/nvim-lsp-installer'}
   }
+  use 'p00f/clangd_extensions.nvim'             -- Clangd's off-spec features for neovim's LSP client
   use {                                         -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     requires = {
