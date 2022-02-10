@@ -41,6 +41,7 @@ require('packer').startup(function()
   use 'kyazdani42/nvim-tree.lua'                -- Replacement for Netrw
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
   use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
+  use 'stevearc/aerial.nvim'                    -- functions outline plugin
   use 'jose-elias-alvarez/null-ls.nvim'         -- Null LS
 
   use({
