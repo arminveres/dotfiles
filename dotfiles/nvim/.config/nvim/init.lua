@@ -14,6 +14,7 @@ require('armin.lualine')
 require('armin.blankline')
 require('armin.toggleterm')
 require('armin.tabby')
+require('armin.aerial')
 
 -- require('armin.luatab')
 -- require('armin.tabline')
