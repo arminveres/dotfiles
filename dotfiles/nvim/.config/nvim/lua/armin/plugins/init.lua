@@ -97,3 +97,20 @@ require('packer').startup(function()
     require("packer").sync()
   end
 end)
+
+require('armin.plugins.cmp')
+require('armin.plugins.telescope')
+require('armin.plugins.treesitter')
+require('armin.plugins.autopairs')
+require('armin.plugins.gitsigns')
+require('armin.plugins.nvim-tree')
+require('armin.plugins.comment')
+require('armin.plugins.lualine')
+require('armin.plugins.blankline')
+require('armin.plugins.toggleterm')
+require('armin.plugins.tabby')
+require('armin.plugins.aerial')
+
+-- require('armin.luatab')
+-- require('armin.tabline')
+-- require('armin.bufferline') -- potentially replace with tabline.nvim

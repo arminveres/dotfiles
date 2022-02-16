@@ -1,8 +1,9 @@
 local clangd_extensions_status_ok, clangd_extensions = pcall(require, "clangd_extensions")
 if not clangd_extensions_status_ok then
-  print("not clangd_extensions_status_ok")
+  vim.notify("not clangd_extensions_status_ok")
   return
 end
+vim.notify("it worked")
 
 clangd_extensions.setup {
   server = {
@@ -20,13 +21,13 @@ clangd_extensions.setup {
     inlay_hints = {
       -- Only show inlay hints for the current line
       only_current_line = false,
-      -- Event which triggers a refresh of the inlay hints.
+      -- Event which triggers a refersh of the inlay hints.
       -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
       -- not that this may cause  higher CPU usage.
       -- This option is only respected when only_current_line and
       -- autoSetHints both are true.
       only_current_line_autocmd = "CursorHold",
-      -- wheter to show parameter hints with the inlay hints or not
+      -- whether to show parameter hints with the inlay hints or not
       show_parameter_hints = true,
       -- whether to show variable name before type hints with the inlay hints or not
       show_variable_name = false,
@@ -45,5 +46,27 @@ clangd_extensions.setup {
       -- The color of the hints
       highlight = "Comment",
     },
+    ast = {
+      role_icons = {
+        type = "",
+        declaration = "",
+        expression = "",
+        specifier = "",
+        statement = "",
+        ["template argument"] = "",
+      },
+      kind_icons = {
+        Compound = "",
+        Recovery = "",
+        TranslationUnit = "",
+        PackExpansion = "",
+        TemplateTypeParm = "",
+        TemplateTemplateParm = "",
+        TemplateParamObject = "",
+      },
+      highlights = {
+        detail = "Comment",
+      },
+    }
   }
 }
