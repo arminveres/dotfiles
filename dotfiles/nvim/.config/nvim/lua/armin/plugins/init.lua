@@ -42,6 +42,7 @@ require('packer').startup(function()
   use 'mfussenegger/nvim-jdtls'                 -- Java LSP
   use 'davidgranstrom/nvim-markdown-preview'    -- markdown preview
   use 'stevearc/aerial.nvim'                    -- functions outline plugin
+  use 'norcalli/nvim-colorizer.lua'             -- colorizes color codes
   use 'jose-elias-alvarez/null-ls.nvim'         -- Null LS
 
   use({
@@ -110,6 +111,7 @@ require('armin.plugins.blankline')
 require('armin.plugins.toggleterm')
 require('armin.plugins.tabby')
 require('armin.plugins.aerial')
+require('armin.plugins.colorizer')
 
 -- require('armin.luatab')
 -- require('armin.tabline')

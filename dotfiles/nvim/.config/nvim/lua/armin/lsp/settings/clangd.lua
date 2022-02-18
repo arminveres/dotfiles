@@ -4,6 +4,7 @@ return {
     "--background-index",
     "--cross-file-rename",
     "--header-insertion=never",
-    "--clang-tidy"
+    "--clang-tidy",
+    "--inlay-hints"
   }
 }
