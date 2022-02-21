@@ -13,6 +13,8 @@ font pango: Canterell Regular 12
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
 
+focus_follows_mouse no
+
 #### autostarts ####
 
 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
@@ -20,11 +22,10 @@ exec xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
 
 # sets mouse acceleration to flat
 # MX Master 3
-exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1 
+exec_always xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1 
 # G Pro
-exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
-# TODO change from id to name, so if the id changes it still can be adjusted
-#
+exec_always xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 
+
 # sets wallpaper
 exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper3.jpg
 

@@ -18,7 +18,7 @@ end
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost init.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -34,6 +34,7 @@ require('packer').startup(function()
   -- vim plugins
   use 'tpope/vim-sleuth'                        -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
   use 'ludovicchabant/vim-gutentags'            -- Automatic tags management
+  use 'mboughaba/i3config.vim'
 
   use "numToStr/Comment.nvim"                   -- Easily comment stuff gc/gcc
   use 'windwp/nvim-autopairs'                   -- Autopairs {}, [], () etc
