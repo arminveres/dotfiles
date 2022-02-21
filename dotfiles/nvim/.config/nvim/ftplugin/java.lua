@@ -1,6 +1,5 @@
 --[[
--- This is a custom lsp config for java, as it can't be started the same way
--- as other lsp can.
+-- This is a custom lsp config for java, as it needs a custom config
 --]]
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -36,24 +35,24 @@ local config = {
 }
 require('jdtls').start_or_attach(config)
 
-
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
--- keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 keymap(
-"n",
-"gl",
-'<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
-opts
+  "n",
+  "gl",
+  '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
+  opts
 )
 keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
 keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
