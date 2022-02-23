@@ -67,12 +67,14 @@ listview {
   padding: 8 12;
   background-color: @bg;
   columns: 1;
-  lines: 8;
+  lines: 5;
 }
 
 mainbox {
   background-color: @bg;
   children: [inputbar, listview];
+  border: 3;
+  border-radius: 2;
 }
 
 prompt {

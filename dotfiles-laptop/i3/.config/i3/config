@@ -1,63 +1,69 @@
+# vim: ft=i3config
 # i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # set windows/super as mod key
 set $mod Mod4
+focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-#font pango:DejaVu Sans Mono 8
 font pango: Canterell Regular 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+#### autostarts ####
+
+# exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
+# exec xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
+
+# sets mouse acceleration to flat
+# MX Master 3
+# exec_always xinput --set-prop 16 'libinput Accel Profile Enabled' 0, 1 
+# # G Pro
+# exec_always xinput --set-prop 15 'libinput Accel Profile Enabled' 0, 1 
+
+exec_always xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
+exec_always xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
+#
+# sets wallpaper
+exec_always feh --bg-fill /usr/share/backgrounds/f35/default/f35.png
+
+# start polkit
+exec_always lxpolkit
+
+# start nordvpnd
+exec_always --no-startup-id nordvpnd
+#
+# swap escape and caps lock
+exec_always setxkbmap -option ctrl:swapcaps 
+
+# start picom compositor
+exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
+
+exec --no-startup-id corectrl
+# systray apps #
+# NetworkManager systray
 exec --no-startup-id nm-applet
 # pulseadio tray app
 exec --no-startup-id pasystray
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-#Media Keys
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
-
-# Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+#### end
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id kitty #alacritty
+# bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
+bindsym $mod+space exec "rofi run -show drun"
 bindsym $mod+Tab exec "rofi -modi window, run -show window"
-
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -65,23 +71,11 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Shift+Left move left
-# bindsym $mod+Shift+Down move down
-# bindsym $mod+Shift+Up move up
-# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+semicolon split h
@@ -101,7 +95,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+d focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -109,18 +103,86 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+#### custom bindings ####
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+z exec --no-startup-id zathura
+
+#Media Keys
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Screenshots
+bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
+bindsym Shift+Insert exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
+
+# Clipboard Screenshots
+bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Insert exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+# Sreen brightness controls
+# bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # decrease screen brightness
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
+
+# move workspaces to other monitors
+bindsym $mod+Shift+greater move workspace to output right
+bindsym $mod+Shift+less move workspace to output left
+
+# custom exit modes
+set $Locker i3lock -c 000000 && sleep 1 && xset dpms force off
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# custom display modifier
+bindsym $mod+Escape mode "$mode_system"
+set $mode_display Secondary display on (1) - off (2)
+mode "$mode_display" {
+	bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
+	bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
+
+	bindsym Escape mode "default"
+}
+bindsym $mod+p mode "$mode_display"
+
+#### end
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Editor"
-set $ws2 "2: Research"
-set $ws3 "3: Gaming"
-set $ws4 "4: Messaging"
-set $ws5 "5: Sound"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws9 "9: "
+set $ws10 "10:  + "
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -146,38 +208,42 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# cycle through workspaces
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
+
 # assigning applications to workspaces
-assign [class="Steam"] $ws3
-assign [class="discord"] $ws3
-assign [class="Signal"] $ws4
-assign [class="Franz"] $ws4
-for_window [class="Spotify"] move to workspace $ws5
+assign [class="Firefox"] $ws2
+
+assign [class="corectrl"] $ws8
+
+assign [class="Steam"] $ws9
+assign [class="discord"] $ws9
+assign [class="Lutris"] $ws9
+
+assign [class="Signal"] $ws10
+assign [class="Franz"] $ws10
+
+for_window [class="Spotify"] move to workspace $ws10
+# add floating to all origin windows
+for_window [instance="origin.exe"] floating enable
+# same for zoom
+for_window [class="zoom"] floating enable
+for_window [class="zoom" title="Zoom - Licensed Account"] floating disable
+for_window [class="zoom" title="Zoom Meeting"] floating disable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-#        bindsym Left resize shrink width 10 px or 10 ppt
-#        bindsym Down resize grow height 10 px or 10 ppt
-#        bindsym Up resize shrink height 10 px or 10 ppt
-#        bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -191,8 +257,10 @@ bindsym $mod+r mode "resize"
 # finds out, if available)#
 
 bar {
-    status_command i3status -C ./i3status.conf
+    status_command i3status -c ~/.config/i3/i3status.conf
+    # tray_output DisplayPort-1
     position top
+    height 25
     colors {
         background $base00
         separator  $base01
@@ -207,80 +275,7 @@ bar {
     }
 }
 
-#bindsym $mod+Escape exec i3lock -c 000000 
-
-#bindsym $mod+Escape exec i3lock -c 000000 & sleep 5 && xset dpms force off
-set $Locker i3lock -c 000000 && sleep 1 && xset dpms force off
-
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    # bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"  
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    }
-    
-bindsym $mod+Escape mode "$mode_system"
-
-set $mode_display Secondary display on (1) - off (2)
-mode "$mode_display" {
-	bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
-	bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
-
-	bindsym Escape mode "default"
-}
-bindsym $mod+p mode "$mode_display"
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5  # decrease screen brightness
-
-exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
-exec xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
-
-#exec steam
-#exec discord
-#exec Signal
-#exec Spotify
-
-exec_always xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
-exec_always xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
-
-# sets wallpaper
-exec_always feh --bg-fill /usr/share/backgrounds/f35/default/f35.png
-
-# start polkit
-exec_always lxpolkit
-
-# start nordvpnd
-exec_always nordvpnd
-# swap escape and caps lock
-exec_always setxkbmap -option ctrl:swapcaps 
-
-exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
-
-# move workspaces to other monitors
-bindsym $mod+Shift+greater move workspace to output right
-bindsym $mod+Shift+less move workspace to output left
-
-### i3-gaps ###
-# You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 2
-
-gaps inner 10
-gaps outer 1
-smart_gaps on
-
-######### Gruvbox-dark-hard ########
-
-### colors ###
+#### colors ####
 set $base00 #1d2021
 set $base01 #3c3836
 set $base02 #504945
@@ -306,3 +301,14 @@ client.unfocused        $base01 $base00 $base05 $base01 $base01
 client.urgent           $base08 $base08 $base00 $base08 $base08
 client.placeholder      $base00 $base00 $base05 $base00 $base00
 client.background       $base07
+
+#### colors end
+
+#### i3-gaps ####
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"] border pixel 2
+
+gaps inner 10
+gaps outer 1
+smart_gaps on
+
