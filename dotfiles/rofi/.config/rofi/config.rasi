@@ -25,6 +25,7 @@ configuration {
   border-color: #b8bb26;
 
   border: 0;
+  border-radius: 0;
   margin: 0;
   padding: 0;
   spacing: 0;
@@ -73,8 +74,7 @@ listview {
 mainbox {
   background-color: @bg;
   children: [inputbar, listview];
-  border: 3;
-  border-radius: 2;
+  border: 2;
 }
 
 prompt {

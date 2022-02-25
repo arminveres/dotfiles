@@ -1,5 +1,7 @@
 export ZDOTDIR=$HOME/.config/zsh
 
+TERM=tmux-256color
+
 # some useful options (man zshoptions)
 setopt AUTO_CD EXTENDED_GLOB NOMATCH MENU_COMPLETE
 setopt interactive_comments

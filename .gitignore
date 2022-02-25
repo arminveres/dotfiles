@@ -1,10 +1,8 @@
-# general files
-**/*~
 # specific folders
-**/nvim/plugin/
 **/zsh/plugins/
+
 # specific files
-**/packer_compiled.lua
 **/zsh_history
 tags
 **/.zcompdump
+**/packer_compiled.lua

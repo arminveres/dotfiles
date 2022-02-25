@@ -1,13 +1,13 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/arminveres/gitfiles/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/arminveres/gitfiles/fzf/bin"
+if [[ ! "$PATH" == */home/avee/gitFiles/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/avee/gitFiles/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/arminveres/gitfiles/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "/home/avee/gitFiles/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/home/arminveres/gitfiles/fzf/shell/key-bindings.zsh"
+source "/home/avee/gitFiles/fzf/shell/key-bindings.zsh"
