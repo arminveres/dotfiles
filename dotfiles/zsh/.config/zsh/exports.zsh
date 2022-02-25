@@ -15,8 +15,11 @@ export EDITOR=nvim
 export RIPGREP_CONFIG_PATH=/home/avee/.config/ripgrep/ripgreprc
 
 eval "$(zoxide init zsh)"
+<<<<<<< Updated upstream
 # eval "$(fnm env)"
 # eval "`pip completion --zsh`"
+=======
+>>>>>>> Stashed changes
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -33,3 +36,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

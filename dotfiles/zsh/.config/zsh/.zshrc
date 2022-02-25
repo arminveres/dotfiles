@@ -36,7 +36,7 @@ source "$ZDOTDIR/functions.zsh"
 zsh_add_file "exports.zsh"
 zsh_add_file "vim_mode.zsh"
 zsh_add_file "aliases.zsh"
-zsh_add_file "zsh_prompt.zsh"
+zsh_add_file "prompt.zsh"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"

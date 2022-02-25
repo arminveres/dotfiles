@@ -15,7 +15,7 @@ alias btop="bpytop"
 alias g="git"
 alias gla="git status"
 alias ga="git add"
-alias glo="git log --graph --oneline"
+alias glo="git log --graph --oneline --decorate"
 
 # alias hisgr="history | rg"
 
