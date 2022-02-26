@@ -22,17 +22,17 @@ background-alt = #444
 ; foreground = #dfdfdf
 ; foreground-alt = #555
 primary = #fff
-; secondary = #e60053
-alert =#f00
+secondary = #b8bb26
+alert = #fb4934
 
 [bar/armin1]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = DisplayPort-1
 width = 100%
 height = 25
 ; offset-x = 1%
 ; offset-y = 1%
 radius = 0.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -49,7 +49,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = JetBrainsMono Nerd Font:size=10;1
+font-0 = JetBrainsMono Nerd Font:size=10.5
 font-1 = Font Awesome 5 Brands
 font-2 = Font Awesome 5 Free
 font-3 = FontAwesome
@@ -57,14 +57,14 @@ font-3 = FontAwesome
 ; font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 ; font-3 = siji:pixelsize=10;1
 
-modules-left = bspwm i3 xwindow
-modules-center = updates-dnf player-mpris-simple
-modules-right = filesystem alsa xkeyboard memory cpu eth temperature date powermenu
-; modules = battery mpd xbacklight pulseaudio wlan 
+modules-left = updates-dnf player-mpris-simple alsa 
+modules-center = bspwm i3
+modules-right = filesystem xkeyboard memory cpu temperature eth date powermenu
+; modules = battery mpd xbacklight pulseaudio wlan xwindow 
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
+; tray-background = ${colors.secondary}
 
 ; wm-restack = bspwm
 wm-restack = i3
@@ -79,6 +79,48 @@ scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[bar/armin2]
+monitor = HDMI-A-0
+width = 100%
+height = 25
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = JetBrainsMono Nerd Font:size=11
+font-1 = Font Awesome 5 Brands
+font-2 = Font Awesome 5 Free
+font-3 = FontAwesome
+
+modules-left = 
+modules-center = bspwm i3
+modules-right = 
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+bottom = true
+;-------------------------------------------------------------------------------
 
 [module/updates-dnf]
 type = custom/script
@@ -119,16 +161,18 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%% / %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+
+spacing = 4
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.secondary}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -147,41 +191,54 @@ label-separator = |
 
 [module/i3]
 type = internal/i3
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
+
+strip-wsnumbers = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.secondary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %index%:%icon%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused-underline= ${colors.secondary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %index%:%icon%
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %index%:%icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %index%:%icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
-
 
 [module/mpd]
 type = internal/mpd
@@ -223,15 +280,15 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-underline = ${colors.secondary}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = ${colors.secondary}
 label = %percentage_used%%
 
 [module/wlan]
@@ -240,7 +297,7 @@ interface = net1
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected-underline = ${colors.secondary}
 label-connected = %essid%
 
 format-disconnected =
@@ -261,7 +318,7 @@ type = internal/network
 interface = eno1
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.secondary}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -284,7 +341,7 @@ time-alt = %H:%M:%S
 
 format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-underline = ${colors.secondary}
 
 label = %date% %time%
 
@@ -350,7 +407,7 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${colors.secondary}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -382,7 +439,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+format-underline = ${colors.secondary} 
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
