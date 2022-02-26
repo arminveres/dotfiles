@@ -15,11 +15,6 @@ export EDITOR=nvim
 export RIPGREP_CONFIG_PATH=/home/avee/.config/ripgrep/ripgreprc
 
 eval "$(zoxide init zsh)"
-<<<<<<< Updated upstream
-# eval "$(fnm env)"
-# eval "`pip completion --zsh`"
-=======
->>>>>>> Stashed changes
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

@@ -4,6 +4,9 @@ alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"
 
 # applications
+alias dnf='sudo dnf'
+alias visudo='sudo visudo'
+
 alias vi="nvim"
 alias vim="nvim"
 
