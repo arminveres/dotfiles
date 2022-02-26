@@ -21,6 +21,8 @@ vim.g.nvim_tree_icons = {
   },
 }
 
+vim.g.nvim_tree_group_empty = 1
+
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
   return
@@ -56,7 +58,8 @@ nvim_tree.setup {
       hint = "",
       info = "",
       warning = "",
-      error = "",
+      -- error = "",
+      error = "",
     },
   },
   update_focused_file = {
@@ -66,7 +69,7 @@ nvim_tree.setup {
   },
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
     timeout = 500,
   },
   view = {
@@ -74,7 +77,8 @@ nvim_tree.setup {
     height = 30,
     hide_root_folder = false,
     side = "left",
-    auto_resize = true,
+    auto_resize = false,
+    preserve_window_proportions = true,
     mappings = {
       custom_only = false,
       list = {

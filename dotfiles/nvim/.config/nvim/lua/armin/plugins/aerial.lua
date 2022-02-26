@@ -156,11 +156,9 @@ aerial.setup {
     -- Controls border appearance. Passed to nvim_open_win
     border = "rounded",
 
-    -- Controls row offset from cursor. Passed to nvim_open_win
-    row = 1,
-
-    -- Controls col offset from cursor. Passed to nvim_open_win
-    col = 0,
+    override = function (conf)
+      return conf
+    end,
 
     -- The maximum height of the floating aerial window
     max_height = 100,

@@ -90,7 +90,19 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>q", ":Bdelete<CR>", opts)
+keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
+-- Yank to clipboard
+keymap("v", "<leader>y", "+y", opts)
+keymap("n", "<leader>y", "+yg_", opts)
+keymap("n", "<leader>y", "+y", opts)
+keymap("n", "<leader>yy", "+yy", opts)
+
+-- Paste from clipboad
+keymap("n", "<leader>p", "+p", opts)
+keymap("n", "<leader>P", "+P", opts)
+keymap("v", "<leader>p", "+p", opts)
+keymap("v", "<leader>P", "+P", opts)
 
 -- telescope shortcuts
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
@@ -99,6 +111,8 @@ keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer
 keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], opts)
 keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
+keymap("n", "<leader>fgb", "<cmd>Telescope git_branches<CR>", opts)
+keymap("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts)
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)

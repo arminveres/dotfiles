@@ -64,7 +64,8 @@ require('packer').startup(function()
     "nvim-telescope/telescope.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons"
+      "kyazdani42/nvim-web-devicons",
+      "aloussase/telescope-gradle.nvim"         -- A telescope extension to run gradle tasks
     }
   })
 
