@@ -3,8 +3,12 @@ export ZDOTDIR=$HOME/.config/zsh
 TERM=tmux-256color
 
 # some useful options (man zshoptions)
-setopt AUTO_CD EXTENDED_GLOB NOMATCH MENU_COMPLETE
-setopt interactive_comments
+setopt AUTO_CD
+setopt EXTENDED_GLOB
+setopt NOMATCH
+setopt MENU_COMPLETE
+# setopt GLOB_DOTS
+setopt INTERACTIVE_COMMENTS
 stty stop undef                # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
@@ -16,6 +20,11 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 # insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# groups completion commands
+zstyle ':completion:*' group-name ''
+# squeezes slashes: cd ~//Documents => cd ~/*/Documents
+# shows current location type
+# zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 # compinit

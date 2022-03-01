@@ -2,17 +2,18 @@
 HISTFILE=~/.config/zsh/zsh_history
 HISTSIZE=20000
 SAVEHIST=20000
-setopt appendhistory
-setopt histexpiredupsfirst   # first delete duplicate commands if HISTFILE exceeds HISTSIZE
-setopt histignoredups         # ignore duplicate commands
-setopt histignorespace        # ignore commands starting with space
-setopt histverify              # show command with history expansion to user before running it
+setopt APPEND_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST # first delete duplicate commands if HISTFILE exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # ignore duplicate commands
+setopt HIST_IGNORE_SPACE      # ignore commands starting with space
+setopt HIST_VERIFY            # show command with history expansion to user before running it
 
 export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
 export VISUAL=nvim
 export EDITOR=nvim
-export RIPGREP_CONFIG_PATH=/home/avee/.config/ripgrep/ripgreprc
+export RIPGREP_CONFIG_PATH=/home/arminveres/.config/ripgrep/ripgreprc
+export MANGOHUD_CONFIGFILE=/home/arminveres/.config/MangoHud/MangoHud.conf
 
 eval "$(zoxide init zsh)"
 
