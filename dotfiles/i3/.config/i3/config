@@ -147,6 +147,7 @@ bindsym $mod+Shift+less move workspace to output left
 # custom exit modes
 set $Locker i3lock -c 000000 && sleep 1 && xset dpms force off
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -159,9 +160,9 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+bindsym $mod+Escape mode "$mode_system"
 
 # custom display modifier
-bindsym $mod+Escape mode "$mode_system"
 set $mode_display Secondary display on (1) - off (2)
 mode "$mode_display" {
 	bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
@@ -171,6 +172,14 @@ mode "$mode_display" {
 }
 bindsym $mod+p mode "$mode_display"
 
+# set keymap
+set $mode_keymap (1) US (2) CH-de
+mode "$mode_keymap" {
+	bindsym 1 exec setxkbmap us
+	bindsym 2 exec setxkbmap 'ch(de)'
+	bindsym Escape mode "default"
+}
+bindsym $mod+c mode "$mode_keymap"
 #### end
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -215,7 +224,7 @@ bindsym $mod+Right workspace next
 bindsym $mod+Left workspace prev
 
 # assigning applications to workspaces
-assign [class="Firefox"] $ws2
+# assign [class="Firefox"] $ws2
 
 assign [class="corectrl"] $ws8
 
@@ -312,5 +321,5 @@ for_window [class=".*"] border pixel 2
 
 gaps inner 10
 gaps outer 1
-smart_gaps on
+# smart_gaps on
 
