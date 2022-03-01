@@ -65,7 +65,8 @@ require('packer').startup(function()
     requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
-      "aloussase/telescope-gradle.nvim"         -- A telescope extension to run gradle tasks
+      "aloussase/telescope-gradle.nvim",        -- A telescope extension to run gradle tasks
+      "jvgrootveld/telescope-zoxide"            -- allows you operate zoxide within Neovim
     }
   })
 
