@@ -6,7 +6,6 @@ alias viconf="vi ~/.config/nvim/"
 # applications
 alias dnf='sudo dnf'
 alias visudo='sudo visudo'
-
 alias vi="nvim"
 alias vim="nvim"
 
@@ -57,6 +56,11 @@ Darwin)
 	;;
 
 Linux)
+	# if [[ "$(uname -v)" == *"Ubuntu"*]]
+	# then
+		alias nala='sudo nala'
+		alias flatpak="sudo flatpak"
+	# fi
 	alias ls='ls --color=auto'
 	alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 	;;

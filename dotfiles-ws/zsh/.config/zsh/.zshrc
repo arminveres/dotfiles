@@ -7,7 +7,7 @@ setopt AUTO_CD
 setopt EXTENDED_GLOB
 setopt NOMATCH
 setopt MENU_COMPLETE
-# setopt GLOB_DOTS
+setopt GLOB_DOTS
 setopt INTERACTIVE_COMMENTS
 stty stop undef                # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
@@ -16,18 +16,17 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 # completions
-autoload -Uz compinit
+autoload -Uz compinit bashcompinit
 zstyle ':completion:*' menu select
 # insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # groups completion commands
-zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' group-name ''
 # squeezes slashes: cd ~//Documents => cd ~/*/Documents
 # shows current location type
-# zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
-# compinit
 _comp_options+=(globdots)      # Include hidden files.
 
 autoload -U up-line-or-beginning-search
@@ -51,6 +50,8 @@ zsh_add_file "prompt.zsh"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
+# zsh_add_completion "./completions/nala"
+
 # zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
@@ -73,7 +74,9 @@ bindkey -r "^d"
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 # [ -f $ZDOTDIR/completion/_fnm ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+bashcompinit
 compinit
+zsh_add_file ./completion/nala
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line

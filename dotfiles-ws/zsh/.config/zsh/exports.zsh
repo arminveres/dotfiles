@@ -12,8 +12,7 @@ export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:$PATH
 export JDTLS_HOME="/home/avee/.local/share/nvim/lsp_servers/jdtls/"
 export VISUAL=nvim
 export EDITOR=nvim
-export RIPGREP_CONFIG_PATH=/home/arminveres/.config/ripgrep/ripgreprc
-export MANGOHUD_CONFIGFILE=/home/arminveres/.config/MangoHud/MangoHud.conf
+export RIPGREP_CONFIG_PATH=/home/avee/.config/ripgrep/ripgreprc
 
 eval "$(zoxide init zsh)"
 
