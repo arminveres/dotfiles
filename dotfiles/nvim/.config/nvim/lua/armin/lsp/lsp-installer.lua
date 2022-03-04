@@ -37,6 +37,8 @@ lsp_installer.on_server_ready(function(server)
   if server.name == "clangd" then
     local clangd_opts = require("armin.lsp.settings.clangd")
     opts = vim.tbl_deep_extend("force", clangd_opts, opts)
+    -- require('armin.lsp.clangd_extensions')
+    -- return
   end
 
   if server.name == "jdtls" then

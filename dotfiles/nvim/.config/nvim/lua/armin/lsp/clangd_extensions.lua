@@ -9,6 +9,17 @@ clangd_extensions.setup {
   server = {
     -- options to pass to nvim-lspconfig
     -- i.e. the arguments to require("lspconfig").clangd.setup({})
+    cmd = {
+      "clangd",
+      "--background-index",
+      "--cross-file-rename",
+      "--header-insertion=never",
+      "--clang-tidy",
+      -- "--inlay-hints"
+    },
+    -- filetype = { "c", "cpp", "objc", "objcpp" },
+    -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+    -- single_file_support = true,
   },
   extensions = {
     -- defaults:

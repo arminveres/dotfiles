@@ -5,6 +5,6 @@ return {
     "--cross-file-rename",
     "--header-insertion=never",
     "--clang-tidy",
-    "--inlay-hints"
+    -- "--inlay-hints"
   }
 }

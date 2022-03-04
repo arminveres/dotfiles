@@ -116,3 +116,6 @@ keymap("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts)
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
+
+-- Aerial mappings for outlines
+keymap("n", "<leader>at", "<cmd>AerialToggle<CR>", opts)
