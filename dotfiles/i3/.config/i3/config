@@ -323,3 +323,9 @@ gaps inner 10
 gaps outer 1
 # smart_gaps on
 
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
