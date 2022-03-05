@@ -58,6 +58,7 @@ require('packer').startup(function()
     'ludovicchabant/vim-gutentags',             -- Automatic tags management
     'mboughaba/i3config.vim',
     'moll/vim-bbye',                            -- allows you to do delete buffers (close files) without closing your windows
+    'ivyl/vim-bling',                           -- blinks search result after jumping to it (think of n, N, * and #)
   }
 
   use({

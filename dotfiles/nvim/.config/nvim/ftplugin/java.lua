@@ -38,7 +38,7 @@ require('jdtls').start_or_attach(config)
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-keymap("n", "<leader>tg", "<cmd>Telescope gradle<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>Telescope gradle theme=dropdown<CR>", opts)
 -- keymap("n", "<leader>tg", "<cmd>lua require('telescope').extensions.gradle.gradle(require('telescope.themes').get_dropdown({ previewer = true }))<CR>", opts)
 
 -- keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
