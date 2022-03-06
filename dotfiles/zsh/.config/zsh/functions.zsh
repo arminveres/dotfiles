@@ -17,6 +17,13 @@ function gitUpdDirs() {
 # set and change java versions
 # just use -- sudo alternatives --config java 
 
+# find thermal info loc
+function FindTherm() {
+    for i in /sys/class/hwmon/hwmon*/temp*_input;
+        do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
+    done
+}
+
 
 # Function to source files if they exist
 function zsh_add_file() {

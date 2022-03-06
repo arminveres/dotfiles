@@ -37,7 +37,7 @@ exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper3.jpg
 exec_always lxpolkit
 
 # start nordvpnd
-exec_always --no-startup-id nordvpnd
+exec_always --no-startup-id thunar --daemon
 # swap escape and caps lock
 # exec_always setxkbmap -option ctrl:swapcaps
 # exec_always --no-startup-id setxkbmap -layout us -variant intl
@@ -251,10 +251,10 @@ bindsym $mod+Shift+r restart
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width   10 px or 10 ppt
+        bindsym j resize grow height    10 px or 10 ppt
+        bindsym k resize shrink height  10 px or 10 ppt
+        bindsym l resize grow width     10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"

@@ -41,6 +41,12 @@ dnf install -y \
     feh \
     picom \
     rofi \
+    ddccontrol \
+    lxappearance \
+    lxpolkit \
+    trayer \
+    pasystray \
+    volumeicon \
     sxhkd \
     bspwm \
     polybar
@@ -66,8 +72,14 @@ dnf install -y \
     neovim \
     ruby \
     nodejs \
+    golang \
+    julia \
     ctags \
     pandoc
+
+dnf install -y \
+    oxygen-cursor-themes \
+    papirus-icon-theme
 
 # neomutt copr
 # dnf copr enable flatcap/neomutt

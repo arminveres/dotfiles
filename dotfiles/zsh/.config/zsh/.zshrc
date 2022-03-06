@@ -7,7 +7,7 @@ setopt AUTO_CD
 setopt EXTENDED_GLOB
 setopt NOMATCH
 setopt MENU_COMPLETE
-# setopt GLOB_DOTS
+setopt GLOB_DOTS
 setopt INTERACTIVE_COMMENTS
 stty stop undef                # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')

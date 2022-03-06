@@ -6,3 +6,4 @@
 tags
 **/.zcompdump
 **/packer_compiled.lua
+*.bak
