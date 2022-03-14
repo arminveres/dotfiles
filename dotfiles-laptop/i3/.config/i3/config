@@ -216,12 +216,12 @@ assign [class="Firefox"] $ws2
 
 assign [class="corectrl"] $ws8
 
-assign [class="Steam"] $ws9
-assign [class="discord"] $ws9
-assign [class="Lutris"] $ws9
+assign [class="Steam"] $ws8
+assign [class="discord"] $ws8
+assign [class="Lutris"] $ws8
 
-assign [class="Signal"] $ws10
-assign [class="Franz"] $ws10
+assign [class="Signal"] $ws9
+assign [class="Franz"] $ws9
 
 for_window [class="Spotify"] move to workspace $ws10
 # add floating to all origin windows
