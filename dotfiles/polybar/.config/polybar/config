@@ -75,8 +75,8 @@ wm-restack = i3
 ; scroll-up = bspwm-desknext
 ; scroll-down = bspwm-deskprev
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsprev
+scroll-down = i3wm-wsnext
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -108,9 +108,9 @@ font-1 = Font Awesome 5 Brands
 font-2 = Font Awesome 5 Free
 font-3 = FontAwesome
 
-modules-left = 
+modules-left = alsa
 modules-center = bspwm i3
-modules-right = 
+modules-right = date
 
 wm-restack = i3
 
@@ -220,7 +220,7 @@ ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
 ws-icon-6 = 7;
-ws-icon-7 = 8;
+ws-icon-7 = 8;
 ws-icon-8 = 9;
 ws-icon-9 = 10;
 
@@ -337,7 +337,7 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
+date = " %d.%m"
 date-alt = " %Y-%m-%d"
 
 time =  %H:%M
@@ -348,7 +348,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.secondary}
 format-background = ${colors.background-alt}
 
-label = %date% %time%
+label = %time% / %date%
 
 [module/pulseaudio]
 type = internal/pulseaudio

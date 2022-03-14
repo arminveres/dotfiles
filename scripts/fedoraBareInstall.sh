@@ -17,6 +17,8 @@ dnf install -y \
 # necessary packages
 dnf install -y \
     abattis-cantarell-fonts \
+    zip \
+    unzip \
     sqlite \
     xrandr \
     xinput \
@@ -51,8 +53,11 @@ dnf install -y \
     bspwm \
     polybar
 
-# basic apps
+# basic apps, mainly gui
 dnf install -y \
+    thunar \
+    xarchiver \
+    thunar-archive-plugin \
     kitty \
     firefox \
     htop \
