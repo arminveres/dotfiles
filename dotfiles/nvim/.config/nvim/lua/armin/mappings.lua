@@ -8,6 +8,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Normal Mode --
+keymap('n', '<BS>', ':noh<CR>', opts) -- disables hlsearch until next search
+
 --Remap for dealing with word wrap
 keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
@@ -90,19 +92,19 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>q", ":Bdelete<CR>", opts)
-keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
+-- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
-keymap("v", "<leader>y", "+y", opts)
-keymap("n", "<leader>y", "+yg_", opts)
-keymap("n", "<leader>y", "+y", opts)
-keymap("n", "<leader>yy", "+yy", opts)
+keymap("v", "<leader>y", "\"+y", opts)
+keymap("n", "<leader>y", "\"+yg_", opts)
+keymap("n", "<leader>y", "\"+y", opts)
+keymap("n", "<leader>yy", "\"+yy", opts)
 
 -- Paste from clipboad
-keymap("n", "<leader>p", "+p", opts)
-keymap("n", "<leader>P", "+P", opts)
-keymap("v", "<leader>p", "+p", opts)
-keymap("v", "<leader>P", "+P", opts)
+keymap("n", "<leader>p", "\"+p", opts)
+keymap("n", "<leader>P", "\"+P", opts)
+keymap("v", "<leader>p", "\"+p", opts)
+keymap("v", "<leader>P", "\"+P", opts)
 
 -- telescope shortcuts
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)

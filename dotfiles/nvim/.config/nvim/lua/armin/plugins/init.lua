@@ -42,7 +42,8 @@ require('packer').startup(function()
     'lewis6991/gitsigns.nvim',                  -- Add git related info in the signs columns and popups
     'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
     'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
-    'nanozuki/tabby.nvim'
+    'nanozuki/tabby.nvim',
+    'folke/todo-comments.nvim',                 -- highlight and search for todo comments like TODO, HACK, BUG in your code base
   }
 
   use { -- colorschemes
@@ -53,12 +54,12 @@ require('packer').startup(function()
 
   use { -- vimscript plugins
     'tpope/vim-sleuth',                         -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
-    -- 'tpope/vim-fugitive'                     -- Git commands in nvim
-    -- 'tpope/vim-rhubarb'                      -- Fugitive-companion to interact with github
     'ludovicchabant/vim-gutentags',             -- Automatic tags management
     'mboughaba/i3config.vim',
     'moll/vim-bbye',                            -- allows you to do delete buffers (close files) without closing your windows
     'ivyl/vim-bling',                           -- blinks search result after jumping to it (think of n, N, * and #)
+    -- 'tpope/vim-fugitive'                     -- Git commands in nvim
+    -- 'tpope/vim-rhubarb'                      -- Fugitive-companion to interact with github
   }
 
   use({
@@ -118,3 +119,4 @@ require('armin.plugins.toggleterm')
 require('armin.plugins.tabby')
 require('armin.plugins.aerial')
 require('armin.plugins.colorizer')
+require('armin.plugins.todo')

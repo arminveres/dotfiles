@@ -2,7 +2,7 @@
 vim.opt.ignorecase = true
 vim.opt.smartcase = true            --Case insensitive searching UNLESS /C or capital in search
 vim.opt.smarttab = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true             -- toggle off until next search w/ <BS>
 vim.opt.backup = true
 vim.opt.writebackup = true
 vim.opt.breakindent = true
