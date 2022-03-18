@@ -244,7 +244,7 @@ for_window [class=".*"] border pixel 2
 
 gaps inner 10
 gaps outer 1
-smart_gaps on
+# smart_gaps on
 
 ### colors ###
 set $base00 #1d2021

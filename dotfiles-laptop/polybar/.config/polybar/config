@@ -57,10 +57,10 @@ font-3 = FontAwesome
 ; font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 ; font-3 = siji:pixelsize=10;1
 
-modules-left = updates-dnf player-mpris-simple alsa 
+modules-left = player-mpris-simple alsa 
 modules-center = bspwm i3
 modules-right = filesystem xkeyboard memory cpu temperature eth date battery wlan powermenu
-; modules = mpd xbacklight pulseaudio wlan xwindow 
+; modules = mpd xbacklight pulseaudio wlan xwindow updates-dnf 
 
 tray-position = right
 tray-padding = 2
