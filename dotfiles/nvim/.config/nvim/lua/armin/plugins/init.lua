@@ -32,7 +32,6 @@ require('packer').startup(function()
     'windwp/nvim-autopairs',                    -- Autopairs {}, [], () etc
     'akinsho/toggleterm.nvim',
     'kyazdani42/nvim-tree.lua',                 -- Replacement for Netrw
-    -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
     'davidgranstrom/nvim-markdown-preview',     -- markdown preview
     'stevearc/aerial.nvim',                     -- functions outline plugin
     'norcalli/nvim-colorizer.lua',              -- colorizes color codes
@@ -41,9 +40,13 @@ require('packer').startup(function()
     'lukas-reineke/indent-blankline.nvim',      -- Add indentation guides even on blank lines
     'lewis6991/gitsigns.nvim',                  -- Add git related info in the signs columns and popups
     'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
-    -- 'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
     'nanozuki/tabby.nvim',
-    'folke/todo-comments.nvim',                 -- highlight and search for todo comments like TODO, HACK, BUG in your code base
+    'folke/todo-comments.nvim',                 -- highlight and search for todo comments like
+    'norcalli/nvim-terminal.lua',
+    -- 'pierreglaser/folding-nvim',
+
+    -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
+    -- 'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
   }
 
   use { -- colorschemes
@@ -58,6 +61,7 @@ require('packer').startup(function()
     'mboughaba/i3config.vim',
     'moll/vim-bbye',                            -- allows you to do delete buffers (close files) without closing your windows
     'ivyl/vim-bling',                           -- blinks search result after jumping to it (think of n, N, * and #)
+    'mbbill/undotree',
     -- 'tpope/vim-fugitive'                     -- Git commands in nvim
     -- 'tpope/vim-rhubarb'                      -- Fugitive-companion to interact with github
   }

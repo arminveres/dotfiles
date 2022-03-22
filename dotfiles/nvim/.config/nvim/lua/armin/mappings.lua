@@ -92,6 +92,8 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>q", ":Bdelete<CR>", opts)
+keymap('n', '<Leader>Q', '<Cmd>qall<CR>', opts)                    -- quickquit
+keymap('n', '<Leader>w', '<Cmd>w<CR>', opts)                        -- quick save
 -- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
@@ -121,3 +123,6 @@ keymap("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts)
 
 -- Aerial mappings for outlines
 keymap("n", "<leader>at", "<cmd>AerialToggle<CR>", opts)
+
+-- Undo tree toggle
+keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR>', opts)

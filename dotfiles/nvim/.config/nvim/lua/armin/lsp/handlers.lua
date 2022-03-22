@@ -83,6 +83,7 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
   require("aerial").on_attach(client, bufnr)
+  -- require('folding').on_attach()
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
