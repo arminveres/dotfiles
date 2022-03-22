@@ -60,8 +60,8 @@ font-3 = FontAwesome
 
 modules-left = timer alsa player-mpris-simple
 modules-center = bspwm i3
-modules-right = filesystem xkeyboard memory cpu temperature eth date powermenu
-; modules = battery mpd xbacklight pulseaudio wlan xwindow updates-dnf 
+modules-right = filesystem xkeyboard memory cpu temperature eth date
+; modules = battery mpd xbacklight pulseaudio wlan xwindow available-updates powermenu
 
 tray-position = right
 tray-padding = 2
@@ -123,10 +123,12 @@ cursor-scroll = ns-resize
 bottom = true
 ;-------------------------------------------------------------------------------
 
-[module/updates-dnf]
+[module/available-updates]
 type = custom/script
-exec = ~/.config/polybar/updates-dnf.sh
-; exec = echo 'dnf:' $(dnf updateinfo -q --list 2> /dev/null | wc -l) / 'flat:' $(flatpak update 2>/dev/null | tail -n +5 | head -2 | wc -l)
+; exec = ~/.config/polybar/available-updates.sh
+; exec = echo " dnf: $(dnf updateinfo -q --list 2> /dev/null | wc -l) / flat: $(flatpak update 2>/dev/null | tail -n +5 | head -2 | wc -l)"
+exec = echo " dnf: $(dnf updateinfo -q --list 2> /dev/null | wc -l)"
+; exec = echo " flat: $(flatpak update 2>/dev/null | tail -n +5 | head -2 | wc -l)"
 interval = 600
 
 [module/player-mpris-simple]
