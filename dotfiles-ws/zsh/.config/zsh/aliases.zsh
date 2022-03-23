@@ -9,8 +9,9 @@ alias visudo='sudo visudo'
 alias vi="nvim"
 alias vim="nvim"
 
-alias la="exa -la --header"
-alias ll="exa -l --header"
+alias la="exa -la --header --icons"
+alias lag="exa -la --header --grid --icons"
+alias ll="exa -l --header --icons"
 
 alias btop="bpytop"
 
