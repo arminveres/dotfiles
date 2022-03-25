@@ -16,11 +16,12 @@ alias ll="exa -l --header"
 alias btop="bpytop"
 
 alias g="git"
+alias gb="git branch"
 alias gla="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 
-# alias hisgr="history | rg"
+# alias hisgr="history | rg" # replaced with fzf
 
 alias mkdir="mkdir -pv"
 
@@ -52,19 +53,19 @@ alias upd="sudo apt-get update && sudo apt-get upgrade -y"
 case "$(uname -s)" in
 
 Darwin)
-	# echo 'Mac OS X'
-	alias ls='ls -G'
-	;;
+    # echo 'Mac OS X'
+    alias ls='ls -G'
+    ;;
 
 Linux)
-	alias ls='ls --color=auto'
-	alias restart_resolve="sudo systemctl restart systemd-resolved.service"
-	;;
+    alias ls='ls --color=auto'
+    alias restart_resolve="sudo systemctl restart systemd-resolved.service"
+    ;;
 
 CYGWIN* | MINGW32* | MSYS* | MINGW*)
-	# echo 'MS Windows'
-	;;
+    # echo 'MS Windows'
+    ;;
 *)
-	# echo 'Other OS'
-	;;
-esac
+    # echo 'Other OS'
+    ;;
+    esac
