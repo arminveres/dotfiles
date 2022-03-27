@@ -1,4 +1,4 @@
-" vim: filetype=vifm :
+" vim: filetype=vim :
 " Sample configuration file for vifm (last updated: 31 August, 2021)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -475,6 +475,8 @@ nnoremap <c-u> <c-w>x
 " let mapleader = " "
 " nnoremap <leader>q :q
 nnoremap <space>q :q<CR>
+
+source ~/.config/vifm/favicons.vifm
 
 " ------------------------------------------------------------------------------
 
