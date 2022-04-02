@@ -9,6 +9,11 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango: JetBrainsMono Nerd Font 12.5
 
+# startup apps and window decs
+default_orientation horizontal
+# workspace_layout tabbed
+# new_window 1pixel
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
@@ -29,13 +34,19 @@ exec_always xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Ena
 exec_always xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 
 
 # sets wallpaper
-exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper3.jpg
+# exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper.jpg
+exec_always nitrogen --restore
 
 # start polkit
 exec_always lxpolkit
 
 # start nordvpnd
 exec_always --no-startup-id thunar --daemon
+
+# start usb mounter, but only once
+exec --no-startup-id udiskie --tray --notify
+exec --no-startup-id blueman-manager
+
 # swap escape and caps lock
 # exec_always setxkbmap -option ctrl:swapcaps
 # exec_always --no-startup-id setxkbmap -layout us -variant intl
@@ -125,14 +136,15 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshots
-bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym Shift+Insert exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
+# bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
+# bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Shift+p exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
 
 # Clipboard Screenshots
-bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Insert exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+# bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
+# bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+        # selection to clipboard
+bindsym Ctrl+Shift+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
@@ -163,19 +175,19 @@ bindsym $mod+Escape mode "$mode_system"
 # custom display modifier
 set $mode_display Secondary display on (1) - off (2)
 mode "$mode_display" {
-	bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
-	bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
+    bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
+    bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
 
-	bindsym Escape mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+p mode "$mode_display"
 
 # set keymap
 set $mode_keymap (1) US (2) CH-de
 mode "$mode_keymap" {
-	bindsym 1 exec setxkbmap us
-	bindsym 2 exec setxkbmap 'ch(de)'
-	bindsym Escape mode "default"
+      bindsym 1 exec setxkbmap us, mode "default"
+      bindsym 2 exec setxkbmap 'ch(de)', mode "default"
+      bindsym Escape mode "default"
 }
 bindsym $mod+c mode "$mode_keymap"
 #### end
@@ -248,13 +260,13 @@ bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width   10 px or 10 ppt
-        bindsym j resize grow height    10 px or 10 ppt
-        bindsym k resize shrink height  10 px or 10 ppt
-        bindsym l resize grow width     10 px or 10 ppt
+      # These bindings trigger as soon as you enter the resize mode
+      bindsym h resize shrink width   10 px or 10 ppt
+      bindsym j resize grow height    10 px or 10 ppt
+      bindsym k resize shrink height  10 px or 10 ppt
+      bindsym l resize grow width     10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+      # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
