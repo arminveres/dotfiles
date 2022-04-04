@@ -31,7 +31,6 @@ require('packer').startup(function()
     'numToStr/Comment.nvim',                    -- Easily comment stuff gc/gcc
     'windwp/nvim-autopairs',                    -- Autopairs {}, [], () etc
     'akinsho/toggleterm.nvim',
-    'kyazdani42/nvim-tree.lua',                 -- Replacement for Netrw
     'davidgranstrom/nvim-markdown-preview',     -- markdown preview
     'stevearc/aerial.nvim',                     -- functions outline plugin
     'norcalli/nvim-colorizer.lua',              -- colorizes color codes
@@ -43,6 +42,9 @@ require('packer').startup(function()
     'nanozuki/tabby.nvim',
     'folke/todo-comments.nvim',                 -- highlight and search for todo comments like
     'norcalli/nvim-terminal.lua',
+    'kyazdani42/nvim-tree.lua',                 -- Replacement for Netrw
+    -- 'nvim-neo-tree/neo-tree.nvim',
+    -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
 
     -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
@@ -94,13 +96,13 @@ require('packer').startup(function()
       {'hrsh7th/cmp-path'},
       {'hrsh7th/cmp-nvim-lsp'},
       {'hrsh7th/cmp-nvim-lua'},
+      {'hrsh7th/cmp-cmdline'},
       {'rafamadriz/friendly-snippets'},
       {'saadparwaiz1/cmp_luasnip'},
       {'L3MON4D3/LuaSnip'},
       {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
       {'f3fora/cmp-spell'}                      -- spelling plugin
       -- {'hrsh7th/cmp-vsnip'},
-      -- {'hrsh7th/cmp-cmdline'},
     }
   }
   -- Automatically set up your configuration after cloning packer.nvim
@@ -116,6 +118,7 @@ require('armin.plugins.treesitter')
 require('armin.plugins.autopairs')
 require('armin.plugins.gitsigns')
 require('armin.plugins.nvim-tree')
+-- require('armin.plugins.neo-tree')
 require('armin.plugins.comment')
 require('armin.plugins.lualine')
 require('armin.plugins.blankline')
