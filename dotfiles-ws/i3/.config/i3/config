@@ -21,14 +21,14 @@ exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/p
 exec_always --no-startup-id nitrogen --restore
 
 
+exec_always ~/.screenlayout/rightvert.sh
 # exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1200 --rightof DP-0 --noprimary
 # exec_always --no-startup-id xrandr --output DP-0 --primary
 
 exec_always echo 0 > /sys/module/hid_apple/parameters/fnmode
 
 # swap escape and caps lock
-exec_always setxkbmap -option ctrl:swapcaps
-
+# exec_always setxkbmap -option ctrl:swapcaps
 
 
 bindsym $mod+Shift+greater move workspace to output right
@@ -245,6 +245,12 @@ for_window [class=".*"] border pixel 2
 gaps inner 10
 gaps outer 1
 # smart_gaps on
+
+### scratchpad ###
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
 
 ### colors ###
 set $base00 #1d2021
