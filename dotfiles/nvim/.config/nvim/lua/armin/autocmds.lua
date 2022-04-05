@@ -12,16 +12,17 @@ local nvim_create_autogroups = function (definitions)
 end
 
 nvim_create_autogroups {
-    arminveres = {
-        -- { 'BufRead,BufNewFile', '*', ':set undofile' },
-        -- { 'BufRead,BufNewFile', '*', ':set expandtab' },
-        -- { 'BufRead,BufNewFile', '*', ':set tabstop=4' },
-        -- { 'BufRead,BufNewFile', '*', ':set shiftwidth=4' },
-        -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set expandtab' },
-        -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set tabstop=2' },
-        -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set shiftwidth=2' },
-        { 'BufRead,BufNewFile', '*.frag,*.vert', ':set filetype=glsl' },
-        { 'BufRead,BufNewFile', 'COMMIT_EDITMSG', ':set colorcolumn=50,72' },
-        { 'CursorHold', '*', 'lua vim.diagnostic.open_float()'}
-    }
+  arminveres = {
+    -- { 'BufRead,BufNewFile', '*', ':set undofile' },
+    -- { 'BufRead,BufNewFile', '*', ':set expandtab' },
+    -- { 'BufRead,BufNewFile', '*', ':set tabstop=4' },
+    -- { 'BufRead,BufNewFile', '*', ':set shiftwidth=4' },
+    -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set expandtab' },
+    -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set tabstop=2' },
+    -- { 'BufRead,BufNewFile', '*.cpp,*.c,*.hpp,*.h', ':set shiftwidth=2' },
+    { 'BufRead,BufNewFile', '*.frag,*.vert', ':set filetype=glsl' },
+    { 'BufRead,BufNewFile', 'COMMIT_EDITMSG', ':set colorcolumn=50,72' },
+    { 'CursorHold', '*', 'lua vim.diagnostic.open_float()'},
+    { 'TextYankPost', '*', 'silent! lua vim.highlight.on_yank()'}
+  }
 }

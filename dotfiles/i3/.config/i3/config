@@ -138,13 +138,13 @@ bindsym XF86AudioPrev exec playerctl previous
 # Screenshots
 # bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
 # bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Shift+p exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Shift+p exec --no-startup-id maim --quality '10' --select "/home/$USER/Pictures/$(date).jpg"
 
 # Clipboard Screenshots
 # bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
 # bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
         # selection to clipboard
-bindsym Ctrl+Shift+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+p exec --no-startup-id maim --quality '10' --select | xclip -selection clipboard -t image/png
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness

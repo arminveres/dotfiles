@@ -71,7 +71,7 @@ bindkey "^j" down-line-or-beginning-search # Down
 bindkey -r "^d"
 
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
-[ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
+# [ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
 # ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
