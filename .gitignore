@@ -7,4 +7,4 @@ tags
 **/.zcompdump
 **/packer_compiled.lua
 *.bak
-**/vifminfo
+**/vifminfo.json

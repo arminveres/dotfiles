@@ -138,13 +138,13 @@ bindsym XF86AudioPrev exec playerctl previous
 # Screenshots
 # bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
 # bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Shift+p exec --no-startup-id maim --quality '10' --select "/home/$USER/Pictures/$(date).jpg"
+bindsym $mod+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select "/home/$USER/Pictures/$(date).jpg"
 
 # Clipboard Screenshots
 # bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
 # bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
         # selection to clipboard
-bindsym Ctrl+Shift+p exec --no-startup-id maim --quality '10' --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select | xclip -selection clipboard -t image/png
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
@@ -185,9 +185,9 @@ bindsym $mod+p mode "$mode_display"
 # set keymap
 set $mode_keymap (1) US (2) CH-de
 mode "$mode_keymap" {
-      bindsym 1 exec setxkbmap us, mode "default"
-      bindsym 2 exec setxkbmap 'ch(de)', mode "default"
-      bindsym Escape mode "default"
+    bindsym 1 exec setxkbmap us, mode "default"
+    bindsym 2 exec setxkbmap 'ch(de)', mode "default"
+    bindsym Escape mode "default"
 }
 bindsym $mod+c mode "$mode_keymap"
 #### end
@@ -260,16 +260,16 @@ bindsym $mod+Shift+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-      # These bindings trigger as soon as you enter the resize mode
-      bindsym h resize shrink width   10 px or 10 ppt
-      bindsym j resize grow height    10 px or 10 ppt
-      bindsym k resize shrink height  10 px or 10 ppt
-      bindsym l resize grow width     10 px or 10 ppt
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width   10 px or 10 ppt
+    bindsym j resize grow height    10 px or 10 ppt
+    bindsym k resize shrink height  10 px or 10 ppt
+    bindsym l resize grow width     10 px or 10 ppt
 
-      # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"

@@ -3,9 +3,10 @@
 # launch sudo session for shell
 sudo --shell
 
+# will be superfluous for fedora 36
 # rpm fusion for ffmpeg
-dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+# dnf -y install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+# dnf -y install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
  # first install bare packages
 dnf install -y \
@@ -93,6 +94,10 @@ dnf install -y \
 #     msmtp \
 #     isync \
 #     pass
+
+# sioyek copr
+dnf copr enable endle/sioyek
+dnf install -y sioyek
 
 # add flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
