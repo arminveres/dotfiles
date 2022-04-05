@@ -45,12 +45,18 @@ source "$ZDOTDIR/functions.zsh"
 zsh_add_file "exports.zsh"
 zsh_add_file "vim_mode.zsh"
 zsh_add_file "aliases.zsh"
+
+# prompt
+# think about just downloading this, not to have it as an external dependency
+zsh_download_plugin "woefe/git-prompt.zsh"
+zsh_add_file "./plugins/git-prompt.zsh/git-prompt.zsh"
 zsh_add_file "prompt.zsh"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
+
 # zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions

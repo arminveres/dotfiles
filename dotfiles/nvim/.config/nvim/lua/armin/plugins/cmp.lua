@@ -134,6 +134,18 @@ cmp.setup {
   },
 }
 
+cmp.setup.cmdline(':', {
+  sources = {
+    { name = 'cmdline' }
+  }
+})
+
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
 -- dictionary setup
 
 require("cmp_dictionary").setup({

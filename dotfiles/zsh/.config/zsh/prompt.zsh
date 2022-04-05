@@ -32,10 +32,11 @@ zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c %{$fg[yellow
 # PROMPT="%B%{$fg[blue]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%m%{$fg[blue]%}] %{$fg[cyan]%}%c%{$reset_color%}
 # %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 
-PROMPT="
-%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%~%{$reset_color%}"
-PROMPT+="\$vcs_info_msg_0_ "
-PROMPT+="
-%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+PROMPT='
+%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%~%{$reset_color%}'
+# PROMPT+="\$vcs_info_msg_0_ "
+PROMPT+='$(gitprompt)'
+PROMPT+='
+%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
 
-RPROMPT="%t"
+RPROMPT='%t'
