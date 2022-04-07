@@ -33,7 +33,7 @@ zstyle ':vcs_info:git:*' formats " %{$fg[blue]%}(%{$fg[red]%}%m%u%c %{$fg[yellow
 # %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 
 PROMPT='
-%B%{$fg[blue]%}%{$fg[white]%}%n%{$fg[red]%} at %{$fg[white]%}%m%{$fg[blue]%} in %{$fg[cyan]%}%~%{$reset_color%}'
+%{$fg[red]%}[%{$reset_color%}%n %{$fg[red]%}at %{$reset_color%}%m%{$fg[red]%}]%{$reset_color%} %{$fg[blue]%}in %{$fg[cyan]%}%~%{$reset_color%} '
 # PROMPT+="\$vcs_info_msg_0_ "
 PROMPT+='$(gitprompt)'
 PROMPT+='
