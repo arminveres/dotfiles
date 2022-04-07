@@ -10,7 +10,10 @@ alias visudo='sudo visudo'
 alias vi="nvim"
 alias vim="nvim"
 
+alias tmux="tmux -2"
+
 alias la="exa -la --header"
+alias lag="exa -la --header --grid --icons"
 alias ll="exa -l --header"
 
 alias btop="bpytop"
@@ -41,13 +44,21 @@ then
   alias ssh="kitty +kitten ssh"
 fi
 
-# Work specific aliases
-alias tmux="tmux -2"
-alias croot="cd ~/voyager2"
-# alias qtcreator="~/Qt/Tools/QtCreator/bin/qtcreator.sh &"
-alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
-alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
-alias upd="sudo apt-get update && sudo apt-get upgrade -y"
+case "$(uname -n)" in
+    "fedoraarmin")
+    ;;
+    "avee-workstation") # Work specific aliases
+        # alias croot="cd ~/voyager2"
+        # alias qtcreator="~/Qt/Tools/QtCreator/bin/qtcreator.sh &"
+        alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
+        alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
+        alias upd="sudo apt-get update && sudo apt-get upgrade -y"
+        alias nala='sudo nala'
+        alias flatpak="sudo flatpak"
+    ;;
+    *) echo default
+    ;;
+esac
 
 # OS Specific Aliases
 case "$(uname -s)" in

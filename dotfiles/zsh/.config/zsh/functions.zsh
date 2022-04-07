@@ -1,6 +1,6 @@
 function convHeic () {
-    for file in *.(heic|HEIC); 
-    do heif-convert $file ${file/%.(heic|HEIC)/.jpg}; 
+    for file in *.(heic|HEIC);
+    do heif-convert $file ${file/%.(heic|HEIC)/.jpg};
     done
 }
 
@@ -15,7 +15,7 @@ function gitUpdDirs() {
 }
 
 # set and change java versions
-# just use -- sudo alternatives --config java 
+# just use -- sudo alternatives --config java
 
 # find thermal info loc
 function FindTherm() {

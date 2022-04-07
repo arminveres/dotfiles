@@ -8,3 +8,4 @@ tags
 **/packer_compiled.lua
 *.bak
 **/vifminfo.json
+**/vifminfo
