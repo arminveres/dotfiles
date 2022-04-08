@@ -47,7 +47,7 @@ fi
 case "$(uname -n)" in
     "fedoraarmin")
     ;;
-    "avee-workstation") # Work specific aliases
+    "avee-Workstation") # Work specific aliases
         # alias croot="cd ~/voyager2"
         # alias qtcreator="~/Qt/Tools/QtCreator/bin/qtcreator.sh &"
         alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
