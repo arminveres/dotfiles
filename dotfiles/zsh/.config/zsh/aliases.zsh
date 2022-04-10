@@ -44,19 +44,19 @@ then
   alias ssh="kitty +kitten ssh"
 fi
 
+# linux workstation specific aliases, could move it into subdivided os specific aliases
 case "$(uname -n)" in
-    "fedoraarmin")
+    "fedoraarmin"||"fedora-notebook-armin")
     ;;
     "avee-Workstation") # Work specific aliases
-        # alias croot="cd ~/voyager2"
-        # alias qtcreator="~/Qt/Tools/QtCreator/bin/qtcreator.sh &"
         alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
         alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
         alias upd="sudo apt-get update && sudo apt-get upgrade -y"
         alias nala='sudo nala'
         alias flatpak="sudo flatpak"
     ;;
-    *) echo default
+    *)
+        echo "default zsh aliases applid"
     ;;
 esac
 
