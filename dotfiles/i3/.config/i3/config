@@ -45,7 +45,8 @@ exec_always --no-startup-id thunar --daemon
 
 # start usb mounter, but only once
 exec --no-startup-id udiskie --tray --notify
-exec --no-startup-id blueman-manager
+# autostart the bluetooth manager
+# exec --no-startup-id blueman-manager
 
 # swap escape and caps lock
 # exec_always setxkbmap -option ctrl:swapcaps
@@ -136,9 +137,9 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshots
-# bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
-# bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).jpg"
-bindsym $mod+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select "/home/$USER/Pictures/$(date).jpg"
+# bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/screenshots/$(date).jpg"
+# bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshots/$(date).jpg"
+bindsym $mod+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select "/home/$USER/Pictures/screenshots/$(date).jpg"
 
 # Clipboard Screenshots
 # bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
