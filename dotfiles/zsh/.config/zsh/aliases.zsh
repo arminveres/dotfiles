@@ -4,7 +4,6 @@ alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"
 
 # applications
-alias dnf='sudo dnf'
 alias visudo='sudo visudo'
 
 alias vi="nvim"
@@ -46,19 +45,27 @@ fi
 
 # linux workstation specific aliases, could move it into subdivided os specific aliases
 case "$(uname -n)" in
-    "fedoraarmin"||"fedora-notebook-armin")
-    ;;
     "avee-Workstation") # Work specific aliases
         alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
         alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
         alias upd="sudo apt-get update && sudo apt-get upgrade -y"
-        alias nala='sudo nala'
         alias flatpak="sudo flatpak"
     ;;
     *)
-        echo "default zsh aliases applid"
     ;;
 esac
+
+case "$(lsb_release -i | awk '{print $3}')" in
+    Ubuntu) # echo Ubuntu
+        alias nala='sudo nala'
+    ;;
+    Fedora) echo Fedora
+        alias dnf='sudo dnf'
+    ;;
+    *) echo default
+    ;;
+esac
+
 
 # OS Specific Aliases
 case "$(uname -s)" in
