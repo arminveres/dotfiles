@@ -1,9 +1,0 @@
-#!/bin/bash
-
-docker container run -d --name=syncthing --hostname=syncthing \
-    -e PUID=1000 -e PGID=1000 -e TZ=Europe/Bern -p 8384:8384 \
-    -p 22000:22000/tcp -p 22000:22000/udp -p 21027:21027/udp \
-    -v /home/arminveres/.config/syncthin /config:/config \
-    -v /home/arminveres/Documents:/Documents -v /home/arminveres/Studyfiles:/Studyfiles \
-    --restart unless-stopped \
-    syncthing syncthing:latest
