@@ -4,14 +4,15 @@
 
 Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
 
-| <!-- -->             | <!-- -->                                          |
-| -------------------- | ------------------------------------------------- |
-| Window Manager       | i3 (bspwm WIP)                                    |
-| Status bar           | Polybar                                           |
-| Shell                | zsh                                               |
-| Editor               | NeoVIM                                            |
-| Terminal Emulator    | kitty or Alacritty                                |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config) |
+| Type                 | Currently in use                                  | Alternative |
+| -------------------- | ------------------------------------------------- | ----------- |
+| Window Manager       | i3                                                | bspwm       |
+| Status bar           | Polybar                                           | <!-- -->    |
+| Notifications        | dunst                                             |             |
+| Shell                | zsh                                               | <!-- -->    |
+| Editor               | NeoVIM                                            | <!-- -->    |
+| Terminal Emulator    | kitty                                             | Alacritty   |
+| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config) | <!-- -->    |
 
 ## Usage
 
@@ -30,4 +31,8 @@ GNU stow, found either preinstalled or installable on all major distributions.
 
 ## TODO
 
+- [ ] customize `dunst` notifications
 - [ ] add script/function to correctly handle stowing
+- [ ] make bspwm a full replacement (rofi powermenu)
+- [ ] i3 add scratchpad switcher rofi
+- [ ] customize dunst

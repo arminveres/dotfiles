@@ -3,12 +3,17 @@ if not status_ok then
   return
 end
 
+--[[ TODO: migrate to .setup() 
+  'https://github.com/williamboman/nvim-lsp-installer/discussions/636'
+  'https://github.com/williamboman/nvim-lsp-installer/pull/635'
+--]]
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
   local opts = {
-      on_attach = require("armin.lsp.handlers").on_attach,
-      capabilities = require("armin.lsp.handlers").capabilities,
+    on_attach = require("armin.lsp.handlers").on_attach,
+    capabilities = require("armin.lsp.handlers").capabilities,
   }
 
   if server.name == "sumneko_lua" then
@@ -27,7 +32,7 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "arduino_language_server" then
-    opts.on_new_config = function (config, root_dir)
+    opts.on_new_config = function(config, root_dir)
       local partial_cmd = server:get_default_options().cmd
       local MY_FQBN = "arduino:avr:nano"
       config.cmd = vim.list_extend(partial_cmd, { "-fqbn", MY_FQBN })
@@ -47,7 +52,7 @@ lsp_installer.on_server_ready(function(server)
     -- return
   end
 
--- This setup() function is exactly the same as lspconfig's setup function.
--- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  -- This setup() function is exactly the same as lspconfig's setup function.
+  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   server:setup(opts)
 end)

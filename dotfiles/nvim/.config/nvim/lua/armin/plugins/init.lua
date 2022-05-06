@@ -28,7 +28,6 @@ require('packer').startup(function()
     'wbthomason/packer.nvim',                   -- Package manager
     'neovim/nvim-lspconfig',                    -- Collection of configurations for built-in LSP client
     'williamboman/nvim-lsp-installer',          -- installer for lsps
-    'numToStr/Comment.nvim',                    -- Easily comment stuff gc/gcc
     'windwp/nvim-autopairs',                    -- Autopairs {}, [], () etc
     'akinsho/toggleterm.nvim',
     'davidgranstrom/nvim-markdown-preview',     -- markdown preview
@@ -43,6 +42,7 @@ require('packer').startup(function()
     'folke/todo-comments.nvim',                 -- highlight and search for todo comments like
     'norcalli/nvim-terminal.lua',
     'kyazdani42/nvim-tree.lua',                 -- Replacement for Netrw
+    'numToStr/Comment.nvim',                    -- Comment out code easily
     -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
@@ -54,7 +54,8 @@ require('packer').startup(function()
   use { -- colorschemes
     'joshdick/onedark.vim',
     'rebelot/kanagawa.nvim',
-    'morhetz/gruvbox'
+    'morhetz/gruvbox',
+    'tanvirtin/monokai.nvim'
   }
 
   use { -- vimscript plugins
@@ -91,6 +92,7 @@ require('packer').startup(function()
   }
   use {                                         -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
+    commit = "fae808a2bca079ea9454f33cb1e2db81c59e102b",
     requires = {
       {'hrsh7th/cmp-buffer'},
       {'hrsh7th/cmp-path'},

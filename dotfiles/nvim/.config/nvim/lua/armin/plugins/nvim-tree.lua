@@ -54,8 +54,8 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = true, -- def: false
-    number = false,
-    relativenumber = false,
+    number = true, -- default: false
+    relativenumber = true, -- default: false
     signcolumn = "yes", -- show diagnostics
     mappings = {
       custom_only = false,
