@@ -25,7 +25,6 @@ zstyle ':completion:*' group-name ''
 # squeezes slashes: cd ~//Documents => cd ~/*/Documents
 # shows current location type
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
-# zstyle ':completion::complete:lsof:*' menu yes select
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)      # Include hidden files.
@@ -47,7 +46,7 @@ zsh_add_file "vim_mode.zsh"
 zsh_add_file "aliases.zsh"
 
 # prompt
-# think about just downloading this, not to have it as an external dependency
+# TODO:Maybe move it into repo anyway
 zsh_download_plugin "woefe/git-prompt.zsh"
 zsh_add_file "./plugins/git-prompt.zsh/git-prompt.zsh"
 zsh_add_file "prompt.zsh"

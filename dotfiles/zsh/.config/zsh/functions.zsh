@@ -1,10 +1,10 @@
-function convHeic () {
+function convert_heic_to_jpg () {
     for file in *.(heic|HEIC);
     do heif-convert $file ${file/%.(heic|HEIC)/.jpg};
     done
 }
 
-function gitUpdDirs() {
+function git_update_project_in_dir() {
  for file in ./*/;
     do
         echo "$file" && \
@@ -18,7 +18,7 @@ function gitUpdDirs() {
 # just use -- sudo alternatives --config java
 
 # find thermal info loc
-function FindTherm() {
+function find_thermal_zone() {
     for i in /sys/class/hwmon/hwmon*/temp*_input;
         do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
     done

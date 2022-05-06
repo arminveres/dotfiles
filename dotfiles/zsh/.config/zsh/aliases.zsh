@@ -1,4 +1,5 @@
 # configs
+# TODO:add FZF selection wheel
 alias zconf="vi ~/.config/zsh/.zshrc"
 alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"
@@ -11,19 +12,18 @@ alias vim="nvim"
 
 alias tmux="tmux -2"
 
-alias la="exa -la --header"
-alias lag="exa -la --header --grid --icons"
-alias ll="exa -l --header"
+# exa
+alias la="exa --long --all --header"
+alias lag="exa --long --all --header --grid --icons"
+alias lg="exa --long --header --grid --icons"
+alias ll="exa --long --header"
 
-alias btop="bpytop"
-
+# git
 alias g="git"
 alias gb="git branch"
 alias gla="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
-
-# alias hisgr="history | rg" # replaced with fzf
 
 alias mkdir="mkdir -pv"
 
@@ -36,6 +36,9 @@ alias ln="ln -i"
 # easier to read disk
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
+
+# restart resolve service, e.g. after Cisco VPN disconnect
+alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
 # Terminal Specific Aliases
 if [[ $TERM = "xterm-kitty" ]]
@@ -59,31 +62,10 @@ case "$(lsb_release -i | awk '{print $3}')" in
     Ubuntu) # echo Ubuntu
         alias nala='sudo nala'
     ;;
-    Fedora) echo Fedora
+    Fedora) # echo Fedora
         alias dnf='sudo dnf'
     ;;
-    *) echo default
+    *)
+        echo default
     ;;
 esac
-
-
-# OS Specific Aliases
-case "$(uname -s)" in
-
-Darwin)
-    # echo 'Mac OS X'
-    alias ls='ls -G'
-    ;;
-
-Linux)
-    alias ls='ls --color=auto'
-    alias restart_resolve="sudo systemctl restart systemd-resolved.service"
-    ;;
-
-CYGWIN* | MINGW32* | MSYS* | MINGW*)
-    # echo 'MS Windows'
-    ;;
-*)
-    # echo 'Other OS'
-    ;;
-    esac
