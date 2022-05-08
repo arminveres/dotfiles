@@ -55,7 +55,8 @@ require('packer').startup(function()
     'joshdick/onedark.vim',
     'rebelot/kanagawa.nvim',
     'morhetz/gruvbox',
-    'tanvirtin/monokai.nvim'
+    'tanvirtin/monokai.nvim',
+    'marko-cerovac/material.nvim',
   }
 
   use { -- vimscript plugins

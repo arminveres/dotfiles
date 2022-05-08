@@ -31,8 +31,8 @@ GNU stow, found either preinstalled or installable on all major distributions.
 
 ## TODO
 
+- [ ] add script/function to correctly handle stowing, e.g. [ansible](https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb)
 - [ ] customize `dunst` notifications
-- [ ] add script/function to correctly handle stowing
+- [x] i3 add scratchpad switcher rofi
+- [ ] improve scratchpad functionality
 - [ ] make bspwm a full replacement (rofi powermenu)
-- [ ] i3 add scratchpad switcher rofi
-- [ ] customize dunst
