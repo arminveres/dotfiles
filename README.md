@@ -1,5 +1,7 @@
 # dotconf-files
 
+![Setup](./misc/docs/i3-gaps-neovim-sioyek.jpg)
+
 ## Description
 
 Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
