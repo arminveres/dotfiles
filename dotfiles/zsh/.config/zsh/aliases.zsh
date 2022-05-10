@@ -1,5 +1,4 @@
 # configs
-# TODO:add FZF selection wheel
 alias zconf="vi ~/.config/zsh/.zshrc"
 alias i3conf="vi ~/.config/i3/config"
 alias viconf="vi ~/.config/nvim/"

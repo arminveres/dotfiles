@@ -1,6 +1,7 @@
 export ZDOTDIR=$HOME/.config/zsh
 
-TERM=tmux-256color
+# used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
+# TERM=tmux-256color
 
 # some useful options (man zshoptions)
 setopt AUTO_CD
@@ -65,8 +66,10 @@ bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 bindkey -s '^v' 'nvim $(fzf)^M'
-# bindkey -s '^v' 'nvim\n'
 bindkey -s '^z' 'zi^M'
+# BUG: doesn't workd as of yet, loads the file but the visible buffers stays empty
+bindkey -s '^_' 'nvim $(cat ~/.config/zsh/config_locations | fzf)^M'
+
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down

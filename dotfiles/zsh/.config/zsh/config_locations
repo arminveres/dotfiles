@@ -1,0 +1,5 @@
+~/.config/zsh/.zshrc
+~/.config/i3/config
+~/.config/nvim/init.lua
+~/.config/picom/picom.conf
+~/.config/polybar/config.ini

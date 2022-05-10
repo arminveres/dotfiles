@@ -66,6 +66,7 @@ require('packer').startup(function()
     'moll/vim-bbye',                            -- allows you to do delete buffers (close files) without closing your windows
     'ivyl/vim-bling',                           -- blinks search result after jumping to it (think of n, N, * and #)
     'mbbill/undotree',
+    'fladson/vim-kitty',
     -- 'tpope/vim-fugitive'                     -- Git commands in nvim
     -- 'tpope/vim-rhubarb'                      -- Fugitive-companion to interact with github
   }
