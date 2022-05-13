@@ -1,4 +1,8 @@
-# TODO: Once 4.20 is available with gaps, move below mentioned parts into own files
+include keybinds.conf
+include workspaces.conf
+include autostarts.conf
+include modes.conf
+include colors.conf
 
 # set windows/super as mod key
 set $mod Mod4
@@ -18,245 +22,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
 
 focus_follows_mouse no
 
-# TODO: move autostarts into own file
-#### autostarts ####
+################
+### FLOATING ###
+################
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-exec xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
-exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
-
-# sets mouse acceleration to flat
-# MX Master 3
-exec_always xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1 
-# G Pro
-exec_always xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1 
-
-# sets wallpaper
-# exec_always feh --bg-fill /home/arminveres/Pictures/wallpaper.jpg
-exec_always nitrogen --restore
-
-# start polkit
-exec_always lxpolkit
-
-# start nordvpnd
-exec_always --no-startup-id thunar --daemon
-
-# start usb mounter, but only once
-exec --no-startup-id udiskie --tray --notify
-# autostart the bluetooth manager
-exec --no-startup-id blueman-manager
-
-# swap escape and caps lock
-# exec_always setxkbmap -option ctrl:swapcaps
-# exec_always --no-startup-id setxkbmap -layout us -variant intl
-# start picom compositor
-exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
-
-exec --no-startup-id corectrl
-# systray apps #
-# NetworkManager systray
-exec --no-startup-id nm-applet
-# pulseadio tray app
-exec --no-startup-id pasystray
-
-#### end
-
-# TODO: move keybinds into own conf
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-# bindsym $mod+Return exec alacritty
-bindsym $mod+Return exec kitty
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# A more modern dmenu replacement is rofi:
-bindsym $mod+space exec "rofi -modi drun,run -show drun"
-bindsym $mod+Tab exec "rofi -modi window, run -show window"
-# NOTE: Experimental i3 scratchad manager
-bindsym $mod+equal exec ~/gitfiles/dotconf-files/dotfiles/i3/.config/i3/rofi_i3_scratch
-
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# split in horizontal orientation
-bindsym $mod+semicolon split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+d focus mode_toggle
-
-# Move floating container to the center of all outputs
-bindsym $mod+c move position center
 # floating_minimum_size 1920 x 1080
 
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-#### custom bindings ####
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-bindsym $mod+b exec --no-startup-id firefox
-bindsym $mod+z exec --no-startup-id zathura
-
-#Media Keys
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Screenshots
-# bindsym Insert exec --no-startup-id maim "/home/$USER/Pictures/screenshots/$(date).jpg"
-# bindsym $mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshots/$(date).jpg"
-bindsym $mod+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select "/home/$USER/Pictures/screenshots/$(date).jpg"
-
-# Clipboard Screenshots
-# bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
-# bindsym Ctrl+$mod+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-        # selection to clipboard
-bindsym Ctrl+Shift+p exec --no-startup-id maim --hidecursor --quality '10' --select | xclip -selection clipboard -t image/png
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6 # increase screen brightness
-bindsym XF86MonBrightnessDown exec ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6  # decrease screen brightness
-
-# move workspaces to other monitors
-bindsym $mod+Shift+greater move workspace to output right
-bindsym $mod+Shift+less move workspace to output left
-
-# custom exit modes
-set $Locker i3lock -c 000000 && sleep 1 && xset dpms force off
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-
-mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Escape mode "$mode_system"
-
-# custom display modifier
-set $mode_display Secondary display on (1) - off (2)
-mode "$mode_display" {
-    bindsym 1 exec xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right, mode "default"
-    bindsym 2 exec xrandr --output HDMI-A-0 --off, mode "default"
-
-    bindsym Escape mode "default"
-}
-bindsym $mod+p mode "$mode_display"
-
-# TODO:try to find a better way to handle different inputs
-# set keymap
-set $mode_keymap (1) US (2) CH-de
-mode "$mode_keymap" {
-    bindsym 1 exec setxkbmap us, mode "default"
-    bindsym 2 exec setxkbmap 'ch(de)', mode "default"
-    bindsym Escape mode "default"
-}
-# bindsym $mod+c mode "$mode_keymap"
-#### end
-
-# TODO:Do some workspace magic: https://i3wm.org/docs/userguide.html#workspace_screen
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
-
-# cycle through workspaces
-bindsym $mod+Right workspace next
-bindsym $mod+Left workspace prev
-
-# assigning applications to workspaces
-# assign [class="Firefox"] $ws2
-
-assign [class="corectrl"] $ws8
-
-assign [class="Steam"] $ws8
-assign [class="discord"] $ws8
-assign [class="Lutris"] $ws8
-
-# assign [class="Signal"] $ws9
-for_window [class="Signal"] move scratchpad
-assign [class="Franz"] $ws9
-
-for_window [class="Spotify"] move to workspace $ws10
-for_window [class="Blueman-manager"] move to workspace $ws10
+# enable startup in float from exec by setting the x11 class to floating
+# many apps support '--class floating' for setting the x11 class (the instance get renamed)
+for_window [instance="floating"] floating enabled
 
 # add floating to all origin windows
 for_window [instance="origin.exe"] floating enable
@@ -265,74 +42,38 @@ for_window [class="zoom"] floating enable
 for_window [class="zoom" title="Zoom - Licensed Account"] floating disable
 for_window [class="zoom" title="Zoom Meeting"] floating disable
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+####################
+### END FLOATING ###
+####################
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-    bindsym h resize shrink width   10 px or 10 ppt
-    bindsym j resize grow height    10 px or 10 ppt
-    bindsym k resize shrink height  10 px or 10 ppt
-    bindsym l resize grow width     10 px or 10 ppt
-
-    # back to normal: Enter or Escape or $mod+r
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+r mode "default"
-}
-bindsym $mod+r mode "resize"
-
-# TODO: move colors into own conf
-#### colors ####
-set $base00 #1d2021
-set $base01 #3c3836
-set $base02 #504945
-set $base03 #665c54
-set $base04 #bdae93
-set $base05 #d5c4a1
-set $base06 #ebdbb2
-set $base07 #fbf1c7
-set $base08 #fb4934
-set $base09 #fe8019
-set $base0A #fabd2f
-set $base0B #b8bb26
-set $base0C #8ec07c
-set $base0D #83a598
-set $base0E #d3869b
-set $base0F #d65d0e
-
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border  BG      Text    Indictr Child Border
-client.focused          $base05 $base0D $base00 $base0B $base0B
-client.focused_inactive $base01 $base01 $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base05 $base01 $base01
-client.urgent           $base08 $base08 $base00 $base08 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base07
-#### colors end
-
-# TODO: 4.20 feautere again
 # enable window icons for all windows
-# for_window [all] title_window_icon on
+for_window [all] title_window_icon on
 
 # enable window icons for all windows with extra horizontal padding
-# for_window [all] title_window_icon padding 3px
+for_window [all] title_window_icon padding 3px
 
-#### i3-gaps ####
+############
+### GAPS ###
+############
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 2
-gaps inner 10
-gaps outer 1
+
+# need wo adjust this for polybar override-redirect=true
+# simulating 'gaps outer 40' since 20 more pixels are needed on the top
+gaps horizontal 40
+gaps top  60
+gaps bottom 40
+
+# possible to change on the fly
+# bindsym $mod+Shift+o gaps inner all set 60
+
+gaps inner 20
+
 # smart_gaps on
 # smart_borders on
 
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
+################
+### END GAPS ###
+################
 
 # vim: ft=i3config
