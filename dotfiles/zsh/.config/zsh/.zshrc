@@ -66,7 +66,6 @@ bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 bindkey -s '^v' 'nvim $(fzf)^M'
-bindkey -s '^z' 'zi^M'
 # BUG: doesn't workd as of yet, loads the file but the visible buffers stays empty
 bindkey -s '^_' 'nvim $(cat ~/.config/zsh/config_locations | fzf)^M'
 
