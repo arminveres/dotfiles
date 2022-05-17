@@ -1,6 +1,6 @@
 # configs
-alias zconf="vi ~/.config/zsh/.zshrc"
-alias i3conf="vi ~/.config/i3/config"
+alias zconf="vi ~/.config/zsh/"
+alias i3conf="vi ~/.config/i3/"
 alias viconf="vi ~/.config/nvim/"
 
 # applications

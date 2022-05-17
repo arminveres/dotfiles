@@ -67,7 +67,7 @@ bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 bindkey -s '^v' 'nvim $(fzf)^M'
 # BUG: doesn't workd as of yet, loads the file but the visible buffers stays empty
-bindkey -s '^_' 'nvim $(cat ~/.config/zsh/config_locations | fzf)^M'
+bindkey -s '^_' '~/.config/zsh/conf.sh^M'
 
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
