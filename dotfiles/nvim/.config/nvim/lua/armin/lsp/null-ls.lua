@@ -13,6 +13,8 @@ null_ls.setup({
   debug = false,
   sources = {
     formatting.prettier.with({ extra_args = { "--single-quote", "--jsx-single-quote", } }),
+    formatting.shfmt.with({ extra_args = { "--indent", "4", } }),
+
     -- formatting.stylua,
     -- formatting.clang_format.with({ extra_args = { '-style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' } }),
     -- formatting.clang_format.with({ command =  'clang-format -style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' }),
@@ -20,5 +22,6 @@ null_ls.setup({
     -- formatting.eslint,
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
     -- formatting.black.with({ extra_args = { "--fast" } }),
+
   },
 })

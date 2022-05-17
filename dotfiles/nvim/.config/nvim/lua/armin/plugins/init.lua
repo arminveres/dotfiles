@@ -25,24 +25,23 @@ vim.cmd [[
 local use = require('packer').use
 require('packer').startup(function()
   use {
-    'wbthomason/packer.nvim',                   -- Package manager
-    'neovim/nvim-lspconfig',                    -- Collection of configurations for built-in LSP client
-    'williamboman/nvim-lsp-installer',          -- installer for lsps
-    'windwp/nvim-autopairs',                    -- Autopairs {}, [], () etc
+    'wbthomason/packer.nvim', -- Package manager
+    'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
+    'williamboman/nvim-lsp-installer', -- installer for lsps
+    'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
     'akinsho/toggleterm.nvim',
-    'davidgranstrom/nvim-markdown-preview',     -- markdown preview
-    'stevearc/aerial.nvim',                     -- functions outline plugin
-    'norcalli/nvim-colorizer.lua',              -- colorizes color codes
-    'jose-elias-alvarez/null-ls.nvim',          -- Null LS
-    'nvim-lualine/lualine.nvim',                -- Fancier statusline
-    'lukas-reineke/indent-blankline.nvim',      -- Add indentation guides even on blank lines
-    'lewis6991/gitsigns.nvim',                  -- Add git related info in the signs columns and popups
+    'stevearc/aerial.nvim', -- functions outline plugin
+    'norcalli/nvim-colorizer.lua', -- colorizes color codes
+    'jose-elias-alvarez/null-ls.nvim', -- Null LS
+    'nvim-lualine/lualine.nvim', -- Fancier statusline
+    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+    'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
     'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
     'nanozuki/tabby.nvim',
-    'folke/todo-comments.nvim',                 -- highlight and search for todo comments like
+    'folke/todo-comments.nvim', -- highlight and search for todo comments like
     'norcalli/nvim-terminal.lua',
-    'kyazdani42/nvim-tree.lua',                 -- Replacement for Netrw
-    'numToStr/Comment.nvim',                    -- Comment out code easily
+    'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
+    'numToStr/Comment.nvim', -- Comment out code easily
     -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
@@ -50,6 +49,13 @@ require('packer').startup(function()
     -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
     -- 'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
   }
+
+  use({ -- markdown preview plugin, very nice!
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
 
   use { -- colorschemes
     'joshdick/onedark.vim',
@@ -60,11 +66,11 @@ require('packer').startup(function()
   }
 
   use { -- vimscript plugins
-    'tpope/vim-sleuth',                         -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
-    'ludovicchabant/vim-gutentags',             -- Automatic tags management
+    'tpope/vim-sleuth', -- automatically adjusts 'shiftwidth' and 'expandtab' based on the current file
+    'ludovicchabant/vim-gutentags', -- Automatic tags management
     'mboughaba/i3config.vim',
-    'moll/vim-bbye',                            -- allows you to do delete buffers (close files) without closing your windows
-    'ivyl/vim-bling',                           -- blinks search result after jumping to it (think of n, N, * and #)
+    'moll/vim-bbye', -- allows you to do delete buffers (close files) without closing your windows
+    'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
     'mbbill/undotree',
     'fladson/vim-kitty',
     -- 'tpope/vim-fugitive'                     -- Git commands in nvim
@@ -76,36 +82,36 @@ require('packer').startup(function()
     requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
-      "aloussase/telescope-gradle.nvim",        -- A telescope extension to run gradle tasks
-      "jvgrootveld/telescope-zoxide"            -- allows you operate zoxide within Neovim
+      "aloussase/telescope-gradle.nvim", -- A telescope extension to run gradle tasks
+      "jvgrootveld/telescope-zoxide" -- allows you operate zoxide within Neovim
     }
   })
 
-  use {                                         -- Highlight, edit, and navigate code using a fast incremental parsing library
+  use { -- Highlight, edit, and navigate code using a fast incremental parsing library
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
   use {
     'junegunn/fzf',
-    require = {'junegunn/fzf.vim'},
-    run = function ()
+    require = { 'junegunn/fzf.vim' },
+    run = function()
       vim.fn['fzf#install']()
     end
   }
-  use {                                         -- Autocompletion plugins
+  use { -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     commit = "fae808a2bca079ea9454f33cb1e2db81c59e102b",
     requires = {
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
-      {'hrsh7th/cmp-cmdline'},
-      {'rafamadriz/friendly-snippets'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'L3MON4D3/LuaSnip'},
-      {'uga-rosa/cmp-dictionary'},              -- dictionary plugin
-      {'f3fora/cmp-spell'}                      -- spelling plugin
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'rafamadriz/friendly-snippets' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'uga-rosa/cmp-dictionary' }, -- dictionary plugin
+      { 'f3fora/cmp-spell' } -- spelling plugin
       -- {'hrsh7th/cmp-vsnip'},
     }
   }
