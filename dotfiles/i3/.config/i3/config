@@ -16,6 +16,8 @@ font pango: JetBrainsMono Nerd Font 10.0
 # workspace_layout tabbed
 # new_window 1pixel
 
+# NOTE: --no-startup-id: without it, the app starts on the workspace on which it was called
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
