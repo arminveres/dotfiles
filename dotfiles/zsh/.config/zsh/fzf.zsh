@@ -1,6 +1,7 @@
+# TODO: use default binary and import shell scripts into own configs
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == *$HOME/gitfiles/fzf/bin* ]]; then
+if [[ ! "$PATH" == *$HOME/gitfiles/Dependencies/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOME/gitfiles/Dependencies/fzf/bin"
 fi
 

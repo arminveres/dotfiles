@@ -41,6 +41,9 @@ autoload -Uz colors && colors
 # Useful Functions
 source "$ZDOTDIR/functions.zsh"
 
+# safe source cargo env
+zsh_add_file "$HOME/.cargo/env"
+
 # Normal files to source
 zsh_add_file "exports.zsh"
 zsh_add_file "vim_mode.zsh"
@@ -65,9 +68,9 @@ zsh_add_plugin "hlissner/zsh-autopair"
 bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
-bindkey -s '^v' 'nvim $(fzf)^M'
+bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
 # BUG: doesn't workd as of yet, loads the file but the visible buffers stays empty
-bindkey -s '^_' '~/.config/zsh/conf.sh^M'
+bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
 
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
