@@ -8,6 +8,10 @@ setopt HIST_IGNORE_DUPS       # ignore duplicate commands
 setopt HIST_IGNORE_SPACE      # ignore commands starting with space
 setopt HIST_VERIFY            # show command with history expansion to user before running it
 
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin/:/usr/local/bin:$PATH
+export VISUAL=nvim
+export EDITOR=nvim
+
 # setting some XDGs
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
@@ -22,11 +26,8 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin/:/usr/local/bin:$PATH
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
-export VISUAL=nvim
-export EDITOR=nvim
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 export MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf
 

@@ -1,5 +1,3 @@
-export ZDOTDIR=$HOME/.config/zsh
-
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=tmux-256color
 
@@ -42,18 +40,19 @@ autoload -Uz colors && colors
 source "$ZDOTDIR/functions.zsh"
 
 # safe source cargo env
-zsh_add_file "$HOME/.cargo/env"
+zsh_safe_source "$HOME/.cargo/env"
 
 # Normal files to source
-zsh_add_file "exports.zsh"
-zsh_add_file "vim_mode.zsh"
-zsh_add_file "aliases.zsh"
+# Exports are needed before aliases
+zsh_safe_source "exports.zsh"
+zsh_safe_source "vim_mode.zsh"
+zsh_safe_source "aliases.zsh"
 
 # prompt
 # TODO:Maybe move it into repo anyway
 zsh_download_plugin "woefe/git-prompt.zsh"
-zsh_add_file "./plugins/git-prompt.zsh/git-prompt.zsh"
-zsh_add_file "prompt.zsh"
+zsh_safe_source "./plugins/git-prompt.zsh/git-prompt.zsh"
+zsh_safe_source "prompt.zsh"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
