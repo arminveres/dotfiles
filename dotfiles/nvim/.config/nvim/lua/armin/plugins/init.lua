@@ -91,13 +91,12 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
+
   use {
     'junegunn/fzf',
-    require = { 'junegunn/fzf.vim' },
-    run = function()
-      vim.fn['fzf#install']()
-    end
+    run = './install --bin'
   }
+
   use { -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     commit = "fae808a2bca079ea9454f33cb1e2db81c59e102b",

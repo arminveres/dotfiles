@@ -29,7 +29,7 @@ alias mkdir="mkdir -pv"
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
-alias rm="rm -ir"
+# alias rm="rm -ir"
 alias ln="ln -i"
 
 # easier to read disk
