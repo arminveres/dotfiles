@@ -37,6 +37,9 @@ floating_modifier $mod
 # many apps support '--class floating' for setting the x11 class (the instance get renamed)
 for_window [instance="floating"] floating enabled
 
+# Disables floating for NautilusPreviewer, makes for better/more consistent previews
+for_window [instance="org.gnome.NautilusPreviewer"] floating disabled
+
 # add floating to all origin windows
 for_window [instance="origin.exe"] floating enable
 # same for zoom
@@ -58,6 +61,7 @@ for_window [all] title_window_icon padding 3px
 ### GAPS ###
 ############
 # You can also use any non-zero value if you'd like to have a border
+# BUG: cannot use i3-gaps with titlebars, picom blurs then too much
 for_window [class=".*"] border pixel 2
 
 # need wo adjust this for polybar override-redirect=true

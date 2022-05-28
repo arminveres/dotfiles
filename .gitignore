@@ -10,3 +10,6 @@ tags
 **/vifminfo.json
 **/vifminfo
 .luarc.json
+
+# general files
+*.log
