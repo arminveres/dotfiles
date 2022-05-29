@@ -9,7 +9,7 @@ case "$(uname -n)" in
         # Launch bar1 and bar2
         echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
         echo "workstation fedoraarmin"| tee -a /tmp/polybar1.log /tmp/polybar2.log
-        polybar armin1 2>&1 | tee -a /tmp/polybar1.log & disown
+        polybar armin_ultrawide 2>&1 | tee -a /tmp/polybar1.log & disown
         polybar armin2 2>&1 | tee -a /tmp/polybar2.log & disown
     ;;
     "fedora-notebook-armin")
