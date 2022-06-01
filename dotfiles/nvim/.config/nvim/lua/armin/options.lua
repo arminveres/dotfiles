@@ -9,6 +9,7 @@ vim.opt.breakindent = true
 vim.opt.inccommand = 'nosplit'
 vim.opt.mouse = 'a'
 vim.opt.hidden = true               --Do not save when switching buffers (note: this is now a default on master)
+vim.opt.scrolloff = 10              -- keeps x lines of context, scrolls otherwise
 
 vim.opt.tabstop = 8
 vim.opt.softtabstop = 4

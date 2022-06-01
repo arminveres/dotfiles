@@ -1,6 +1,6 @@
 # vim: ft=i3config
 set $mod Mod4
-font pango: JetBrainsMono Nerd Font 10.0
+font pango: JetBrainsMono Nerd Font 11.0
 focus_follows_mouse no
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
