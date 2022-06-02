@@ -24,13 +24,17 @@ alias gla="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 
-alias mkdir="mkdir -pv"
 
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
 # alias rm="rm -ir"
 alias ln="ln -i"
+alias mkdir="mkdir -pv"
+
+# kb layout
+alias chkb="setxkbmap 'ch(de)'"
+alias uskb="setxkbmap us"
 
 # easier to read disk
 alias df='df -h'     # human-readable sizes
