@@ -60,7 +60,8 @@ require('packer').startup(function()
   use { -- colorschemes
     'joshdick/onedark.vim',
     'rebelot/kanagawa.nvim',
-    'morhetz/gruvbox',
+    -- 'morhetz/gruvbox',
+    'ellisonleao/gruvbox.nvim',
     'tanvirtin/monokai.nvim',
     'marko-cerovac/material.nvim',
   }

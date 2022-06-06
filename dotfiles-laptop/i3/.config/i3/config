@@ -287,7 +287,12 @@ client.background       $base07
 #### i3-gaps ####
 # You can also use any non-zero value if you'd like to have a border
 for_window [class=".*"] border pixel 2
-gaps inner 10
+# enable window icons for all windows
+for_window [all] title_window_icon on
+# enable window icons for all windows with extra horizontal padding
+for_window [all] title_window_icon padding 3px
+
+gaps inner 5
 gaps top 40
 gaps bottom 20
 gaps horizontal 20

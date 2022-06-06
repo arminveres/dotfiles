@@ -1,12 +1,14 @@
 -- Set colorscheme (order is important here)
 -- local colorscheme = 'kanagawa'
--- local colorscheme = 'gruvbox'
+local colorscheme = 'gruvbox'
 -- local colorscheme = 'monokai'
-local colorscheme = 'material'
+-- local colorscheme = 'material'
 
 -- gruvbox settings
 vim.g.gruvbox_italic = 1
-vim.g.gruvbox_contrast_dark = 'hard'
+vim.g.gruvbox_contrast_dark = 'medium' -- soft, medium, hard
+-- vim.g.gruvbox_transparent_bg = '1'
+-- vim.g.gruvbox_hls_cursor = 'orange'
 
 -- kanagawa settings
 local kanagawa_status_ok, kanagawa = pcall(require, "kanagawa")

@@ -67,6 +67,8 @@ case "$(lsb_release -i | awk '{print $3}')" in
     ;;
     Fedora) # echo Fedora
         alias dnf='sudo dnf'
+        alias din='dnf install'
+        alias dup='dnf upgrade'
     ;;
     *)
         echo default
