@@ -152,7 +152,7 @@ cmp.setup.cmdline('/', {
 
 require("cmp_dictionary").setup({
     dic = {
-        ["markdown"] = { "~/.local/share/dict/eng.dict" },
+        ["markdown"] = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
         -- ["*"] = { "/usr/share/dict/words" },
         -- ["lua"] = "path/to/lua.dic",
         -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },

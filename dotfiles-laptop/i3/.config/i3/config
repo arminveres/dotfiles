@@ -7,7 +7,8 @@ focus_follows_mouse no
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Canterell Regular 12
+# font pango: Canterell Regular 12
+font pango: JetBrainsMonoNF 11.5
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -114,8 +115,9 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym $mod+b exec --no-startup-id firefox
-bindsym $mod+z exec --no-startup-id zathura
+bindsym $mod+i exec firefox
+bindsym $mod+b exec nautilus
+bindsym $mod+z exec zathura
 
 #Media Keys
 bindsym XF86AudioPlay exec playerctl play-pause

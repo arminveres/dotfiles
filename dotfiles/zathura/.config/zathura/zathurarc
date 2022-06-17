@@ -1,1 +1,7 @@
- set selection-clipboard clipboard
+# General Settings
+set selection-clipboard clipboard
+set font 'JetBrainsMono Nerd Font 10'
+set scroll-step 50
+
+# keybinds
+map <C-i> recolor
