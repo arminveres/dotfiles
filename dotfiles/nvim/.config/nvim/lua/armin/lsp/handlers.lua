@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function ()
+M.setup = function()
   local signs = {
     -- { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignError", text = "" },
@@ -10,12 +10,12 @@ M.setup = function ()
   }
 
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""})
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
   local config = {
     -- disable virtual text
-    virtual_text = false,
+    virtual_text = true,
     -- show signs
     signs = {
       active = signs,
@@ -46,18 +46,25 @@ end
 
 local function lsp_highlight_document(client)
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-      false
-    )
+  -- if client.resolved_capabilities.document_highlight then
+  --   vim.api.nvim_exec(
+  --     [[
+  --     augroup lsp_document_highlight
+  --       autocmd! * <buffer>
+  --       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+  --       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  --     augroup END
+  --   ]] ,
+  --     false
+  --   )
+  -- end
+  -- if client.server_capabilities.document_highlight then
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
   end
+  illuminate.on_attach(client)
+  -- end
 end
 
 local function lsp_keymaps(bufnr)
@@ -68,18 +75,21 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
   keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   -- keymap(bufnr, "n", "<leader>qf", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
 M.on_attach = function(client, bufnr)
+  if client.name == 'clangd' then
+    require('armin.lsp.clangd_extensions')
+  end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
   require("aerial").on_attach(client, bufnr)

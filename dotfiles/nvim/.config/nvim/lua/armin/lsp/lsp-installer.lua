@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
---[[ TODO: migrate to .setup() 
+--[[ TODO: migrate to .setup()
   'https://github.com/williamboman/nvim-lsp-installer/discussions/636'
   'https://github.com/williamboman/nvim-lsp-installer/pull/635'
 --]]
@@ -37,13 +37,6 @@ lsp_installer.on_server_ready(function(server)
       local MY_FQBN = "arduino:avr:nano"
       config.cmd = vim.list_extend(partial_cmd, { "-fqbn", MY_FQBN })
     end
-  end
-
-  if server.name == "clangd" then
-    local clangd_opts = require("armin.lsp.settings.clangd")
-    opts = vim.tbl_deep_extend("force", clangd_opts, opts)
-    -- require('armin.lsp.clangd_extensions')
-    -- return
   end
 
   if server.name == "jdtls" then

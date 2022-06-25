@@ -3,7 +3,6 @@ if not clangd_extensions_status_ok then
   vim.notify("not clangd_extensions_status_ok")
   return
 end
-vim.notify("it worked")
 
 clangd_extensions.setup {
   server = {
@@ -25,9 +24,6 @@ clangd_extensions.setup {
     -- defaults:
     -- Automatically set inlay hints (type hints)
     autoSetHints = true,
-    -- Whether to show hover actions inside the hover window
-    -- This overrides the default hover handler
-    hover_with_actions = true,
     -- These apply to the default ClangdSetInlayHints command
     inlay_hints = {
       -- Only show inlay hints for the current line
@@ -40,8 +36,6 @@ clangd_extensions.setup {
       only_current_line_autocmd = "CursorHold",
       -- whether to show parameter hints with the inlay hints or not
       show_parameter_hints = true,
-      -- whether to show variable name before type hints with the inlay hints or not
-      show_variable_name = false,
       -- prefix for parameter hints
       parameter_hints_prefix = "<- ",
       -- prefix for all the other hints (type, chaining)
@@ -56,6 +50,8 @@ clangd_extensions.setup {
       right_align_padding = 7,
       -- The color of the hints
       highlight = "Comment",
+      -- The highlight group priority for extmark
+      priority = 100,
     },
     ast = {
       role_icons = {
@@ -66,6 +62,7 @@ clangd_extensions.setup {
         statement = "",
         ["template argument"] = "",
       },
+
       kind_icons = {
         Compound = "",
         Recovery = "",
@@ -75,9 +72,16 @@ clangd_extensions.setup {
         TemplateTemplateParm = "",
         TemplateParamObject = "",
       },
+
       highlights = {
         detail = "Comment",
       },
-    }
+      memory_usage = {
+        border = "none",
+      },
+      symbol_info = {
+        border = "none",
+      },
+    },
   }
 }

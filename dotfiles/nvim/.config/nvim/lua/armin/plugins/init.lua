@@ -31,6 +31,7 @@ require('packer').startup(function()
     'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
     'akinsho/toggleterm.nvim',
     'stevearc/aerial.nvim', -- functions outline plugin
+    'stevearc/dressing.nvim', -- better ui
     'norcalli/nvim-colorizer.lua', -- colorizes color codes
     'jose-elias-alvarez/null-ls.nvim', -- Null LS
     'nvim-lualine/lualine.nvim', -- Fancier statusline
@@ -39,15 +40,18 @@ require('packer').startup(function()
     'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
     'nanozuki/tabby.nvim',
     'folke/todo-comments.nvim', -- highlight and search for todo comments like
+    'folke/which-key.nvim', -- displays a popup with possible key bindings
     'norcalli/nvim-terminal.lua',
     'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
     'numToStr/Comment.nvim', -- Comment out code easily
+    'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
+    'p00f/nvim-ts-rainbow', -- rainbow parenthesis
+    'RRethy/vim-illuminate' -- illuminate work under cursor
     -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
 
     -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
-    -- 'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
   }
 
   use({ -- markdown preview plugin, very nice!
@@ -57,13 +61,17 @@ require('packer').startup(function()
     ft = { "markdown" },
   })
 
-  use { -- colorschemes
-    'joshdick/onedark.vim',
-    'rebelot/kanagawa.nvim',
-    -- 'morhetz/gruvbox',
+  use { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
+    -- 'morhetz/gruvbox', -- OG gruvbox
     'ellisonleao/gruvbox.nvim',
+    'rebelot/kanagawa.nvim',
     'tanvirtin/monokai.nvim',
     'marko-cerovac/material.nvim',
+    'navarasu/onedark.nvim',
+    'Mofiqul/vscode.nvim',
+    'Murtaza-Udaipurwala/gruvqueen',
+    'Shatur/neovim-ayu',
+    'projekt0n/github-nvim-theme',
   }
 
   use { -- vimscript plugins
@@ -100,21 +108,34 @@ require('packer').startup(function()
 
   use { -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
-    commit = "fae808a2bca079ea9454f33cb1e2db81c59e102b",
     requires = {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
       { 'hrsh7th/cmp-cmdline' },
-      { 'rafamadriz/friendly-snippets' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'L3MON4D3/LuaSnip' },
       { 'uga-rosa/cmp-dictionary' }, -- dictionary plugin
-      { 'f3fora/cmp-spell' } -- spelling plugin
+      { 'f3fora/cmp-spell' }, -- spelling plugin
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'rafamadriz/friendly-snippets' },
       -- {'hrsh7th/cmp-vsnip'},
     }
   }
+
+  use {
+    'alvarosevilla95/luatab.nvim',
+    config = function()
+      require('luatab').setup {
+        -- title = function() return '' end,
+        -- modified = function() return '' end,
+        -- windowCount = function() return '' end,
+        -- devicon = function() return '' end,
+        separator = function() return '▌' end,
+      }
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
@@ -128,12 +149,13 @@ require('armin.plugins.treesitter')
 require('armin.plugins.autopairs')
 require('armin.plugins.gitsigns')
 require('armin.plugins.nvim-tree')
--- require('armin.plugins.neo-tree')
 require('armin.plugins.comment')
 require('armin.plugins.lualine')
 require('armin.plugins.blankline')
 require('armin.plugins.toggleterm')
--- require('armin.plugins.tabby')
 require('armin.plugins.aerial')
 require('armin.plugins.colorizer')
 require('armin.plugins.todo')
+require('armin.plugins.whichkey')
+-- require('armin.plugins.neo-tree')
+-- require('armin.plugins.tabby')

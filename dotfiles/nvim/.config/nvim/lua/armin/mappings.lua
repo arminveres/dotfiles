@@ -1,5 +1,6 @@
 local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+-- local keymap = vim.api.nvim_set_keymap -- WARN: deprecated with 0.7
+local keymap = vim.keymap.set
 
 -- Leader --
 --Remap space as leader key

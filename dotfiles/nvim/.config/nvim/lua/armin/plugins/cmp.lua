@@ -51,11 +51,11 @@ cmp.setup {
       luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ["<C-k>"] = cmp.mapping.select_prev_item(),
     ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
@@ -93,7 +93,7 @@ cmp.setup {
       "i",
       "s",
     }),
-  },
+  }),
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -111,7 +111,7 @@ cmp.setup {
       return vim_item
     end,
   },
-  sources = {
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
@@ -120,7 +120,7 @@ cmp.setup {
       keyword_length = 2 },
     { name = "buffer" },
     { name = "spell" }
-  },
+  }),
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
@@ -151,22 +151,22 @@ cmp.setup.cmdline('/', {
 -- dictionary setup
 
 require("cmp_dictionary").setup({
-    dic = {
-        ["markdown"] = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
-        -- ["*"] = { "/usr/share/dict/words" },
-        -- ["lua"] = "path/to/lua.dic",
-        -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
-        -- filename = {
-        --     ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
-        -- },
-        -- filepath = {
-        --     ["%.tmux.*%.conf"] = "path/to/tmux.dic"
-        -- },
-    },
-    -- The following are default values, so you don't need to write them if you don't want to change them
-    exact = 2,
-    first_case_insensitive = false,
-    async = false,
-    capacity = 5,
-    debug = false,
+  dic = {
+    ["markdown"] = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
+    -- ["*"] = { "/usr/share/dict/words" },
+    -- ["lua"] = "path/to/lua.dic",
+    -- ["javascript,typescript"] = { "path/to/js.dic", "path/to/js2.dic" },
+    -- filename = {
+    --     ["xmake.lua"] = { "path/to/xmake.dic", "path/to/lua.dic" },
+    -- },
+    -- filepath = {
+    --     ["%.tmux.*%.conf"] = "path/to/tmux.dic"
+    -- },
+  },
+  -- The following are default values, so you don't need to write them if you don't want to change them
+  exact = 2,
+  first_case_insensitive = false,
+  async = false,
+  capacity = 5,
+  debug = false,
 })
