@@ -10,7 +10,7 @@ local colorscheme = 'gruvbox'
 -- local colorscheme = 'github'
 
 -- gruvbox settings
--- vim.g.gruvbox_transparent_bg = 1 -- not working
+vim.g.gruvbox_transparent_bg = 1 -- not working
 vim.g.gruvbox_italic = 1 -- has no effect either
 vim.g.gruvbox_contrast_dark = 'medium' -- soft, medium, hard
 vim.g.gruvbox_sign_column = 'bg0' -- makes the sign column transparent too

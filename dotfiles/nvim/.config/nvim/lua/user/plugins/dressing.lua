@@ -1,4 +1,4 @@
-require('armin.utils').prot_require('dressing').setup({
+require('user.utils').prot_require('dressing').setup({
   input = {
     -- Set to false to disable the vim.ui.input implementation
     enabled = true,

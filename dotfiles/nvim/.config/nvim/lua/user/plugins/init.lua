@@ -23,7 +23,7 @@ vim.cmd [[
 ]]
 
 local use = require('packer').use
-require('packer').startup(function()
+require('packer').startup({ function()
   use {
     'wbthomason/packer.nvim', -- Package manager
     'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
@@ -44,9 +44,10 @@ require('packer').startup(function()
     'norcalli/nvim-terminal.lua',
     'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
     'numToStr/Comment.nvim', -- Comment out code easily
-    'p00f/clangd_extensions.nvim',              -- Clangd's off-spec features for neovim's LSP client
+    'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
     'p00f/nvim-ts-rainbow', -- rainbow parenthesis
-    'RRethy/vim-illuminate' -- illuminate work under cursor
+    'RRethy/vim-illuminate', -- illuminate work under cursor
+    'lewis6991/satellite.nvim', -- displays decorated scrollbars
     -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
@@ -109,16 +110,18 @@ require('packer').startup(function()
   use { -- Autocompletion plugins
     'hrsh7th/nvim-cmp',
     requires = {
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-cmdline' },
-      { 'uga-rosa/cmp-dictionary' }, -- dictionary plugin
-      { 'f3fora/cmp-spell' }, -- spelling plugin
-      { 'L3MON4D3/LuaSnip' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'rafamadriz/friendly-snippets' },
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-cmdline',
+      'petertriho/cmp-git', -- git commit completion
+      'uga-rosa/cmp-dictionary', -- dictionary plugin
+      'f3fora/cmp-spell', -- spelling plugin
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
       -- {'hrsh7th/cmp-vsnip'},
     }
   }
@@ -141,21 +144,28 @@ require('packer').startup(function()
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
-end)
+end,
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+  }
+} })
 
-require('armin.plugins.cmp')
-require('armin.plugins.telescope')
-require('armin.plugins.treesitter')
-require('armin.plugins.autopairs')
-require('armin.plugins.gitsigns')
-require('armin.plugins.nvim-tree')
-require('armin.plugins.comment')
-require('armin.plugins.lualine')
-require('armin.plugins.blankline')
-require('armin.plugins.toggleterm')
-require('armin.plugins.aerial')
-require('armin.plugins.colorizer')
-require('armin.plugins.todo')
-require('armin.plugins.whichkey')
--- require('armin.plugins.neo-tree')
--- require('armin.plugins.tabby')
+require('user.plugins.cmp')
+require('user.plugins.cmp-git')
+require('user.plugins.telescope')
+require('user.plugins.treesitter')
+require('user.plugins.autopairs')
+require('user.plugins.gitsigns')
+require('user.plugins.nvim-tree')
+require('user.plugins.comment')
+require('user.plugins.lualine')
+require('user.plugins.blankline')
+require('user.plugins.toggleterm')
+require('user.plugins.aerial')
+require('user.plugins.colorizer')
+require('user.plugins.todo')
+require('user.plugins.whichkey')
+require('user.plugins.satellite')
+-- require('user.plugins.neo-tree')
+-- require('user.plugins.tabby')

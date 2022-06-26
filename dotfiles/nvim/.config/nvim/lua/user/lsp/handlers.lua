@@ -88,7 +88,7 @@ end
 
 M.on_attach = function(client, bufnr)
   if client.name == 'clangd' then
-    require('armin.lsp.clangd_extensions')
+    require('user.lsp.clangd_extensions')
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)

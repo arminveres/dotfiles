@@ -12,22 +12,22 @@ end
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
   local opts = {
-    on_attach = require("armin.lsp.handlers").on_attach,
-    capabilities = require("armin.lsp.handlers").capabilities,
+    on_attach = require("user.lsp.handlers").on_attach,
+    capabilities = require("user.lsp.handlers").capabilities,
   }
 
   if server.name == "sumneko_lua" then
-    local sumneko_opts = require("armin.lsp.settings.sumneko_lua")
+    local sumneko_opts = require("user.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
 
   if server.name == "pyright" then
-    local pyright_opts = require("armin.lsp.settings.pyright")
+    local pyright_opts = require("user.lsp.settings.pyright")
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
   if server.name == "bashls" then
-    local bashls_opts = require("armin.lsp.settings.bashls")
+    local bashls_opts = require("user.lsp.settings.bashls")
     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
   end
 
@@ -40,7 +40,7 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "jdtls" then
-    -- local jdtls_opts = require("armin.lsp.settings.jdtls")
+    -- local jdtls_opts = require("user.lsp.settings.jdtls")
     -- opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
     -- return
   end

@@ -94,8 +94,8 @@ keymap("i", "<F11><C-O>", ":set spell!<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>bq", ":Bdelete<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
-keymap('n', '<Leader>Q', '<Cmd>qall<CR>', opts)                    -- quickquit
-keymap('n', '<Leader>w', '<Cmd>w<CR>', opts)                        -- quick save
+keymap('n', '<Leader>Q', '<Cmd>qall<CR>', opts) -- quickquit
+keymap('n', '<Leader>w', '<Cmd>w<CR>', opts) -- quick save
 -- keymap("n", "<leader>.", ":so ~/.config/nvim/init.lua<CR>", opts)
 
 -- Yank to clipboard
@@ -112,16 +112,20 @@ keymap("v", "<leader>P", "\"+P", opts)
 
 -- telescope shortcuts
 keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
-keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ previewer = false }))<CR>]], opts)
+keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], opts)
 keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], opts)
 keymap('n', '<leader>sh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
 keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], opts)
 keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
 keymap("n", "<leader>fgb", "<cmd>Telescope git_branches<CR>", opts)
 keymap("n", "<leader>?", "<cmd>Telescope keymaps<CR>", opts)
+keymap('n', '<leader>cd', '[[:lua require("telescope").extensions.zoxide.list()<CR>]]', opts)
 -- keymap('n', '<leader>st', [[<cmd>lua require('telescope.builtin').tags()<CR>]], opts)
 -- keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
+
+-- allow to grep for string under cursor
+keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>]])
 
 -- Aerial mappings for outlines
 keymap("n", "<leader>at", "<cmd>AerialToggle<CR>", opts)

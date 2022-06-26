@@ -12,3 +12,4 @@ aucmd({ 'BufRead,BufNewFile' },
 aucmd({ 'CursorHold' }, { callback = function() vim.diagnostic.open_float() end })
 aucmd({ 'TextYankPost' }, { callback = function() vim.highlight.on_yank() end })
 
+vim.cmd('hi! Normal ctermbg=NONE guibg=NONE') -- this is making the background transparant, thus dependent on the terminal

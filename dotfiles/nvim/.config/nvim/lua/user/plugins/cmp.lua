@@ -115,9 +115,11 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
+    { name = 'nvim_lsp_signature_help' },
     { name = "path" },
     { name = "dictionary",
-      keyword_length = 2 },
+      keyword_length = 2
+    },
     { name = "buffer" },
     { name = "spell" }
   }),
@@ -137,19 +139,32 @@ cmp.setup {
 }
 
 cmp.setup.cmdline(':', {
-  sources = {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
     { name = 'cmdline' }
-  }
+  })
 })
 
+
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
 })
 
--- dictionary setup
+-- Set configuration specifically for gitcommit
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
+})
 
+-- dictionary setup
 require("cmp_dictionary").setup({
   dic = {
     ["markdown"] = { "~/.local/share/dict/eng.dict", "/usr/share/dict/linux.words" },
