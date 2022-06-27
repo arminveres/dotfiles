@@ -87,9 +87,9 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  if client.name == 'clangd' then
-    require('user.lsp.clangd_extensions')
-  end
+  -- if client.name == 'clangd' then
+  --   require('user.lsp.clangd_extensions')
+  -- end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
   require("aerial").on_attach(client, bufnr)
