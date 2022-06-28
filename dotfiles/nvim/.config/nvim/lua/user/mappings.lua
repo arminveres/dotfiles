@@ -132,3 +132,5 @@ keymap("n", "<leader>at", "<cmd>AerialToggle<CR>", opts)
 
 -- Undo tree toggle
 keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR>', opts)
+
+keymap('n', '<C-p>', '<Cmd>Telescope projects<CR>', opts)

@@ -7,6 +7,7 @@ local actions = require "telescope.actions"
 
 telescope.load_extension('gradle')
 telescope.load_extension('zoxide')
+telescope.load_extension('projects')
 
 telescope.setup {
   defaults = {

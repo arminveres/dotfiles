@@ -21,6 +21,10 @@ vim.opt.showtabline = 2             -- always show tabs
 vim.opt.splitbelow = true           -- force all horizontal splits to go below current window
 vim.opt.splitright = true           -- force all vertical splits to go to the right of current window
 
+-- options to make the cursor better findable
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
 -- windows-local options
 vim.opt.relativenumber = true
 vim.opt.number = true

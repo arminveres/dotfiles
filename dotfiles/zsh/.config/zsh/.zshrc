@@ -68,7 +68,6 @@ bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
 bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
-# BUG: doesn't workd as of yet, loads the file but the visible buffers stays empty
 bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
 
 bindkey '^[[P' delete-char
@@ -81,7 +80,6 @@ bindkey -r "^d"
 
 [ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 # [ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
-# ] && fpath+="$ZDOTDIR/completion/"
 # export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
 

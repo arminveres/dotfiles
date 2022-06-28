@@ -39,10 +39,9 @@ lsp_installer.on_server_ready(function(server)
     end
   end
 
-  if server.name == "jdtls" then
-    -- local jdtls_opts = require("user.lsp.settings.jdtls")
-    -- opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
-    -- return
+  if server.name == "ltex" then
+    local ltex_opts = require("user.lsp.settings.ltex")
+    opts = vim.tbl_deep_extend("force", ltex_opts, opts)
   end
 
   -- This setup() function is exactly the same as lspconfig's setup function.

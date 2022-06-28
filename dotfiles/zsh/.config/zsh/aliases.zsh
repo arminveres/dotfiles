@@ -69,6 +69,7 @@ case "$(lsb_release -i | awk '{print $3}')" in
         alias dnf='sudo dnf'
         alias din='dnf install'
         alias dup='dnf upgrade'
+        alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
     ;;
     *)
         echo default

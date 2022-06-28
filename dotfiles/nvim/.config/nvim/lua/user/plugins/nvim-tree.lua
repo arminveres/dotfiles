@@ -14,6 +14,10 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
+  -- options for project.nvim
+  update_cwd = true, -- def: false
+  respect_buf_cwd = true,
+  -- rest
   auto_reload_on_write = true,
   disable_netrw = true, -- def: false
   hijack_cursor = false,
@@ -24,7 +28,6 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
   open_on_setup_file = false,
   open_on_tab = false,
   sort_by = "name",
-  update_cwd = true, -- def: false
   view = {
     width = 30,
     height = 30,
@@ -84,8 +87,9 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     auto_open = true,
   },
   update_focused_file = {
-    enable = false,
-    update_cwd = false,
+    -- adjusted for project.nvim
+    enable = true,
+    update_cwd = true,
     ignore_list = {},
   },
   ignore_ft_on_setup = {},

@@ -66,14 +66,16 @@ for_window [class=".*"] border pixel 2
 
 # need wo adjust this for polybar override-redirect=true
 # simulating 'gaps outer 40' since 20 more pixels are needed on the top
-gaps horizontal 20
-gaps top  40
+# gaps horizontal 20
+# gaps top 0
+gaps inner 20
 gaps bottom 20
 
-# possible to change on the fly
-# bindsym $mod+Shift+o gaps inner all set 60
+# possible to change on the fly, and be concatenated
+# bindsym $mod+Shift+o gaps inner all set 60 gaps vertical current set 400
 
-gaps inner 30
+# Focus mode, simulate 16:9 on a 21:9
+bindsym $mod+Shift+f gaps horizontal current toggle 400
 
 # smart_gaps on
 # smart_borders on

@@ -24,7 +24,6 @@ function find_thermal_zone() {
     done
 }
 
-
 # Function to source files if they exist
 function zsh_safe_source() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"

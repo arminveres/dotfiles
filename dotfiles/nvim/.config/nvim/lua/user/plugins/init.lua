@@ -48,6 +48,8 @@ require('packer').startup({ function()
     'p00f/nvim-ts-rainbow', -- rainbow parenthesis
     'RRethy/vim-illuminate', -- illuminate work under cursor
     'lewis6991/satellite.nvim', -- displays decorated scrollbars
+    'ziontee113/color-picker.nvim', -- color picker
+    'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
     -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'MunifTanjim/nui.nvim',
     -- 'pierreglaser/folding-nvim',
@@ -80,7 +82,7 @@ require('packer').startup({ function()
     'ludovicchabant/vim-gutentags', -- Automatic tags management
     'mboughaba/i3config.vim',
     'moll/vim-bbye', -- allows you to do delete buffers (close files) without closing your windows
-    'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
+    -- 'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
     'mbbill/undotree',
     'fladson/vim-kitty',
     -- 'tpope/vim-fugitive'                     -- Git commands in nvim
@@ -166,6 +168,8 @@ require('user.plugins.aerial')
 require('user.plugins.colorizer')
 require('user.plugins.todo')
 require('user.plugins.whichkey')
+require('user.plugins.colorpicker')
+require('user.plugins.project')
 -- require('user.plugins.satellite')
 -- require('user.plugins.neo-tree')
 -- require('user.plugins.tabby')
