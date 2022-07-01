@@ -10,11 +10,25 @@ local colorscheme = 'gruvbox'
 -- local colorscheme = 'github'
 
 -- gruvbox settings
-vim.g.gruvbox_transparent_bg = 1 -- not working
-vim.g.gruvbox_italic = 1 -- has no effect either
-vim.g.gruvbox_contrast_dark = 'medium' -- soft, medium, hard
-vim.g.gruvbox_sign_column = 'bg0' -- makes the sign column transparent too
-vim.g.gruvbox_invert_tabline = 0
+local gruvbox_ok, gruvbox = pcall(require, "gruvbox")
+if not gruvbox_ok then
+  vim.notify("gruvbox not ok")
+else
+  gruvbox.setup({
+    undercurl = true,
+    underline = true,
+    bold = true,
+    italic = true, -- will make italic comments and special strings
+    inverse = true, -- invert background for search, diffs, statuslines and errors
+    invert_selection = false,
+    invert_signs = false,
+    invert_tabline = false,
+    invert_intend_guides = false,
+    contrast = "", -- can be "hard" or "soft"
+    -- overriding highlight groups
+    overrides = {},
+  })
+end
 
 -- vscode settings
 -- Enable transparent background
@@ -157,20 +171,19 @@ local gh_status_ok, gh_theme = pcall(require, "github-theme")
 if not gh_status_ok then
   vim.notify("ayu not found")
 else
-gh_theme.setup {
-  theme_style = "dark_default",
-  comment_style = "italic",
-  keyword_style = "NONE",
-  function_style = "NONE",
-  variable_style = "NONE"
-}
+  gh_theme.setup {
+    theme_style = "dark_default",
+    comment_style = "italic",
+    keyword_style = "NONE",
+    function_style = "NONE",
+    variable_style = "NONE"
+  }
 end
--- local gh_theme = ProtReq("github-theme")
-
 -- ########################
 -- ### all settings end ###
 -- ########################
 
+-- setting the colorscheme
 local csm_status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not csm_status_ok then
   vim.notify("colorscheme " .. colorscheme .. " not found!")

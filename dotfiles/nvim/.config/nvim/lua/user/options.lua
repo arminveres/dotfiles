@@ -50,3 +50,6 @@ vim.opt.listchars:append("space:⋅")
 -- acticate spellcheck with <F11>
 vim.opt.spelllang = 'en_us'
 
+-- folding settings
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
