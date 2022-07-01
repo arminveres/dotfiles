@@ -3,35 +3,69 @@ if not status_ok then
   return
 end
 
---[[ TODO: migrate to .setup()
-  'https://github.com/williamboman/nvim-lsp-installer/discussions/636'
-  'https://github.com/williamboman/nvim-lsp-installer/pull/635'
---]]
+local servers = {
+  "html",
+  "jdtls",
+  "jsonls",
+  "sumneko_lua",
+  "tsserver",
+  "pyright",
+  "yamlls",
+  "bashls",
+  "clangd",
+  "cmake",
+}
 
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-  local opts = {
+local settings = {
+  ensure_installed = servers,
+  ui = {
+    icons = {},
+    keymaps = {
+      toggle_server_expand = "<CR>",
+      install_server = "i",
+      update_server = "u",
+      check_server_version = "c",
+      update_all_servers = "U",
+      check_outdated_servers = "C",
+      uninstall_server = "X",
+    },
+  },
+
+  log_level = vim.log.levels.INFO,
+}
+
+lsp_installer.setup(settings)
+
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+  return
+end
+
+local opts = {}
+
+for _, server in pairs(servers) do
+  opts = {
     on_attach = require("user.lsp.handlers").on_attach,
     capabilities = require("user.lsp.handlers").capabilities,
   }
 
-  if server.name == "sumneko_lua" then
+  if server == "sumneko_lua" then
     local sumneko_opts = require("user.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
 
-  if server.name == "pyright" then
+  if server == "pyright" then
     local pyright_opts = require("user.lsp.settings.pyright")
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server.name == "bashls" then
+  if server == "bashls" then
     local bashls_opts = require("user.lsp.settings.bashls")
     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
   end
 
-  if server.name == "arduino_language_server" then
+  -- BUG: this stopped working
+  if server == "arduino_language_server" then
     opts.on_new_config = function(config, root_dir)
       local partial_cmd = server:get_default_options().cmd
       local MY_FQBN = "arduino:avr:nano"
@@ -39,12 +73,22 @@ lsp_installer.on_server_ready(function(server)
     end
   end
 
-  if server.name == "ltex" then
+  if server == "ltex" then
     local ltex_opts = require("user.lsp.settings.ltex")
     opts = vim.tbl_deep_extend("force", ltex_opts, opts)
   end
 
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  server:setup(opts)
-end)
+  if server == "clangd" then
+    local clangd_opts = require('user.lsp.settings.clangd').server
+    opts = vim.tbl_deep_extend('force',clangd_opts , opts)
+    require('clangd_extensions').setup({
+      server = opts,
+      extensions = require('user.lsp.settings.clangd').extensions
+    })
+    goto continue
+  end
+
+  lspconfig[server].setup(opts)
+
+  ::continue::
+end

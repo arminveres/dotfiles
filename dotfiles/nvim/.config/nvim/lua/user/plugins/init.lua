@@ -37,6 +37,8 @@ require('packer').startup({ function()
     'nvim-lualine/lualine.nvim', -- Fancier statusline
     'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
     'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
+    'lewis6991/satellite.nvim', -- displays decorated scrollbars
+    'lewis6991/spellsitter.nvim', -- enhances neovim spellchecker with treesitter
     'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
     'nanozuki/tabby.nvim',
     'folke/todo-comments.nvim', -- highlight and search for todo comments like
@@ -47,7 +49,6 @@ require('packer').startup({ function()
     'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
     'p00f/nvim-ts-rainbow', -- rainbow parenthesis
     'RRethy/vim-illuminate', -- illuminate work under cursor
-    'lewis6991/satellite.nvim', -- displays decorated scrollbars
     'ziontee113/color-picker.nvim', -- color picker
     'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
     -- 'nvim-neo-tree/neo-tree.nvim',
@@ -170,6 +171,7 @@ require('user.plugins.todo')
 require('user.plugins.whichkey')
 require('user.plugins.colorpicker')
 require('user.plugins.project')
--- require('user.plugins.satellite')
+require('user.plugins.spellsitter')
+-- require('user.plugins.satellite') -- WARN:requires neovim nightly therefore disabled for the moment
 -- require('user.plugins.neo-tree')
 -- require('user.plugins.tabby')

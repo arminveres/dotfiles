@@ -1,9 +1,29 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+local status_ok, ts = pcall(require, "nvim-treesitter")
 if not status_ok then
+  vim.notify("treesitter not ok")
   return
 end
 
-configs.setup {
+ts.define_modules {
+  fold = {
+    attach = function()
+      vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+      vim.opt.foldmethod = 'expr'
+      vim.cmd 'normal zx' -- force reevaluate folds
+      vim.cmd 'normal zR' -- reopen all folds
+    end,
+    detach = function() end,
+  }
+}
+
+
+local status_ok, tsconf = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+  vim.notify("ts configs not ok")
+  return
+end
+
+tsconf.setup {
   ensure_installed = "all", -- one of "all", "maintained" (deprecated), or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing
@@ -21,6 +41,9 @@ configs.setup {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
+  },
+  fold = {
+    enable = true
   },
   rainbow = {
     enable = true,
