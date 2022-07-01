@@ -11,6 +11,7 @@ case "$(uname -n)" in
         echo "workstation fedoraarmin"| tee -a /tmp/polybar1.log /tmp/polybar2.log
         polybar armin_ultrawide 2>&1 | tee -a /tmp/polybar1.log & disown
         polybar armin2 2>&1 | tee -a /tmp/polybar2.log & disown
+        polybar systray 2>&1 | tee -a /tmp/polybar3.log & disown
     ;;
     "fedora-notebook-armin")
         # Launch only armin_bar1

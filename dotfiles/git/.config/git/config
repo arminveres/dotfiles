@@ -14,3 +14,11 @@
     ui = auto
 [alias]
     tree = log --oneline --graph --decorate --branches --max-count 10
+[merge]
+    tool = "nvim"
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "nvim"]
+    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+
