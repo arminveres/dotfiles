@@ -3,7 +3,8 @@
 colors:
   # Default colors
   primary:
-    background: '0x1d2021'
+    # background: '0x1d2021'
+    background: '0x000000' # make it fully black
     foreground: '0xd5c4a1'
 
   # Colors the cursor will use if `custom_cursor_colors` is true

@@ -1,5 +1,5 @@
 import:
-    - ~/.config/alacritty/gruvbox-dark-hard.yml
+    - ~/.config/alacritty/gruvbox-black.yml
 
 # Spaces per Tab (changes require restart)
 #
@@ -12,8 +12,7 @@ tabspaces: 8
 
 font:
   normal:
-    # family: "MesloLGS NF"
-    family: "JetBrainsMono NF"
+    family: JetBrainsMono Nerd Font
   size: 11.5
 ligatures: true
 
@@ -34,7 +33,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.95
+  opacity: 0.85
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
