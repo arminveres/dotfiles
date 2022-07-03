@@ -17,7 +17,11 @@ lualine.setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    lualine_b = {
+      {
+        'branch', icon = { '', color = { fg = '#f34f29 ', } }
+      }, 'diff', 'diagnostics'
+    },
     lualine_c = {
       {
         'filename',

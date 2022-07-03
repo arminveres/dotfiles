@@ -48,13 +48,14 @@ require('packer').startup({ function()
     'numToStr/Comment.nvim', -- Comment out code easily
     'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
     'p00f/nvim-ts-rainbow', -- rainbow parenthesis
+    'p00f/godbolt.nvim', -- compile explorer in nvim
     'RRethy/vim-illuminate', -- illuminate work under cursor
     'ziontee113/color-picker.nvim', -- color picker
     'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
-    -- 'nvim-neo-tree/neo-tree.nvim',
-    -- 'MunifTanjim/nui.nvim',
-    -- 'pierreglaser/folding-nvim',
+    'j-hui/fidget.nvim', -- progress indicator for LSP
+    'zbirenbaum/neodim', -- dim unused variables
 
+    -- 'nvim-neo-tree/neo-tree.nvim',
     -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
   }
 
@@ -66,16 +67,15 @@ require('packer').startup({ function()
   })
 
   use { -- colorschemes TODO: just write my own colorscheme based on gruvbox...
-    -- 'morhetz/gruvbox', -- OG gruvbox
     'ellisonleao/gruvbox.nvim',
     'rebelot/kanagawa.nvim',
+    'Mofiqul/vscode.nvim',
+    'projekt0n/github-nvim-theme',
     'tanvirtin/monokai.nvim',
     'marko-cerovac/material.nvim',
     'navarasu/onedark.nvim',
-    'Mofiqul/vscode.nvim',
     'Murtaza-Udaipurwala/gruvqueen',
     'Shatur/neovim-ayu',
-    'projekt0n/github-nvim-theme',
   }
 
   use { -- vimscript plugins
@@ -83,11 +83,11 @@ require('packer').startup({ function()
     'ludovicchabant/vim-gutentags', -- Automatic tags management
     'mboughaba/i3config.vim',
     'moll/vim-bbye', -- allows you to do delete buffers (close files) without closing your windows
-    -- 'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
     'mbbill/undotree',
     'fladson/vim-kitty',
-    -- 'tpope/vim-fugitive'                     -- Git commands in nvim
-    -- 'tpope/vim-rhubarb'                      -- Fugitive-companion to interact with github
+    -- 'tpope/vim-fugitive',                     -- Git commands in nvim
+    -- 'tpope/vim-rhubarb',                      -- Fugitive-companion to interact with github
+    -- 'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
   }
 
   use({
@@ -103,6 +103,10 @@ require('packer').startup({ function()
   use { -- Highlight, edit, and navigate code using a fast incremental parsing library
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      'nvim-treesitter/nvim-treesitter-refactor',
+    }
   }
 
   use {
@@ -148,11 +152,11 @@ require('packer').startup({ function()
     require("packer").sync()
   end
 end,
-config = {
-  display = {
-    open_fn = require('packer.util').float,
-  }
-} })
+  config = {
+    display = {
+      open_fn = require('packer.util').float,
+    }
+  } })
 
 require('user.plugins.cmp')
 require('user.plugins.cmp-git')
@@ -172,6 +176,9 @@ require('user.plugins.whichkey')
 require('user.plugins.colorpicker')
 require('user.plugins.project')
 require('user.plugins.spellsitter')
+require('user.plugins.fidget')
+require('user.plugins.dim')
+
 -- require('user.plugins.satellite') -- WARN:requires neovim nightly therefore disabled for the moment
 -- require('user.plugins.neo-tree')
 -- require('user.plugins.tabby')
