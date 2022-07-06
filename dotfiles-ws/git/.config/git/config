@@ -1,0 +1,28 @@
+[user]
+    email = armin.veres@ams-osram.com
+    name = Armin Veres
+[color]
+    ui = auto
+[review "https://forge.ams.com/gerrit"]
+    autoupload = true
+    username = avee
+    uploadtopic = true
+[core]
+    editor = nvim
+    excludesfile = ~/.config/git/gitignore
+    whitespace = trailing-space
+[alias]
+    tree = log --oneline --graph --decorate --branches --max-count 10
+#[http]
+#   postBuffer = 524288000
+#[ssh]
+#   postBuffer = 524288000
+[init]
+    defaultBranch = main
+[merge]
+    tool = "nvim"
+[mergetool]
+    keepBackup = false
+    prompt = false
+[mergetool "nvim"]
+    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
