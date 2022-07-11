@@ -30,7 +30,8 @@ require('packer').startup({
       'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
       'williamboman/nvim-lsp-installer', -- installer for lsps
       'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
-      'akinsho/toggleterm.nvim',
+      'akinsho/toggleterm.nvim', -- custom terminal for neovim
+      'akinsho/bufferline.nvim', -- tabline replacement
       'stevearc/aerial.nvim', -- functions outline plugin
       'stevearc/dressing.nvim', -- better ui
       'norcalli/nvim-colorizer.lua', -- colorizes color codes
@@ -57,7 +58,7 @@ require('packer').startup({
       'zbirenbaum/neodim', -- dim unused variables
 
       -- 'nvim-neo-tree/neo-tree.nvim',
-      -- 'mfussenegger/nvim-jdtls',                  -- Java LSP
+      -- 'mfussenegger/nvim-jdtls',                  -- better Java LSP integration
     })
 
     use({ -- markdown preview plugin, very nice!
@@ -136,21 +137,6 @@ require('packer').startup({
       },
     })
 
-    use({
-      'alvarosevilla95/luatab.nvim',
-      config = function()
-        require('luatab').setup({
-          -- title = function() return '' end,
-          -- modified = function() return '' end,
-          -- windowCount = function() return '' end,
-          -- devicon = function() return '' end,
-          separator = function()
-            return '▌'
-          end,
-        })
-      end,
-    })
-
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
@@ -184,6 +170,7 @@ require('user.plugins.project')
 require('user.plugins.spellsitter')
 require('user.plugins.fidget')
 require('user.plugins.dim')
+require('user.plugins.bufferline')
 
 -- require('user.plugins.satellite') -- WARN:requires neovim nightly (winbar) therefore disabled for the moment
 -- require('user.plugins.neo-tree')

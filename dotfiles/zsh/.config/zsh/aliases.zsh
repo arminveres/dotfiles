@@ -1,8 +1,3 @@
-# configs
-alias zconf="vi ~/.config/zsh/"
-alias i3conf="vi ~/.config/i3/"
-alias viconf="vi ~/.config/nvim/"
-
 # applications
 alias visudo='sudo visudo'
 
@@ -23,22 +18,22 @@ alias gb="git branch"
 alias gla="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
+alias wt="git worktree"
 
-
+# aliasing coreutils
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
 # alias rm="rm -ir"
 alias ln="ln -i"
 alias mkdir="mkdir -pv"
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+alias dd='dd status=progress'
 
 # kb layout
 alias chkb="setxkbmap 'ch(de)'"
 alias uskb="setxkbmap us"
-
-# easier to read disk
-alias df='df -h'     # human-readable sizes
-alias free='free -m' # show sizes in MB
 
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
@@ -72,6 +67,5 @@ case "$(lsb_release -i | awk '{print $3}')" in
         alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
     ;;
     *)
-        echo default
     ;;
 esac
