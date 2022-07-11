@@ -1,9 +1,9 @@
-local blankline_status_ok, indent_blankline = pcall(require, "indent_blankline")
+local blankline_status_ok, indent_blankline = pcall(require, 'indent_blankline')
 if not blankline_status_ok then
   return
 end
 
-indent_blankline.setup {
+indent_blankline.setup({
   char = '┊',
   filetype_exclude = { 'help', 'packer' },
   buftype_exclude = { 'terminal', 'nofile' },
@@ -11,4 +11,4 @@ indent_blankline.setup {
   show_trailing_blankline_indent = false,
   show_current_context = true,
   show_current_context_start = true,
-}
+})

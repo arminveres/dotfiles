@@ -1,8 +1,8 @@
 local satellite_ok, satellite = pcall(require, 'satellite')
 if not satellite_ok then
-  vim.notify("satellite not ok")
+  vim.notify('satellite not ok')
 else
-  satellite.setup {
+  satellite.setup({
     current_only = false,
     winblend = 50,
     zindex = 40,
@@ -23,5 +23,5 @@ else
         show_builtins = false, -- shows the builtin marks like [ ] < >
       },
     },
-  }
+  })
 end

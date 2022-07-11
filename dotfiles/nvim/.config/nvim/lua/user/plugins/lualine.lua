@@ -1,9 +1,9 @@
-local lualine_status_ok, lualine = pcall(require, "lualine")
+local lualine_status_ok, lualine = pcall(require, 'lualine')
 if not lualine_status_ok then
   return
 end
 
-lualine.setup {
+lualine.setup({
   options = {
     icons_enabled = true,
     theme = 'powerline', --auto
@@ -19,8 +19,11 @@ lualine.setup {
     lualine_a = { 'mode' },
     lualine_b = {
       {
-        'branch', icon = { '', color = { fg = '#f34f29 ', } }
-      }, 'diff', 'diagnostics'
+        'branch',
+        icon = { '', color = { fg = '#f34f29 ' } },
+      },
+      'diff',
+      'diagnostics',
     },
     lualine_c = {
       {
@@ -29,13 +32,13 @@ lualine.setup {
         -- 1: Relative path
         -- 2: Absolute path
         file_status = true, -- Displays file status (readonly status, modified status)
-        shorting_target = 40 -- Shortens path to leave 40 spaces in the window for other components.
+        shorting_target = 40, -- Shortens path to leave 40 spaces in the window for other components.
       },
       {}, -- 'aerial' -- didn't really use aerial, so disabling for now
     },
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress' },
-    lualine_z = { 'location' }
+    lualine_z = { 'location' },
   },
   inactive_sections = {
     lualine_a = {},
@@ -43,8 +46,8 @@ lualine.setup {
     lualine_c = { 'filename' },
     lualine_x = { 'location' },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
-  extensions = {}
-}
+  extensions = {},
+})

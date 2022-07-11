@@ -1,13 +1,13 @@
-local status_ok, aerial = pcall(require, "aerial")
+local status_ok, aerial = pcall(require, 'aerial')
 if not status_ok then
-  print("aerial not ok")
+  print('aerial not ok')
   return
 end
 
-aerial.setup {
+aerial.setup({
   -- Priority list of preferred backends for aerial.
   -- This can be a filetype map (see :help aerial-filetype-map)
-  backends = { "lsp", "treesitter", "markdown" },
+  backends = { 'lsp', 'treesitter', 'markdown' },
 
   -- Enum: persist, close, auto, global
   --   persist - aerial window will stay open until closed
@@ -15,7 +15,7 @@ aerial.setup {
   --   auto    - aerial window will stay open as long as there is a visible
   --             buffer to attach to
   --   global  - same as 'persist', and will always show symbols for the current buffer
-  close_behavior = "auto",
+  close_behavior = 'auto',
 
   -- Set to false to remove the default keybindings for the aerial buffer
   default_bindings = true,
@@ -24,7 +24,7 @@ aerial.setup {
   -- Determines the default direction to open the aerial window. The 'prefer'
   -- options will open the window in the other direction *if* there is a
   -- different buffer in the way of the preferred direction
-  default_direction = "prefer_right",
+  default_direction = 'prefer_right',
 
   -- Disable aerial on files with this many lines
   disable_max_lines = 10000,
@@ -33,40 +33,40 @@ aerial.setup {
   -- This can be a filetype map (see :help aerial-filetype-map)
   -- To see all available values, see :help SymbolKind
   filter_kind = {
-    "Class",
-    "Constructor",
-    "Enum",
-    "Function",
-    "Interface",
-    "Module",
-    "Method",
-    "Struct",
-    "Array",
-    "Boolean",
-    "Class",
-    "Constant",
-    "Constructor",
-    "Enum",
-    "EnumMember",
-    "Event",
-    "Field",
-    "File",
-    "Function",
-    "Interface",
-    "Key",
-    "Method",
-    "Module",
-    "Namespace",
-    "Null",
-    "Number",
-    "Object",
-    "Operator",
-    "Package",
-    "Property",
-    "String",
-    "Struct",
-    "TypeParameter",
-    "Variable",
+    'Class',
+    'Constructor',
+    'Enum',
+    'Function',
+    'Interface',
+    'Module',
+    'Method',
+    'Struct',
+    'Array',
+    'Boolean',
+    'Class',
+    'Constant',
+    'Constructor',
+    'Enum',
+    'EnumMember',
+    'Event',
+    'Field',
+    'File',
+    'Function',
+    'Interface',
+    'Key',
+    'Method',
+    'Module',
+    'Namespace',
+    'Null',
+    'Number',
+    'Object',
+    'Operator',
+    'Package',
+    'Property',
+    'String',
+    'Struct',
+    'TypeParameter',
+    'Variable',
   },
 
   -- Enum: split_width, full_width, last, none
@@ -79,7 +79,7 @@ aerial.setup {
   -- last          Only the most-recently focused window will have its location
   --               marked in the aerial buffer.
   -- none          Do not show the cursor locations in the aerial window.
-  highlight_mode = "split_width",
+  highlight_mode = 'split_width',
 
   -- Highlight the closest symbol if the cursor is not exactly on one.
   highlight_closest = true,
@@ -116,7 +116,7 @@ aerial.setup {
 
   -- Set default symbol icons to use patched font icons (see https://www.nerdfonts.com/)
   -- "auto" will set it to true if nvim-web-devicons or lspkind-nvim is installed.
-  nerd_font = "auto",
+  nerd_font = 'auto',
 
   -- Call this function when aerial attaches to a buffer.
   -- Useful for setting keymaps. Takes a single `bufnr` argument.
@@ -131,7 +131,7 @@ aerial.setup {
   placement_editor_edge = false,
 
   -- Run this command after jumping to a symbol (false will disable)
-  post_jump_cmd = "normal! zz",
+  post_jump_cmd = 'normal! zz',
 
   -- When true, aerial will automatically close after jumping to a symbol
   close_on_select = false,
@@ -142,21 +142,21 @@ aerial.setup {
   -- Customize the characters used when show_guides = true
   guides = {
     -- When the child item has a sibling below it
-    mid_item = "├─",
+    mid_item = '├─',
     -- When the child item is the last in the list
-    last_item = "└─",
+    last_item = '└─',
     -- When there are nested child guides to the right
-    nested_top = "│ ",
+    nested_top = '│ ',
     -- Raw indentation
-    whitespace = "  ",
+    whitespace = '  ',
   },
 
   -- Options for opening aerial in a floating win
   float = {
     -- Controls border appearance. Passed to nvim_open_win
-    border = "rounded",
+    border = 'rounded',
 
-    override = function (conf)
+    override = function(conf)
       return conf
     end,
 
@@ -186,4 +186,4 @@ aerial.setup {
     -- How long to wait (in ms) after a buffer change before updating
     update_delay = 300,
   },
-}
+})

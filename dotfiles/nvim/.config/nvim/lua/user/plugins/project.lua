@@ -1,4 +1,4 @@
-local project_ok, project = pcall(require, "project_nvim")
+local project_ok, project = pcall(require, 'project_nvim')
 if not project_ok then
   vim.notify('project nvim not ok')
   return
@@ -13,11 +13,11 @@ project.setup({
   -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
   -- order matters: if one is not detected, the other is used as fallback. You
   -- can also delete or rearangne the detection methods.
-  detection_methods = { "pattern", "lsp" },
+  detection_methods = { 'pattern', 'lsp' },
 
   -- All the patterns used to detect root dir, when **"pattern"** is in
   -- detection_methods
-  patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "README.md" },
+  patterns = { '.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'README.md' },
 
   -- Table of lsp clients to ignore by name
   -- eg: { "efm", ... }
@@ -36,5 +36,5 @@ project.setup({
 
   -- Path where project.nvim will store the project history for use in
   -- telescope
-  datapath = vim.fn.stdpath("data"),
+  datapath = vim.fn.stdpath('data'),
 })

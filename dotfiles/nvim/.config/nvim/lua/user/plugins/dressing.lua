@@ -4,19 +4,19 @@ require('user.utils').prot_require('dressing').setup({
     enabled = true,
 
     -- Default prompt string
-    default_prompt = "Input:",
+    default_prompt = 'Input:',
 
     -- Can be 'left', 'right', or 'center'
-    prompt_align = "left",
+    prompt_align = 'left',
 
     -- When true, <Esc> will close the modal
     insert_only = true,
 
     -- These are passed to nvim_open_win
-    anchor = "SW",
-    border = "rounded",
+    anchor = 'SW',
+    border = 'rounded',
     -- 'editor' and 'win' will default to being centered
-    relative = "cursor",
+    relative = 'cursor',
 
     -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
     prefer_width = 40,
@@ -29,7 +29,7 @@ require('user.utils').prot_require('dressing').setup({
     -- Window transparency (0-100)
     winblend = 10,
     -- Change default highlight groups (see :help winhl)
-    winhighlight = "",
+    winhighlight = '',
 
     override = function(conf)
       -- This is the config that will be passed to nvim_open_win.
@@ -45,7 +45,7 @@ require('user.utils').prot_require('dressing').setup({
     enabled = true,
 
     -- Priority list of preferred vim.select implementations
-    backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+    backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' },
 
     -- Trim trailing `:` from prompt
     trim_prompt = true,
@@ -73,15 +73,15 @@ require('user.utils').prot_require('dressing').setup({
 
     -- Options for nui Menu
     nui = {
-      position = "50%",
+      position = '50%',
       size = nil,
-      relative = "editor",
+      relative = 'editor',
       border = {
-        style = "rounded",
+        style = 'rounded',
       },
       buf_options = {
         swapfile = false,
-        filetype = "DressingSelect",
+        filetype = 'DressingSelect',
       },
       win_options = {
         winblend = 10,
@@ -95,15 +95,15 @@ require('user.utils').prot_require('dressing').setup({
     -- Options for built-in selector
     builtin = {
       -- These are passed to nvim_open_win
-      anchor = "NW",
-      border = "rounded",
+      anchor = 'NW',
+      border = 'rounded',
       -- 'editor' and 'win' will default to being centered
-      relative = "editor",
+      relative = 'editor',
 
       -- Window transparency (0-100)
       winblend = 10,
       -- Change default highlight groups (see :help winhl)
-      winhighlight = "",
+      winhighlight = '',
 
       -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       -- the min_ and max_ options can be a list of mixed types.

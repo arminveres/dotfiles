@@ -10,9 +10,9 @@ local colorscheme = 'gruvbox'
 -- local colorscheme = 'github'
 
 -- gruvbox settings
-local gruvbox_ok, gruvbox = pcall(require, "gruvbox")
+local gruvbox_ok, gruvbox = pcall(require, 'gruvbox')
 if not gruvbox_ok then
-  vim.notify("gruvbox not ok")
+  vim.notify('gruvbox not ok')
 else
   gruvbox.setup({
     undercurl = true,
@@ -24,7 +24,7 @@ else
     invert_signs = false,
     invert_tabline = false,
     invert_intend_guides = false,
-    contrast = "", -- can be "hard" or "soft"
+    contrast = '', -- can be "hard" or "soft"
     -- overriding highlight groups
     overrides = {},
   })
@@ -39,7 +39,7 @@ vim.g.vscode_disable_nvimtree_bg = false
 vim.g.vscode_italic_comment = true
 
 -- kanagawa settings
-local kanagawa_status_ok, kanagawa = pcall(require, "kanagawa")
+local kanagawa_status_ok, kanagawa = pcall(require, 'kanagawa')
 if kanagawa_status_ok then
   kanagawa.setup({
     undercurl = true, -- enable undercurls
@@ -65,17 +65,17 @@ if kanagawa_status_ok then
     overrides = {},
   })
 else
-  vim.notify("kanagawa not found")
+  vim.notify('kanagawa not found')
 end
 
 -- monokai settings
-local monokai_status_ok, monokai = pcall(require, "monokai")
+local monokai_status_ok, monokai = pcall(require, 'monokai')
 if not monokai_status_ok then
-  vim.notify("monokai not found")
+  vim.notify('monokai not found')
 end
 
 -- material settings
-local material_status_ok, material = pcall(require, "material")
+local material_status_ok, material = pcall(require, 'material')
 if material_status_ok then
   material.setup({
     contrast = {
@@ -93,18 +93,18 @@ if material_status_ok then
       keywords = false, -- Enable italic keywords
       functions = false, -- Enable italic functions
       strings = false, -- Enable italic strings
-      variables = false -- Enable italic variables
+      variables = false, -- Enable italic variables
     },
 
     contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
-      "terminal", -- Darker terminal background
-      "packer", -- Darker packer background
-      "qf" -- Darker qf list background
+      'terminal', -- Darker terminal background
+      'packer', -- Darker packer background
+      'qf', -- Darker qf list background
     },
 
     high_visibility = {
       lighter = false, -- Enable higher contrast text for lighter style
-      darker = false -- Enable higher contrast text for darker style
+      darker = false, -- Enable higher contrast text for darker style
     },
 
     disable = {
@@ -112,34 +112,34 @@ if material_status_ok then
       borders = false, -- Disable borders between verticaly split windows
       background = false, -- Prevent the theme from setting the background (NeoVim then uses your teminal background)
       term_colors = false, -- Prevent the theme from setting terminal colors
-      eob_lines = false -- Hide the end-of-buffer lines
+      eob_lines = false, -- Hide the end-of-buffer lines
     },
 
-    lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+    lualine_style = 'default', -- Lualine style ( can be 'stealth' or 'default' )
 
     async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
 
-    custom_highlights = {} -- Overwrite highlights with your own
+    custom_highlights = {}, -- Overwrite highlights with your own
   })
 else
-  vim.notify("material not found")
+  vim.notify('material not found')
 end
-vim.g.material_style = "darker"
+vim.g.material_style = 'darker'
 
 -- onedark settings
-local onedark_status_ok, onedark = pcall(require, "onedark")
+local onedark_status_ok, onedark = pcall(require, 'onedark')
 if not onedark_status_ok then
-  vim.notify("onedark not found")
+  vim.notify('onedark not found')
 else
   onedark.setup({
-    style = 'warmer'
+    style = 'warmer',
   })
 end
 
 -- gruvqueen settings
-local gruvqueen_status_ok, gruvqueen = pcall(require, "gruvqueen")
+local gruvqueen_status_ok, gruvqueen = pcall(require, 'gruvqueen')
 if not gruvqueen_status_ok then
-  vim.notify("gruvqueen not found")
+  vim.notify('gruvqueen not found')
 else
   gruvqueen.setup({
     config = {
@@ -157,9 +157,9 @@ else
 end
 
 -- onedark settings
-local ayu_status_ok, ayu = pcall(require, "ayu")
+local ayu_status_ok, ayu = pcall(require, 'ayu')
 if not ayu_status_ok then
-  vim.notify("ayu not found")
+  vim.notify('ayu not found')
 else
   ayu.setup({
     dark = true,
@@ -167,25 +167,25 @@ else
 end
 
 -- github theme
-local gh_status_ok, gh_theme = pcall(require, "github-theme")
+local gh_status_ok, gh_theme = pcall(require, 'github-theme')
 if not gh_status_ok then
-  vim.notify("ayu not found")
+  vim.notify('ayu not found')
 else
-  gh_theme.setup {
-    theme_style = "dark_default",
-    comment_style = "italic",
-    keyword_style = "NONE",
-    function_style = "NONE",
-    variable_style = "NONE"
-  }
+  gh_theme.setup({
+    theme_style = 'dark_default',
+    comment_style = 'italic',
+    keyword_style = 'NONE',
+    function_style = 'NONE',
+    variable_style = 'NONE',
+  })
 end
 -- ########################
 -- ### all settings end ###
 -- ########################
 
 -- setting the colorscheme
-local csm_status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+local csm_status_ok, _ = pcall(vim.cmd, 'colorscheme ' .. colorscheme)
 if not csm_status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
+  vim.notify('colorscheme ' .. colorscheme .. ' not found!')
   return
 end

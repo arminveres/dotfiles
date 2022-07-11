@@ -1,19 +1,19 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
+local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
   return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
+local config_status_ok, nvim_tree_config = pcall(require, 'nvim-tree.config')
 if not config_status_ok then
   return
 end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
+nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
   -- options for project.nvim
   update_cwd = true, -- def: false
   respect_buf_cwd = true,
@@ -27,23 +27,23 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
   open_on_setup = false,
   open_on_setup_file = false,
   open_on_tab = false,
-  sort_by = "name",
+  sort_by = 'name',
   view = {
     width = 30,
     height = 30,
     hide_root_folder = false,
-    side = "left",
+    side = 'left',
     preserve_window_proportions = true, -- def: false
     number = true, -- default: false
     relativenumber = true, -- default: false
-    signcolumn = "yes", -- show diagnostics
+    signcolumn = 'yes', -- show diagnostics
     mappings = {
       custom_only = false,
       list = {
         -- user mappings go here
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
+        { key = { 'l', '<CR>', 'o' }, cb = tree_cb('edit') },
+        { key = 'h', cb = tree_cb('close_node') },
+        { key = 'v', cb = tree_cb('vsplit') },
       },
     },
   },
@@ -51,36 +51,36 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
     indent_markers = {
       enable = false,
       icons = {
-        corner = "└ ",
-        edge = "│ ",
-        none = "  ",
+        corner = '└ ',
+        edge = '│ ',
+        none = '  ',
       },
     },
     icons = {
       webdev_colors = true,
       glyphs = {
-        default = "",
-        symlink = "",
+        default = '',
+        symlink = '',
         git = {
-          unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
-          deleted = "",
-          untracked = "U",
-          ignored = "◌",
+          unstaged = '',
+          staged = 'S',
+          unmerged = '',
+          renamed = '➜',
+          deleted = '',
+          untracked = 'U',
+          ignored = '◌',
         },
         folder = {
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
+          default = '',
+          open = '',
+          empty = '',
+          empty_open = '',
+          symlink = '',
         },
       },
     },
     group_empty = true,
-    root_folder_modifier = ":t",
+    root_folder_modifier = ':t',
   },
   hijack_directories = {
     enable = true,
@@ -94,17 +94,17 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
   },
   ignore_ft_on_setup = {},
   system_open = {
-    cmd = "",
+    cmd = '',
     args = {},
   },
   diagnostics = {
     enable = true, -- default: false
     show_on_dirs = true, -- default: false
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = '',
+      info = '',
+      warning = '',
+      error = '',
     },
   },
   filters = {
@@ -129,16 +129,16 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
       resize_window = true, -- default: false
       window_picker = {
         enable = true,
-        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
         exclude = {
-          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-          buftype = { "nofile", "terminal", "help" },
+          filetype = { 'notify', 'packer', 'qf', 'diff', 'fugitive', 'fugitiveblame' },
+          buftype = { 'nofile', 'terminal', 'help' },
         },
       },
     },
   },
   trash = {
-    cmd = "trash",
+    cmd = 'trash',
     require_confirm = true,
   },
   log = {
@@ -153,4 +153,4 @@ nvim_tree.setup { -- BEGIN_DEFAULT_OPTS
       profile = false,
     },
   },
-} -- END_DEFAULT_OPTS
+}) -- END_DEFAULT_OPTS
