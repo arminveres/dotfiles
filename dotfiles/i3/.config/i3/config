@@ -69,7 +69,7 @@ for_window [class=".*"] border pixel 2
 # gaps horizontal 20
 # gaps top 0
 gaps inner 20
-gaps bottom 20
+# gaps bottom 20
 
 # possible to change on the fly, and be concatenated
 # bindsym $mod+Shift+o gaps inner all set 60 gaps vertical current set 400
