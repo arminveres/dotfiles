@@ -128,6 +128,7 @@ keymap('n', '<leader>sp', function()
   require('telescope.builtin').live_grep()
 end, opts)
 keymap('n', '<leader>cd', function()
+---@diagnostic disable-next-line: different-requires
   require('telescope').extensions.zoxide.list()
 end, opts)
 keymap('n', '<leader>fgb', ':Telescope git_branches<CR>', opts)

@@ -11,6 +11,8 @@
     editor = nvim
     excludesfile = ~/.config/git/gitignore
     whitespace = trailing-space
+[credential]
+    helper = cache
 [alias]
     tree = log --oneline --graph --decorate --branches --max-count 10
 #[http]

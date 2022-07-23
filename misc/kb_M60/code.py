@@ -1,8 +1,9 @@
 
 from PYKB import *
 
-
 keyboard = Keyboard()
+
+# NOTE: Keycodes: https://wiki.makerdiary.com/m60/keycodes/
 
 ___ = TRANSPARENT
 BOOT = BOOTLOADER
@@ -22,7 +23,7 @@ keyboard.keymap = (
         TAB,   Q,   W,   E,   R,   T,   Y,   U,   I,   O,   P, '[', ']', '|',
         LCTRL, A,   S,   D,   L2F, G,   H,   J,   K,   L, SCC, '"',    ENTER,
         LSFT4, Z,   X,   C,   V,   L3B, N,   M, ',', '.', '/',         RSFT4,
-        CAPS, LALT, LGUI,          SPACE,            RALT, MENU,  L1, RCTRL
+        CAPS, LALT, LGUI,          SPACE,            RALT, RGUI,  L1, RCTRL
     ),
 
     # layer 1
@@ -38,8 +39,8 @@ keyboard.keymap = (
     (
         '`',  F1,  F2,  F3,  F4,  F5,  F6,  F7,  F8,  F9, F10, F11, F12, DEL,
         ___, ___, ___, ___, ___, ___, ___,PGUP, ___, ___, ___,AUDIO_VOL_DOWN,AUDIO_VOL_UP,AUDIO_MUTE,
-        ___, ___, ___, ___, ___, ___,LEFT,DOWN, UP,RIGHT, ___, ___,      ___,
-        ___, ___, ___, ___, ___, ___,PGDN, ___, ___, ___, ___,           ___,
+        ___, ___, ___, ___, ___, HOME, LEFT, DOWN, UP, RIGHT, END, ___,      ___,
+        ___, ___, ___, ___, ___, ___, PGDN, ___, ___, ___, ___,           ___,
         ___, ___, ___,                ___,               ___, ___, ___,  ___
     ),
 

@@ -39,7 +39,6 @@ require('packer').startup({
       'nvim-lualine/lualine.nvim', -- Fancier statusline
       'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
       'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
-      'lewis6991/satellite.nvim', -- displays decorated scrollbars
       'lewis6991/spellsitter.nvim', -- enhances neovim spellchecker with treesitter
       'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
       'nanozuki/tabby.nvim',
@@ -56,7 +55,10 @@ require('packer').startup({
       'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
       'j-hui/fidget.nvim', -- progress indicator for LSP
       'zbirenbaum/neodim', -- dim unused variables
+      'petertriho/nvim-scrollbar', -- scrollbar
+      'kevinhwang91/nvim-hlslens', -- nicer search results
 
+      -- 'lewis6991/satellite.nvim', -- displays decorated scrollbars
       -- 'nvim-neo-tree/neo-tree.nvim',
       -- 'mfussenegger/nvim-jdtls',                  -- better Java LSP integration
     })
@@ -152,6 +154,7 @@ require('packer').startup({
 
 require('user.plugins.cmp')
 require('user.plugins.cmp-git')
+---@diagnostic disable-next-line: different-requires
 require('user.plugins.telescope')
 require('user.plugins.treesitter')
 require('user.plugins.autopairs')
@@ -161,6 +164,7 @@ require('user.plugins.comment')
 require('user.plugins.lualine')
 require('user.plugins.blankline')
 require('user.plugins.toggleterm')
+---@diagnostic disable-next-line: different-requires
 require('user.plugins.aerial')
 require('user.plugins.colorizer')
 require('user.plugins.todo')
@@ -171,6 +175,8 @@ require('user.plugins.spellsitter')
 require('user.plugins.fidget')
 require('user.plugins.dim')
 require('user.plugins.bufferline')
+require('user.plugins.scrollbar')
+require('user.plugins.hlslens')
 
 -- require('user.plugins.satellite') -- WARN:requires neovim nightly (winbar) therefore disabled for the moment
 -- require('user.plugins.neo-tree')

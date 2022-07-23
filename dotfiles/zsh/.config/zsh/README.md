@@ -1,1 +1,2 @@
 - [ ] add function update plugins
+- [ ] move exports to .zshenv and settings to .zshrc

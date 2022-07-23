@@ -8,7 +8,6 @@ setopt HIST_IGNORE_DUPS       # ignore duplicate commands
 setopt HIST_IGNORE_SPACE      # ignore commands starting with space
 setopt HIST_VERIFY            # show command with history expansion to user before running it
 
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/bin:$PATH
 export VISUAL=nvim
 export EDITOR=nvim
 

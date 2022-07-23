@@ -66,7 +66,7 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # Key-bindings
 bindkey -s '^o' 'ranger^M'
 bindkey -s '^f' 'zi^M'
-bindkey -s '^s' 'ncdu^M'
+bindkey -s '^s' 'ncdu --color dark^M'
 bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
 bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
 
@@ -86,3 +86,5 @@ compinit
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
