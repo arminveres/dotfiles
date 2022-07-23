@@ -4,4 +4,4 @@ set font 'JetBrainsMono Nerd Font 10'
 set scroll-step 50
 
 # keybinds
-map <C-i> recolor
+map <C-/> recolor
