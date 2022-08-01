@@ -11,6 +11,8 @@ from i3ipc import Connection, Event
 i3 = Connection()
 
 
+# TODO: add support for stacked windows
+# TODO: Stop it from readjusting already adjusted windows
 def set_gapped_focus(i3, event):
     focused = i3.get_tree().find_focused()
     ws = focused.workspace()

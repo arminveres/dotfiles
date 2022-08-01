@@ -36,6 +36,10 @@ floating_modifier $mod
 # enable startup in float from exec by setting the x11 class to floating
 # many apps support '--class floating' for setting the x11 class (the instance get renamed)
 for_window [instance="floating"] floating enabled
+# set fixed size
+for_window [instance="floating"] resize set 1440 900
+# centre floating windows
+for_window [instance="floating"] move position center
 
 # Disables floating for NautilusPreviewer, makes for better/more consistent previews
 for_window [instance="org.gnome.NautilusPreviewer"] floating disabled
