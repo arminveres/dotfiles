@@ -29,6 +29,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
   open_on_tab = false,
   sort_by = 'name',
   view = {
+    adaptive_size = true,  -- adapt opened size to show files, that would be hidden otherwise
     width = 30,
     height = 30,
     hide_root_folder = false,

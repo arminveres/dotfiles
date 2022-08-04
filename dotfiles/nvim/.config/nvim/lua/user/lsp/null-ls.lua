@@ -17,11 +17,9 @@ null_ls.setup({
     formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
     formatting.black.with({ extra_args = { '--fast' } }),
     formatting.latexindent,
-    -- formatting.stylua,
-    -- formatting.clang_format.with({ extra_args = { '-style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' } }),
+    -- formatting.clang_format.with({ extra_args = { '--offset=16', '-style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' } }),
     -- formatting.clang_format.with({ command =  'clang-format -style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' }),
     -- formatting.eslint_d,
     -- formatting.eslint,
-    -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
   },
 })

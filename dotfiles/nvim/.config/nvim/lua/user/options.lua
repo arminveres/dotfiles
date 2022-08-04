@@ -28,7 +28,7 @@ vim.opt.cursorcolumn = true
 -- windows-local options
 vim.opt.relativenumber = true
 vim.opt.number = true
-vim.opt.colorcolumn = '80,100'
+vim.opt.colorcolumn = '100,120'
 vim.opt.wrap = true
 
 vim.opt.undofile = true --Save undo history

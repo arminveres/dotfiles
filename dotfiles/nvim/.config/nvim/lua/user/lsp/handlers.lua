@@ -4,8 +4,7 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 M.setup = function()
   local signs = {
-    -- { name = "DiagnosticSignError", text = "" },
-    { name = 'DiagnosticSignError', text = '' },
+    { name = 'DiagnosticSignError', text = '' },  -- ""
     { name = 'DiagnosticSignWarn', text = '' },
     { name = 'DiagnosticSignHint', text = '' },
     { name = 'DiagnosticSignInfo', text = '' },
@@ -68,11 +67,13 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
   keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
   keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  keymap(bufnr, 'n', '<space>bf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   -- keymap(bufnr, 'n', '<leader>qf', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  -- NOTE: Following does not work, when no 'LSP' is installed, even when Null-LS is running
+  keymap(bufnr, 'n', '<space>bf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
@@ -87,7 +88,7 @@ M.on_attach = function(client, bufnr)
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
----@diagnostic disable-next-line: different-requires
+  ---@diagnostic disable-next-line: different-requires
   require('aerial').on_attach(client, bufnr)
   -- require('folding').on_attach()
 end

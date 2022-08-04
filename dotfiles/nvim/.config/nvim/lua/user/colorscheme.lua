@@ -9,6 +9,13 @@ local colorscheme = 'gruvbox'
 -- local colorscheme = 'vscode'
 -- local colorscheme = 'github'
 
+-- Customized colors for colorschemes
+local custom_colors = {
+  Normal = { bg = 'NONE' },
+  CursorColumn = { bg = '#202021' },
+  CursorLine = { bg = '#202021' },
+}
+
 -- gruvbox settings
 local gruvbox_ok, gruvbox = pcall(require, 'gruvbox')
 if not gruvbox_ok then
@@ -26,7 +33,7 @@ else
     invert_intend_guides = false,
     contrast = '', -- can be "hard" or "soft"
     -- overriding highlight groups
-    overrides = {},
+    overrides = custom_colors,
   })
 end
 
