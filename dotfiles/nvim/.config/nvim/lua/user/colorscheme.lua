@@ -12,6 +12,9 @@ local colorscheme = 'gruvbox'
 -- Customized colors for colorschemes
 local custom_colors = {
   Normal = { bg = 'NONE' },
+  PMenu = { bg = 'NONE' }, -- Completion Menu
+  NormalFloat = { bg = 'NONE'},
+  FloatBorder = { bg = 'NONE'},
   CursorColumn = { bg = '#202021' },
   CursorLine = { bg = '#202021' },
 }
@@ -69,7 +72,7 @@ if kanagawa_status_ok then
     transparent = false, -- do not set background color
     dimInactive = false, -- dim inactive window `:h hl-NormalNC`
     colors = {},
-    overrides = {},
+    overrides = custom_colors,
   })
 else
   vim.notify('kanagawa not found')
@@ -126,7 +129,7 @@ if material_status_ok then
 
     async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
 
-    custom_highlights = {}, -- Overwrite highlights with your own
+    custom_highlights = custom_colors, -- Overwrite highlights with your own
   })
 else
   vim.notify('material not found')
