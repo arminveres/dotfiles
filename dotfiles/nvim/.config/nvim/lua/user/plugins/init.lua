@@ -29,38 +29,89 @@ require('packer').startup({
       'wbthomason/packer.nvim', -- Package manager
       'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
       'williamboman/nvim-lsp-installer', -- installer for lsps
-      'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
-      'akinsho/toggleterm.nvim', -- custom terminal for neovim
-      'akinsho/bufferline.nvim', -- tabline replacement
-      'stevearc/aerial.nvim', -- functions outline plugin
-      'stevearc/dressing.nvim', -- better ui
-      'norcalli/nvim-colorizer.lua', -- colorizes color codes
       'jose-elias-alvarez/null-ls.nvim', -- Null LS
-      'nvim-lualine/lualine.nvim', -- Fancier statusline
-      'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-      'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
-      'lewis6991/spellsitter.nvim', -- enhances neovim spellchecker with treesitter
+      {
+        'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
+        config = require('user.plugins.autopairs'),
+      },
+      {
+        'akinsho/toggleterm.nvim', -- custom terminal for neovim
+        config = require('user.plugins.toggleterm'),
+      },
+      {
+        'akinsho/bufferline.nvim', -- tabline replacement
+        config = require('user.plugins.bufferline'),
+      },
+      {
+        'norcalli/nvim-colorizer.lua', -- colorizes color codes
+        config = require('user.plugins.colorizer'),
+      },
+      {
+        'nvim-lualine/lualine.nvim', -- Fancier statusline
+        config = require('user.plugins.lualine'),
+      },
+      {
+        'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+        config = require('user.plugins.blankline'),
+      },
+      {
+        'lewis6991/gitsigns.nvim', -- Add git related info in the signs columns and popups
+        config = require('user.plugins.gitsigns'),
+      },
+      {
+        'lewis6991/spellsitter.nvim', -- enhances neovim spellchecker with treesitter
+        config = require('user.plugins.spellsitter'),
+      },
       'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
-      'nanozuki/tabby.nvim',
-      'folke/todo-comments.nvim', -- highlight and search for todo comments like
-      'folke/which-key.nvim', -- displays a popup with possible key bindings
+      {
+        'folke/todo-comments.nvim', -- highlight and search for todo comments like
+        config = require('user.plugins.todo'),
+      },
+      {
+        'folke/which-key.nvim', -- displays a popup with possible key bindings
+        config = require('user.plugins.whichkey'),
+      },
       'norcalli/nvim-terminal.lua',
-      'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
-      'numToStr/Comment.nvim', -- Comment out code easily
+      {
+        'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
+        config = require('user.plugins.nvim-tree'),
+      },
+      {
+        'numToStr/Comment.nvim', -- Comment out code easily
+        config = require('user.plugins.comment'),
+      },
       'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
       'p00f/nvim-ts-rainbow', -- rainbow parenthesis
       'p00f/godbolt.nvim', -- compile explorer in nvim
       'RRethy/vim-illuminate', -- illuminate work under cursor
-      'ziontee113/color-picker.nvim', -- color picker
-      'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
-      'j-hui/fidget.nvim', -- progress indicator for LSP
-      'zbirenbaum/neodim', -- dim unused variables
-      'petertriho/nvim-scrollbar', -- scrollbar
-      'kevinhwang91/nvim-hlslens', -- nicer search results
-
-      -- 'lewis6991/satellite.nvim', -- displays decorated scrollbars
-      -- 'nvim-neo-tree/neo-tree.nvim',
-      -- 'mfussenegger/nvim-jdtls',                  -- better Java LSP integration
+      {
+        'ziontee113/color-picker.nvim', -- color picker
+        config = require('user.plugins.colorpicker'),
+      },
+      {
+        'ahmedkhalf/project.nvim', -- vim-rooter like replacement in neovim with many features
+        config = require('user.plugins.project'),
+      },
+      {
+        'j-hui/fidget.nvim', -- progress indicator for LSP
+        config = require('user.plugins.fidget'),
+      },
+      {
+        'zbirenbaum/neodim', -- dim unused variables
+        config = require('user.plugins.dim'),
+      },
+      {
+        'petertriho/nvim-scrollbar', -- scrollbar
+        config = require('user.plugins.scrollbar'),
+      },
+      {
+        'kevinhwang91/nvim-hlslens', -- nicer search results
+        config = require('user.plugins.hlslens'),
+      },
+      {
+        'stevearc/dressing.nvim',
+        config = require('user.plugins.dressing')
+      },
     })
 
     use({ -- markdown preview plugin, very nice!
@@ -93,7 +144,6 @@ require('packer').startup({
       'fladson/vim-kitty',
       -- 'tpope/vim-fugitive',                     -- Git commands in nvim
       -- 'tpope/vim-rhubarb',                      -- Fugitive-companion to interact with github
-      -- 'ivyl/vim-bling', -- blinks search result after jumping to it (think of n, N, * and #)
     })
 
     use({
@@ -101,9 +151,10 @@ require('packer').startup({
       requires = {
         'nvim-lua/plenary.nvim',
         'kyazdani42/nvim-web-devicons',
-        'aloussase/telescope-gradle.nvim', -- A telescope extension to run gradle tasks
+        -- 'aloussase/telescope-gradle.nvim', -- A telescope extension to run gradle tasks NOTE: got removed
         'jvgrootveld/telescope-zoxide', -- allows you operate zoxide within Neovim
       },
+      config = require('user.plugins.telescope'),
     })
 
     use({ -- Highlight, edit, and navigate code using a fast incremental parsing library
@@ -113,6 +164,7 @@ require('packer').startup({
         'nvim-treesitter/nvim-treesitter-textobjects',
         'nvim-treesitter/nvim-treesitter-refactor',
       },
+      config = require('user.plugins.treesitter'),
     })
 
     use({
@@ -129,7 +181,10 @@ require('packer').startup({
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-cmdline',
-        'petertriho/cmp-git', -- git commit completion
+        {
+          'petertriho/cmp-git',
+          config = require('user.plugins.cmp-git'),
+        },
         'uga-rosa/cmp-dictionary', -- dictionary plugin
         'f3fora/cmp-spell', -- spelling plugin
         'L3MON4D3/LuaSnip',
@@ -137,6 +192,13 @@ require('packer').startup({
         'rafamadriz/friendly-snippets',
         -- {'hrsh7th/cmp-vsnip'},
       },
+      config = require('user.plugins.cmp'),
+    })
+
+    use({
+      'glepnir/lspsaga.nvim',
+      branch = 'main',
+      config = require('user.plugins.lspsaga'),
     })
 
     -- Automatically set up your configuration after cloning packer.nvim
@@ -151,33 +213,3 @@ require('packer').startup({
     },
   },
 })
-
-require('user.plugins.cmp')
-require('user.plugins.cmp-git')
----@diagnostic disable-next-line: different-requires
-require('user.plugins.telescope')
-require('user.plugins.treesitter')
-require('user.plugins.autopairs')
-require('user.plugins.gitsigns')
-require('user.plugins.nvim-tree')
-require('user.plugins.comment')
-require('user.plugins.lualine')
-require('user.plugins.blankline')
-require('user.plugins.toggleterm')
----@diagnostic disable-next-line: different-requires
-require('user.plugins.aerial')
-require('user.plugins.colorizer')
-require('user.plugins.todo')
-require('user.plugins.whichkey')
-require('user.plugins.colorpicker')
-require('user.plugins.project')
-require('user.plugins.spellsitter')
-require('user.plugins.fidget')
-require('user.plugins.dim')
-require('user.plugins.bufferline')
-require('user.plugins.scrollbar')
-require('user.plugins.hlslens')
-
--- require('user.plugins.satellite') -- WARN:requires neovim nightly (winbar) therefore disabled for the moment
--- require('user.plugins.neo-tree')
--- require('user.plugins.tabby')

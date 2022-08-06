@@ -9,6 +9,9 @@ if not snip_status_ok then
 end
 
 require('luasnip/loaders/from_vscode').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load({
+  paths = { '~/.config/nvim/snippets/' },
+})
 
 local check_backspace = function()
   local col = vim.fn.col('.') - 1
@@ -126,13 +129,18 @@ cmp.setup({
     select = false,
   },
   window = {
-    documentation = {
-      border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
-    },
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+    --[[
+    --custom border:
+    -- border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+    --]]
+  },
+  view = {
+    -- entries = 'native',
   },
   experimental = {
-    ghost_text = false,
-    native_menu = false,
+    ghost_text = true,
   },
 })
 

@@ -7,10 +7,12 @@ M.server = {
     '--cross-file-rename',
     '--header-insertion=never',
     '--clang-tidy',
-    '-j=8',
-    -- "-fallback-style='{BasedOnStyle: Google, AccessModifierOffset: -1}'",
-    -- "--inlay-hints",
-    -- "--offset-encoding=utf-8",
+    '-j=4',
+    '--inlay-hints',
+    '--suggest-missing-includes',
+    '--header-insertion-decorators',
+    '--all-scopes-completion',
+    '--pch-storage=memory',
   },
 }
 

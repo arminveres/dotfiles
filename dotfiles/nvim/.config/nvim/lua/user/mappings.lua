@@ -1,5 +1,4 @@
 local opts = { noremap = true, silent = true }
--- local keymap = vim.api.nvim_set_keymap -- WARN: deprecated with 0.7
 local keymap = vim.keymap.set
 
 -- Leader --
@@ -8,6 +7,9 @@ keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+----------------------------------------------------------------------------------------------------
+-- NeoVIM CORE
+----------------------------------------------------------------------------------------------------
 -- Normal Mode --
 keymap('n', '<BS>', ':noh<CR>', opts) -- disables hlsearch until next search
 
@@ -86,6 +88,10 @@ keymap('i', '<F11><C-O>', ':set spell!<CR>', opts)
 -- replacing is done in insertmode <C-x>s
 
 --Add leader shortcuts
+
+----------------------------------------------------------------------------------------------------
+-- CLIPBOARD
+----------------------------------------------------------------------------------------------------
 -- keymap('n', '<leader>fe', ':Lex 30<cr>', opts) -- made obsolete by nvim-tree
 keymap('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
 keymap('n', '<leader>bq', ':Bdelete<CR>', opts)
@@ -99,6 +105,7 @@ keymap('v', '<leader>y', '"+y', opts)
 keymap('n', '<leader>y', '"+yg_', opts)
 keymap('n', '<leader>y', '"+y', opts)
 keymap('n', '<leader>yy', '"+yy', opts)
+keymap('n', '<leader>Y', '"+Y', opts)
 
 -- Paste from clipboad
 keymap('n', '<leader>p', '"+p', opts)
@@ -106,7 +113,9 @@ keymap('n', '<leader>P', '"+P', opts)
 keymap('v', '<leader>p', '"+p', opts)
 keymap('v', '<leader>P', '"+P', opts)
 
--- Telescope shortcuts
+----------------------------------------------------------------------------------------------------
+-- Telescope
+----------------------------------------------------------------------------------------------------
 -- NOTE: could move the builtins back to commands, not lua functions. Lua functions only useful
 -- if I want to customize them further, differing from the options set up, which I don't do here.
 keymap('n', '<leader><space>', function()
@@ -128,7 +137,7 @@ keymap('n', '<leader>sp', function()
   require('telescope.builtin').live_grep()
 end, opts)
 keymap('n', '<leader>cd', function()
----@diagnostic disable-next-line: different-requires
+  ---@diagnostic disable-next-line: different-requires
   require('telescope').extensions.zoxide.list()
 end, opts)
 keymap('n', '<leader>fgb', ':Telescope git_branches<CR>', opts)
@@ -141,11 +150,36 @@ keymap('n', '<leader>r', ':Telescope resume<CR>', opts)
 -- allow to grep for string under cursor
 keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>]])
 
--- Aerial mappings for outlines
-keymap('n', '<leader>at', '<cmd>AerialToggle<CR>', opts)
+----------------------------------------------------------------------------------------------------
+-- LSP Saga
+----------------------------------------------------------------------------------------------------
+keymap('n', '[e', ':Lspsaga diagnostic_jump_next<CR>', opts)
+keymap('n', ']e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
+
+vim.keymap.set('n', '<C-f>', function()
+  require('lspsaga.action').smart_scroll_with_saga(1)
+end, opts)
+-- scroll up hover doc
+vim.keymap.set('n', '<C-b>', function()
+  require('lspsaga.action').smart_scroll_with_saga(-1)
+end, opts)
+keymap('n', '<leader>ca', ':Lspsaga code_action<CR>', opts)
+keymap('v', '<leader>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
+keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts)
+keymap('n', '<leader>rn', ':Lspsaga rename<CR>', opts)
+keymap('n', 'gh', ':Lspsaga lsp_finder<CR>', opts)
+keymap('n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', opts)
+keymap('n', '<leader>at', ':LSoutlineToggle<CR>', opts)
+keymap("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
+keymap("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
 
 -- Undo tree toggle
 keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR>', opts)
 
 keymap('n', '<C-p>', '<Cmd>Telescope projects<CR>', opts)
 keymap('n', '<Leader>td', ':TodoTelescope<CR>', opts)
+
+keymap('n', '<Leader>li', ':LspInfo<CR>', opts)
+keymap('n', '<Leader>ll', ':LspLog<CR>', opts)
+keymap('n', '<Leader>lr', ':LspRestart<CR>', opts)

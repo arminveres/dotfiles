@@ -9,11 +9,8 @@ aucmd({ 'BufReadPost,FileReadPost' }, { command = ':normal zR' })
 
 -- callback for lua function callbacks
 -- pattern can be left out, if for all files
-aucmd({ 'CursorHold' }, {
-  callback = function()
-    vim.diagnostic.open_float()
-  end,
-})
+-- aucmd({ 'CursorHold' }, { callback = function() vim.diagnostic.open_float() end,})
+
 aucmd({ 'TextYankPost' }, {
   callback = function()
     vim.highlight.on_yank()
