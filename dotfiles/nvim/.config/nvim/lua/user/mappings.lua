@@ -153,8 +153,8 @@ keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expan
 ----------------------------------------------------------------------------------------------------
 -- LSP Saga
 ----------------------------------------------------------------------------------------------------
-keymap('n', '[e', ':Lspsaga diagnostic_jump_next<CR>', opts)
-keymap('n', ']e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+keymap('n', '[e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+keymap('n', ']e', ':Lspsaga diagnostic_jump_next<CR>', opts)
 keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
 
 vim.keymap.set('n', '<C-f>', function()

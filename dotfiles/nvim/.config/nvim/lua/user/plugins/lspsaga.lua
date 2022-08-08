@@ -14,10 +14,6 @@ saga.init_lsp_saga({
   -- when cursor in saga window you config these to move
   move_in_saga = { prev = '<C-p>', next = '<C-n>' },
   -- Error, Warn, Info, Hint
-  -- use emoji like
-  -- { "🙀", "😿", "😾", "😺" }
-  -- or
-  -- { "😡", "😥", "😤", "😐" }
   -- and diagnostic_header can be a function type
   -- must return a string and when diagnostic_header
   -- is function type it will have a param `entry`
@@ -31,12 +27,13 @@ saga.init_lsp_saga({
   -- preview lines of lsp_finder and definition preview
   max_preview_lines = 10,
   -- use emoji lightbulb in default
-  code_action_icon = '💡',--
+  code_action_icon = '💡', --
   -- if true can press number to execute the codeaction in codeaction window
   code_action_num_shortcut = true,
+  -- BUG: causes error if enabled, https://github.com/glepnir/lspsaga.nvim/issues/411, no real solution to it yet
   -- same as nvim-lightbulb but async
   code_action_lightbulb = {
-    enable = true,
+    enable = false,
     sign = true,
     enable_in_insert = true,
     sign_priority = 20,
