@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Displays a rofi menu of all containers hidden in the i3 scratchpad workspace.
+# Selecting a container will bring it to the current workspace.
+
+# notes on code:
+# use i3-msg to get json data of all windows in the scratchpad workspace
+# jq parses the window PID and name from the json
+# sed removes ugly quotes
+# paste - - formats results so that each line is "PID \t name"
+# rofi menu
+# cut the PID
+# use xargs to call that id in i3-msg
+
+i3-msg -t get_tree | \
+jq '.nodes[] | .nodes[] | .nodes[] | select(.name=="__i3_scratch") | .floating_nodes[] | .nodes[] | .window,.name' | \
+sed 's/\"//g' | \
+paste - - | \
+rofi -dmenu -p "i3 Scratch" | \
+cut -f1 | \
+xargs -I "PID" i3-msg "[id=PID] scratchpad show"

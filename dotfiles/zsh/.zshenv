@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
@@ -13,6 +13,7 @@ export XDG_CACHE_HOME=$HOME/.cache
 
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass

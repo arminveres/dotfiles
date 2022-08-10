@@ -20,13 +20,10 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec_always --no-startup-id picom -b --experimental-backend --config ~/.config/picom/picom.conf
 exec_always --no-startup-id nitrogen --restore
 
-
 exec_always ~/.screenlayout/rightvert.sh
-# exec_always --no-startup-id xrandr --output DP-2 --mode 1920x1200 --rightof DP-0 --noprimary
-# exec_always --no-startup-id xrandr --output DP-0 --primary
 
-exec_always echo 0 > /sys/module/hid_apple/parameters/fnmode
-
+# Keychron K2 settings
+# exec_always echo 0 | sudo tee /sys/module/hid_apple/parameters/fnmode
 # swap escape and caps lock
 # exec_always setxkbmap -option ctrl:swapcaps
 
@@ -35,18 +32,6 @@ exec --no-startup-id udiskie --tray --notify
 
 bindsym $mod+Shift+greater move workspace to output right
 bindsym $mod+Shift+less move workspace to output left
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-#Media Keys
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).jpg"
@@ -166,13 +151,14 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 assign [class="Signal"] $ws10
 assign [class="Franz"] $ws10
 for_window [class="Spotify"] move to workspace $ws10
+for_window [title="Microsoft Teams Notification"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -260,6 +246,7 @@ gaps outer 20
 bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+bindsym $mod+equal exec "~/.config/i3/scripts/rofi-i3-scratch"
 
 ### colors ###
 set $base00 #1d2021
