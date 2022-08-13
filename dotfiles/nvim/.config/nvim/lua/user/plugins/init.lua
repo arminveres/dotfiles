@@ -40,6 +40,7 @@ require('packer').startup({
       },
       {
         'akinsho/bufferline.nvim', -- tabline replacement
+        tag = "v2.*",
         config = require('user.plugins.bufferline'),
       },
       {
@@ -142,6 +143,7 @@ require('packer').startup({
       'moll/vim-bbye', -- allows you to do delete buffers (close files) without closing your windows
       'mbbill/undotree',
       'fladson/vim-kitty',
+      'ron-rs/ron.vim',
       -- 'tpope/vim-fugitive',                     -- Git commands in nvim
       -- 'tpope/vim-rhubarb',                      -- Fugitive-companion to interact with github
     })

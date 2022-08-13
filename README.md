@@ -6,15 +6,15 @@
 
 Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
 
-| Type                 | Currently in use                                  | Alternative |
-| -------------------- | ------------------------------------------------- | ----------- |
-| Window Manager       | i3                                                | Awesome     |
-| Status bar           | Polybar                                           | <!-- -->    |
-| Notifications        | dunst                                             |             |
-| Shell                | zsh                                               | <!-- -->    |
-| Editor               | NeoVIM                                            | <!-- -->    |
-| Terminal Emulator    | kitty                                             | Alacritty   |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config) | <!-- -->    |
+| Type                 | Currently in use                                                                                  | Alternative |
+| -------------------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Window Manager       | i3                                                                                                | Awesome     |
+| Status bar           | Polybar                                                                                           | <!-- -->    |
+| Notifications        | dunst                                                                                             |             |
+| Shell                | zsh                                                                                               | <!-- -->    |
+| Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) | <!-- -->    |
+| Terminal Emulator    | kitty                                                                                             | Alacritty   |
+| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config)                                                 | <!-- -->    |
 
 ## Usage
 

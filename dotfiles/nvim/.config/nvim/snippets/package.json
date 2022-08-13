@@ -5,6 +5,18 @@
       {
         "language": "lua",
         "path": "./lua.json"
+      },
+      {
+        "language": "sh",
+        "path": "./sh.json"
+      },
+      {
+        "language": "bash",
+        "path": "./sh.json"
+      },
+      {
+        "language": "zsh",
+        "path": "./sh.json"
       }
     ]
   }

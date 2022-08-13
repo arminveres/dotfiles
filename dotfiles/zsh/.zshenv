@@ -1,5 +1,3 @@
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:$PATH
-export ZDOTDIR=$HOME/.config/zsh
 ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 export VISUAL=nvim
@@ -25,5 +23,7 @@ export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 export MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf
 
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:$PATH
+export ZDOTDIR=$HOME/.config/zsh
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc
