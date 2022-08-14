@@ -11,24 +11,24 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "sans 8"
+theme.font          = "JetbrainsMono Nerd Font 10"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#1d2021"
 theme.bg_systray    = theme.bg_normal
+theme.bg_focus      = "#3c3836"
+theme.bg_urgent     = "#fb4934"
+theme.bg_minimize   = "#504945"
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = "#bdae93"
+theme.fg_focus      = "#fbf1c7"
+theme.fg_urgent     = "#fbf1c7"
+theme.fg_minimize   = "#fbf1c7"
 
-theme.useless_gap   = dpi(5)
+theme.useless_gap   = dpi(10)
 theme.border_width  = dpi(1)
 theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_focus  = "#b8bb26"
+theme.border_marked = "#fb4934"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -97,7 +97,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."default/forest1.jpg"
+--[[ theme.wallpaper = "~/.config/awesome/themes/default/forest1.jpg" ]]
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"

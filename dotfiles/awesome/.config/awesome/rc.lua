@@ -253,18 +253,14 @@ globalkeys = gears.table.join(
         end,
         { description = "focus previous by index", group = "client" }
     ),
-    awful.key({ modkey, }, "w", function() mymainmenu:show() end,
-        { description = "show main menu", group = "awesome" }),
+    --[[ awful.key({ modkey, }, "w", function() mymainmenu:show() end, ]]
+    --[[     { description = "show main menu", group = "awesome" }), ]]
 
     -- Layout manipulation
     awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
         { description = "swap with next client by index", group = "client" }),
     awful.key({ modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
         { description = "swap with previous client by index", group = "client" }),
-    awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
-        { description = "focus the next screen", group = "screen" }),
-    awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
-        { description = "focus the previous screen", group = "screen" }),
     awful.key({ modkey, }, "u", awful.client.urgent.jumpto,
         { description = "jump to urgent client", group = "client" }),
     awful.key({ modkey, }, "Tab",
@@ -275,6 +271,12 @@ globalkeys = gears.table.join(
             end
         end,
         { description = "go back", group = "client" }),
+
+    -- Multi Monitor setup
+    awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+        { description = "focus the next screen", group = "screen" }),
+    awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
+        { description = "focus the previous screen", group = "screen" }),
 
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
@@ -327,9 +329,46 @@ globalkeys = gears.table.join(
             }
         end,
         { description = "lua execute prompt", group = "awesome" }),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" })
+        { description = "show the menubar", group = "launcher" }),
+
+    --[[ basic program shortcuts ]]
+    awful.key({ modkey }, "i", function() awful.spawn("firefox") end, { description = "firefox", group = "shortcuts" }),
+    awful.key({ modkey }, "b", function() awful.spawn("nautilus") end,
+        { description = "Gnome Filebrowser", group = "shortcuts" }),
+    awful.key({ modkey }, "z", function() awful.spawn("zathura") end, { description = "Zathura", group = "shortcuts" }),
+    awful.key({ modkey, "Control" }, "o", function() awful.spawn("~/.local/bin/rofi-pactl-output") end,
+        { description = "select audio sink", group = "shortcuts" }),
+    awful.key({ modkey, "Shift" }, "s", function()
+        awful.util.spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Pictures/screenshots")
+    end,
+        { description = "take a screenshot", group = "utils" }),
+    awful.key({ modkey, "Shift" }, "p", function()
+        awful.util.spawn("flameshot gui --clipboard " .. os.getenv("HOME") .. "/Pictures/screenshots")
+    end,
+        { description = "take a screenshot", group = "utils" }),
+
+    --[[ audio ]]
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%") end,
+        { description = "Raise Volume", group = "audio" }),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%") end,
+        { description = "Lower Volume", group = "audio" }),
+    awful.key({}, "XF86AudioMute", function() awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle") end,
+        { description = "Toggle Mute", group = "audio" }),
+    awful.key({}, "XF86AudioMicMute", function() awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@") end,
+        { description = "Toggle Mic Mute", group = "audio" }),
+    awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end,
+        { description = "Play/Pause", group = "media" }),
+    awful.key({}, "XF86AudioNext", function() awful.spawn("playerctl next") end,
+        { description = "Next", group = "media" }),
+    awful.key({}, "XF86AudioPrev", function() awful.spawn("playerctl previous") end,
+        { description = "Previous", group = "media" }),
+    awful.key({}, "XF86MonBrightnessUp", function() awful.spawn("ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6") end,
+        { description = "Increase brightness on main display", group = "display" }),
+    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn("ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6") end,
+        { description = "Decrease brightness on main display", group = "display" })
 )
 
 clientkeys = gears.table.join(
@@ -469,7 +508,7 @@ awful.rules.rules = {
         },
         class = {
             "Arandr",
-            "Blueman-manager",
+            --[[ "Blueman-manager", ]]
             "Gpick",
             "Kruler",
             "MessageWin", -- kalarm.
@@ -504,27 +543,21 @@ awful.rules.rules = {
         rule = { class = "Firefox" },
         properties = { screen = 1, tag = "2" }
     },
+    {
+        rule = { class = "Blueman-manager" },
+        properties = { tag = "0" }
+    },
+    {
+        rule = { class = "corectrl" },
+        properties = { tag = "8" }
+    },
 }
 
+----------------------------------------------------------------------------------------------------
 -- Autorun apps
-local autorun = true
-local autorunApps = {
-    "xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144",
-    "xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right",
-    "xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1",
-    "xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1",
-    "udiskie --tray --notify",
-    "blueman-manager",
-    "picom --daemon --experimental-backend --config ~/.config/picom/picom.conf",
-    "corectl",
-    "nm-applet",
-    "pasystray",
-}
-if autorun then
-       for app = 1, #autorunApps do
-       awful.util.spawn(autorunApps[app])
-   end
-end
+----------------------------------------------------------------------------------------------------
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
 -- }}}
 
 -- {{{ Signals
