@@ -8,7 +8,7 @@ run() {
 }
 
 # run "program [some arguments]"
-
+eval $(gnome-keyring-daemon --start --login --daemonize --components=pkcs11,secrets,ssh,gpg)
 run picom --daemon --experimental-backend --config ~/.config/picom/picom.conf
 run udiskie --tray --notify
 run blueman-manager

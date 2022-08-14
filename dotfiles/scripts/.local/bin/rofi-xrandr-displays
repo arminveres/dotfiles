@@ -1,0 +1,14 @@
+#!/bin/bash
+
+displays=$(xrandr | grep -w connected | awk '{print $1}' | rofi -dmenu -p "Select display:")
+
+if [[ $displays != "" ]]; then
+    status=$(printf 'on\noff\n' | rofi -dmenu -p "Change audio:")
+    if [[ $status == 'off' && $displays != 'DisplayPort-1' ]]; then
+        xrandr --output $displays --$status
+    elif [[ $displays == 'HDMI-A-0' ]]; then
+        xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
+    else
+        arandr
+    fi
+fi

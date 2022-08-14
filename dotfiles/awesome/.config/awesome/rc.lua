@@ -1,3 +1,5 @@
+-- removed tmux help pages
+package.loaded["awful.hotkeys_popup.keys.tmux"] = {}
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -172,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag({ "code", "www", "res", "mus", "mail", "6", "7", "8", "msg" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -205,8 +207,9 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            s.mylayoutbox,
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            --[[ mylauncher, ]]
             s.mytaglist,
             s.mypromptbox,
         },
@@ -215,7 +218,6 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             mytextclock,
-            s.mylayoutbox,
             wibox.widget.systray(),
         },
     }
@@ -273,10 +275,13 @@ globalkeys = gears.table.join(
         { description = "go back", group = "client" }),
 
     -- Multi Monitor setup
-    awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
+    awful.key({ modkey }, "o", function() awful.screen.focus_relative(1) end,
         { description = "focus the next screen", group = "screen" }),
-    awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end,
-        { description = "focus the previous screen", group = "screen" }),
+
+    --[[ awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end, ]]
+    --[[     { description = "focus the next screen", group = "screen" }), ]]
+    --[[ awful.key({ modkey, "Control" }, "k", function() awful.screen.focus_relative(-1) end, ]]
+    --[[     { description = "focus the previous screen", group = "screen" }), ]]
 
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
@@ -316,8 +321,8 @@ globalkeys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
+    --[[ awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end, ]]
+    --[[     { description = "run prompt", group = "launcher" }), ]]
 
     awful.key({ modkey }, "x",
         function()
@@ -330,16 +335,21 @@ globalkeys = gears.table.join(
         end,
         { description = "lua execute prompt", group = "awesome" }),
 
+    awful.key({modkey}, "r", function ()
+        awful.spawn.with_shell("rofi -show drun") end, { description = "rofi app launcher", group = "awesome" }),
+
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-        { description = "show the menubar", group = "launcher" }),
+    --[[ awful.key({ modkey }, "r", function() menubar.show() end, ]]
+    --[[     { description = "show the menubar", group = "launcher" }), ]]
 
     --[[ basic program shortcuts ]]
     awful.key({ modkey }, "i", function() awful.spawn("firefox") end, { description = "firefox", group = "shortcuts" }),
     awful.key({ modkey }, "b", function() awful.spawn("nautilus") end,
         { description = "Gnome Filebrowser", group = "shortcuts" }),
     awful.key({ modkey }, "z", function() awful.spawn("zathura") end, { description = "Zathura", group = "shortcuts" }),
-    awful.key({ modkey, "Control" }, "o", function() awful.spawn("~/.local/bin/rofi-pactl-output") end,
+    awful.key({ modkey, "Control" }, "o", function() awful.spawn.with_shell("~/.local/bin/rofi-pactl-output") end,
+        { description = "select audio sink", group = "shortcuts" }),
+    awful.key({ modkey, }, "p", function() awful.spawn.with_shell("~/.local/bin/rofi-xrandr-displays") end,
         { description = "select audio sink", group = "shortcuts" }),
     awful.key({ modkey, "Shift" }, "s", function()
         awful.util.spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Pictures/screenshots")
@@ -378,14 +388,14 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         { description = "toggle fullscreen", group = "client" }),
+    awful.key({ modkey, "Shift" }, "o", function(c) c:move_to_screen() end,
+        { description = "move to screen", group = "client" }),
     awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
         { description = "close", group = "client" }),
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }),
     awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
         { description = "move to master", group = "client" }),
-    awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
-        { description = "move to screen", group = "client" }),
     awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
         { description = "toggle keep on top", group = "client" }),
     awful.key({ modkey, }, "n",
@@ -545,11 +555,23 @@ awful.rules.rules = {
     },
     {
         rule = { class = "Blueman-manager" },
-        properties = { tag = "0" }
+        properties = { tag = "4" }
+    },
+    {
+        rule = { class = "Geary" },
+        properties = { tag = "5" }
+    },
+    {
+        rule = { class = "Spotify" },
+        properties = { tag = "4" }
     },
     {
         rule = { class = "corectrl" },
         properties = { tag = "8" }
+    },
+    {
+        rule = { class = "Signal" },
+        properties = { tag = "9" }
     },
 }
 
@@ -616,9 +638,9 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", { raise = false })
-end)
+--[[ client.connect_signal("mouse::enter", function(c) ]]
+--[[     c:emit_signal("request::activate", "mouse_enter", { raise = false }) ]]
+--[[ end) ]]
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
