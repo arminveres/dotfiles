@@ -14,9 +14,10 @@ null_ls.setup({
   sources = {
     formatting.stylua,
     formatting.prettier.with({ extra_args = { '--single-quote', '--jsx-single-quote' } }),
-    formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
     formatting.black.with({ extra_args = { '--fast' } }),
+    formatting.shfmt,
     formatting.latexindent,
+    -- formatting.shfmt.with({ extra_args = { '--indent', '4' } }),
     -- formatting.clang_format.with({ extra_args = { '--offset=16', '-style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' } }),
     -- formatting.clang_format.with({ command =  'clang-format -style="{BasedOnStyle: Google, AccessModifierOffset: -1}"' }),
     -- formatting.eslint_d,

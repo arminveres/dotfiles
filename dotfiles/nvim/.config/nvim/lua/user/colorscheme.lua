@@ -41,12 +41,15 @@ else
 end
 
 -- vscode settings
--- Enable transparent background
-vim.g.vscode_transparent = false
--- Disable nvim-tree background color
-vim.g.vscode_disable_nvimtree_bg = false
--- Enable italic comment
-vim.g.vscode_italic_comment = true
+local is_ok_vscode, vscode = pcall(require, 'vscode')
+if not is_ok_vscode then
+  vim.notify('vscode not ok')
+  return
+end
+
+vscode.setup({
+  group_overrides = custom_colors
+})
 
 -- kanagawa settings
 local kanagawa_status_ok, kanagawa = pcall(require, 'kanagawa')

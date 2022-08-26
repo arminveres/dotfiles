@@ -13,8 +13,8 @@ tabspaces: 8
 font:
   normal:
     family: JetBrainsMono Nerd Font
-  size: 11.5
-ligatures: true
+  size: 10
+ligatures: true # ->, ==, =>
 
 window:
 
