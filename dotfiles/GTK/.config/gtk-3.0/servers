@@ -13,12 +13,12 @@
       </metadata>
     </info>
   </bookmark>
-  <bookmark href="sftp://avee-workstation/" added="2022-01-26T11:36:25.328685Z" modified="2022-01-26T11:36:25.328696Z" visited="2022-01-26T11:36:25.328688Z">
+  <bookmark href="sftp://avee@avee-workstation/" added="2022-08-15T12:31:51.928238Z" modified="2022-08-15T15:41:44.362105Z" visited="2022-08-15T15:41:44.362103Z">
     <title>/ on avee-workstation</title>
     <info>
       <metadata owner="http://freedesktop.org">
         <bookmark:applications>
-          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-01-26T11:36:25.328691Z" count="1"/>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-08-15T15:41:44.362104Z" count="3"/>
         </bookmark:applications>
       </metadata>
     </info>
