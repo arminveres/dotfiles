@@ -9,14 +9,17 @@ local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
+local bling = require("bling")
 local dpi   = require("beautiful.xresources").apply_dpi
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
+local markup = lain.util.markup
+
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
-theme.wallpaper                                 = theme.confdir .. "/wall.png"
+--[[ theme.wallpaper                                 = theme.confdir .. "/wall.png" ]]
 theme.font                                      = "JetBrainsMono Nerd Font 10"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
@@ -91,13 +94,39 @@ theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
-local markup = lain.util.markup
+-- playerctl signal
+theme.playerctl_backend                              = "playerctl_lib" -- backend to use
+theme.playerctl_ignore                               = { "firefox" } -- list of players to be ignored
+theme.playerctl_player                               = {} -- list of players to be used in priority order
+theme.playerctl_update_on_activity                   = true -- whether to prioritize the most recently active players or not
+theme.playerctl_position_update_interval             = 1 -- the update interval for fetching the position from playerctl
+-- tab switcher
+theme.window_switcher_widget_bg                      = "NONE" -- The bg color of the widget
+theme.window_switcher_widget_border_width            = 1 -- The border width of the widget
+theme.window_switcher_widget_border_radius           = 10 -- The border radius of the widget
+theme.window_switcher_widget_border_color            = "#fb4934" -- The border color of the widget
+theme.window_switcher_clients_spacing                = 20 -- The space between each client item
+theme.window_switcher_client_icon_horizontal_spacing = 5 -- The space between client icon and text
+theme.window_switcher_client_width                   = 150 -- The width of one client widget
+theme.window_switcher_client_height                  = 250 -- The height of one client widget
+theme.window_switcher_client_margins                 = 10 -- The margin between the content and the border of the widget
+theme.window_switcher_thumbnail_margins              = 10 -- The margin between one client thumbnail and the rest of the widget
+theme.thumbnail_scale                                = false -- If set to true, the thumbnails fit policy will be set to "fit" instead of "auto"
+theme.window_switcher_name_margins                   = 10 -- The margin of one clients title to the rest of the widget
+theme.window_switcher_name_valign                    = "center" -- How to vertically align one clients title
+theme.window_switcher_name_forced_width              = 200 -- The width of one title
+theme.window_switcher_name_font                      = theme.font -- The font of all titles
+theme.window_switcher_name_normal_color              = "#ffffff" -- The color of one title if the client is unfocused
+theme.window_switcher_name_focus_color               = "#ff0000" -- The color of one title if the client is focused
+theme.window_switcher_icon_valign                    = "center" -- How to vertically align the one icon
+theme.window_switcher_icon_width                     = 40 -- The width of one icon
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") ..
-    markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(
+    markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M ")
+)
 mytextclock.font = theme.font
 
 -- Calendar
@@ -230,33 +259,28 @@ local memory = lain.widget.mem({
     end
 })
 
--- MPD
-local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        mpd_notification_preset = {
-            text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
-                mpd_now.album, mpd_now.date, mpd_now.title)
-        }
+-- PlayerCTL
+local playerctl_widget = wibox.widget {
+    markup = "",
+    align = 'center',
+    valign = 'center',
+    font = theme.font,
+    widget = wibox.widget.textbox,
+}
+-- Get Song Info
+local playerctl = bling.signal.playerctl.lib()
+playerctl:connect_signal("metadata",
+    function(_, title, artist, album_path, album, new, player_name)
+        -- Set art widget
+        --[[ art:set_image(gears.surface.load_uncached(album_path)) ]]
 
-        if mpd_now.state == "play" then
-            artist = mpd_now.artist .. " > "
-            title  = mpd_now.title .. " "
-            mpdicon:set_image(theme.widget_note_on)
-        elseif mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
-        else
-            artist                 = ""
-            title                  = ""
-            --mpdicon:set_image() -- not working in 4.0
-            mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
+        -- Set player name, title and artist widgets
+        if player_name == "spotify" then
+            player_name = " "
         end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
-    end
-})
+        playerctl_widget:set_markup(markup.fontfg(theme.font, "#e0da37", player_name .. " " .. title .. " - " .. artist))
+    end)
+
 
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
@@ -300,18 +324,17 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            --s.mylayoutbox,
+            s.mylayoutbox,
+            space,
             s.mytaglist,
             s.mypromptbox,
-            mpdicon,
-            theme.mpd.widget,
         },
         --s.mytasklist, -- Middle widget
         {
             layout = wibox.layout.flex.horizontal,
-            max_widget_size = 1500,
-            wibox.widget.textbox(" "),
-            mytextclock,
+            --[[ max_widget_size = 1500, ]]
+            --[[ wibox.widget.textbox(" "), ]]
+            wibox.container.place(mytextclock, "center"),
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
@@ -321,8 +344,6 @@ function theme.at_screen_connect(s)
             netdowninfo,
             netupicon,
             netupinfo.widget,
-            volicon,
-            theme.volume.widget,
             memicon,
             memory.widget,
             cpuicon,
@@ -353,8 +374,11 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             space,
+            playerctl_widget,
+            space,
+            volicon,
+            theme.volume.widget,
             layout = wibox.layout.fixed.horizontal,
-            s.mylayoutbox,
         },
     }
 end

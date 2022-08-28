@@ -69,6 +69,7 @@ local function run_once(cmd_arr)
         awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
     end
 end
+
 -- or use universal shell script
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
@@ -228,17 +229,17 @@ end)
 -- {{{ Screen
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", function(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end)
+--[[ screen.connect_signal("property::geometry", function(s) ]]
+--[[     -- Wallpaper ]]
+--[[     if beautiful.wallpaper then ]]
+--[[         local wallpaper = beautiful.wallpaper ]]
+--[[         -- If wallpaper is a function, call it with the screen ]]
+--[[         if type(wallpaper) == "function" then ]]
+--[[             wallpaper = wallpaper(s) ]]
+--[[         end ]]
+--[[         gears.wallpaper.maximized(wallpaper, s, true) ]]
+--[[     end ]]
+--[[ end) ]]
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal("arrange", function(s)
@@ -275,7 +276,7 @@ bling.widget.window_switcher.enable({
     vim_next_key = 'l', -- Alternative key on which to select the next client
 
     cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
-    filterClients = awful.widget.tasklist.filter.alltags, -- The function to filter the viewed clients
+    --[[ filterClients = awful.widget.tasklist.filter.alltags, -- The function to filter the viewed clients ]]
 })
 
 -- {{{ Mouse bindings
@@ -576,12 +577,16 @@ local globalkeys = mytable.join(
     -- Audio
     awful.key({}, 'XF86AudioRaiseVolume', function()
         awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ +5%')
+
+        beautiful.volume.update()
     end, { description = 'Raise Volume', group = 'audio' }),
     awful.key({}, 'XF86AudioLowerVolume', function()
         awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%')
+        beautiful.volume.update()
     end, { description = 'Lower Volume', group = 'audio' }),
     awful.key({}, 'XF86AudioMute', function()
         awful.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')
+        beautiful.volume.update()
     end, { description = 'Toggle Mute', group = 'audio' }),
     awful.key({}, 'XF86AudioMicMute', function()
         awful.spawn('pactl set-source-mute @DEFAULT_SOURCE@')
