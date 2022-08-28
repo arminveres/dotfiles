@@ -1,0 +1,9 @@
+[submodule "dotfiles/awesome/.config/awesome/bling"]
+	path = dotfiles/awesome/.config/awesome/bling
+	url = https://github.com/BlingCorp/bling.git
+[submodule "dotfiles/awesome/.config/awesome/lain"]
+	path = dotfiles/awesome/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git
+[submodule "dotfiles/awesome/.config/awesome/freedesktop"]
+	path = dotfiles/awesome/.config/awesome/freedesktop
+	url = https://github.com/lcpz/awesome-freedesktop.git
