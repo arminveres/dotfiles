@@ -73,8 +73,6 @@ local function lsp_keymaps(bufnr)
   -- keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   -- keymap(bufnr, 'n', '<leader>qf', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-  -- BUG: Following does not work, when no 'LSP' is installed, even when Null-LS is running
-  keymap(bufnr, 'n', '<space>bf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 

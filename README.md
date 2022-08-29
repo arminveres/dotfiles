@@ -1,20 +1,20 @@
 # dotconf-files
 
-![Setup](./misc/docs/i3-gaps-neovim-sioyek.jpg)
+![2022-08-29_20-17](https://user-images.githubusercontent.com/45210978/187270554-45283e6f-1880-4ac6-acb0-62151d07dc6b.png)
 
 ## Description
 
 Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
 
-| Type                 | Currently in use                                                                                  | Alternative |
-| -------------------- | ------------------------------------------------------------------------------------------------- | ----------- |
-| Window Manager       | i3                                                                                                | Awesome     |
-| Status bar           | Polybar                                                                                           | <!-- -->    |
-| Notifications        | dunst                                                                                             |             |
-| Shell                | zsh                                                                                               | <!-- -->    |
-| Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) | <!-- -->    |
-| Terminal Emulator    | kitty                                                                                             | Alacritty   |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config)                                                 | <!-- -->    |
+| Type                 | Currently in use                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------------- |
+| Window Manager       | AwesomeWM                                                                                         |
+| Status bar           | Polybar                                                                                           |
+| Notifications        | naughty, dunst                                                                                    |
+| Shell                | zsh                                                                                               |
+| Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) |
+| Terminal Emulator    | kitty, alacritty                                                                                  |
+| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config)                                                 |
 
 ## Usage
 
@@ -33,7 +33,7 @@ GNU stow, found either preinstalled or installable on all major distributions.
 
 ## TODO
 
-- [ ] Move over to AwesomeWM
-- [ ] Add script/function to correctly handle stowing, e.g. [ansible](https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb)
-- [ ] Customize `dunst` notifications
-- [ ] Clean up `git` history
+- Add script/function to correctly handle stowing, e.g. [ansible](https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb)
+- Customize `dunst` notifications
+- Clean up `git` history, i.e. squash the first ~ 200 commits
+- Add script to install `Colloid` GTK scheme

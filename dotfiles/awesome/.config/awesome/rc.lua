@@ -88,26 +88,15 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn", -- 1
-    "copland", -- 2
-    "dremora", -- 3
-    "holo", -- 4
-    "multicolor", -- 5
-    "powerarrow", -- 6
-    "powerarrow-dark", -- 7
-    "rainbow", -- 8
-    "steamburn", -- 9
-    "vertex" -- 10
+    "default", -- 1
+    "multicolor", -- 2
 }
 
-local chosen_theme = themes[5]
+local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "kitty"
-local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
-local cycle_prev   = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
-local browser      = "librewolf"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', '7', '8', 'msg' }
@@ -139,15 +128,15 @@ awful.layout.layouts = {
     --lain.layout.termfair.center
 }
 
-lain.layout.termfair.nmaster           = 3
-lain.layout.termfair.ncol              = 1
-lain.layout.termfair.center.nmaster    = 3
-lain.layout.termfair.center.ncol       = 1
-lain.layout.cascade.tile.offset_x      = 2
-lain.layout.cascade.tile.offset_y      = 32
-lain.layout.cascade.tile.extra_padding = 5
-lain.layout.cascade.tile.nmaster       = 5
-lain.layout.cascade.tile.ncol          = 2
+--[[ lain.layout.termfair.nmaster           = 3 ]]
+--[[ lain.layout.termfair.ncol              = 1 ]]
+--[[ lain.layout.termfair.center.nmaster    = 3 ]]
+--[[ lain.layout.termfair.center.ncol       = 1 ]]
+--[[ lain.layout.cascade.tile.offset_x      = 2 ]]
+--[[ lain.layout.cascade.tile.offset_y      = 32 ]]
+--[[ lain.layout.cascade.tile.extra_padding = 5 ]]
+--[[ lain.layout.cascade.tile.nmaster       = 5 ]]
+--[[ lain.layout.cascade.tile.ncol          = 2 ]]
 
 awful.util.taglist_buttons = mytable.join(
     awful.button({}, 1, function(t) t:view_only() end),
