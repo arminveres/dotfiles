@@ -21,7 +21,7 @@ local naughty       = require("naughty")
 local lain          = require("lain")
 local freedesktop   = require("freedesktop")
 local bling         = require('bling')
-local vicious       = require('vicious') -- needed to install this via package manager
+--[[ local vicious       = require('vicious') -- needed to install this via package manager ]]
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -193,7 +193,6 @@ awful.util.mymainmenu = freedesktop.menu.build {
 }
 
 -- Hide the menu when the mouse leaves it
---[[
 awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
     if not awful.util.mymainmenu.active_child or
        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
@@ -208,7 +207,6 @@ awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
         end)
     end
 end)
---]]
 
 -- Set the Menubar terminal for applications that require it
 --menubar.utils.terminal = terminal
@@ -216,19 +214,10 @@ end)
 -- }}}
 
 -- {{{ Screen
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
---[[ screen.connect_signal("property::geometry", function(s) ]]
---[[     -- Wallpaper ]]
---[[     if beautiful.wallpaper then ]]
---[[         local wallpaper = beautiful.wallpaper ]]
---[[         -- If wallpaper is a function, call it with the screen ]]
---[[         if type(wallpaper) == "function" then ]]
---[[             wallpaper = wallpaper(s) ]]
---[[         end ]]
---[[         gears.wallpaper.maximized(wallpaper, s, true) ]]
---[[     end ]]
---[[ end) ]]
+screen.connect_signal("property::geometry", function()
+    awful.spawn.with_shell("nitrogen --restore")
+end)
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal("arrange", function(s)
@@ -244,7 +233,7 @@ end)
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
-    beautiful.at_screen_connect(s)
+    require("bars").at_screen_connect(s)
 end)
 
 -- }}}

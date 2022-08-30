@@ -22,3 +22,4 @@ run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 
 run nitrogen --restore
 
+run ~/.screenlayout/rightvert.sh

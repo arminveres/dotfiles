@@ -37,3 +37,4 @@ GNU stow, found either preinstalled or installable on all major distributions.
 - Customize `dunst` notifications
 - Clean up `git` history, i.e. squash the first ~ 200 commits
 - Add script to install `Colloid` GTK scheme
+- Add script for jonaburg picom
