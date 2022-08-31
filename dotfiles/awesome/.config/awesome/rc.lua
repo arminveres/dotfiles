@@ -21,7 +21,7 @@ local naughty       = require("naughty")
 local lain          = require("lain")
 local freedesktop   = require("freedesktop")
 local bling         = require('bling')
-local vicious       = require('vicious') -- needed to install this via package manager
+--[[ local vicious       = require('vicious') -- needed to install this via package manager ]]
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -69,6 +69,7 @@ local function run_once(cmd_arr)
         awful.spawn.with_shell(string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd))
     end
 end
+
 -- or use universal shell script
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
@@ -87,26 +88,15 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-    "blackburn", -- 1
-    "copland", -- 2
-    "dremora", -- 3
-    "holo", -- 4
-    "multicolor", -- 5
-    "powerarrow", -- 6
-    "powerarrow-dark", -- 7
-    "rainbow", -- 8
-    "steamburn", -- 9
-    "vertex" -- 10
+    "default", -- 1
+    "multicolor", -- 2
 }
 
-local chosen_theme = themes[5]
+local chosen_theme = themes[2]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "kitty"
-local vi_focus     = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
-local cycle_prev   = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor       = os.getenv("EDITOR") or "nvim"
-local browser      = "librewolf"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', '7', '8', 'msg' }
@@ -138,15 +128,15 @@ awful.layout.layouts = {
     --lain.layout.termfair.center
 }
 
-lain.layout.termfair.nmaster           = 3
-lain.layout.termfair.ncol              = 1
-lain.layout.termfair.center.nmaster    = 3
-lain.layout.termfair.center.ncol       = 1
-lain.layout.cascade.tile.offset_x      = 2
-lain.layout.cascade.tile.offset_y      = 32
-lain.layout.cascade.tile.extra_padding = 5
-lain.layout.cascade.tile.nmaster       = 5
-lain.layout.cascade.tile.ncol          = 2
+--[[ lain.layout.termfair.nmaster           = 3 ]]
+--[[ lain.layout.termfair.ncol              = 1 ]]
+--[[ lain.layout.termfair.center.nmaster    = 3 ]]
+--[[ lain.layout.termfair.center.ncol       = 1 ]]
+--[[ lain.layout.cascade.tile.offset_x      = 2 ]]
+--[[ lain.layout.cascade.tile.offset_y      = 32 ]]
+--[[ lain.layout.cascade.tile.extra_padding = 5 ]]
+--[[ lain.layout.cascade.tile.nmaster       = 5 ]]
+--[[ lain.layout.cascade.tile.ncol          = 2 ]]
 
 awful.util.taglist_buttons = mytable.join(
     awful.button({}, 1, function(t) t:view_only() end),
@@ -203,22 +193,20 @@ awful.util.mymainmenu = freedesktop.menu.build {
 }
 
 -- Hide the menu when the mouse leaves it
---[[
 awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
     if not awful.util.mymainmenu.active_child or
-       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
-       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
+        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
+            awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
         awful.util.mymainmenu:hide()
     else
         awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave",
-        function()
-            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
-                awful.util.mymainmenu:hide()
-            end
-        end)
+            function()
+                if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+                    awful.util.mymainmenu:hide()
+                end
+            end)
     end
 end)
---]]
 
 -- Set the Menubar terminal for applications that require it
 --menubar.utils.terminal = terminal
@@ -226,18 +214,9 @@ end)
 -- }}}
 
 -- {{{ Screen
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", function(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
+screen.connect_signal("property::geometry", function()
+    awful.spawn.with_shell("nitrogen --restore")
 end)
 
 -- No borders when rearranging only 1 non-floating or maximized client
@@ -254,7 +233,7 @@ end)
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
-    beautiful.at_screen_connect(s)
+    require("bars").at_screen_connect(s)
 end)
 
 -- }}}
@@ -275,7 +254,7 @@ bling.widget.window_switcher.enable({
     vim_next_key = 'l', -- Alternative key on which to select the next client
 
     cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
-    filterClients = awful.widget.tasklist.filter.alltags, -- The function to filter the viewed clients
+    --[[ filterClients = awful.widget.tasklist.filter.alltags, -- The function to filter the viewed clients ]]
 })
 
 -- {{{ Mouse bindings
@@ -330,6 +309,20 @@ local globalkeys = mytable.join(
         { description = "view next", group = "tag" }),
     awful.key({ modkey, }, "Escape", awful.tag.history.restore,
         { description = "go back", group = "tag" }),
+
+    awful.key({ modkey, altkey }, "Escape", function()
+        local locker = "i3lock -c 000000 && xset dpms force off"
+        awful.menu({
+            { "Powermenu" },
+            { "&l lock", function() awful.spawn.with_shell(locker) end },
+            { "&e quit", function() awesome.quit() end },
+            { "&s suspend", function() awful.spawn.with_shell(locker .. " && systemctl suspend") end },
+            { "&h hibernate", function() awful.spawn.with_shell(locker .. " && systemctl hibernate") end },
+            { "&r reboot", function() awful.spawn.with_shell("systemctl reboot") end },
+            { "&p poweroff", function() awful.spawn.with_shell("systemctl poweroff") end },
+        }):toggle()
+    end,
+        { description = "get powermenu", group = "awesome" }),
 
     -- Non-empty tag browsing
     awful.key({ altkey }, "Left", function() lain.util.tag_view_nonempty(-1) end,
@@ -576,12 +569,16 @@ local globalkeys = mytable.join(
     -- Audio
     awful.key({}, 'XF86AudioRaiseVolume', function()
         awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ +5%')
+
+        beautiful.volume.update()
     end, { description = 'Raise Volume', group = 'audio' }),
     awful.key({}, 'XF86AudioLowerVolume', function()
         awful.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%')
+        beautiful.volume.update()
     end, { description = 'Lower Volume', group = 'audio' }),
     awful.key({}, 'XF86AudioMute', function()
         awful.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')
+        beautiful.volume.update()
     end, { description = 'Toggle Mute', group = 'audio' }),
     awful.key({}, 'XF86AudioMicMute', function()
         awful.spawn('pactl set-source-mute @DEFAULT_SOURCE@')

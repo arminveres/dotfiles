@@ -35,6 +35,11 @@ require('packer').startup({
         config = require('user.plugins.autopairs'),
       },
       {
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = require("user.plugins.surround")
+      },
+      {
         'akinsho/toggleterm.nvim', -- custom terminal for neovim
         config = require('user.plugins.toggleterm'),
       },
@@ -113,6 +118,10 @@ require('packer').startup({
         'stevearc/dressing.nvim',
         config = require('user.plugins.dressing')
       },
+      {
+        'python-rope/ropevim',
+        ft = "python"
+      }
     })
 
     use({ -- markdown preview plugin, very nice!

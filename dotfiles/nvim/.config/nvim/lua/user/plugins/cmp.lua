@@ -121,7 +121,7 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help' },
     { name = 'path' },
     { name = 'dictionary', keyword_length = 2 },
-    { name = 'rg' },
+    --[[ { name = 'rg' }, ]]
     { name = 'buffer' },
     { name = 'spell' },
   }),

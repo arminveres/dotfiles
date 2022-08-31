@@ -1,4 +1,2 @@
-## TODO:
-- [ ] Add custom keybinds
-- [ ] Add custom theme
-- [ ] Add gaps
+# TODO:
+- export keybinds to file
