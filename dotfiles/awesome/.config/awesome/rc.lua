@@ -195,16 +195,16 @@ awful.util.mymainmenu = freedesktop.menu.build {
 -- Hide the menu when the mouse leaves it
 awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
     if not awful.util.mymainmenu.active_child or
-       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
-       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
+        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
+            awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
         awful.util.mymainmenu:hide()
     else
         awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave",
-        function()
-            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
-                awful.util.mymainmenu:hide()
-            end
-        end)
+            function()
+                if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+                    awful.util.mymainmenu:hide()
+                end
+            end)
     end
 end)
 
@@ -309,6 +309,20 @@ local globalkeys = mytable.join(
         { description = "view next", group = "tag" }),
     awful.key({ modkey, }, "Escape", awful.tag.history.restore,
         { description = "go back", group = "tag" }),
+
+    awful.key({ modkey, altkey }, "Escape", function()
+        local locker = "i3lock -c 000000 && xset dpms force off"
+        awful.menu({
+            { "Powermenu" },
+            { "&l lock", function() awful.spawn.with_shell(locker) end },
+            { "&e quit", function() awesome.quit() end },
+            { "&s suspend", function() awful.spawn.with_shell(locker .. " && systemctl suspend") end },
+            { "&h hibernate", function() awful.spawn.with_shell(locker .. " && systemctl hibernate") end },
+            { "&r reboot", function() awful.spawn.with_shell("systemctl reboot") end },
+            { "&p poweroff", function() awful.spawn.with_shell("systemctl poweroff") end },
+        }):toggle()
+    end,
+        { description = "get powermenu", group = "awesome" }),
 
     -- Non-empty tag browsing
     awful.key({ altkey }, "Left", function() lain.util.tag_view_nonempty(-1) end,

@@ -43,15 +43,16 @@ theme.weather = lain.widget.weather({
 --]]
 
 -- / fs
---[[ commented because it needs Gio/Glib >= 2.54
-local fsicon = wibox.widget.imagebox(theme.widget_fs)
+--[[ commented because it needs Gio/Glib >= 2.54 ]]
+--[[ local fsicon = wibox.widget.imagebox(theme.widget_fs) ]]
 theme.fs = lain.widget.fs({
-    notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
-    settings  = function()
-        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", string.format("%.1f", fs_now["/"].used) .. "% "))
+    timeout             = 60,
+    notification_preset = { font = theme.font, fg = theme.fg_normal },
+    settings            = function()
+        widget:set_markup(markup.fontfg(theme.font, "#80d9d8",
+            string.format(" %.1f", fs_now["/"].percentage) .. "% "))
     end
 })
---]]
 
 -- Mail IMAP check
 --[[ to be set before use
@@ -104,16 +105,18 @@ local temp_widget = lain.widget.temp({
 })
 
 -- Battery
-local baticon = wibox.widget.imagebox(theme.widget_batt)
+--[[ local baticon = wibox.widget.imagebox(theme.widget_batt) ]]
 local bat = lain.widget.bat({
     settings = function()
-        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
+        if bat_now.perc == "N/A" then
+            return
+        end
 
+        local perc = bat_now.perc ~= "N/A" and bat_now.perc .. "%" or bat_now.perc
         if bat_now.ac_status == 1 then
             perc = perc .. " plug"
         end
-
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "" .. perc .. " "))
     end
 })
 
@@ -152,10 +155,16 @@ local netupinfo = lain.widget.net({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M " .. mem_now.perc .. "% "))
+        local mem_gb
+        if mem_now.used >= 1000 then
+            mem_gb = string.format("%.1fG ", mem_now.used / 1000)
+        else
+            mem_gb = mem_now.used .. " M "
+        end
+        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_gb .. mem_now.perc .. "% "))
     end
 })
---[[ 
+
 -- PlayerCTL
 local playerctl_widget = wibox.widget {
     markup = "",
@@ -164,17 +173,24 @@ local playerctl_widget = wibox.widget {
     font = theme.font,
     widget = wibox.widget.textbox,
 }
--- Get Song Info
-local playerctl = bling.signal.playerctl.lib()
-playerctl:connect_signal("metadata",
-    function(_, title, artist, album_path, album, new, player_name)
-        -- Set player name, title and artist widgets
-        if player_name == "spotify" then
-            player_name = " "
+
+-- call the lib with protective wrapper, otherwise it crashes the config
+local pctl_ok, playerctl = pcall(bling.signal.playerctl.lib)
+if pctl_ok then
+    -- Get Song Info
+    --[[ local playerctl = bling.signal.playerctl.lib() ]]
+    playerctl:connect_signal("metadata",
+        function(_, title, artist, album_path, album, new, player_name)
+            -- Set player name, title and artist widgets
+            if player_name == "spotify" then
+                player_name = " "
+            end
+            playerctl_widget:set_markup(markup.fontfg(theme.font, "#e0da37",
+                player_name .. " " .. title .. " - " .. artist))
         end
-        playerctl_widget:set_markup(markup.fontfg(theme.font, "#e0da37", player_name .. " " .. title .. " - " .. artist))
-    end)
- ]]
+    )
+end
+
 
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
@@ -243,13 +259,11 @@ M.at_screen_connect = function(s)
             memory.widget,
             cpuicon,
             cpu.widget,
-            --fsicon,
-            --theme.fs.widget,
+            theme.fs.widget,
             --weathericon,
             --theme.weather.widget,
             tempicon,
             temp_widget.widget,
-            baticon,
             bat.widget,
         },
     }
@@ -269,7 +283,7 @@ M.at_screen_connect = function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             space,
-            --[[ playerctl_widget, ]]
+            playerctl_widget,
             space,
             volicon,
             theme.volume.widget,
