@@ -1,6 +1,3 @@
-# specific folders
-**/zsh/plugins/
-
 # specific files
 **/zsh_history
 tags
