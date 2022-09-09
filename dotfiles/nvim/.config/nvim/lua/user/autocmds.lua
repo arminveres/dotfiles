@@ -1,4 +1,5 @@
 local aucmd = vim.api.nvim_create_autocmd
+local create_augroup = vim.api.nvim_create_augroup
 
 aucmd({ 'BufRead,BufNewFile' }, { pattern = { '*.frag,*.vert' }, command = ':set filetype=glsl' })
 aucmd({ 'BufRead,BufNewFile' }, {
@@ -16,3 +17,9 @@ aucmd({ 'TextYankPost' }, {
     vim.highlight.on_yank()
   end,
 })
+
+create_augroup('TrailingSpace', { clear = false })
+aucmd(
+  { 'VimEnter,WinEnter' },
+  { pattern = 'defx', group = 'TrailingSpace', command = 'highlight clear TrailingSpaces' }
+)

@@ -175,6 +175,7 @@ require('packer').startup({
       requires = {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'nvim-treesitter/nvim-treesitter-refactor',
+        'nvim-treesitter/nvim-treesitter-context',
       },
       config = require('user.plugins.treesitter'),
     })
@@ -210,7 +211,8 @@ require('packer').startup({
 
     use({
       'glepnir/lspsaga.nvim',
-      branch = 'main',
+      --[[ branch = 'main', ]]
+      commit = '82db9108a30325cfce5b95ae4c9286f1d6b4442c',
       config = require('user.plugins.lspsaga'),
     })
 
