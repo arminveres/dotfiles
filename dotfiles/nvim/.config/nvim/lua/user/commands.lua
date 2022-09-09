@@ -3,3 +3,4 @@
 -- vim.cmd('hi! CursorColumn guibg=#202021')
 -- vim.cmd('hi! CursorLine guibg=#202021')
 -- vim.cmd('hi! link PMenu Normal') -- use link, for less repetition
+vim.cmd([[highlight link TrailingSpaces Error | match TrailingSpaces /\s\+$/]])

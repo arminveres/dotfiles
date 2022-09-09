@@ -28,16 +28,20 @@ require('packer').startup({
     use({
       'wbthomason/packer.nvim', -- Package manager
       'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
-      'williamboman/nvim-lsp-installer', -- installer for lsps
+      {
+        'williamboman/mason.nvim', -- installer for lsps
+        config = require("mason").setup(),
+      },
+      'williamboman/mason-lspconfig.nvim',
       'jose-elias-alvarez/null-ls.nvim', -- Null LS
       {
         'windwp/nvim-autopairs', -- Autopairs {}, [], () etc
         config = require('user.plugins.autopairs'),
       },
       {
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = require("user.plugins.surround")
+        'kylechui/nvim-surround',
+        tag = '*', -- Use for stability; omit to use `main` branch for the latest features
+        config = require('user.plugins.surround'),
       },
       {
         'akinsho/toggleterm.nvim', -- custom terminal for neovim
@@ -45,7 +49,7 @@ require('packer').startup({
       },
       {
         'akinsho/bufferline.nvim', -- tabline replacement
-        tag = "v2.*",
+        tag = 'v2.*',
         config = require('user.plugins.bufferline'),
       },
       {
@@ -116,12 +120,12 @@ require('packer').startup({
       },
       {
         'stevearc/dressing.nvim',
-        config = require('user.plugins.dressing')
+        config = require('user.plugins.dressing'),
       },
       {
         'python-rope/ropevim',
-        ft = "python"
-      }
+        ft = 'python',
+      },
     })
 
     use({ -- markdown preview plugin, very nice!
@@ -136,13 +140,13 @@ require('packer').startup({
     use({ -- colorschemes TODO: just write my own colorscheme based on gruvbox...
       'ellisonleao/gruvbox.nvim',
       'rebelot/kanagawa.nvim',
-      'Mofiqul/vscode.nvim',
-      'projekt0n/github-nvim-theme',
-      'tanvirtin/monokai.nvim',
-      'marko-cerovac/material.nvim',
-      'navarasu/onedark.nvim',
-      'Murtaza-Udaipurwala/gruvqueen',
-      'Shatur/neovim-ayu',
+      --[[ 'Mofiqul/vscode.nvim', ]]
+      --[[ 'projekt0n/github-nvim-theme', ]]
+      --[[ 'tanvirtin/monokai.nvim', ]]
+      --[[ 'marko-cerovac/material.nvim', ]]
+      --[[ 'navarasu/onedark.nvim', ]]
+      --[[ 'Murtaza-Udaipurwala/gruvqueen', ]]
+      --[[ 'Shatur/neovim-ayu', ]]
     })
 
     use({ -- vimscript plugins
@@ -175,6 +179,7 @@ require('packer').startup({
       requires = {
         'nvim-treesitter/nvim-treesitter-textobjects',
         'nvim-treesitter/nvim-treesitter-refactor',
+        'nvim-treesitter/nvim-treesitter-context',
       },
       config = require('user.plugins.treesitter'),
     })
@@ -193,7 +198,7 @@ require('packer').startup({
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-cmdline',
-        "lukas-reineke/cmp-rg",
+        'lukas-reineke/cmp-rg',
         {
           'petertriho/cmp-git',
           config = require('user.plugins.cmp-git'),
@@ -210,7 +215,8 @@ require('packer').startup({
 
     use({
       'glepnir/lspsaga.nvim',
-      branch = 'main',
+      --[[ branch = 'main', ]]
+      commit = '82db9108a30325cfce5b95ae4c9286f1d6b4442c',
       config = require('user.plugins.lspsaga'),
     })
 
