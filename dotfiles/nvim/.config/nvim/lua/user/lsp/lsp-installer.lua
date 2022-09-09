@@ -1,31 +1,13 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not status_ok then
   return
 end
 
 local settings = {
-  ensure_installed = {
-    "sumneko_lua",
-    "marksman",
-    "bashls",
-  },
-  ui = {
-    icons = {},
-    keymaps = {
-      toggle_server_expand = "<CR>",
-      install_server = "i",
-      update_server = "u",
-      check_server_version = "c",
-      update_all_servers = "U",
-      check_outdated_servers = "C",
-      uninstall_server = "X",
-    },
-  },
-
-  log_level = vim.log.levels.INFO,
+  -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
-
-lsp_installer.setup(settings)
+--[[ lsp_installer.setup(settings) ]]
+lsp_installer.setup()
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -60,15 +42,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", bashls_opts, opts)
   end
 
-  -- BUG: this stopped working
-  -- if server == "arduino_language_server" then
-  --   opts.on_new_config = function(config, root_dir)
-  --     local partial_cmd = server:get_default_options().cmd
-  --     local MY_FQBN = "arduino:avr:nano"
-  --     config.cmd = vim.list_extend(partial_cmd, { "-fqbn", MY_FQBN })
-  --   end
-  -- end
-
   if server.name == "ltex" then
     local ltex_opts = require("user.lsp.settings.ltex")
     opts = vim.tbl_deep_extend("force", ltex_opts, opts)
@@ -84,7 +57,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     goto continue
   end
 
-  lspconfig[server.name].setup(opts)
+  lspconfig[server].setup(opts)
 
   ::continue::
 end
