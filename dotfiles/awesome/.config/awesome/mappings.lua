@@ -119,9 +119,12 @@ M.globalkeys = M.mytable.join(
     awful.key({ modkey, }, "w", function() awful.util.mymainmenu:show() end,
         { description = "show main menu", group = "awesome" }),
 
+    -- awful.key({ modkey }, 'Tab', function()
+    --     awesome.emit_signal('bling::window_switcher::turn_on')
+    -- end, { description = 'Window Switcher', group = 'bling' }),
     awful.key({ modkey }, 'Tab', function()
-        awesome.emit_signal('bling::window_switcher::turn_on')
-    end, { description = 'Window Switcher', group = 'bling' }),
+        awful.spawn.with_shell('rofi -show window')
+    end, { description = 'Window Switcher', group = 'rofi' }),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
