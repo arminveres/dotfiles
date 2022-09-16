@@ -47,6 +47,11 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
     opts = vim.tbl_deep_extend("force", ltex_opts, opts)
   end
 
+  if server.name == "rust-analyzer" then
+    local rust_opts = require("user.lsp.settings.rust")
+    opts = vim.tbl_deep_extend("force", rust_opts, opts)
+  end
+
   if server.name == "clangd" then
     local clangd_opts = require('user.lsp.settings.clangd').server
     opts = vim.tbl_deep_extend('force', clangd_opts, opts)
