@@ -28,10 +28,7 @@ require('packer').startup({
     use({
       'wbthomason/packer.nvim', -- Package manager
       'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
-      {
-        'williamboman/mason.nvim', -- installer for lsps
-        config = require("mason").setup(),
-      },
+      'williamboman/mason.nvim', -- installer for lsps
       'williamboman/mason-lspconfig.nvim',
       'jose-elias-alvarez/null-ls.nvim', -- Null LS
       {
@@ -72,7 +69,6 @@ require('packer').startup({
         'lewis6991/spellsitter.nvim', -- enhances neovim spellchecker with treesitter
         config = require('user.plugins.spellsitter'),
       },
-      'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
       {
         'folke/todo-comments.nvim', -- highlight and search for todo comments like
         config = require('user.plugins.todo'),
@@ -81,7 +77,6 @@ require('packer').startup({
         'folke/which-key.nvim', -- displays a popup with possible key bindings
         config = require('user.plugins.whichkey'),
       },
-      'norcalli/nvim-terminal.lua',
       {
         'kyazdani42/nvim-tree.lua', -- Replacement for Netrw
         config = require('user.plugins.nvim-tree'),
@@ -89,11 +84,14 @@ require('packer').startup({
       {
         'numToStr/Comment.nvim', -- Comment out code easily
         config = require('user.plugins.comment'),
+        requires = {
+          'JoosepAlviste/nvim-ts-context-commentstring', -- better context aware commenting
+        },
       },
       'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
       'p00f/nvim-ts-rainbow', -- rainbow parenthesis
-      'p00f/godbolt.nvim', -- compile explorer in nvim
-      'RRethy/vim-illuminate', -- illuminate work under cursor
+      --[[ 'p00f/godbolt.nvim', -- compile explorer in nvim ]]
+      'RRethy/vim-illuminate', -- illuminate word under cursor
       {
         'ziontee113/color-picker.nvim', -- color picker
         config = require('user.plugins.colorpicker'),
@@ -122,10 +120,15 @@ require('packer').startup({
         'stevearc/dressing.nvim',
         config = require('user.plugins.dressing'),
       },
+      -- {
+      --   'python-rope/ropevim',
+      --   ft = 'python',
+      -- },
       {
-        'python-rope/ropevim',
-        ft = 'python',
+        'simrat39/desktop-notify.nvim',
+        run = require('desktop-notify').override_vim_notify(),
       },
+      'ThePrimeagen/harpoon',
     })
 
     use({ -- markdown preview plugin, very nice!
@@ -140,13 +143,13 @@ require('packer').startup({
     use({ -- colorschemes TODO: just write my own colorscheme based on gruvbox...
       'ellisonleao/gruvbox.nvim',
       'rebelot/kanagawa.nvim',
-      --[[ 'Mofiqul/vscode.nvim', ]]
-      --[[ 'projekt0n/github-nvim-theme', ]]
-      --[[ 'tanvirtin/monokai.nvim', ]]
-      --[[ 'marko-cerovac/material.nvim', ]]
-      --[[ 'navarasu/onedark.nvim', ]]
-      --[[ 'Murtaza-Udaipurwala/gruvqueen', ]]
-      --[[ 'Shatur/neovim-ayu', ]]
+      -- 'Mofiqul/vscode.nvim',
+      -- 'projekt0n/github-nvim-theme',
+      -- 'tanvirtin/monokai.nvim',
+      -- 'marko-cerovac/material.nvim',
+      -- 'navarasu/onedark.nvim',
+      -- 'Murtaza-Udaipurwala/gruvqueen',
+      -- 'Shatur/neovim-ayu',
     })
 
     use({ -- vimscript plugins
@@ -167,7 +170,6 @@ require('packer').startup({
       requires = {
         'nvim-lua/plenary.nvim',
         'kyazdani42/nvim-web-devicons',
-        -- 'aloussase/telescope-gradle.nvim', -- A telescope extension to run gradle tasks NOTE: got removed
         'jvgrootveld/telescope-zoxide', -- allows you operate zoxide within Neovim
       },
       config = require('user.plugins.telescope'),
@@ -215,7 +217,7 @@ require('packer').startup({
 
     use({
       'glepnir/lspsaga.nvim',
-      --[[ branch = 'main', ]]
+      -- branch = 'main',
       commit = '82db9108a30325cfce5b95ae4c9286f1d6b4442c',
       config = require('user.plugins.lspsaga'),
     })

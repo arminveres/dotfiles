@@ -411,15 +411,11 @@ awful.rules.rules = {
         properties = { screen = 1, tag = awful.util.tagnames[2] },
     },
     {
-        rule = { class = 'Blueman-manager' },
+        rule_any = { class = { 'Blueman-manager', 'Spotify' } },
         properties = { tag = awful.util.tagnames[4] },
     },
     {
-        rule = { class = 'Spotify' },
-        properties = { tag = awful.util.tagnames[4] },
-    },
-    {
-        rule = { class = 'Geary' },
+        rule_any = { class = { 'Geary', 'thunderbird', 'mail' } },
         properties = { tag = awful.util.tagnames[5] },
     },
     {
@@ -431,7 +427,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[8] },
     },
     {
-        rule = { class = 'Signal' },
+        rule_any = { class = { 'discord', 'Signal' } },
         properties = { tag = awful.util.tagnames[9] },
     },
 }

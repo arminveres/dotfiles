@@ -1,3 +1,13 @@
+local mason_ok, mason = pcall(require, 'mason')
+if not mason_ok then
+  vim.notify('mason not ok')
+  return
+end
+
+mason.setup({
+  -- add config here
+})
+
 local status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not status_ok then
   return
@@ -6,8 +16,7 @@ end
 local settings = {
   -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
---[[ lsp_installer.setup(settings) ]]
-lsp_installer.setup()
+lsp_installer.setup({})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
