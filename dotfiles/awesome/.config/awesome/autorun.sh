@@ -15,11 +15,15 @@ run blueman-manager
 run corectrl
 run nm-applet
 run pasystray
+run nitrogen --restore
 run xrandr --output DisplayPort-1 --primary --mode 3440x1440 --rate 144
 run xrandr --output HDMI-A-0 --mode 1920x1080 --rate 70 --right-of DisplayPort-1 --rotate right
 run xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 
-run nitrogen --restore
-
-run ~/.screenlayout/rightvert.sh
+# Laptop/Notebook specific settings
+if [[ ! -z `uname --nodename | grep notebook` ]]; then
+  setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
+  xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
+  xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
+fi

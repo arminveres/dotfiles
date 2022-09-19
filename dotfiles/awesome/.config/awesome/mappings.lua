@@ -119,12 +119,12 @@ M.globalkeys = M.mytable.join(
     awful.key({ modkey, }, "w", function() awful.util.mymainmenu:show() end,
         { description = "show main menu", group = "awesome" }),
 
-    -- awful.key({ modkey }, 'Tab', function()
-    --     awesome.emit_signal('bling::window_switcher::turn_on')
-    -- end, { description = 'Window Switcher', group = 'bling' }),
     awful.key({ modkey }, 'Tab', function()
+        awesome.emit_signal('bling::window_switcher::turn_on')
+    end, { description = 'Workspace local window switcher', group = 'client' }),
+    awful.key({ altkey }, 'Tab', function()
         awful.spawn.with_shell('rofi -show window')
-    end, { description = 'Window Switcher', group = 'rofi' }),
+    end, { description = 'Global window switcher', group = 'client' }),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
@@ -234,11 +234,6 @@ M.globalkeys = M.mytable.join(
     end, { description = 'rofi app launcher', group = 'awesome' }),
 
     --[[
-    -- Screen brightness
-    awful.key({}, "XF86MonBrightnessUp", function() os.execute("xbacklight -inc 10") end,
-        { description = "+10%", group = "hotkeys" }),
-    awful.key({}, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 10") end,
-        { description = "-10%", group = "hotkeys" }),
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function()
@@ -340,11 +335,19 @@ M.globalkeys = M.mytable.join(
     end, { description = 'Previous', group = 'media' }),
 
     -- Display brightness
+    -- TODO: Add check for laptop
+    -- awful.key({}, 'XF86MonBrightnessUp', function()
+    --     awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
+    -- end, { description = 'Increase brightness on main display', group = 'display' }),
+    -- awful.key({}, 'XF86MonBrightnessDown', function()
+    --     awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
+    -- end, { description = 'Decrease brightness on main display', group = 'display' }),
+
     awful.key({}, 'XF86MonBrightnessUp', function()
-        awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
+        awful.spawn.with_shell('light -A 5')
     end, { description = 'Increase brightness on main display', group = 'display' }),
     awful.key({}, 'XF86MonBrightnessDown', function()
-        awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
+        awful.spawn.with_shell('light -U 5')
     end, { description = 'Decrease brightness on main display', group = 'display' }),
 
     -- Copy primary to clipboard (terminals to gtk)

@@ -116,7 +116,7 @@ local bat = lain.widget.bat({
         if bat_now.ac_status == 1 then
             perc = perc .. " plug"
         end
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "" .. perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "  " .. perc .. " "))
     end
 })
 
