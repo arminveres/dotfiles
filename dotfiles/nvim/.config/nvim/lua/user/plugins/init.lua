@@ -126,7 +126,7 @@ require('packer').startup({
       -- },
       {
         'simrat39/desktop-notify.nvim',
-        run = require('desktop-notify').override_vim_notify(),
+        -- run = require('desktop-notify').override_vim_notify(),
       },
       'ThePrimeagen/harpoon',
     })
