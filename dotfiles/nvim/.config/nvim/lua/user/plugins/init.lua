@@ -217,8 +217,8 @@ require('packer').startup({
 
     use({
       'glepnir/lspsaga.nvim',
-      -- branch = 'main',
-      commit = '82db9108a30325cfce5b95ae4c9286f1d6b4442c',
+      branch = 'main',
+      -- commit = '82db9108a30325cfce5b95ae4c9286f1d6b4442c',
       config = require('user.plugins.lspsaga'),
     })
 
