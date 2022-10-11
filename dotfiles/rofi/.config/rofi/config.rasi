@@ -3,86 +3,13 @@ configuration {
   display-window: "Windows:";
   drun-display-format: "{name}";
   font: "JetBrainsMono Nerd Font Medium 10";
-  modi: "window,run,drun";
-  // modi: "scratchpad:~/gitfiles/Dependencies/rofi_i3_scratchpad/rofi_i3_scratchpad";
+  modi: "window,drun";
   show-icons: true;
   icon-theme: "Papirus";
 }
 
 @theme "/dev/null"
+@import "~/.config/rofi/colors/black.rasi"
+@import "~/.config/rofi/style.rasi"
 
-// color definitions
-* {
-  // bg: #11121D;
-  // bg-alt: #444b6a;
-  bg: #1d2021;
-  bg-alt: #3c3836;
-
-  fg: #FFFFFF;
-  // fg-alt: #787c99;
-  fg-alt: #7c6f64;
-
-  background-color: @bg;
-  border-color: #b8bb26;
-
-  border: 0;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  spacing: 0;
-}
-
-window {
-  width: 30%;
-}
-
-element {
-  padding: 8 0;
-  text-color: @fg-alt;
-}
-
-element selected {
-  text-color: @fg;
-}
-
-element-text {
-  background-color: inherit;
-  text-color: inherit;
-  vertical-align: 0.5;
-}
-
-element-icon {
-  size: 30;
-}
-
-entry {
-  background-color: @bg-alt;
-  padding: 12;
-  text-color: @fg;
-}
-
-inputbar {
-  children: [prompt, entry];
-}
-
-listview {
-  padding: 8 12;
-  background-color: @bg;
-  columns: 1;
-  lines: 5;
-}
-
-mainbox {
-  background-color: @bg;
-  children: [inputbar, listview];
-  border: 2;
-}
-
-prompt {
-  background-color: @bg-alt;
-  enabled: true;
-  padding: 12 0 0 12;
-  text-color: @fg;
-}
-
-/* vim: ft=sass
+// vim: ft=sass

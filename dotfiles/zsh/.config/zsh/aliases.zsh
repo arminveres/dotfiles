@@ -3,22 +3,24 @@ alias visudo='sudo visudo'
 
 alias vi="nvim"
 alias vim="nvim"
-
+alias py="python3"
 alias tmux="tmux -2"
 
 # exa
-alias la="exa --long --all --header"
-alias lag="exa --long --all --header --grid --icons"
-alias lg="exa --long --header --grid --icons"
-alias ll="exa --long --header"
+alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
+alias la="exa --color=always --group-directories-first --long --all --header"
+alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
+alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
+alias ll="exa --color=always --group-directories-first --long --header"
 
 # git
 alias g="git"
 alias gb="git branch"
-alias gla="git status"
+alias gls="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 alias wt="git worktree"
+# alias gsp="git submodule foreach git pull"
 
 # aliasing coreutils
 # confirm before overwriting something

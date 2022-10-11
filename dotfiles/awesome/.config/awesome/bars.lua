@@ -45,7 +45,7 @@ theme.weather = lain.widget.weather({
 -- / fs
 --[[ commented because it needs Gio/Glib >= 2.54 ]]
 --[[ local fsicon = wibox.widget.imagebox(theme.widget_fs) ]]
-theme.fs = lain.widget.fs({
+local fs = lain.widget.fs({
     timeout             = 60,
     notification_preset = { font = theme.font, fg = theme.fg_normal },
     settings            = function()
@@ -116,7 +116,7 @@ local bat = lain.widget.bat({
         if bat_now.ac_status == 1 then
             perc = perc .. " plug"
         end
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "" .. perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, "  " .. perc .. " "))
     end
 })
 
@@ -127,7 +127,6 @@ theme.volume = lain.widget.alsa({
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
         end
-
         widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
     end
 })
@@ -178,7 +177,6 @@ local playerctl_widget = wibox.widget {
 local pctl_ok, playerctl = pcall(bling.signal.playerctl.lib)
 if pctl_ok then
     -- Get Song Info
-    --[[ local playerctl = bling.signal.playerctl.lib() ]]
     playerctl:connect_signal("metadata",
         function(_, title, artist, album_path, album, new, player_name)
             -- Set player name, title and artist widgets
@@ -189,6 +187,21 @@ if pctl_ok then
                 player_name .. " " .. title .. " - " .. artist))
         end
     )
+else -- try the cli if the lib fails
+    pctl_ok, playerctl = pcall(bling.signal.playerctl.cli)
+    if pctl_ok then
+        -- Get Song Info
+        playerctl:connect_signal("metadata",
+            function(_, title, artist, album_path, album, new, player_name)
+                -- Set player name, title and artist widgets
+                if player_name == "spotify" then
+                    player_name = " "
+                end
+                playerctl_widget:set_markup(markup.fontfg(theme.font, "#e0da37",
+                    player_name .. " " .. title .. " - " .. artist))
+            end
+        )
+    end
 end
 
 
@@ -259,7 +272,7 @@ M.at_screen_connect = function(s)
             memory.widget,
             cpuicon,
             cpu.widget,
-            theme.fs.widget,
+            fs.widget,
             --weathericon,
             --theme.weather.widget,
             tempicon,

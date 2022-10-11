@@ -36,5 +36,6 @@ GNU stow, found either preinstalled or installable on all major distributions.
 - Add script/function to correctly handle stowing, e.g. [ansible](https://medium.com/espinola-designs/manage-your-dotfiles-with-ansible-6dbedd5532bb)
 - Customize `dunst` notifications
 - Clean up `git` history, i.e. squash the first ~ 200 commits
-- Add script to install `Colloid` GTK scheme
-- Add script for jonaburg picom
+- Ansible
+    - Add script to install `Colloid` GTK scheme
+    - Add script for jonaburg picom

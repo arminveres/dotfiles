@@ -31,7 +31,6 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
   view = {
     adaptive_size = true,  -- adapt opened size to show files, that would be hidden otherwise
     width = 30,
-    height = 30,
     hide_root_folder = false,
     side = 'left',
     preserve_window_proportions = true, -- def: false

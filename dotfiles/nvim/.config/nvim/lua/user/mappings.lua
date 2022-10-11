@@ -1,4 +1,5 @@
 local opts = { noremap = true, silent = true }
+local remopts = { noremap = false, silent = true }
 local keymap = vim.keymap.set
 
 -- Leader --
@@ -87,8 +88,6 @@ keymap('n', '<F11>', ':set spell!<CR>', opts)
 keymap('i', '<F11><C-O>', ':set spell!<CR>', opts)
 -- replacing is done in insertmode <C-x>s
 
---Add leader shortcuts
-
 ----------------------------------------------------------------------------------------------------
 -- CLIPBOARD
 ----------------------------------------------------------------------------------------------------
@@ -102,17 +101,22 @@ keymap('n', '<Leader>w', '<Cmd>w<CR>', opts) -- quick save
 
 -- Yank to clipboard
 keymap('v', '<leader>y', '"+y', opts)
-keymap('n', '<leader>y', '"+yg_', opts)
 keymap('n', '<leader>y', '"+y', opts)
-keymap('n', '<leader>yy', '"+yy', opts)
-keymap('n', '<leader>Y', '"+Y', opts)
-
+keymap('n', '<leader>Y', '"+Y', remopts)
 -- Paste from clipboad
 keymap('n', '<leader>p', '"+p', opts)
 keymap('n', '<leader>P', '"+P', opts)
-keymap('v', '<leader>p', '"+p', opts)
-keymap('v', '<leader>P', '"+P', opts)
+--[[ keymap('v', '<leader>p', '"+p', opts) ]]
+--[[ keymap('v', '<leader>P', '"+P', opts) ]]
 
+-- delete into nirvana
+keymap('n', '<leader>d', '"_d', opts)
+keymap('v', '<leader>d', '"_d', opts)
+-- According to thePrimeagen, the greatest map ever
+keymap('x', '<leader>p', '"_dP', opts)
+
+
+--Add leader shortcuts
 ----------------------------------------------------------------------------------------------------
 -- Telescope
 ----------------------------------------------------------------------------------------------------
@@ -186,4 +190,15 @@ keymap('n', '<Leader>lr', ':LspRestart<CR>', opts)
 
 
 -- BUG: Following does not work, when no 'LSP' is installed, even when Null-LS is running
-keymap('n', '<space>bf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+keymap('n', '<space>bf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
+
+
+----------------------------------------------------------------------------------------------------
+-- Harpoon
+----------------------------------------------------------------------------------------------------
+keymap('n', "<leader>ha", function() require("harpoon.mark").add_file() end, opts)
+keymap('n', "<C-e>", function() require("harpoon.ui").toggle_quick_menu() end, opts)
+keymap('n', ";a", function() require("harpoon.ui").nav_file(1) end, opts)
+keymap('n', ";s", function() require("harpoon.ui").nav_file(2) end, opts)
+keymap('n', ";d", function() require("harpoon.ui").nav_file(3) end, opts)
+keymap('n', ";f", function() require("harpoon.ui").nav_file(4) end, opts)

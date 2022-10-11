@@ -5,7 +5,7 @@
 
 --]]
 
-local dpi   = require("beautiful.xresources").apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 local os = os
 
@@ -16,10 +16,10 @@ theme.font                                      = "JetBrainsMono Nerd Font 10"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.bg_normal                                 = "#000000"
-theme.bg_focus                                  = "#000000"
-theme.bg_urgent                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
-theme.fg_focus                                  = "#ff8c00"
+theme.bg_focus                                  = "#ff8c00"
+theme.fg_focus                                  = "#000000"
+theme.bg_urgent                                 = "#000000"
 theme.fg_urgent                                 = "#af1d18"
 theme.fg_minimize                               = "#ffffff"
 theme.border_width                              = dpi(2)

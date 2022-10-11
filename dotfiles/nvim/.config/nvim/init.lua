@@ -5,4 +5,4 @@ require('user.mappings') -- NOTE: could move this to bottom to make all mappings
 require('user.colorscheme')
 require('user.lsp')
 require('user.autocmds')
-require('user.custom-colors')
+require('user.commands')

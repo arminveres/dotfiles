@@ -1,9 +1,11 @@
 #!/bin/bash
 
-displays=$(xrandr | grep -w connected | awk '{print $1}' | rofi -dmenu -p "Select display:")
+rofi_cmd="rofi -dmenu -theme $HOME/.config/rofi/list.rasi"
+
+displays=$(xrandr | grep -w connected | awk '{print $1}' | $rofi_cmd -p "Select display:")
 
 if [[ $displays != "" ]]; then
-    status=$(printf 'on\noff\n' | rofi -dmenu -p "Change audio:")
+    status=$(printf 'on\noff\n' | $rofi_cmd -p "Change audio:")
     if [[ $status == 'off' && $displays != 'DisplayPort-1' ]]; then
         xrandr --output $displays --$status
     elif [[ $displays == 'HDMI-A-0' ]]; then

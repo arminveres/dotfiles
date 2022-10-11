@@ -43,6 +43,9 @@ set nofollowlinks
 
 set sortnumbers
 
+" Set relativenumber like in vim
+set relativenumber
+
 " Maximum number of changes that can be undone.
 
 set undolevels=100
