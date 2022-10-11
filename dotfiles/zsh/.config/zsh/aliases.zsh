@@ -3,7 +3,7 @@ alias visudo='sudo visudo'
 
 alias vi="nvim"
 alias vim="nvim"
-
+alias py="python3"
 alias tmux="tmux -2"
 
 # exa
