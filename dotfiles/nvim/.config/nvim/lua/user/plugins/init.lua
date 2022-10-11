@@ -126,7 +126,14 @@ require('packer').startup({
       -- },
       {
         'simrat39/desktop-notify.nvim',
-        -- run = require('desktop-notify').override_vim_notify(),
+        run = function()
+          local note_ok, notify = pcall(require, 'notify')
+          if not note_ok then
+            vim.notify('notify not ok')
+            return
+          end
+          notify.override_vim_notify()
+        end,
       },
       'ThePrimeagen/harpoon',
     })
