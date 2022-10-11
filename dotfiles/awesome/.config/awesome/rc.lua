@@ -356,7 +356,7 @@ awful.rules.rules = {
     },
 
     -- Floating clients.
-    rule_any = {
+    { rule_any = {
         instance = {
             'DTA', -- Firefox addon DownThemAll.
             'copyq', -- Includes session name in class.
@@ -391,8 +391,8 @@ awful.rules.rules = {
             'Network Connections',
         },
     },
-    properties = { floating = true },
-    {},
+        properties = { floating = true },
+    },
 
     -- Add titlebars to normal clients and dialogs
     {

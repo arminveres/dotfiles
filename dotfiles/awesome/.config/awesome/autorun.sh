@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# run "program [some arguments]"
 run() {
   if ! pgrep -f "$1" ;
   then
@@ -7,8 +8,9 @@ run() {
   fi
 }
 
-# run "program [some arguments]"
+setxkbmap de us
 eval $(gnome-keyring-daemon --start --login --daemonize --components=pkcs11,secrets,ssh,gpg)
+run /usr/libexec/polkit-gnome-authentication-agent-1
 run picom --daemon --experimental-backend --config ~/.config/picom/picom.conf
 run udiskie --tray --notify
 run blueman-manager
