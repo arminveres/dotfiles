@@ -83,7 +83,7 @@ M.on_attach = function(client, bufnr)
   end
 
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
+  M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)

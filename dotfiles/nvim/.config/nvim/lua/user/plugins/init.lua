@@ -138,13 +138,11 @@ require('packer').startup({
       'ThePrimeagen/harpoon',
     })
 
-    use({ -- markdown preview plugin, very nice!
+    use({ -- install without yarn or npm
       'iamcco/markdown-preview.nvim',
-      run = 'cd app && npm install',
-      setup = function()
-        vim.g.mkdp_filetypes = { 'markdown' }
+      run = function()
+        vim.fn['mkdp#util#install']()
       end,
-      ft = { 'markdown' },
     })
 
     use({ -- colorschemes TODO: just write my own colorscheme based on gruvbox...
@@ -167,6 +165,7 @@ require('packer').startup({
       'mbbill/undotree',
       'fladson/vim-kitty',
       'ron-rs/ron.vim',
+      'lervag/vimtex',
       -- 'tpope/vim-fugitive',                     -- Git commands in nvim
       -- 'tpope/vim-rhubarb',                      -- Fugitive-companion to interact with github
     })

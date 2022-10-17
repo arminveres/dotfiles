@@ -198,7 +198,7 @@ keymap('n', '<space>bf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts
 ----------------------------------------------------------------------------------------------------
 keymap('n', "<leader>ha", function() require("harpoon.mark").add_file() end, opts)
 keymap('n', "<C-e>", function() require("harpoon.ui").toggle_quick_menu() end, opts)
-keymap('n', ";a", function() require("harpoon.ui").nav_file(1) end, opts)
-keymap('n', ";s", function() require("harpoon.ui").nav_file(2) end, opts)
-keymap('n', ";d", function() require("harpoon.ui").nav_file(3) end, opts)
-keymap('n', ";f", function() require("harpoon.ui").nav_file(4) end, opts)
+keymap('n', "\\a", function() require("harpoon.ui").nav_file(1) end, opts)
+keymap('n', "\\s", function() require("harpoon.ui").nav_file(2) end, opts)
+keymap('n', "\\d", function() require("harpoon.ui").nav_file(3) end, opts)
+keymap('n', "\\f", function() require("harpoon.ui").nav_file(4) end, opts)

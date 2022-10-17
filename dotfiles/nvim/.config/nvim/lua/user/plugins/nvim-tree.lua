@@ -22,9 +22,9 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
   disable_netrw = true, -- def: false
   hijack_cursor = false,
   hijack_netrw = true,
-  hijack_unnamed_buffer_when_opening = false,
+  hijack_unnamed_buffer_when_opening = true,
   ignore_buffer_on_setup = false,
-  open_on_setup = false,
+  open_on_setup = true,
   open_on_setup_file = false,
   open_on_tab = false,
   sort_by = 'name',
@@ -125,7 +125,7 @@ nvim_tree.setup({ -- BEGIN_DEFAULT_OPTS
       restrict_above_cwd = false,
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       resize_window = true, -- default: false
       window_picker = {
         enable = true,

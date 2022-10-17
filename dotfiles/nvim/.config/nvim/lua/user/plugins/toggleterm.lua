@@ -4,7 +4,15 @@ if not status_ok then
 end
 
 toggleterm.setup({
-  size = 20,
+  size = function(term)
+    if term.direction == 'horizontal' then
+      return 15
+    elseif term.direction == 'vertical' then
+      return vim.o.columns * 0.4
+    elseif term.direction == 'tab' then
+      return 20
+    end
+  end,
   open_mapping = [[<c-\>]],
   hide_numbers = true,
   shade_filetypes = {},
@@ -13,7 +21,7 @@ toggleterm.setup({
   start_in_insert = true,
   insert_mappings = true,
   persist_size = true,
-  direction = 'tab',
+  direction = 'vertical',
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = {
