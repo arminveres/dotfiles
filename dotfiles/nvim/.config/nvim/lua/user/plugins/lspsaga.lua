@@ -63,7 +63,7 @@ saga.init_lsp_saga({
   -- show symbols in winbar must nightly
   symbol_in_winbar = {
     in_custom = false,
-    enable = false,
+    enable = true,
     separator = ' ',
     show_file = true,
     click_support = false,

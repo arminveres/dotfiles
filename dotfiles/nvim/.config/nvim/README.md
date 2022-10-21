@@ -6,3 +6,4 @@
   - [ ] leverage 'codelens'
   - [ ] install jdtls nvim
 - open telescope file picker if buffer empty
+- add `rust_tools`

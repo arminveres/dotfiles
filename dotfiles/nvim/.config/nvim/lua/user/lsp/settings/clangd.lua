@@ -1,18 +1,18 @@
 local M = {}
 
+local nproc = tonumber(vim.fn.system('nproc'))
+
 M.server = {
   cmd = {
     'clangd',
     '--background-index',
-    '--cross-file-rename',
     '--header-insertion=never',
     '--clang-tidy',
-    '-j=4',
-    '--inlay-hints',
-    '--suggest-missing-includes',
+    '-j=' .. nproc,
     '--header-insertion-decorators',
     '--all-scopes-completion',
     '--pch-storage=memory',
+    '--query-driver=/*/*/bin/*g++',
   },
 }
 
