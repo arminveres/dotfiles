@@ -9,7 +9,8 @@ run() {
 }
 
 setxkbmap de us
-eval $(gnome-keyring-daemon --start --login --daemonize --components=pkcs11,secrets,ssh,gpg)
+export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+gnome-keyring-daemon --daemonize --login
 run /usr/libexec/polkit-gnome-authentication-agent-1
 run picom --daemon --experimental-backend --config ~/.config/picom/picom.conf
 run udiskie --tray --notify
@@ -29,4 +30,5 @@ if [[ ! -z `uname --nodename | grep notebook` && -z `xinput | grep M60` ]]; then
   setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
   xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
   xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
+  run xss-lock --transfer-sleep-lock -- i3lock --nofork -c 000000 # locks screen when clising the lid
 fi
