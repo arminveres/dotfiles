@@ -1,0 +1,8 @@
+#!/bin/bash
+
+PREFIX=/usr/share/nvim/runtime/spell
+FILENAME="$1.utf-8.spl"
+
+if [[ ! -f "$PREFIX/$PREFIX" ]]; then
+	wget --no-check-certificate "https://ftp.nluug.nl/pub/vim/runtime/spell/$FILENAME" --directory-prefix $PREFIX
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+# TODO: add option for static image
+
+imglock="$HOME/Pictures/blur.png"
+rm -f $imglock
+flameshot full --path $imglock
+# maim --hidecursor --quality '10' $imglock # NOTE: maim is a bit slower than the flameshot cli
+
+# blur help page: https://www.imagemagick.org/Usage/blur/#blur_args
+convert $imglock -blur "0x8" -resize $(
+	xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/'
+) RGB:- | i3lock --raw $(
+	xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/'
+):rgb --image /dev/stdin
+
+rm -f $imglock

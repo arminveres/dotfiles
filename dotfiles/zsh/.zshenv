@@ -23,7 +23,10 @@ export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 export MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf
 
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:$PATH
+# always compile tex in a build directory
+export VIMTEX_OUTPUT_DIRECTORY=build
+
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc

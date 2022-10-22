@@ -1,7 +1,9 @@
 function convert_heic_to_jpg () {
     for file in *.(heic|HEIC);
-    do heif-convert $file ${file/%.(heic|HEIC)/.jpg};
-    done
+    do heif-convert $file ${file/%.(heic|HEIC)/.jpg}; done
+    if [[ $1 == "-d" ]]; then
+        rm *.HEIC
+    fi
 }
 
 function git_update_project_in_dir() {
