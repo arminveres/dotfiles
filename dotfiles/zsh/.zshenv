@@ -22,15 +22,18 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 export MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf
+export GOPATH="$XDG_DATA_HOME"/go
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/go/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc
 
+xrdb $XDG_CONFIG_HOME/X11/Xresources
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
