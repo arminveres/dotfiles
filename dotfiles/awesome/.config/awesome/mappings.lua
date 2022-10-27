@@ -54,7 +54,7 @@ M.globalkeys = M.mytable.join(
         { description = "go back", group = "tag" }),
 
     awful.key({ altkey }, "Escape", function()
-        local locker = "i3lock -c 000000 && xset dpms force off"
+        local locker = "i3lock-blur && xset dpms force off"
         awful.menu({
             { "Powermenu" },
             { "&l lock", function() awful.spawn.with_shell(locker) end },
