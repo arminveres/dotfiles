@@ -7,8 +7,8 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$HOME/gitfiles/Dependencies/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$ZDOTDIR/scripts/fzf-completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "$HOME/gitfiles/Dependencies/fzf/shell/key-bindings.zsh"
+source "$ZDOTDIR/scripts/fzf-keybindings.zsh"
