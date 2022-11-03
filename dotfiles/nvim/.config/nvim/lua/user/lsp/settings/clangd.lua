@@ -1,18 +1,27 @@
 local M = {}
 
-local nproc = tonumber(vim.fn.system('nproc'))
+-- @brief Returns the number of processing cores for clangd to use, default is 4
+local nproc = function()
+  local procn = tonumber(vim.fn.system('nproc'))
+  if procn == nil then
+    return 4
+  else
+    return procn
+  end
+end
 
 M.server = {
   cmd = {
     'clangd',
     '--background-index',
-    '--header-insertion=never',
+    -- '--header-insertion=never',
+    '--header-insertion=iwyu',
     '--clang-tidy',
-    '-j=' .. nproc,
+    '-j=' .. nproc(),
     '--header-insertion-decorators',
     '--all-scopes-completion',
     '--pch-storage=memory',
-    '--query-driver=/*/*/bin/*g++',
+    '--query-driver=/*/*/bin/*g++', -- NOTE: This will definitely use c++ indexing, maybe change to gcc if C specific features/indexing needed
   },
 }
 

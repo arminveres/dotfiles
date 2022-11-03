@@ -7,11 +7,21 @@ alias py="python3"
 alias tmux="tmux -2"
 
 # exa
-alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
-alias la="exa --color=always --group-directories-first --long --all --header"
-alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
-alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
-alias ll="exa --color=always --group-directories-first --long --header"
+if [[ $(command -v exa) ]]; then
+    alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
+    alias la="exa --color=always --group-directories-first --long --all --header"
+    alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
+    alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
+    alias ll="exa --color=always --group-directories-first --long --header"
+    alias tree="exa --color=always --group-directories-first --icons --tree"
+# else
+# TODO: Add simple ls aliases
+# alias ls
+# alias la
+# alias lag
+# alias lg
+# alias ll
+fi
 
 # git
 alias g="git"
@@ -41,26 +51,23 @@ alias uskb="setxkbmap us"
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
 # Terminal Specific Aliases
-if [[ $TERM = "xterm-kitty" ]]
-then
+if [[ $TERM == "xterm-kitty" ]]; then
   alias ssh="kitty +kitten ssh"
 fi
 
 # linux workstation specific aliases, could move it into subdivided os specific aliases
 case "$(uname -n)" in
-    "avee-Workstation") # Work specific aliases
-        alias qtc="~/Qt/Tools/QtCreator/bin/qtcreator -lastsession &"
-        alias cube="/opt/st/stm32cubeide_1.8.0/stm32cubeide &"
-        alias upd="sudo apt-get update && sudo apt-get upgrade -y"
-        alias flatpak="sudo flatpak"
+    "") # Work specific aliases
     ;;
     *)
     ;;
 esac
 
+# Distro specifig aliases
 case "$(lsb_release -i | awk '{print $3}')" in
     Ubuntu) # echo Ubuntu
         alias nala='sudo nala'
+        alias upd='sudo apt update && sudo apt upgrade'
     ;;
     Fedora) # echo Fedora
         alias dnf='sudo dnf'

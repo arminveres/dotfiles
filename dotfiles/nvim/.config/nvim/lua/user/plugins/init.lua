@@ -15,12 +15,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost init.lua source <afile> | PackerSync
-  augroup end
-]])
+--vim.cmd([[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufWritePost init.lua source <afile> | PackerSync
+--  augroup end
+--]])
 
 local use = require('packer').use
 require('packer').startup({
@@ -90,7 +90,7 @@ require('packer').startup({
       },
       'p00f/clangd_extensions.nvim', -- Clangd's off-spec features for neovim's LSP client
       'p00f/nvim-ts-rainbow', -- rainbow parenthesis
-      --[[ 'p00f/godbolt.nvim', -- compile explorer in nvim ]]
+      --'p00f/godbolt.nvim', -- compile explorer in nvim
       'RRethy/vim-illuminate', -- illuminate word under cursor
       {
         'ziontee113/color-picker.nvim', -- color picker
@@ -120,22 +120,11 @@ require('packer').startup({
         'stevearc/dressing.nvim',
         config = require('user.plugins.dressing'),
       },
-      -- {
-      --   'python-rope/ropevim',
-      --   ft = 'python',
-      -- },
-      {
-        'simrat39/desktop-notify.nvim',
-        run = function()
-          local note_ok, notify = pcall(require, 'notify')
-          if not note_ok then
-            vim.notify('notify not ok')
-            return
-          end
-          notify.override_vim_notify()
-        end,
-      },
       'ThePrimeagen/harpoon',
+      {
+        'rcarriga/nvim-notify',
+        config = require('user.plugins.notify')
+      },
     })
 
     use({ -- install without yarn or npm
