@@ -12,9 +12,13 @@ tabspaces: 8
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font
-  size: 10.5
-ligatures: true # ->, ==, =>
+    # family: JetBrainsMono Nerd Font
+    # family: Iosevka
+    family: Tamzen
+    # family: Terminus
+    # family: TerminessTTF Nerd Font
+  size: 15
+# ligatures: true # ->, ==, =>
 
 window:
 
