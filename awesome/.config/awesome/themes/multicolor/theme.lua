@@ -1,20 +1,20 @@
 --[[
-
-     Multicolor Awesome WM theme 2.0
-     github.com/lcpz
-
+    Multicolor Awesome WM theme 2.0
+    github.com/lcpz
 --]]
 
 local dpi = require("beautiful.xresources").apply_dpi
+local gears = require("gears")
 
 local os = os
-
 local theme                                     = {}
+
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
---[[ theme.wallpaper                                 = theme.confdir .. "/wall.png" ]]
-theme.font                                      = "JetBrainsMono Nerd Font 10"
-theme.menu_bg_normal                            = "#000000"
-theme.menu_bg_focus                             = "#000000"
+-- theme.wallpaper                                 = theme.confdir .. "/wall.png"
+theme.systray_icon_spacing                      = dpi(7)
+-- theme.font                                      = "JetBrainsMono Nerd Font 10"
+theme.font                                      = "Iosevka 12"
+-- theme.font                                      = "Terminus 13"
 theme.bg_normal                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
 theme.bg_focus                                  = "#ff8c00"
@@ -24,16 +24,17 @@ theme.fg_urgent                                 = "#af1d18"
 theme.fg_minimize                               = "#ffffff"
 theme.border_width                              = dpi(2)
 theme.border_normal                             = "#1c2022"
---[[ theme.border_focus                              = "#606060" ]]
-theme.border_focus                              = "#b8bb26"
+theme.border_focus                              = "#b8bb26" -- "#606060"
 theme.border_marked                             = "#3ca4d8"
-theme.menu_border_width                         = 0
-theme.menu_width                                = dpi(130)
+theme.menu_border_width                         = dpi(1)
+theme.menu_border_color                         = "#000000"
+theme.menu_width                                = dpi(135)
+theme.menu_height                               = dpi(23)
 theme.menu_submenu_icon                         = theme.confdir .. "/icons/submenu.png"
 theme.menu_fg_normal                            = "#aaaaaa"
-theme.menu_fg_focus                             = "#ff8c00"
 theme.menu_bg_normal                            = "#050505dd"
-theme.menu_bg_focus                             = "#050505dd"
+theme.menu_fg_focus                             = "#000000"
+theme.menu_bg_focus                             = "#ff8c00"
 theme.widget_temp                               = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                             = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                                = theme.confdir .. "/icons/cpu.png"
@@ -51,7 +52,7 @@ theme.widget_vol                                = theme.confdir .. "/icons/spkr.
 theme.taglist_squares_sel                       = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel                     = theme.confdir .. "/icons/square_b.png"
 theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
+theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = dpi(10)
 theme.layout_tile                               = theme.confdir .. "/icons/tile.png"
 theme.layout_tilegaps                           = theme.confdir .. "/icons/tilegaps.png"
@@ -87,6 +88,12 @@ theme.titlebar_maximized_button_focus_inactive  = theme.confdir .. "/icons/title
 theme.titlebar_maximized_button_normal_active   = theme.confdir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
+-- notification
+theme.notification_bg                           = "#ff8c00"
+theme.notification_fg                           = "#000000"
+theme.notification_border_color                 = "#000000"
+theme.notification_icon_size                    = dpi(100)
+
 -- playerctl signal
 theme.playerctl_backend                              = "playerctl_lib" -- backend to use
 theme.playerctl_ignore                               = { "firefox" } -- list of players to be ignored
@@ -113,5 +120,14 @@ theme.window_switcher_name_normal_color              = "#ffffff" -- The color of
 theme.window_switcher_name_focus_color               = "#ff0000" -- The color of one title if the client is focused
 theme.window_switcher_icon_valign                    = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width                     = 40 -- The width of one icon
+
+-- lain
+theme.lain_icons         = os.getenv("HOME") .. "/.config/awesome/lain/icons/layout/zenburn/"
+theme.layout_termfair    = theme.lain_icons .. "termfair.png"
+theme.layout_centerfair  = theme.lain_icons .. "centerfair.png"  -- termfair.center
+theme.layout_cascade     = theme.lain_icons .. "cascade.png"
+theme.layout_cascadetile = theme.lain_icons .. "cascadetile.png" -- cascade.tile
+theme.layout_centerwork  = theme.lain_icons .. "centerwork.png"
+theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.horizontal
 
 return theme
