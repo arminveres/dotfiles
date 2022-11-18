@@ -19,3 +19,6 @@
 [submodule "zsh/.config/zsh/plugins/zsh-autopair"]
 	path = zsh/.config/zsh/plugins/zsh-autopair
 	url = https://github.com/hlissner/zsh-autopair.git
+[submodule "zsh/.config/zsh/plugins/fzf"]
+	path = zsh/.config/zsh/plugins/fzf
+	url = https://github.com/junegunn/fzf.git

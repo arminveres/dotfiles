@@ -1,5 +1,4 @@
 zsh
-i3
 nvim
 picom
 polybar
@@ -10,3 +9,4 @@ rofi
 git
 gitui
 awesome
+vifm

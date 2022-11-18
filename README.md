@@ -9,7 +9,6 @@ Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
 | Type                 | Currently in use                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------- |
 | Window Manager       | AwesomeWM                                                                                         |
-| Status bar           | Polybar                                                                                           |
 | Notifications        | naughty, dunst                                                                                    |
 | Shell                | zsh                                                                                               |
 | Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) |

@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 function convert_heic_to_jpg () {
     for file in *.(heic|HEIC);
     do heif-convert $file ${file/%.(heic|HEIC)/.jpg}; done

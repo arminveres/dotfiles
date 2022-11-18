@@ -9,27 +9,25 @@ alias tmux="tmux -2"
 # exa
 if [[ $(command -v exa) ]]; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
-    alias la="exa --color=always --group-directories-first --long --all --header"
+    alias la="exa --color=always --group-directories-first --long --all --header --icons"
     alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
     alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
     alias ll="exa --color=always --group-directories-first --long --header"
     alias tree="exa --color=always --group-directories-first --icons --tree"
-# else
-# TODO: Add simple ls aliases
-# alias ls
-# alias la
-# alias lag
-# alias lg
-# alias ll
+else
+    alias ls="ls --color=always"
+    alias la="ls --color=always --almost-all"
+    alias ll="ls --color=always --long"
 fi
 
 # git
-alias g="git"
 alias gb="git branch"
 alias gls="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 alias wt="git worktree"
+alias gco="git checkout"
+alias gsw="git switch"
 # alias gsp="git submodule foreach git pull"
 
 # aliasing coreutils

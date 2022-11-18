@@ -55,6 +55,8 @@ zsh_safe_source "$HOME/.cargo/env"
 # Exports are needed before aliases
 zsh_safe_source "vim_mode.zsh"
 zsh_safe_source "aliases.zsh"
+zsh_safe_source "fzf.zsh"
+
 
 # prompt
 # TODO:Maybe move it into repo anyway
@@ -86,9 +88,8 @@ bindkey "^j" down-line-or-beginning-search # Down
 # bindkey -r "^u"
 bindkey -r "^d"
 
-[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 [ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
-# export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 compinit
 
 # Edit line in vim with ctrl-e:
@@ -96,5 +97,6 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
-
+if [ "$(command -v zoxide)" ]; then
 eval "$(zoxide init zsh)"
+fi
