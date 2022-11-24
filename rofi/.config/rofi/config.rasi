@@ -9,7 +9,6 @@ configuration {
 }
 
 @theme "/dev/null"
-@import "~/.config/rofi/colors/black.rasi"
 @import "~/.config/rofi/style.rasi"
 
 // vim: ft=sass

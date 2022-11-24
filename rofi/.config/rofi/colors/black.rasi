@@ -2,15 +2,18 @@
  *
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
- * 
+ *
  * Colors
  **/
 
-* {
-    background:     #000000FF;
-    background-alt: #101010FF;
-    foreground:     #FFFFFFFF;
-    selected:       #62AEEFFF;
-    active:         #98C379FF;
-    urgent:         #E06B74FF;
+* { // could append 2 hex for transparency
+    background:     #000000;
+    background-alt: #101010;
+    foreground:     #FFFFFF;
+    // selected:       #62AEEF;
+    selected:       #FF8C00;
+    active:         #98C379;
+    urgent:         #E06B74;
 }
+
+// vim: ft=sass

@@ -1,11 +1,14 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- *
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
+@theme "/dev/null"
+@import "~/.config/rofi/colors/black.rasi"
+// @import "~/.config/rofi/colors/gruvbox.rasi"
+
+/*****----- Configuration -----*****/
+configuration {
+    modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "";
+    drun-display-format:        "{name}";
+}
 
 /*****----- Main Window -----*****/
 window {
@@ -13,7 +16,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       750px;
+    width:                       20%;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -23,16 +26,16 @@ window {
     border:                      0px solid;
     border-radius:               12px;
     border-color:                @selected;
-    background-color:            black / 10%;
+    background-color:            @background;
     cursor:                      "default";
 }
 
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     20px;
+    spacing:                     0px;
     margin:                      0px;
-    padding:                     20px;
+    padding:                     0px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @selected;
@@ -47,39 +50,39 @@ inputbar {
     margin:                      0px;
     padding:                     15px;
     border:                      0px solid;
-    border-radius:               10px;
+    border-radius:               0px;
     border-color:                @selected;
-    background-color:            white / 5%;
-    text-color:                  @foreground;
+    background-color:            @selected;
+    text-color:                  @background;
     children:                    [ "prompt", "entry" ];
 }
 
 prompt {
     enabled:                     true;
-    background-color:            transparent;
+    background-color:            inherit;
     text-color:                  inherit;
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
     str:                         "::";
-    background-color:            transparent;
+    background-color:            inherit;
     text-color:                  inherit;
 }
 entry {
     enabled:                     true;
-    background-color:            transparent;
+    background-color:            inherit;
     text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search";
+    placeholder:                 "Search...";
     placeholder-color:           inherit;
 }
 
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     5;
-    lines:                       3;
+    columns:                     1;
+    lines:                       6;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -88,7 +91,7 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     0px;
+    spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
@@ -108,29 +111,28 @@ scrollbar {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     15px;
+    spacing:                     10px;
     margin:                      0px;
-    padding:                     20px 10px;
+    padding:                     8px;
     border:                      0px solid;
-    border-radius:               10px;
+    border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
     text-color:                  @foreground;
-    orientation:                 vertical;
     cursor:                      pointer;
 }
 element normal.normal {
-    background-color:            transparent;
+    background-color:            @background;
     text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            white / 5%;
+    background-color:            @background-alt;
     text-color:                  @foreground;
 }
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        64px;
+    size:                        32px;
     cursor:                      inherit;
 }
 element-text {
@@ -139,23 +141,24 @@ element-text {
     highlight:                   inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-    horizontal-align:            0.5;
+    horizontal-align:            0.0;
 }
 
 /*****----- Message -----*****/
 error-message {
     padding:                     15px;
     border:                      2px solid;
-    border-radius:               10px;
+    border-radius:               12px;
     border-color:                @selected;
-    background-color:            black / 10%;
+    background-color:            @background;
     text-color:                  @foreground;
 }
 textbox {
-    background-color:            transparent;
+    background-color:            @background;
     text-color:                  @foreground;
     vertical-align:              0.5;
     horizontal-align:            0.0;
     highlight:                   none;
 }
+
 // vim: ft=sass
