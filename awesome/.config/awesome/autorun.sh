@@ -24,8 +24,10 @@ run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0, 1
 
 # Laptop/Notebook specific settings
-if [[ ! -z $(uname --nodename | grep notebook) && -z $(xinput | grep M60) ]]; then
+if [[ ! -z $(uname --nodename | grep notebook) ]]; then
+	if [[ -z $(xinput | grep M60)  ]]; then
 	setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
+	fi
 	xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
 	xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
 	run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when clising the lid

@@ -16,7 +16,9 @@ end
 local settings = {
   -- refer to documentation https://github.com/williamboman/mason-lspconfig.nvim
 }
-lsp_installer.setup({})
+lsp_installer.setup({
+  ensure_installed = { "sumneko_lua", "rust_analyzer", "clangd", "bashls" }
+})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then

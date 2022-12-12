@@ -48,6 +48,10 @@ alias uskb="setxkbmap us"
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
+if [[ $(command -v cargo) ]]; then
+    alias cargoup=" cargo-install-update install-update --all"
+fi
+
 # Terminal Specific Aliases
 if [[ $TERM == "xterm-kitty" ]]; then
   alias ssh="kitty +kitten ssh"

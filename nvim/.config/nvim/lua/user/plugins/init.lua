@@ -121,10 +121,10 @@ require('packer').startup({
         config = require('user.plugins.dressing'),
       },
       'ThePrimeagen/harpoon',
-      {
-        'rcarriga/nvim-notify',
-        config = require('user.plugins.notify')
-      },
+      -- {
+        -- 'rcarriga/nvim-notify',
+        -- config = require('user.plugins.notify')
+      -- },
     })
 
     use({ -- install without yarn or npm

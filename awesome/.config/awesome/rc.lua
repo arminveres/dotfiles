@@ -293,8 +293,9 @@ bling.widget.window_switcher.enable({
     vim_previous_key = 'h', -- Alternative key on which to select the previous client
     vim_next_key = 'l', -- Alternative key on which to select the next client
 
-    cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
     -- filterClients = awful.widget.tasklist.filter.currenttags, -- The function to filter the viewed clients
+    cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
+    -- filterClients = awful.widget.tasklist.filter.allscreen
 })
 
 -- {{{ Mouse bindings

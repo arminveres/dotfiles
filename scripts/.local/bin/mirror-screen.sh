@@ -1,6 +1,12 @@
 #!/bin/bash -e
 
-# xrandr --output eDP-1 --mode 1920x1200 --output DP-3 --same-as eDP-1
+LOCAL_RES=1920x1200
 
-xrandr --output eDP-1 --rate 60 --mode 1920x1200 --fb 1920x1200 --panning 1920x1200* --output DP-3 --mode 1920x1200 --same-as eDP-1
+if [[ ! $1 ]]; then
+    OUTPUT=DP-3
+else
+    OUTPUT="$1"
+fi
+
+xrandr --output eDP-1 --rate 60 --mode "$LOCAL_RES" --fb "$LOCAL_RES" --panning "$LOCAL_RES"* --output "$OUTPUT" --mode "$LOCAL_RES" --same-as eDP-1
 
