@@ -110,7 +110,7 @@ local terminal = 'kitty'
 local editor = os.getenv('EDITOR') or 'nvim'
 
 awful.util.terminal = terminal
-awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', '8', 'msg' }
+awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     awful.layout.suit.spiral.dwindle,
@@ -299,13 +299,13 @@ bling.widget.window_switcher.enable({
 })
 
 -- {{{ Mouse bindings
-
 root.buttons(mytable.join(
     awful.button({}, 3, function()
         awful.util.mymainmenu:toggle()
-    end),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
+    end)
+-- NOTE: This got quite annoying when accidentally scrolling on the desktop.
+--     awful.button({}, 4, awful.tag.viewnext),
+--     awful.button({}, 5, awful.tag.viewprev)
 ))
 
 -- }}}
@@ -472,7 +472,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[5] },
     },
     {
-        rule = { class = 'Steam' },
+        rule_any = { class = {'Steam', 'Lutris' } },
         properties = { tag = awful.util.tagnames[6] },
     },
     {
@@ -480,7 +480,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[8] },
     },
     {
-        rule_any = { class = { 'discord', 'Signal' } },
+        rule_any = { class = { 'discord', 'Signal', 'Slack' } },
         properties = { tag = awful.util.tagnames[9] },
     },
 }
