@@ -152,7 +152,8 @@ keymap('n', '<leader>r', ':Telescope resume<CR>', opts)
 -- keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], opts)
 
 -- allow to grep for string under cursor
-keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>]])
+-- keymap('n', '<leader>sc', [[:execute 'Telescope live_grep default_text=' . expand('<cword>')<cr>]])
+keymap('n', '<leader>sg', [[:Telescope grep_string search=<cr>]])
 
 ----------------------------------------------------------------------------------------------------
 -- LSP Saga
@@ -202,3 +203,9 @@ keymap('n', "\\a", function() require("harpoon.ui").nav_file(1) end, opts)
 keymap('n', "\\s", function() require("harpoon.ui").nav_file(2) end, opts)
 keymap('n', "\\d", function() require("harpoon.ui").nav_file(3) end, opts)
 keymap('n', "\\f", function() require("harpoon.ui").nav_file(4) end, opts)
+
+----------------------------------------------------------------------------------------------------
+-- Toggleterm alternatice keybinds (instead of just backslash, we use it to give direction too!)
+----------------------------------------------------------------------------------------------------
+keymap('n', [[<c-\>j]], ':ToggleTerm direction=horizontal<CR>', opts)
+keymap('n', [[<c-\>l]], ':ToggleTerm direction=vertical<CR>', opts)

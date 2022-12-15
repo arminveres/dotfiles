@@ -8,4 +8,4 @@ notify.setup({
   -- add config here
   background_colour = "#000000",
 })
-vim.notify = require('notify')
+-- vim.notify = require('notify')

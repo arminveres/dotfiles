@@ -155,6 +155,7 @@ require('packer').startup({
       'fladson/vim-kitty',
       'ron-rs/ron.vim',
       'lervag/vimtex',
+      'mphe/grayout.vim',
       -- 'tpope/vim-fugitive',                     -- Git commands in nvim
       -- 'tpope/vim-rhubarb',                      -- Fugitive-companion to interact with github
     })
@@ -167,7 +168,7 @@ require('packer').startup({
         'kyazdani42/nvim-web-devicons',
         'jvgrootveld/telescope-zoxide', -- allows you operate zoxide within Neovim
       },
-      config = require('user.plugins.telescope'),
+      config = require('user.plugins.tlscp'),
     })
 
     use({ -- Highlight, edit, and navigate code using a fast incremental parsing library
