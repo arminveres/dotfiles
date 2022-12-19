@@ -195,11 +195,9 @@ awful.util.tasklist_buttons = mytable.join(
 beautiful.init(
     string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), chosen_theme)
 )
-
 -- }}}
 
 -- {{{ Menu
-
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
     {
@@ -256,9 +254,10 @@ end)
 
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal('property::geometry', function()
-    awful.spawn.with_shell('nitrogen --restore')
-end)
+-- NOTE: Just do this in the autorun file
+-- screen.connect_signal('property::geometry', function()
+--     awful.spawn.with_shell('nitrogen --restore')
+-- end)
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal('arrange', function(s)
@@ -303,9 +302,9 @@ root.buttons(mytable.join(
     awful.button({}, 3, function()
         awful.util.mymainmenu:toggle()
     end)
--- NOTE: This got quite annoying when accidentally scrolling on the desktop.
---     awful.button({}, 4, awful.tag.viewnext),
---     awful.button({}, 5, awful.tag.viewprev)
+    -- NOTE: This got quite annoying when accidentally scrolling on the desktop.
+    --     awful.button({}, 4, awful.tag.viewnext),
+    --     awful.button({}, 5, awful.tag.viewprev)
 ))
 
 -- }}}
@@ -371,6 +370,8 @@ clientbuttons = mytable.join(
 
         if not c.floating then
             return
+
+
         end
         -- Only use bottom left/right corner, because dragging titlebar is already mapped to move
         local corners = {
@@ -392,6 +393,7 @@ clientbuttons = mytable.join(
 root.keys(globalkeys)
 
 -- {{{ Rules
+-- TODO: move into separate file
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -449,7 +451,9 @@ awful.rules.rules = {
                 'Network Connections',
             },
         },
-        properties = { floating = true },
+        properties = {
+            floating = true,
+        },
     },
 
     -- Add titlebars to normal clients and dialogs
@@ -472,7 +476,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[5] },
     },
     {
-        rule_any = { class = {'Steam', 'Lutris' } },
+        rule_any = { class = { 'Steam', 'Lutris' } },
         properties = { tag = awful.util.tagnames[6] },
     },
     {
@@ -550,15 +554,26 @@ client.connect_signal('request::titlebars', function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---[[ client.connect_signal("mouse::enter", function(c) ]]
---[[     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus }) ]]
---[[ end) ]]
+-- client.connect_signal("mouse::enter", function(c)
+--     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
+-- end)
 
+client.connect_signal('property::floating', function(c)
+    if c.floating then
+        awful.placement.centered(c)
+    end
+end)
 client.connect_signal('focus', function(c)
     c.border_color = beautiful.border_focus
+    if c.floating then
+        awful.placement.centered(c)
+    end
 end)
 client.connect_signal('unfocus', function(c)
     c.border_color = beautiful.border_normal
+    if c.floating then
+        awful.placement.centered(c)
+    end
 end)
 
 -- }}}

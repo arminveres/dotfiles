@@ -124,9 +124,16 @@ local bat = lain.widget.bat({
 
         local perc = bat_now.perc ~= 'N/A' and bat_now.perc .. '%' or bat_now.perc
         if bat_now.ac_status == 1 then
-            perc = perc .. ' plug'
+            perc = ' ' .. perc
+        else
+            perc = ' ' .. perc
         end
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, '  ' .. perc .. ' '))
+
+        if tonumber(bat_now.perc) <= 20 then
+            widget:set_markup(markup.color('#000000', '#fb4934', perc))
+        else
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc))
+        end
     end,
 })
 
