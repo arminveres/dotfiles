@@ -33,7 +33,10 @@ export ZDOTDIR=$HOME/.config/zsh
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc
 
-xrdb $XDG_CONFIG_HOME/X11/Xresources
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+
+# NOTE: check for x11 env, otherwise it spits out an error
+xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

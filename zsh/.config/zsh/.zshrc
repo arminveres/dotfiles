@@ -88,8 +88,8 @@ bindkey "^j" down-line-or-beginning-search # Down
 # bindkey -r "^u"
 bindkey -r "^d"
 
-[ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+[ -f "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR/completion/" "$fpath")
+[ -f "$ZDOTDIR"/plugins/zsh-completions ] && fpath=(./plugins/zsh-completions/src $fpath)
 compinit
 
 # Edit line in vim with ctrl-e:

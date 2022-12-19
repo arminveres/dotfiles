@@ -13,7 +13,7 @@ if [[ $(command -v exa) ]]; then
     alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
     alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
     alias ll="exa --color=always --group-directories-first --long --header"
-    alias tree="exa --color=always --group-directories-first --icons --tree"
+    alias tree="exa --color=always --group-directories-first --tree --icons"
 else
     alias ls="ls --color=always"
     alias la="ls --color=always --almost-all"
@@ -54,7 +54,7 @@ fi
 
 # Terminal Specific Aliases
 if [[ $TERM == "xterm-kitty" ]]; then
-  alias ssh="kitty +kitten ssh"
+  alias connect="kitty +kitten ssh"
 fi
 
 # linux workstation specific aliases, could move it into subdivided os specific aliases

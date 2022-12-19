@@ -22,3 +22,6 @@
 [submodule "zsh/.config/zsh/plugins/fzf"]
 	path = zsh/.config/zsh/plugins/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "zsh/.config/zsh/plugins/zsh-completions"]
+	path = zsh/.config/zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
