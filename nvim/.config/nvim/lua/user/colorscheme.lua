@@ -4,17 +4,21 @@ local colorscheme = 'gruvbox'
 -- Customized colors for colorschemes
 local custom_colors = {
   Normal = { bg = 'NONE' },
+  NormalNC = { bg = 'NONE' },
   PMenu = { bg = 'NONE' }, -- Completion Menu
   NormalFloat = { bg = 'NONE' },
   FloatBorder = { bg = 'NONE' },
+  SignColumn = { bg = 'NONE' },
   CursorColumn = { bg = '#303030' },
   CursorLine = { bg = '#303030' },
+
   -- TODO: add/change diff colors
   -- DiffAdd = {reverse = false, bg = 'NONE', fg = '#98971a' },
   -- DiffDelete = {reverse = false ,bg = 'NONE', fg = '#fb4934' },
   -- DiffText = {reverse = false ,bg = 'NONE', fg = '#fabd2f' },
   -- DiffChange = {reverse = false ,bg = 'NONE', fg = '#83a598' },
 
+  -- TODO: correct tab highlighting
   -- BufferlineTab = { bg = '#303030' },
   -- BufferlineTabSelected = { bg = '#303030' },
   -- BufferLineSeparator = { fg = '#303030' },

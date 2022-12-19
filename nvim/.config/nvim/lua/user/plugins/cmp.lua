@@ -71,8 +71,6 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       elseif check_backspace() then
@@ -80,10 +78,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
+    end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -92,10 +87,7 @@ cmp.setup({
       else
         fallback()
       end
-    end, {
-      'i',
-      's',
-    }),
+    end, { 'i', 's' }),
   }),
   formatting = {
     fields = { 'kind', 'abbr', 'menu' },

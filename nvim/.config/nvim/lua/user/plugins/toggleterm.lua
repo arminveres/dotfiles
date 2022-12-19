@@ -13,7 +13,7 @@ toggleterm.setup({
       return 20
     end
   end,
-  -- open_mapping = [[<c-\>]],
+  open_mapping = [[<c-\>]],
   hide_numbers = true,
   shade_filetypes = {},
   shade_terminals = false,

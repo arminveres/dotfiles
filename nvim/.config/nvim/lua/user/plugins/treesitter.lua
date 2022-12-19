@@ -42,8 +42,8 @@ tsconf.setup({
     enable_autocmd = false,
   },
   fold = {
-    -- BUG: Currently it sometimes just closes all folds, don't know why, buy I don't use it anyway.
-    enable = false,
+    -- NOTE: Foldlevel needs to be set to 99 so that the fold do stay open (I guess it is a bug otherwise)
+    enable = true,
   },
   rainbow = {
     enable = true,

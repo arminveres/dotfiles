@@ -17,8 +17,15 @@
       {
         "language": "zsh",
         "path": "./sh.json"
+      },
+      {
+        "language": "c",
+        "path": "./c_cpp.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./c_cpp.json"
       }
     ]
   }
 }
-

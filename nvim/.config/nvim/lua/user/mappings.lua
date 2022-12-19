@@ -115,7 +115,6 @@ keymap('v', '<leader>d', '"_d', opts)
 -- According to thePrimeagen, the greatest map ever
 keymap('x', '<leader>p', '"_dP', opts)
 
-
 --Add leader shortcuts
 ----------------------------------------------------------------------------------------------------
 -- Telescope
@@ -158,15 +157,15 @@ keymap('n', '<leader>sg', [[:Telescope grep_string search=<cr>]])
 ----------------------------------------------------------------------------------------------------
 -- LSP Saga
 ----------------------------------------------------------------------------------------------------
-keymap('n', '[e', ':Lspsaga diagnostic_jump_prev<CR>', opts)
-keymap('n', ']e', ':Lspsaga diagnostic_jump_next<CR>', opts)
+keymap('n', '[d', ':Lspsaga diagnostic_jump_prev<CR>', opts)
+keymap('n', ']d', ':Lspsaga diagnostic_jump_next<CR>', opts)
 keymap('n', 'K', ':Lspsaga hover_doc<CR>', opts)
 
-vim.keymap.set('n', '<C-f>', function()
+keymap('n', '<C-f>', function()
   require('lspsaga.action').smart_scroll_with_saga(1)
 end, opts)
 -- scroll up hover doc
-vim.keymap.set('n', '<C-b>', function()
+keymap('n', '<C-b>', function()
   require('lspsaga.action').smart_scroll_with_saga(-1)
 end, opts)
 keymap('n', '<leader>ca', ':Lspsaga code_action<CR>', opts)
@@ -175,9 +174,9 @@ keymap('n', 'gs', ':Lspsaga signature_help<CR>', opts)
 keymap('n', '<leader>rn', ':Lspsaga rename<CR>', opts)
 keymap('n', 'gh', ':Lspsaga lsp_finder<CR>', opts)
 keymap('n', '<leader>gd', '<cmd>Lspsaga preview_definition<CR>', opts)
-keymap('n', '<leader>at', ':LSoutlineToggle<CR>', opts)
-keymap("n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
-keymap("n", "<leader>gl", ":Lspsaga show_cursor_diagnostics<CR>", opts)
+keymap('n', '<leader>at', ':Lspsaga outline<CR>', opts)
+keymap('n', 'gl', ':Lspsaga show_line_diagnostics<CR>', opts)
+keymap('n', '<leader>gl', ':Lspsaga show_cursor_diagnostics<CR>', opts)
 
 -- Undo tree toggle
 keymap('n', '<Leader>u', '<Cmd>UndotreeToggle<CR>', opts)
@@ -189,10 +188,8 @@ keymap('n', '<Leader>li', ':LspInfo<CR>', opts)
 keymap('n', '<Leader>ll', ':LspLog<CR>', opts)
 keymap('n', '<Leader>lr', ':LspRestart<CR>', opts)
 
-
 -- BUG: Following does not work, when no 'LSP' is installed, even when Null-LS is running
 keymap('n', '<space>bf', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
-
 
 ----------------------------------------------------------------------------------------------------
 -- Harpoon
