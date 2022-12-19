@@ -469,7 +469,7 @@ awful.rules.rules = {
     },
     {
         rule_any = { class = { 'Blueman-manager', 'Spotify' } },
-        properties = { tag = awful.util.tagnames[4] },
+        properties = { tag = awful.util.tagnames[4], minimized = true },
     },
     {
         rule_any = { class = { 'Geary', 'thunderbird', 'mail' } },
@@ -480,7 +480,11 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[6] },
     },
     {
-        rule = { class = 'corectrl' },
+        rule_any = { class = { 'qBittorrent', 'qbittorrent' } },
+        properties = { tag = awful.util.tagnames[7] },
+    },
+    {
+        rule_any = { class = { 'corectrl', 'virt-manager', 'Virt-manager' } },
         properties = { tag = awful.util.tagnames[8] },
     },
     {

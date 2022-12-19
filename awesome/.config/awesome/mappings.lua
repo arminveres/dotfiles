@@ -22,8 +22,7 @@ M.globalkeys = M.mytable.join(
         awful.spawn('firefox')
     end, { description = 'firefox', group = 'shortcuts' }),
     awful.key({ modkey }, 'b', function()
-        -- awful.spawn('nautilus')
-        awful.spawn('thunar')
+        awful.spawn('thunar') -- nautilus
     end, { description = 'Gnome Filebrowser', group = 'shortcuts' }),
     awful.key({ modkey }, 'z', function()
         awful.spawn('zathura')
