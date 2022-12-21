@@ -397,19 +397,19 @@ M.globalkeys = M.mytable.join(
     end, { description = 'Previous', group = 'media' }),
 
     -- Display brightness
-    -- TODO: Add check for laptop
-    -- awful.key({}, 'XF86MonBrightnessUp', function()
-    --     awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
-    -- end, { description = 'Increase brightness on main display', group = 'display' }),
-    -- awful.key({}, 'XF86MonBrightnessDown', function()
-    --     awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
-    -- end, { description = 'Decrease brightness on main display', group = 'display' }),
-
     awful.key({}, 'XF86MonBrightnessUp', function()
-        awful.spawn.with_shell('light -A 5')
+        if os.getenv('HOSTNAME') == 'fedoraarmin' then
+            awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
+        else
+            awful.spawn.with_shell('light -U 5')
+        end
     end, { description = 'Increase brightness on main display', group = 'display' }),
     awful.key({}, 'XF86MonBrightnessDown', function()
-        awful.spawn.with_shell('light -U 5')
+        if os.getenv('HOSTNAME') == 'fedoraarmin' then
+            awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
+        else
+            awful.spawn.with_shell('light -A 5')
+        end
     end, { description = 'Decrease brightness on main display', group = 'display' }),
 
     --[[ NOTE: remocve this function for the moment, since it did not work anyhow
