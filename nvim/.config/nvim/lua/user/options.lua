@@ -15,8 +15,6 @@ vim.opt.tabstop = 8
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
- -- always show tabs == 2
-vim.opt.showtabline = 2
 
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
@@ -52,8 +50,6 @@ vim.opt.spelllang = 'en_us'
 
 vim.opt.pumblend = 15 -- blend popup
 vim.opt.winblend = 15
-
--- folding settings: moved to treesitter
 
 -- configure ripgrep as grep program if available
 if vim.fn.executable('rg') then

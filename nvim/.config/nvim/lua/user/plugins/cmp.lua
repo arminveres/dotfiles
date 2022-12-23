@@ -9,9 +9,16 @@ if not snip_status_ok then
 end
 
 require('luasnip/loaders/from_vscode').lazy_load()
-require('luasnip.loaders.from_vscode').lazy_load({
-  paths = { '~/.config/nvim/snippets/' },
-})
+
+if vim.fn.has('win32') == 1 then -- Windows specific options
+  require('luasnip.loaders.from_vscode').lazy_load({
+    paths = { '~/AppData/Local/nvim/snippets/' },
+  })
+else
+  require('luasnip.loaders.from_vscode').lazy_load({
+    paths = { '~/.config/nvim/snippets/' },
+  })
+end
 
 local check_backspace = function()
   local col = vim.fn.col('.') - 1

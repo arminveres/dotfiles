@@ -9,8 +9,9 @@ ts.define_modules({
     attach = function()
       vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
       vim.opt.foldmethod = 'expr'
-      vim.cmd('normal zx') -- force reevaluate folds
-      vim.cmd('normal zR') -- reopen all folds
+      vim.opt.foldlevel = 99
+      -- vim.cmd('normal zx') -- force reevaluate folds
+      -- vim.cmd('normal zR') -- reopen all folds
     end,
     detach = function() end,
   },
@@ -42,8 +43,7 @@ tsconf.setup({
     enable_autocmd = false,
   },
   fold = {
-    -- NOTE: Foldlevel needs to be set to 99 so that the fold do stay open (I guess it is a bug otherwise)
-    enable = true,
+    enable = true, -- NOTE: Foldlevel needs to be set to 99 so that the fold do stay open (I guess it is a bug otherwise)
   },
   rainbow = {
     enable = true,
