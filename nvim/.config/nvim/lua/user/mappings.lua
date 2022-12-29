@@ -56,12 +56,6 @@ keymap('n', '<leader>tmp', ':-tabmove<CR>', opts)
 -- move current tab to next position
 keymap('n', '<leader>tmn', ':+tabmove<CR>', opts)
 
---  Left and right can switch buffers
--- keymap('n', '<Left>', ':tabp<CR>', opts)
--- keymap('n', '<Right>', ':tabn<CR>', opts)
--- keymap('n', '<C-Left>', ':bp<CR>', opts)
--- keymap('n', '<C-Right>', ':bn<CR>', opts)
-
 -- Insert Mode --
 -- Map jj to the escape key
 keymap('i', 'jk', '<Esc>', opts)
@@ -87,6 +81,10 @@ keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 keymap('n', '<F11>', ':set spell!<CR>', opts)
 keymap('i', '<F11><C-O>', ':set spell!<CR>', opts)
 -- replacing is done in insertmode <C-x>s
+
+-- center up and down jumps
+keymap('n', '<C-u>', '<C-u>zz', opts)
+keymap('n', '<C-d>', '<C-d>zz', opts)
 
 ----------------------------------------------------------------------------------------------------
 -- CLIPBOARD
