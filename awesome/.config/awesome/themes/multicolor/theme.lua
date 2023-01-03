@@ -101,7 +101,7 @@ theme.playerctl_player                               = {} -- list of players to 
 theme.playerctl_update_on_activity                   = true -- whether to prioritize the most recently active players or not
 theme.playerctl_position_update_interval             = 1 -- the update interval for fetching the position from playerctl
 -- tab switcher
-theme.window_switcher_widget_bg                      = "NONE" -- The bg color of the widget
+theme.window_switcher_widget_bg                      = "#000000" -- The bg color of the widget
 theme.window_switcher_widget_border_width            = 1 -- The border width of the widget
 theme.window_switcher_widget_border_radius           = 10 -- The border radius of the widget
 theme.window_switcher_widget_border_color            = "#fb4934" -- The border color of the widget
@@ -117,7 +117,7 @@ theme.window_switcher_name_valign                    = "center" -- How to vertic
 theme.window_switcher_name_forced_width              = 200 -- The width of one title
 theme.window_switcher_name_font                      = theme.font -- The font of all titles
 theme.window_switcher_name_normal_color              = "#ffffff" -- The color of one title if the client is unfocused
-theme.window_switcher_name_focus_color               = "#ff0000" -- The color of one title if the client is focused
+theme.window_switcher_name_focus_color               = "#fb4934" -- The color of one title if the client is focused
 theme.window_switcher_icon_valign                    = "center" -- How to vertically align the one icon
 theme.window_switcher_icon_width                     = 40 -- The width of one icon
 

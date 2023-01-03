@@ -289,8 +289,8 @@ bling.widget.window_switcher.enable({
     cycle_key = 'Tab', -- The key on which to cycle through all clients
     previous_key = 'Left', -- The key on which to select the previous client
     next_key = 'Right', -- The key on which to select the next client
-    vim_previous_key = 'h', -- Alternative key on which to select the previous client
-    vim_next_key = 'l', -- Alternative key on which to select the next client
+    vim_previous_key = 'l', -- Alternative key on which to select the previous client
+    vim_next_key = 'h', -- Alternative key on which to select the next client
 
     -- filterClients = awful.widget.tasklist.filter.currenttags, -- The function to filter the viewed clients
     cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients

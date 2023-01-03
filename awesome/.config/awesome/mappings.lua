@@ -401,14 +401,14 @@ M.globalkeys = M.mytable.join(
         if os.getenv('HOSTNAME') == 'fedoraarmin' then
             awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
         else
-            awful.spawn.with_shell('light -U 5')
+            awful.spawn.with_shell('light -A 5')
         end
     end, { description = 'Increase brightness on main display', group = 'display' }),
     awful.key({}, 'XF86MonBrightnessDown', function()
         if os.getenv('HOSTNAME') == 'fedoraarmin' then
             awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
         else
-            awful.spawn.with_shell('light -A 5')
+            awful.spawn.with_shell('light -U 5')
         end
     end, { description = 'Decrease brightness on main display', group = 'display' }),
 
@@ -440,6 +440,7 @@ M.globalkeys = M.mytable.join(
 )
 
 M.clientkeys = M.mytable.join(
+    -- TODO: possibly replace the mod+c mapping with this, since this also adjust height and width
     awful.key(
         { altkey, 'Shift' },
         'm',
