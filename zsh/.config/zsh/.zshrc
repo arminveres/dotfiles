@@ -90,7 +90,6 @@ bindkey -r "^d"
 
 [ -d "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR"/completion/ $fpath);
 [ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath=("$ZDOTDIR"/plugins/zsh-completions/src $fpath);
-compinit
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -98,5 +97,7 @@ bindkey '^e' edit-command-line
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 if [ "$(command -v zoxide)" ]; then
-eval "$(zoxide init zsh)"
+    eval "$(zoxide init zsh)"
 fi
+
+compinit
