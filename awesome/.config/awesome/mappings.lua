@@ -36,7 +36,7 @@ M.globalkeys = M.mytable.join(
 
     -- Take a screenshot
     awful.key({ modkey, 'Shift' }, 's', function()
-        awful.util.spawn('flameshot gui -p ' .. os.getenv('HOME') .. '/Pictures/screenshots')
+        awful.util.spawn('flameshot gui -p ' .. os.getenv('HOME') .. '/Pictures/screenshots/')
     end, { description = 'take a screenshot', group = 'utils' }),
     awful.key({ modkey, 'Shift' }, 'p', function()
         awful.util.spawn('flameshot gui --clipboard')

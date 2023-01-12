@@ -15,3 +15,7 @@ dotfiles/GTK/.config/gtk-4.0/gtk-dark.css
 dotfiles/GTK/.config/gtk-4.0/gtk.css
 dotfiles/GTK/.config/gtk-4.0/assets
 dotfiles/GTK/.config/gtk-3.0/servers
+GTK/.config/gtk-4.0/gtk-dark.css
+GTK/.config/gtk-4.0/gtk.css
+gitui/.config/gitui/theme.ron.old
+GTK/.config/gtk-4.0/assets
