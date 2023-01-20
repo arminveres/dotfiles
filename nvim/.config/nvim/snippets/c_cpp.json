@@ -1,7 +1,0 @@
-{
-  "defonce": {
-    "body": "#ifndef ${1: headername}_H_\n#define ${1: headername}_H_\n\n${2: // body}\n\n#endif // ! ${1: headername}_H_",
-    "description": "define a header once",
-    "prefix": "defonce"
-  }
-}
