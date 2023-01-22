@@ -11,9 +11,9 @@ Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
 | Window Manager       | AwesomeWM                                                                                         |
 | Notifications        | naughty, dunst                                                                                    |
 | Shell                | zsh                                                                                               |
-| Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) |
+| Editor               | [NeoVIM](https://github.com/arminveres/nvim) |
 | Terminal Emulator    | kitty, alacritty                                                                                  |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config)                                                 |
+| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux.conf)                                                   |
 
 ## Usage
 
