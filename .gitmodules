@@ -28,3 +28,6 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
 	url = git@github.com:arminveres/nvim.git
+[submodule "tmux/.config/tmux"]
+	path = tmux/.config/tmux
+	url = git@github.com:arminveres/tmux.conf
