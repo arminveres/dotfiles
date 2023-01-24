@@ -22,6 +22,8 @@ zle_highlight=('paste:none')
 
 # beeping is annoying
 unsetopt BEEP
+# for gods sake, finally able to fuzzy find the rest of the search
+unsetopt menu_complete
 
 # completions
 autoload -Uz compinit

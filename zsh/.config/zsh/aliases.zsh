@@ -6,6 +6,9 @@ alias vim="nvim"
 alias py="python3"
 alias tmux="tmux -2"
 
+alias flup='flatpak update'
+alias flean='flatpak remove --unused'
+
 # exa
 if [[ $(command -v exa) ]]; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
