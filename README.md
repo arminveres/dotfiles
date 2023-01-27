@@ -4,7 +4,7 @@
 
 ## Description
 
-Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
+Handcrafted dotfiles for personal use, currently on Fedora Workstation 37.
 
 | Type                 | Currently in use                                                                                  |
 | -------------------- | ------------------------------------------------------------------------------------------------- |
