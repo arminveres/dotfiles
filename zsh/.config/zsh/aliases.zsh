@@ -5,6 +5,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
 alias tmux="tmux -2"
+alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
 
 alias flup='flatpak update'
 alias flean='flatpak remove --unused'
