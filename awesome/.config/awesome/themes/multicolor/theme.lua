@@ -10,11 +10,10 @@ local os = os
 local theme                                     = {}
 
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
+-- NOTE: control wallpaper through nitrogen or feh
 -- theme.wallpaper                                 = theme.confdir .. "/wall.png"
 theme.systray_icon_spacing                      = dpi(7)
--- theme.font                                      = "JetBrainsMono Nerd Font 10"
-theme.font                                      = "Iosevka 12"
--- theme.font                                      = "Terminus 13"
+theme.font                                      = "Iosevka 12" -- "JetBrainsMono Nerd Font 10"
 theme.bg_normal                                 = "#000000"
 theme.fg_normal                                 = "#aaaaaa"
 theme.bg_focus                                  = "#ff8c00"

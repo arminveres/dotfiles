@@ -12,7 +12,7 @@ local myutils = require('myutils')
 
 -- Textclock
 os.setlocale(os.getenv('LANG')) -- to localize the clock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
+
 local mytextclock = wibox.widget.textclock(
     markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M ')
 )
@@ -115,7 +115,6 @@ local temp_widget = lain.widget.temp({
 })
 
 -- Battery
---[[ local baticon = wibox.widget.imagebox(theme.widget_batt) ]]
 local bat = lain.widget.bat({
     settings = function()
         if bat_now.perc == 'N/A' then
@@ -123,10 +122,11 @@ local bat = lain.widget.bat({
         end
 
         local perc = bat_now.perc ~= 'N/A' and bat_now.perc .. '%' or bat_now.perc
+        perc = perc .. ' ' .. bat_now.time .. ' '
         if bat_now.ac_status == 1 then
-            perc = ' ' .. perc
+            perc = '  ' .. perc
         else
-            perc = ' ' .. perc
+            perc = '  ' .. perc
         end
 
         if tonumber(bat_now.perc) <= 20 then
