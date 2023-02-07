@@ -370,8 +370,6 @@ clientbuttons = mytable.join(
 
         if not c.floating then
             return
-
-
         end
         -- Only use bottom left/right corner, because dragging titlebar is already mapped to move
         local corners = {
@@ -468,7 +466,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = awful.util.tagnames[2] },
     },
     {
-        rule_any = { class = { 'Blueman-manager', 'Spotify' } },
+        rule_any = { class = { 'Blueman-manager', 'Spotify', 'easyeffects' } },
         properties = { tag = awful.util.tagnames[4], minimized = true },
     },
     {

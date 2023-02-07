@@ -31,3 +31,6 @@
 [submodule "tmux/.config/tmux"]
 	path = tmux/.config/tmux
 	url = git@github.com:arminveres/tmux.conf
+[submodule "awesome/.config/awesome/awesome-wm-widgets"]
+	path = awesome/.config/awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git
