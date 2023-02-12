@@ -6,7 +6,6 @@ tags
 *.bak
 **/vifminfo.json
 **/vifminfo
-.luarc.json
 
 # general files
 *.log

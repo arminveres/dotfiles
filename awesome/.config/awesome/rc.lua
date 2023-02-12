@@ -16,7 +16,6 @@ require('awful.autofocus')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local naughty = require('naughty')
-local gears = require('gears')
 local freedesktop = require('freedesktop')
 local bling = require('bling')
 local hotkeys_popup = require('awful.hotkeys_popup')
@@ -73,13 +72,13 @@ end
 -- {{{ Autostart windowless processes
 
 -- This function will run once every time Awesome is started
-local function run_once(cmd_arr)
+--[[ local function run_once(cmd_arr)
     for _, cmd in ipairs(cmd_arr) do
         awful.spawn.with_shell(
             string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd)
         )
     end
-end
+end ]]
 
 -- or use universal shell script
 awful.spawn.with_shell('~/.config/awesome/autorun.sh')
