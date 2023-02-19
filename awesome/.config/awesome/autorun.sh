@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # run "program [some arguments]"
 run() {
@@ -22,8 +22,8 @@ run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0, 1
 
 # Laptop/Notebook specific settings
-if [[ ! -z $(uname --nodename | grep notebook) ]]; then
-	if [[ -z $(xinput | grep M60) ]]; then
+if uname --nodename | grep -q notebook; then
+	if xinput | grep -q M60; then
 		# only swap ctrl and caps lock, if we are not connected to already pre-swapped keyboards
 		setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
 	fi

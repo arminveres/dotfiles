@@ -89,7 +89,7 @@ local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(
-            markup.fontfg(theme.font, '#e33a6e', cpu_now.usage .. '% ')
+            markup.fontfg(theme.font, '#ff3c3c', cpu_now.usage .. '% ')
             -- markup.fontcolor(theme.font, '#e33a6e', '#ff8c00', cpu_now.usage .. '% ')
         )
     end,
@@ -249,10 +249,59 @@ else -- try the cli if the lib fails
 end
 
 local brightness_widget = require('awesome-wm-widgets.brightness-widget.brightness')
+brightness_widget({
+    program = 'light',
+    timeout = 1,
+    tooltip = true,
+    percentage = true,
+})
+
 local spotify_widget = require('awesome-wm-widgets.spotify-widget.spotify')
 
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
+
+local function get_ip_markup()
+    local interfaces = { 'eth0', 'wlp0s20f3', 'eno1', 'lo' }
+    local len = function()
+        local count = 0
+        for _ in pairs(interfaces) do
+            count = count + 1
+        end
+        return count
+    end
+
+    local match
+    for i = 1, len() do
+        local ip_handle = function()
+            local loc_handle = io.popen('ifconfig ' .. interfaces[i] .. ' 2>/dev/null')
+            if loc_handle ~= nil then
+                return loc_handle
+            end
+            loc_handle = io.popen('ip a | grep eno1' .. interfaces[i] .. ' 2>/dev/null')
+            if loc_handle ~= nil then
+                return loc_handle
+            end
+            print('No program found')
+        end
+
+        local output = ip_handle():read('*all')
+        ip_handle():close()
+
+        match = string.match(output, '%d+%.%d+%.%d+%.%d+ ')
+
+        if match then
+            return markup.fontfg(theme.font, '#bbd800', 'E: ' .. match)
+        end
+    end
+
+    return markup.fontfg(theme.font, theme.error, 'offline')
+end
+
+local ip_widget = wibox.widget({
+    markup = get_ip_markup(),
+    widget = wibox.widget.textbox,
+})
 
 local M = {}
 M.at_screen_connect = function(s)
@@ -352,10 +401,7 @@ M.at_screen_connect = function(s)
             layout = wibox.layout.fixed.horizontal,
             --mailicon,
             --theme.mail.widget,
-            -- netdownicon,
-            -- netdowninfo,
-            -- netupicon,
-            -- netupinfo.widget,
+            ip_widget,
             volicon,
             theme.volume.widget,
             memicon,
@@ -366,12 +412,7 @@ M.at_screen_connect = function(s)
             tempicon,
             temp_widget.widget,
             bat.widget,
-            brightness_widget({
-                program = 'light',
-                timeout = 1,
-                tooltip = true,
-                percentage = true,
-            }),
+            -- brightness_widget(),
         },
     })
 
@@ -398,8 +439,7 @@ M.at_screen_connect = function(s)
                 play_icon = '/usr/share/icons/Papirus/24x24/categories/spotify.svg',
                 pause_icon = '/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg',
                 font = theme.font,
-            }),
-            -- playerctl_widget,
+            }), -- playerctl_widget, --  NOTE: (aver) replaced with spotify widget
             space,
             wibox.widget.systray(),
             space,
