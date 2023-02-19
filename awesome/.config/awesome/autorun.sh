@@ -23,7 +23,7 @@ run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0
 
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
-	if xinput | grep -q M60; then
+	if ! xinput | grep -q M60; then
 		# only swap ctrl and caps lock, if we are not connected to already pre-swapped keyboards
 		setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
 	fi
