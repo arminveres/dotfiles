@@ -249,59 +249,26 @@ else -- try the cli if the lib fails
 end
 
 local brightness_widget = require('awesome-wm-widgets.brightness-widget.brightness')
-brightness_widget({
-    program = 'light',
-    timeout = 1,
-    tooltip = true,
-    percentage = true,
-})
-
 local spotify_widget = require('awesome-wm-widgets.spotify-widget.spotify')
 
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
 
-local function get_ip_markup()
-    local interfaces = { 'eth0', 'wlp0s20f3', 'eno1', 'lo' }
-    local len = function()
-        local count = 0
-        for _ in pairs(interfaces) do
-            count = count + 1
-        end
-        return count
-    end
-
-    local match
-    for i = 1, len() do
-        local ip_handle = function()
-            local loc_handle = io.popen('ifconfig ' .. interfaces[i] .. ' 2>/dev/null')
-            if loc_handle ~= nil then
-                return loc_handle
-            end
-            loc_handle = io.popen('ip a | grep eno1' .. interfaces[i] .. ' 2>/dev/null')
-            if loc_handle ~= nil then
-                return loc_handle
-            end
-            print('No program found')
-        end
-
-        local output = ip_handle():read('*all')
-        ip_handle():close()
-
-        match = string.match(output, '%d+%.%d+%.%d+%.%d+ ')
-
-        if match then
-            return markup.fontfg(theme.font, '#bbd800', 'E: ' .. match)
+-- TODO: (aver) add interface recognition, akin to what I did before `b3122db2f4df5a5056ff9518c6710571cb2e72e0`
+local interface = 'eno1'
+local ip_widget = awful.widget.watch(
+    'bash -c "ifconfig '
+        .. interface
+        .. " | grep --extended-regexp --only-matching --max-count=1 '(([0-9]+)\\.){3}([0-9]+)'\"",
+    60, -- only update every minute
+    function(widget, stdout)
+        if stdout ~= '' then
+            widget:set_markup(markup.fontfg(theme.font, '#bbd800', 'E: ' .. stdout .. ' '))
+        else
+            widget:set_markup(markup.fontfg(theme.font, theme.error, 'offline '))
         end
     end
-
-    return markup.fontfg(theme.font, theme.error, 'offline')
-end
-
-local ip_widget = wibox.widget({
-    markup = get_ip_markup(),
-    widget = wibox.widget.textbox,
-})
+)
 
 local M = {}
 M.at_screen_connect = function(s)
@@ -399,9 +366,9 @@ M.at_screen_connect = function(s)
         wibox.container.place(mytextclock, 'center'),
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            ip_widget,
             --mailicon,
             --theme.mail.widget,
-            ip_widget,
             volicon,
             theme.volume.widget,
             memicon,
@@ -412,7 +379,12 @@ M.at_screen_connect = function(s)
             tempicon,
             temp_widget.widget,
             bat.widget,
-            -- brightness_widget(),
+            brightness_widget({
+                program = 'light',
+                timeout = 1,
+                tooltip = true,
+                percentage = true,
+            }),
         },
     })
 

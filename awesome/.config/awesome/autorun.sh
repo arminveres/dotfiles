@@ -29,13 +29,13 @@ if uname --nodename | grep -q notebook; then
 	fi
 	xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
 	xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
-	run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
 	flatpak run com.github.wwmm.easyeffects
+	run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
+	run picom --daemon --config ~/.config/picom/picom.conf
 else # only run on desktop
 	run autorandr --load secoff
 	run corectrl
-	# run ddccontrol
+	run picom --daemon --config ~/.config/picom/picom.conf --experimental-backend # only use experimental-backend if jonaburg
 fi
 
 run nitrogen --restore
-run picom --daemon --config ~/.config/picom/picom.conf # --experimental-backend # only use experimental-backend if jonaburg
