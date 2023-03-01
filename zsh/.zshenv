@@ -30,6 +30,8 @@ export VIMTEX_OUTPUT_DIRECTORY=build
 
 export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
+
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc
 

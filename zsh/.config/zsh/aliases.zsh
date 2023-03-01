@@ -1,3 +1,4 @@
+alias mktempdir='cd $(mktemp -d)'
 # applications
 alias visudo='sudo visudo'
 
