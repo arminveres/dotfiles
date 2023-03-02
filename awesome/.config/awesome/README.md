@@ -2,6 +2,7 @@
 
 - Readd titlebar functionalities as keybinds (e.g. pin and on top)
 - add control/notification centre
+- Switch to [playerctl](https://github.com/altdesktop/playerctl) since `sp` does not look like it's supported
 
 ## Ideas:
 

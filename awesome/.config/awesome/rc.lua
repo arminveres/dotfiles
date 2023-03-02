@@ -465,7 +465,7 @@ awful.rules.rules = {
         properties = { screen = 1, tag = awful.util.tagnames[2] },
     },
     {
-        rule_any = { class = { 'Blueman-manager', 'Spotify', 'easyeffects' } },
+        rule_any = { class = { 'Blueman-manager', 'easyeffects' } },
         properties = { tag = awful.util.tagnames[4], minimized = true },
     },
     {

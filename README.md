@@ -30,6 +30,10 @@ GNU stow, found either preinstalled or installable on all major distributions.
 
 `# dnf install stow`
 
+I usually use cargo to manage some rust application therefore:
+
+`$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+
 ## TODO
 
 - Add secrets repo as submodule
