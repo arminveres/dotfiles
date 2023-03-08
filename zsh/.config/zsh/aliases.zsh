@@ -5,11 +5,14 @@ alias visudo='sudo visudo'
 alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
+alias pypip="pypy3 -m pip"
 alias tmux="tmux -2"
 alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
 
 alias flup='flatpak update'
 alias flean='flatpak remove --unused'
+
+alias onefetch='onefetch --include-hidden'
 
 # exa
 if [[ $(command -v exa) ]]; then
@@ -73,6 +76,10 @@ esac
 # Distro specifig aliases
 case "$(lsb_release -i | awk '{print $3}')" in
     Ubuntu) # echo Ubuntu
+        alias nala='sudo nala'
+        alias upd='sudo apt update && sudo apt upgrade'
+    ;;
+    Debian) # echo Ubuntu
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
     ;;
