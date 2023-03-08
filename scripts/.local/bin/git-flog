@@ -3,7 +3,14 @@ set e
 
 # Taken from https://github.com/shervinsahba/scripts
 
+if ! git log &>/dev/null; then
+	print "Not in a git repo!"
+	exit 1
+fi
+
+preview_cmd="git show --stat --color --pretty=\"%C(yellow)Commit: %H%Creset%nParent: %C(green)%P%Creset%nAuthor: %C(white)%an%Creset <%ce>%nTime: %ah\" -p {2}"
+
 git log --pretty="format:* %C(yellow)%h%Creset - %as - %s" --color |
-	fzf --ansi --prompt="Search > " --preview \
-		"git show --stat --color --pretty=\"%C(yellow)Commit: %H%Creset%nParent: %C(green)%P%Creset%nAuthor: %C(white)%an%Creset <%ce>%nTime: %ah\" -p {2}" |
+	fzf --ansi --prompt="Search > " --bind "ctrl-b:preview-up,ctrl-f:preview-down,ctrl-d:preview-page-down,ctrl-u:preview-page-up" \
+		--height 100% --preview "$preview_cmd" |
 	cut -f2 -d " "
