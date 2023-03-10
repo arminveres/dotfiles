@@ -102,4 +102,12 @@ if [ "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
 fi
 
+compdef pio
+_pio() {
+  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIO_COMPLETE=complete-zsh  pio)
+}
+if [[ "$(basename -- ${(%):-%x})" != "_pio" ]]; then
+  compdef _pio pio
+fi
+
 compinit
