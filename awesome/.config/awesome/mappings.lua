@@ -207,9 +207,9 @@ M.globalkeys = M.mytable.join(
         { description = "increment useless gaps", group = "tag" }),
     awful.key({ altkey, "Control" }, "-", function() lain.util.useless_gaps_resize(-1) end,
         { description = "decrement useless gaps", group = "tag" }),
-]]
-    -- Dynamic tagging
-    --[[
+    ]]
+
+    --[[ Dynamic tagging
     awful.key({ modkey, "Shift" }, "n", function() lain.util.add_tag() end,
         { description = "add new tag", group = "tag" }),
     awful.key({ modkey, "Shift" }, "r", function() lain.util.rename_tag() end,
@@ -220,7 +220,8 @@ M.globalkeys = M.mytable.join(
         { description = "move tag to the right", group = "tag" }),
     awful.key({ modkey, "Shift" }, "d", function() lain.util.delete_tag() end,
         { description = "delete tag", group = "tag" }),
-]]
+    ]]
+
     -- Standard program
     awful.key({ modkey }, 'Return', function()
         awful.spawn(terminal)
@@ -231,10 +232,6 @@ M.globalkeys = M.mytable.join(
         awesome.restart,
         { description = 'reload awesome', group = 'awesome' }
     ),
-    --[[
-    awful.key({ modkey, "Shift" }, "q", awesome.quit,
-        { description = "quit awesome", group = "awesome" }),
-]]
     awful.key({ modkey }, 'l', function()
         awful.tag.incmwfact(0.05)
     end, { description = 'increase master width factor', group = 'layout' }),
@@ -421,12 +418,6 @@ M.globalkeys = M.mytable.join(
         { description = "copy gtk to terminal", group = "hotkeys" }),
     --]]
 
-    -- Prompt
-    --[[
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
-]]
-
     awful.key({ modkey }, 'x', function()
         awful.prompt.run({
             prompt = 'Run Lua code: ',
@@ -435,18 +426,22 @@ M.globalkeys = M.mytable.join(
             history_path = awful.util.get_cache_dir() .. '/history_eval',
         })
     end, { description = 'lua execute prompt', group = 'awesome' })
-
-    --]]
 )
 
 M.clientkeys = M.mytable.join(
     -- TODO: possibly replace the mod+c mapping with this, since this also adjust height and width
     awful.key(
-        { altkey, 'Shift' },
-        'm',
+        { modkey },
+        'c',
         lain.util.magnify_client,
         { description = 'magnify client', group = 'client' }
     ),
+    -- awful.key(
+    --     { altkey, 'Shift' },
+    --     'm',
+    --     lain.util.magnify_client,
+    --     { description = 'magnify client', group = 'client' }
+    -- ),
     awful.key({ modkey }, 'f', function(c)
         c.fullscreen = not c.fullscreen
         c:raise()
@@ -457,11 +452,9 @@ M.clientkeys = M.mytable.join(
     awful.key({ modkey, 'Shift' }, 'o', function(c)
         c:move_to_screen()
     end, { description = 'move to screen', group = 'client' }),
-    -- awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
-    --     { description = "toggle floating", group = "client" }),
     awful.key(
-        { modkey },
-        'c',
+        { modkey, 'Control' },
+        'space',
         awful.client.floating.toggle,
         { description = 'toggle floating', group = 'client' }
     ),

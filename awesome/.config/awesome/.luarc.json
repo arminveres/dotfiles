@@ -5,21 +5,17 @@
         "enable": true,
         "globals": [
             "awesome",
-            "awful",
             "client",
-            "screen",
-            "tag",
             "mouse",
+            "screen",
             "root",
             "clientbuttons"
         ]
     },
     "workspace": {
         "library": [
-            "/usr/share/awesome/lib/"
-        ],
-        "maxPreload": 2000,
-        "preloadFileSize": 1000
-    },
-    "telemetry.enable": false
+            "/usr/share/awesome/lib/",
+            "./libs/"
+        ]
+    }
 }

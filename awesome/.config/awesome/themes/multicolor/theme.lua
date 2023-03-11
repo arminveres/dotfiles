@@ -2,7 +2,7 @@
     github.com/lcpz --]]
 
 local dpi                                            = require("beautiful.xresources").apply_dpi
-local gears                                          = require("gears")
+-- local gears                                          = require("gears")
 
 local theme                                          = {}
 
