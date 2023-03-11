@@ -271,6 +271,7 @@ local ip_widget = awful.widget.watch(
 )
 
 local M = {}
+
 M.at_screen_connect = function(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -314,7 +315,7 @@ M.at_screen_connect = function(s)
         buttons = awful.util.taglist_buttons,
         style = {
             shape_border_width = dpi(0),
-            -- shape_border_color = '#000000',
+            shape_border_color = '#000000',
             shape = myutils.custom_rounded,
         },
         -- layout = {
@@ -334,19 +335,20 @@ M.at_screen_connect = function(s)
             shape = myutils.custom_rounded,
         },
         layout = {
-            spacing = dpi(5),
+            spacing = dpi(10),
             layout = wibox.layout.flex.horizontal,
+            max_widget_size = 200,
         },
     })
 
     -- Create the wibox
     s.topwibar = awful.wibar({
-        position = 'top',
+        position = 'bottom',
         screen = s,
         -- either increase height or add border for better distinction of tags
         height = dpi(21),
-        -- border_width = dpi(1),
-        -- border_color = '#000000',
+        border_width = dpi(5),
+        border_color = '#000000',
         bg = theme.bg_normal,
         fg = theme.fg_normal,
     })
@@ -355,39 +357,56 @@ M.at_screen_connect = function(s)
     -- Add widgets to the wibox
     s.topwibar:setup({
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
+            -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
             space,
             s.mytaglist,
             s.mypromptbox,
+            space,
         },
-        --s.mytasklist, -- Middle widget
-        wibox.container.place(mytextclock, 'center'),
-        { -- Right widgets
+        s.mytasklist, -- Middle widget
+        -- wibox.container.place(mytextclock, 'center'),
+        {
+            -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            space,
+            spotify_widget({
+                play_icon = '/usr/share/icons/Papirus/24x24/categories/spotify.svg',
+                pause_icon = '/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg',
+                font = theme.font,
+            }), -- playerctl_widget, --  NOTE: (aver) replaced with spotify widget
+            space,
+            volicon,
+            theme.volume.widget,
+            space,
             ip_widget,
             --mailicon,
             --theme.mail.widget,
-            volicon,
-            theme.volume.widget,
-            memicon,
-            memory.widget,
-            cpuicon,
-            cpu.widget,
-            fs.widget,
-            tempicon,
-            temp_widget.widget,
-            bat.widget,
-            brightness_widget({
-                program = 'light',
-                timeout = 1,
-                tooltip = true,
-                percentage = true,
-            }),
+            -- memicon,
+            -- memory.widget,
+            -- cpuicon,
+            -- cpu.widget,
+            -- fs.widget,
+            -- tempicon,
+            -- temp_widget.widget,
+            -- bat.widget,
+            -- brightness_widget({
+            --     program = 'light',
+            --     timeout = 1,
+            --     tooltip = true,
+            --     percentage = true,
+            -- }),
+            space,
+            mytextclock,
+            space,
+            wibox.widget.systray(),
+            space,
         },
     })
 
+    --[[
     -- Create the bottom wibox
     s.bottomwibar = awful.wibar({
         position = 'bottom',
@@ -419,5 +438,6 @@ M.at_screen_connect = function(s)
     })
     -- s.mywibox = awful.wibox({ position = 'left', orientation = 'north', screen = s })
     -- NOTE: https://unix.stackexchange.com/questions/252301/can-a-wibox-in-awesome-wm-be-setup-vertically
+    --]]
 end
 return M
