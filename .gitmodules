@@ -6,7 +6,10 @@
 	url = https://github.com/BlingCorp/bling.git
 [submodule "awesome/.config/awesome/freedesktop"]
 	path = awesome/.config/awesome/freedesktop
-	url = https://github.com/lcpz/awesome-freedesktop
+	url = https://github.com/lcpz/awesome-freedesktop.git
+[submodule "awesome/.config/awesome/lain"]
+	path = awesome/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git
 [submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
 	path = zsh/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
@@ -31,6 +34,3 @@
 [submodule "tmux/.config/tmux"]
 	path = tmux/.config/tmux
 	url = git@github.com:arminveres/tmux.conf
-[submodule "awesome/.config/awesome/lain"]
-	path = awesome/.config/awesome/lain
-	url = https://github.com/lcpz/lain.git
