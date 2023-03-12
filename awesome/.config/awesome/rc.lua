@@ -116,6 +116,7 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     lain.layout.centerwork,
     -- bling.layout.centered,
+    -- bling.layout.centered,
     -- awful.layout.suit.floating,
     -- awful.layout.suit.tile,
     -- awful.layout.suit.tile.left,
@@ -508,8 +509,6 @@ client.connect_signal('manage', function(c)
     end
 end)
 
--- TODO: remove titlebars
--- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal('request::titlebars', function(c)
     -- Custom
     if beautiful.titlebar_fun then
@@ -568,15 +567,15 @@ client.connect_signal('property::floating', function(c)
 end)
 client.connect_signal('focus', function(c)
     c.border_color = beautiful.border_focus
-    if c.floating then
-        awful.placement.centered(c)
-    end
+    -- if c.floating then
+    --     awful.placement.centered(c)
+    -- end
 end)
 client.connect_signal('unfocus', function(c)
     c.border_color = beautiful.border_normal
-    if c.floating then
-        awful.placement.centered(c)
-    end
+    -- if c.floating then
+    --     awful.placement.centered(c)
+    -- end
 end)
 
 -- }}}
