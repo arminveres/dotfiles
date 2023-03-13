@@ -21,6 +21,8 @@ run xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0,
 run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0, 1
 
+run nitrogen --restore
+
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
 	if ! xinput | grep -q M60; then
@@ -37,5 +39,3 @@ else # only run on desktop
 	run corectrl
 	run picom --daemon --config ~/.config/picom/picom.conf --experimental-backend # only use experimental-backend if jonaburg
 fi
-
-run nitrogen --restore

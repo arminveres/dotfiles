@@ -82,7 +82,7 @@ bindkey -s '^s' 'ncdu --color dark^M'
 bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
 bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
 
-bindkey '^[[P' delete-char
+bindkey "^[[3~" delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up

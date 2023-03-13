@@ -16,7 +16,7 @@ local myutils = require('myutils')
 os.setlocale(os.getenv('LANG')) -- to localize the clock
 
 local mytextclock = wibox.widget.textclock(
-    markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M ')
+    markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M')
 )
 mytextclock.font = theme.font
 
@@ -122,7 +122,7 @@ local bat = lain.widget.bat({
         end
 
         local perc = bat_now.perc ~= 'N/A' and bat_now.perc .. '%' or bat_now.perc
-        perc = perc .. ' ' .. bat_now.time .. ' '
+        perc = perc .. ' ' .. bat_now.time
         if bat_now.ac_status == 1 then
             perc = '  ' .. perc
         else
@@ -144,7 +144,7 @@ theme.volume = lain.widget.alsa({
         if volume_now.status == 'off' then
             volume_now.level = volume_now.level .. 'M'
         end
-        widget:set_markup(markup.fontfg(theme.font, '#7493d2', volume_now.level .. '% '))
+        widget:set_markup(markup.fontfg(theme.font, '#7493d2', volume_now.level .. '%'))
     end,
 })
 
@@ -391,13 +391,6 @@ M.at_screen_connect = function(s)
             -- fs.widget,
             -- tempicon,
             -- temp_widget.widget,
-            -- bat.widget,
-            -- brightness_widget({
-            --     program = 'light',
-            --     timeout = 1,
-            --     tooltip = true,
-            --     percentage = true,
-            -- }),
             space,
             mytextclock,
             space,
