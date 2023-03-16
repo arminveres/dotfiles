@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 # run "program [some arguments]"
 run() {
@@ -39,3 +39,5 @@ else # only run on desktop
 	run corectrl
 	run picom --daemon --config ~/.config/picom/picom.conf --experimental-backend # only use experimental-backend if jonaburg
 fi
+# create a tmux session in the background so that tmux is faster on a cold start
+tmux new -s daemon -d

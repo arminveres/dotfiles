@@ -112,9 +112,9 @@ awful.util.terminal = terminal
 awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
+    lain.layout.centerwork,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    lain.layout.centerwork,
     -- bling.layout.centered,
     -- bling.layout.centered,
     -- awful.layout.suit.floating,
