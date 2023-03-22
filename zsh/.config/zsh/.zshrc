@@ -22,6 +22,8 @@ zle_highlight=('paste:none')
 
 # beeping is annoying
 unsetopt BEEP
+# for gods sake, finally able to fuzzy find the rest of the search
+unsetopt menu_complete
 
 # completions
 autoload -Uz compinit
@@ -55,6 +57,8 @@ zsh_safe_source "$HOME/.cargo/env"
 # Exports are needed before aliases
 zsh_safe_source "vim_mode.zsh"
 zsh_safe_source "aliases.zsh"
+zsh_safe_source "fzf.zsh"
+
 
 # prompt
 # TODO:Maybe move it into repo anyway
@@ -78,7 +82,7 @@ bindkey -s '^s' 'ncdu --color dark^M'
 bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
 bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
 
-bindkey '^[[P' delete-char
+bindkey "^[[3~" delete-char
 bindkey "^p" up-line-or-beginning-search # Up
 bindkey "^n" down-line-or-beginning-search # Down
 bindkey "^k" up-line-or-beginning-search # Up
@@ -86,15 +90,24 @@ bindkey "^j" down-line-or-beginning-search # Down
 # bindkey -r "^u"
 bindkey -r "^d"
 
-[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
-[ -f $ZDOTDIR/completion/_cht ] && fpath+="$ZDOTDIR/completion/"
-# export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-compinit
+[ -d "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR"/completion/ $fpath);
+[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath=("$ZDOTDIR"/plugins/zsh-completions/src $fpath);
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+if [ "$(command -v zoxide)" ]; then
+    eval "$(zoxide init zsh)"
+fi
 
-eval "$(zoxide init zsh)"
+compinit
+
+compdef pio
+_pio() {
+  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIO_COMPLETE=complete-zsh  pio)
+}
+if [[ "$(basename -- ${(%):-%x})" != "_pio" ]]; then
+  compdef _pio pio
+fi

@@ -1,25 +1,27 @@
 [user]
-    email = armin.veres@hotmail.com
-    name = Armin Veres
+	email = armin.veres@hotmail.com
+	name = Armin Veres
 [core]
-    autocrlf = input
-    editor = nvim
-    excludesfile = ~/.config/git/gitignore_global
-    whitespace = trailing-space
+	autocrlf = input
+	editor = nvim
+	excludesfile = ~/.config/git/gitignore_global
+	whitespace = trailing-space
 [credential]
-    helper = cache
+	helper = cache
 [init]
-    defaultBranch = main
+	defaultBranch = main
 [color]
-    ui = auto
-[alias]
-    tree = log --oneline --graph --decorate --branches --max-count 10
+	ui = auto
 [merge]
-    tool = "nvim"
+	tool = "nvim"
 [mergetool]
-    keepBackup = false
-    prompt = false
+	keepBackup = false
+	prompt = false
 [mergetool "nvim"]
-    cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 [pull]
 	rebase = true
+[diff]
+	external = difft
+[alias]
+	tree = log --oneline --graph --decorate --branches #--max-count 10

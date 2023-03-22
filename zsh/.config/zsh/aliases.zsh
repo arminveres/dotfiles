@@ -1,35 +1,41 @@
+alias mktempdir='cd $(mktemp -d)'
 # applications
 alias visudo='sudo visudo'
 
 alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
+alias pypip="pypy3 -m pip"
 alias tmux="tmux -2"
+alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
+
+alias flup='flatpak update'
+alias flean='flatpak remove --unused'
+
+alias onefetch='onefetch --include-hidden'
 
 # exa
 if [[ $(command -v exa) ]]; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
-    alias la="exa --color=always --group-directories-first --long --all --header"
+    alias la="exa --color=always --group-directories-first --long --all --header --icons"
     alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
     alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
     alias ll="exa --color=always --group-directories-first --long --header"
-    alias tree="exa --color=always --group-directories-first --icons --tree"
-# else
-# TODO: Add simple ls aliases
-# alias ls
-# alias la
-# alias lag
-# alias lg
-# alias ll
+    alias tree="exa --color=always --group-directories-first --tree --icons"
+else
+    alias ls="ls --color=always"
+    alias la="ls --color=always --almost-all"
+    alias ll="ls --color=always --long"
 fi
 
 # git
-alias g="git"
 alias gb="git branch"
 alias gls="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 alias wt="git worktree"
+alias gco="git checkout"
+alias gsw="git switch"
 # alias gsp="git submodule foreach git pull"
 
 # aliasing coreutils
@@ -50,9 +56,13 @@ alias uskb="setxkbmap us"
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
+if [[ $(command -v cargo) ]]; then
+    alias cargoup="cargo-install-update install-update --all"
+fi
+
 # Terminal Specific Aliases
 if [[ $TERM == "xterm-kitty" ]]; then
-  alias ssh="kitty +kitten ssh"
+  alias connect="kitty +kitten ssh"
 fi
 
 # linux workstation specific aliases, could move it into subdivided os specific aliases
@@ -66,6 +76,10 @@ esac
 # Distro specifig aliases
 case "$(lsb_release -i | awk '{print $3}')" in
     Ubuntu) # echo Ubuntu
+        alias nala='sudo nala'
+        alias upd='sudo apt update && sudo apt upgrade'
+    ;;
+    Debian) # echo Ubuntu
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
     ;;

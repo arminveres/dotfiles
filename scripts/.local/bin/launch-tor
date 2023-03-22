@@ -1,0 +1,9 @@
+#!/bin/env bash
+
+# set error
+set e
+
+( # launch in subshell
+	nordvpn c switzerland && qbittorrent &>/dev/null
+) &
+watch -d nordvpn status

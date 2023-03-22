@@ -1,0 +1,5 @@
+#!/bin/env bash
+set e
+
+pip install --user --upgrade $(pip list --user --outdated | awk 'NR>2 {print $1}')
+

@@ -5,16 +5,18 @@ local wibox = require('wibox')
 local bling = require('bling')
 local dpi = require('beautiful.xresources').apply_dpi
 local theme = require('beautiful')
+
 theme.init(string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), 'multicolor'))
+
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local markup = lain.util.markup
 local myutils = require('myutils')
 
 -- Textclock
 os.setlocale(os.getenv('LANG')) -- to localize the clock
-local clockicon = wibox.widget.imagebox(theme.widget_clock)
+
 local mytextclock = wibox.widget.textclock(
-    markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M ')
+    markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M')
 )
 mytextclock.font = theme.font
 
@@ -29,23 +31,22 @@ theme.cal = lain.widget.cal({
 })
 
 -- Weather
---[[ to be set before use
-local weathericon = wibox.widget.imagebox(theme.widget_weather)
-theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
-    notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
-    settings = function()
-        descr = weather_now["weather"][1]["description"]:lower()
-        units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-    end
-})
---]]
+-- to be set before use
+-- local weathericon = wibox.widget.imagebox(theme.widget_weather)
+-- theme.weather = lain.widget.weather({
+--     city_id = 2643743, -- placeholder (London)
+--     notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
+--     weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
+--     settings = function()
+--         descr = weather_now["weather"][1]["description"]:lower()
+--         units = math.floor(weather_now["main"]["temp"])
+--         widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+--     end
+-- })
 
 -- / fs
---[[ commented because it needs Gio/Glib >= 2.54 ]]
---[[ local fsicon = wibox.widget.imagebox(theme.widget_fs) ]]
+-- commented because it needs Gio/Glib >= 2.54
+-- local fsicon = wibox.widget.imagebox(theme.widget_fs)
 --TODO: create issue on lain for fedora
 local fs = lain.widget.fs({
     timeout = 60,
@@ -62,34 +63,33 @@ local fs = lain.widget.fs({
 })
 
 -- Mail IMAP check
---[[ to be set before use
-local mailicon = wibox.widget.imagebox()
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            mailicon:set_image(theme.widget_mail)
-            widget:set_markup(markup.fontfg(theme.font, "#cccccc", mailcount .. " "))
-        else
-            widget:set_text("")
-            --mailicon:set_image() -- not working in 4.0
-            mailicon._private.image = nil
-            mailicon:emit_signal("widget::redraw_needed")
-            mailicon:emit_signal("widget::layout_changed")
-        end
-    end
-})
---]]
+-- to be set before use
+-- local mailicon = wibox.widget.imagebox()
+-- theme.mail = lain.widget.imap({
+--     timeout  = 180,
+--     server   = "server",
+--     mail     = "mail",
+--     password = "keyring get mail",
+--     settings = function()
+--         if mailcount > 0 then
+--             mailicon:set_image(theme.widget_mail)
+--             widget:set_markup(markup.fontfg(theme.font, "#cccccc", mailcount .. " "))
+--         else
+--             widget:set_text("")
+--             --mailicon:set_image() -- not working in 4.0
+--             mailicon._private.image = nil
+--             mailicon:emit_signal("widget::redraw_needed")
+--             mailicon:emit_signal("widget::layout_changed")
+--         end
+--     end
+-- })
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(
-            markup.fontfg(theme.font, '#e33a6e', cpu_now.usage .. '% ')
+            markup.fontfg(theme.font, '#ff3c3c', cpu_now.usage .. '% ')
             -- markup.fontcolor(theme.font, '#e33a6e', '#ff8c00', cpu_now.usage .. '% ')
         )
     end,
@@ -115,7 +115,6 @@ local temp_widget = lain.widget.temp({
 })
 
 -- Battery
---[[ local baticon = wibox.widget.imagebox(theme.widget_batt) ]]
 local bat = lain.widget.bat({
     settings = function()
         if bat_now.perc == 'N/A' then
@@ -123,10 +122,18 @@ local bat = lain.widget.bat({
         end
 
         local perc = bat_now.perc ~= 'N/A' and bat_now.perc .. '%' or bat_now.perc
+        perc = perc .. ' ' .. bat_now.time
         if bat_now.ac_status == 1 then
-            perc = perc .. ' plug'
+            perc = '  ' .. perc
+        else
+            perc = '  ' .. perc
         end
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, '  ' .. perc .. ' '))
+
+        if tonumber(bat_now.perc) <= 20 then
+            widget:set_markup(markup.color('#000000', '#fb4934', perc))
+        else
+            widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, perc))
+        end
     end,
 })
 
@@ -137,7 +144,7 @@ theme.volume = lain.widget.alsa({
         if volume_now.status == 'off' then
             volume_now.level = volume_now.level .. 'M'
         end
-        widget:set_markup(markup.fontfg(theme.font, '#7493d2', volume_now.level .. '% '))
+        widget:set_markup(markup.fontfg(theme.font, '#7493d2', volume_now.level .. '%'))
     end,
 })
 
@@ -154,7 +161,6 @@ local netupinfo = lain.widget.net({
             theme.weather.update()
         end
         --]]
-
         local sent = function()
             local sent_n = tonumber(net_now.sent)
             if sent_n > 1000000 then
@@ -242,10 +248,30 @@ else -- try the cli if the lib fails
     end
 end
 
+local brightness_widget = require('awesome-wm-widgets.brightness-widget.brightness')
+local spotify_widget = require('awesome-wm-widgets.spotify-widget.spotify')
+
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
 
+-- TODO: (aver) add interface recognition, akin to what I did before `b3122db2f4df5a5056ff9518c6710571cb2e72e0`
+local interface = 'eno1'
+local ip_widget = awful.widget.watch(
+    'bash -c "ifconfig '
+        .. interface
+        .. " | grep --extended-regexp --only-matching --max-count=1 '(([0-9]+)\\.){3}([0-9]+)'\"",
+    60, -- only update every minute
+    function(widget, stdout)
+        if stdout ~= '' then
+            widget:set_markup(markup.fontfg(theme.font, '#bbd800', 'E: ' .. stdout .. ' '))
+        else
+            widget:set_markup(markup.fontfg(theme.font, theme.error, 'offline '))
+        end
+    end
+)
+
 local M = {}
+
 M.at_screen_connect = function(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -289,7 +315,7 @@ M.at_screen_connect = function(s)
         buttons = awful.util.taglist_buttons,
         style = {
             shape_border_width = dpi(0),
-            -- shape_border_color = '#000000',
+            shape_border_color = '#000000',
             shape = myutils.custom_rounded,
         },
         -- layout = {
@@ -309,19 +335,20 @@ M.at_screen_connect = function(s)
             shape = myutils.custom_rounded,
         },
         layout = {
-            spacing = dpi(5),
+            spacing = dpi(10),
             layout = wibox.layout.flex.horizontal,
+            max_widget_size = 200,
         },
     })
 
     -- Create the wibox
     s.topwibar = awful.wibar({
-        position = 'top',
+        position = 'bottom',
         screen = s,
         -- either increase height or add border for better distinction of tags
         height = dpi(21),
-        -- border_width = dpi(1),
-        -- border_color = '#000000',
+        border_width = dpi(5),
+        border_color = '#000000',
         bg = theme.bg_normal,
         fg = theme.fg_normal,
     })
@@ -330,36 +357,49 @@ M.at_screen_connect = function(s)
     -- Add widgets to the wibox
     s.topwibar:setup({
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
+            -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mylayoutbox,
             space,
             s.mytaglist,
             s.mypromptbox,
+            space,
         },
-        --s.mytasklist, -- Middle widget
-        wibox.container.place(mytextclock, 'center'),
-        { -- Right widgets
+        s.mytasklist, -- Middle widget
+        -- wibox.container.place(mytextclock, 'center'),
+        {
+            -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            --mailicon,
-            --theme.mail.widget,
-            -- netdownicon,
-            -- netdowninfo,
-            -- netupicon,
-            -- netupinfo.widget,
+            space,
+            spotify_widget({
+                play_icon = '/usr/share/icons/Papirus/24x24/categories/spotify.svg',
+                pause_icon = '/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg',
+                font = theme.font,
+            }), -- playerctl_widget, --  NOTE: (aver) replaced with spotify widget
+            space,
             volicon,
             theme.volume.widget,
-            memicon,
-            memory.widget,
-            cpuicon,
-            cpu.widget,
-            fs.widget,
-            tempicon,
-            temp_widget.widget,
-            bat.widget,
+            space,
+            ip_widget,
+            --mailicon,
+            --theme.mail.widget,
+            -- memicon,
+            -- memory.widget,
+            -- cpuicon,
+            -- cpu.widget,
+            -- fs.widget,
+            -- tempicon,
+            -- temp_widget.widget,
+            space,
+            mytextclock,
+            space,
+            wibox.widget.systray(),
+            space,
         },
     })
 
+    --[[
     -- Create the bottom wibox
     s.bottomwibar = awful.wibar({
         position = 'bottom',
@@ -379,7 +419,11 @@ M.at_screen_connect = function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             space,
-            playerctl_widget,
+            spotify_widget({
+                play_icon = '/usr/share/icons/Papirus/24x24/categories/spotify.svg',
+                pause_icon = '/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg',
+                font = theme.font,
+            }), -- playerctl_widget, --  NOTE: (aver) replaced with spotify widget
             space,
             wibox.widget.systray(),
             space,
@@ -387,5 +431,6 @@ M.at_screen_connect = function(s)
     })
     -- s.mywibox = awful.wibox({ position = 'left', orientation = 'north', screen = s })
     -- NOTE: https://unix.stackexchange.com/questions/252301/can-a-wibox-in-awesome-wm-be-setup-vertically
+    --]]
 end
 return M

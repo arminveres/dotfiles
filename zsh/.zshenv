@@ -30,10 +30,14 @@ export VIMTEX_OUTPUT_DIRECTORY=build
 
 export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
 export ZDOTDIR=$HOME/.config/zsh
+
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # finally source the real zshrc
 source $ZDOTDIR/.zshrc
 
-xrdb $XDG_CONFIG_HOME/X11/Xresources
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+
+[[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"

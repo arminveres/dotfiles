@@ -4,17 +4,16 @@
 
 ## Description
 
-Handcrafted dotfiles for personal use, currently on Fedora Workstation 35.
+Handcrafted dotfiles for personal use, currently on Fedora Workstation 37.
 
-| Type                 | Currently in use                                                                                  |
-| -------------------- | ------------------------------------------------------------------------------------------------- |
-| Window Manager       | AwesomeWM                                                                                         |
-| Status bar           | Polybar                                                                                           |
-| Notifications        | naughty, dunst                                                                                    |
-| Shell                | zsh                                                                                               |
-| Editor               | [NeoVIM](https://github.com/arminveres/dotconf-files/tree/home-fedora/dotfiles/nvim/.config/nvim) |
-| Terminal Emulator    | kitty, alacritty                                                                                  |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux-config)                                                 |
+| Type                 | Currently in use                                |
+| -------------------- | ----------------------------------------------- |
+| Window Manager       | AwesomeWM                                       |
+| Notifications        | naughty, dunst                                  |
+| Shell                | zsh                                             |
+| Editor               | [NeoVIM](https://github.com/arminveres/nvim)    |
+| Terminal Emulator    | kitty, alacritty                                |
+| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux.conf) |
 
 ## Usage
 
@@ -27,9 +26,24 @@ Use following if you want to overwrite files in repo: \
 
 ## Dependencies
 
-GNU stow, found either preinstalled or installable on all major distributions.
+- GNU stow, found either preinstalled or installable on all major distributions.
 
 `# dnf install stow`
+
+- [fzf](https://github.com/junegunn/fzf), although it is already downloaded as a submodule under [the zsh
+  plugins](./zsh/.config/zsh/plugins/fzf/).
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+`$ cargo install ripgrep` or `# dnf install ripgrep`
+
+- [fd](https://github.com/sharkdp/fd)
+
+`# dnf install fd-find` or `$ cargo install fd-find`
+
+- I usually use cargo to manage some rust application therefore:
+
+`$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
 ## TODO
 

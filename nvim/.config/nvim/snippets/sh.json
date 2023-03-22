@@ -1,7 +1,0 @@
-{
-  "bashe": {
-    "body": "#!/bin/bash -e",
-    "description": "bash for scripts",
-    "prefix": "bashe"
-  }
-}

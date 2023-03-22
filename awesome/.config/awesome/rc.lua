@@ -16,7 +16,6 @@ require('awful.autofocus')
 local wibox = require('wibox')
 local beautiful = require('beautiful')
 local naughty = require('naughty')
-local gears = require('gears')
 local freedesktop = require('freedesktop')
 local bling = require('bling')
 local hotkeys_popup = require('awful.hotkeys_popup')
@@ -70,31 +69,8 @@ end
 
 -- }}}
 
--- {{{ Autostart windowless processes
-
--- This function will run once every time Awesome is started
-local function run_once(cmd_arr)
-    for _, cmd in ipairs(cmd_arr) do
-        awful.spawn.with_shell(
-            string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd)
-        )
-    end
-end
-
 -- or use universal shell script
 awful.spawn.with_shell('~/.config/awesome/autorun.sh')
-
--- This function implements the XDG autostart specification
---[[
-awful.spawn.with_shell(
-    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
-    'xrdb -merge <<< "awesome.started:true";' ..
-    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
-    'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart"' -- https://github.com/jceb/dex
-)
---]]
-
--- }}}
 
 -- {{{ Variable definitions
 
@@ -110,12 +86,17 @@ local terminal = 'kitty'
 local editor = os.getenv('EDITOR') or 'nvim'
 
 awful.util.terminal = terminal
-awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', '8', 'msg' }
+awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
+
+-- TODO: set mw factor acording to tag and screensize
+-- awful.tag.setmwfact(0.7, null)
+
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
+    lain.layout.centerwork,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    lain.layout.centerwork,
+    -- bling.layout.centered,
     -- bling.layout.centered,
     -- awful.layout.suit.floating,
     -- awful.layout.suit.tile,
@@ -195,11 +176,9 @@ awful.util.tasklist_buttons = mytable.join(
 beautiful.init(
     string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), chosen_theme)
 )
-
 -- }}}
 
 -- {{{ Menu
-
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
     {
@@ -256,9 +235,10 @@ end)
 
 -- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal('property::geometry', function()
-    awful.spawn.with_shell('nitrogen --restore')
-end)
+-- NOTE: Just do this in the autorun file
+-- screen.connect_signal('property::geometry', function()
+--     awful.spawn.with_shell('nitrogen --restore')
+-- end)
 
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal('arrange', function(s)
@@ -290,21 +270,22 @@ bling.widget.window_switcher.enable({
     cycle_key = 'Tab', -- The key on which to cycle through all clients
     previous_key = 'Left', -- The key on which to select the previous client
     next_key = 'Right', -- The key on which to select the next client
-    vim_previous_key = 'h', -- Alternative key on which to select the previous client
-    vim_next_key = 'l', -- Alternative key on which to select the next client
+    vim_previous_key = 'l', -- Alternative key on which to select the previous client
+    vim_next_key = 'h', -- Alternative key on which to select the next client
 
-    cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
     -- filterClients = awful.widget.tasklist.filter.currenttags, -- The function to filter the viewed clients
+    cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
+    -- filterClients = awful.widget.tasklist.filter.allscreen
 })
 
 -- {{{ Mouse bindings
-
 root.buttons(mytable.join(
     awful.button({}, 3, function()
         awful.util.mymainmenu:toggle()
-    end),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
+    end)
+    -- NOTE: This got quite annoying when accidentally scrolling on the desktop.
+    --     awful.button({}, 4, awful.tag.viewnext),
+    --     awful.button({}, 5, awful.tag.viewprev)
 ))
 
 -- }}}
@@ -391,6 +372,7 @@ clientbuttons = mytable.join(
 root.keys(globalkeys)
 
 -- {{{ Rules
+-- TODO: move into separate file
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -434,6 +416,8 @@ awful.rules.rules = {
                 'origin.exe',
                 'zoom',
                 'Cisco AnyConnect Secure Mobility Client',
+                'Matplotlib',
+                'matplotlib'
             },
 
             -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -448,7 +432,9 @@ awful.rules.rules = {
                 'Network Connections',
             },
         },
-        properties = { floating = true },
+        properties = {
+            floating = true,
+        },
     },
 
     -- Add titlebars to normal clients and dialogs
@@ -463,23 +449,27 @@ awful.rules.rules = {
         properties = { screen = 1, tag = awful.util.tagnames[2] },
     },
     {
-        rule_any = { class = { 'Blueman-manager', 'Spotify' } },
-        properties = { tag = awful.util.tagnames[4] },
+        rule_any = { class = { 'Blueman-manager', 'easyeffects' } },
+        properties = { tag = awful.util.tagnames[4], minimized = true },
     },
     {
         rule_any = { class = { 'Geary', 'thunderbird', 'mail' } },
         properties = { tag = awful.util.tagnames[5] },
     },
     {
-        rule = { class = 'Steam' },
+        rule_any = { class = { 'Steam', 'Lutris' } },
         properties = { tag = awful.util.tagnames[6] },
     },
     {
-        rule = { class = 'corectrl' },
+        rule_any = { class = { 'qBittorrent', 'qbittorrent' } },
+        properties = { tag = awful.util.tagnames[7] },
+    },
+    {
+        rule_any = { class = { 'corectrl', 'virt-manager', 'Virt-manager' } },
         properties = { tag = awful.util.tagnames[8] },
     },
     {
-        rule_any = { class = { 'discord', 'Signal' } },
+        rule_any = { class = { 'discord', 'Signal', 'Slack' } },
         properties = { tag = awful.util.tagnames[9] },
     },
 }
@@ -500,8 +490,6 @@ client.connect_signal('manage', function(c)
     end
 end)
 
--- TODO: remove titlebars
--- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal('request::titlebars', function(c)
     -- Custom
     if beautiful.titlebar_fun then
@@ -549,15 +537,26 @@ client.connect_signal('request::titlebars', function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---[[ client.connect_signal("mouse::enter", function(c) ]]
---[[     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus }) ]]
---[[ end) ]]
+-- client.connect_signal("mouse::enter", function(c)
+--     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
+-- end)
 
+client.connect_signal('property::floating', function(c)
+    if c.floating then
+        awful.placement.centered(c)
+    end
+end)
 client.connect_signal('focus', function(c)
     c.border_color = beautiful.border_focus
+    -- if c.floating then
+    --     awful.placement.centered(c)
+    -- end
 end)
 client.connect_signal('unfocus', function(c)
     c.border_color = beautiful.border_normal
+    -- if c.floating then
+    --     awful.placement.centered(c)
+    -- end
 end)
 
 -- }}}

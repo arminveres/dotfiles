@@ -1,12 +1,15 @@
+[submodule "awesome/.config/awesome/awesome-wm-widgets"]
+	path = awesome/.config/awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets.git
 [submodule "awesome/.config/awesome/bling"]
 	path = awesome/.config/awesome/bling
 	url = https://github.com/BlingCorp/bling.git
-[submodule "awesome/.config/awesome/lain"]
-	path = awesome/.config/awesome/lain
-	url = https://github.com/lcpz/lain.git
 [submodule "awesome/.config/awesome/freedesktop"]
 	path = awesome/.config/awesome/freedesktop
 	url = https://github.com/lcpz/awesome-freedesktop.git
+[submodule "awesome/.config/awesome/lain"]
+	path = awesome/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git
 [submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
 	path = zsh/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
@@ -19,3 +22,15 @@
 [submodule "zsh/.config/zsh/plugins/zsh-autopair"]
 	path = zsh/.config/zsh/plugins/zsh-autopair
 	url = https://github.com/hlissner/zsh-autopair.git
+[submodule "zsh/.config/zsh/plugins/fzf"]
+	path = zsh/.config/zsh/plugins/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "zsh/.config/zsh/plugins/zsh-completions"]
+	path = zsh/.config/zsh/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:arminveres/nvim.git
+[submodule "tmux/.config/tmux"]
+	path = tmux/.config/tmux
+	url = git@github.com:arminveres/tmux.conf
