@@ -69,31 +69,8 @@ end
 
 -- }}}
 
--- {{{ Autostart windowless processes
-
--- This function will run once every time Awesome is started
---[[ local function run_once(cmd_arr)
-    for _, cmd in ipairs(cmd_arr) do
-        awful.spawn.with_shell(
-            string.format("pgrep -u $USER -fx '%s' > /dev/null || (%s)", cmd, cmd)
-        )
-    end
-end ]]
-
 -- or use universal shell script
 awful.spawn.with_shell('~/.config/awesome/autorun.sh')
-
--- This function implements the XDG autostart specification
---[[
-awful.spawn.with_shell(
-    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
-    'xrdb -merge <<< "awesome.started:true";' ..
-    -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
-    'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_DIRS/autostart:$XDG_CONFIG_HOME/autostart"' -- https://github.com/jceb/dex
-)
---]]
-
--- }}}
 
 -- {{{ Variable definitions
 
@@ -110,6 +87,10 @@ local editor = os.getenv('EDITOR') or 'nvim'
 
 awful.util.terminal = terminal
 awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
+
+-- TODO: set mw factor acording to tag and screensize
+-- awful.tag.setmwfact(0.7, null)
+
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
     lain.layout.centerwork,
