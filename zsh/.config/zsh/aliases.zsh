@@ -14,12 +14,14 @@ alias flean='flatpak remove --unused'
 
 alias onefetch='onefetch --include-hidden'
 
+alias lg=lazygit
+
 # exa
 if [[ $(command -v exa) ]]; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
     alias la="exa --color=always --group-directories-first --long --all --header --icons"
     alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
-    alias lg="exa --color=always --group-directories-first --long --header --grid --icons"
+    alias lsg="exa --color=always --group-directories-first --long --header --grid --icons"
     alias ll="exa --color=always --group-directories-first --long --header"
     alias tree="exa --color=always --group-directories-first --tree --icons"
 else
