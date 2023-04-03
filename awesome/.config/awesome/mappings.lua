@@ -464,6 +464,11 @@ M.clientkeys = M.mytable.join(
     awful.key({ modkey }, 't', function(c)
         c.ontop = not c.ontop
     end, { description = 'toggle keep on top', group = 'client' }),
+
+    awful.key({ modkey, 'Shift' }, 't', function(c)
+        c.sticky = not c.sticky
+    end, { description = 'toggle make sticky', group = 'client' }),
+
     awful.key({ modkey }, 'n', function(c)
         -- The client currently has the input focus, so it cannot be
         -- minimized, since minimized clients can't have the focus.

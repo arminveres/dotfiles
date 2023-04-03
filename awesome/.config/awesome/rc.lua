@@ -30,6 +30,7 @@ local globalkeys = mappings.globalkeys
 local clientkeys = mappings.clientkeys
 local dpi = require('beautiful.xresources').apply_dpi
 -- }}}
+local tag = tag
 
 -- Notification configuration
 naughty.config.defaults.border_width = dpi(2)
@@ -92,8 +93,8 @@ awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm'
 -- awful.tag.setmwfact(0.7, null)
 
 awful.layout.layouts = {
-    awful.layout.suit.tile.right,
     lain.layout.centerwork,
+    awful.layout.suit.tile.right,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- bling.layout.centered,
@@ -478,6 +479,19 @@ awful.rules.rules = {
 
 -- {{{ Signals
 
+-- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
+local function lain_adjust_mwfact()
+    local scr = awful.screen.focused()
+
+    if awful.layout.get(scr) == lain.layout.centerwork then
+        if #scr.clients == 1 and scr.geometry.width > 1920 then
+            scr.selected_tag.master_width_factor = 0.7
+        else
+            scr.selected_tag.master_width_factor = 0.5
+        end
+    end
+end
+
 -- Signal function to execute when a new client appears.
 client.connect_signal('manage', function(c)
     -- Set the windows at the slave,
@@ -547,12 +561,14 @@ client.connect_signal('property::floating', function(c)
     end
 end)
 client.connect_signal('focus', function(c)
+    lain_adjust_mwfact()
     c.border_color = beautiful.border_focus
     -- if c.floating then
     --     awful.placement.centered(c)
     -- end
 end)
 client.connect_signal('unfocus', function(c)
+    lain_adjust_mwfact()
     c.border_color = beautiful.border_normal
     -- if c.floating then
     --     awful.placement.centered(c)
