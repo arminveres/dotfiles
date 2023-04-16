@@ -45,6 +45,10 @@ Use following if you want to overwrite files in repo: \
 
 `$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
+- Solaar for managing Logitech peripherals
+
+`# dnf install solaar`
+
 ## TODO
 
 - Add secrets repo as submodule
