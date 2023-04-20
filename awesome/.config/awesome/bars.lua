@@ -45,22 +45,7 @@ theme.cal = lain.widget.cal({
 -- })
 
 -- / fs
--- commented because it needs Gio/Glib >= 2.54
--- local fsicon = wibox.widget.imagebox(theme.widget_fs)
---TODO: create issue on lain for fedora
-local fs = lain.widget.fs({
-    timeout = 60,
-    notification_preset = { font = theme.font, fg = theme.fg_normal },
-    settings = function()
-        widget:set_markup(
-            markup.fontfg(
-                theme.font,
-                '#80d9d8',
-                string.format(' %.1f', fs_now['/'].percentage) .. '% '
-            )
-        )
-    end,
-})
+--TODO: add awesome-wm-widgets fs
 
 -- Mail IMAP check
 -- to be set before use
@@ -341,21 +326,22 @@ M.at_screen_connect = function(s)
         },
     })
 
+    local transparency = "FF"
     -- Create the wibox
-    s.topwibar = awful.wibar({
+    s.mainbar = awful.wibar({
         position = 'bottom',
         screen = s,
         -- either increase height or add border for better distinction of tags
         height = dpi(21),
         border_width = dpi(5),
-        border_color = '#000000',
-        bg = theme.bg_normal,
+        border_color = '#000000' .. transparency,
+        bg = theme.bg_normal .. transparency,
         fg = theme.fg_normal,
     })
 
     -- TODO: add fixed and centralized bar elements
     -- Add widgets to the wibox
-    s.topwibar:setup({
+    s.mainbar:setup({
         layout = wibox.layout.align.horizontal,
         {
             -- Left widgets

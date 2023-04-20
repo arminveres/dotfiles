@@ -260,7 +260,6 @@ end)
 
 -- }}}
 
--- BUG: create issue: does not start if all clients minimized
 bling.widget.window_switcher.enable({
     type = 'thumbnail', -- set to anything other than "thumbnail" to disable client previews
     -- keybindings (the examples provided are also the default if kept unset)
@@ -383,7 +382,7 @@ awful.rules.rules = {
             border_width = beautiful.border_width,
             border_color = beautiful.border_normal,
             -- sets the slave as the new window
-            --[[ callback = awful.client.setslave, ]]
+            -- callback = awful.client.setslave,
             focus = awful.client.focus.filter,
             raise = true,
             keys = clientkeys,

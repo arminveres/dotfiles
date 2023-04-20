@@ -13,7 +13,7 @@ local M = {}
 
 M.mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
 M.globalkeys = M.mytable.join(
-    -- Destroy all notifications
+-- Destroy all notifications
     awful.key({ 'Control' }, 'space', function()
         naughty.destroy_all_notifications()
     end, { description = 'destroy all notifications', group = 'hotkeys' }),
@@ -67,6 +67,7 @@ M.globalkeys = M.mytable.join(
 
     awful.key({ altkey }, 'Escape', function()
         local locker = 'i3lock-blur && xset dpms force off'
+        local suspender = 'i3lock-blur'
         awful
             .menu({
                 { 'Powermenu' },
@@ -85,13 +86,13 @@ M.globalkeys = M.mytable.join(
                 {
                     '&s suspend',
                     function()
-                        awful.spawn.with_shell(locker .. ' && systemctl suspend')
+                        awful.spawn.with_shell(suspender .. ' && systemctl suspend')
                     end,
                 },
                 {
                     '&h hibernate',
                     function()
-                        awful.spawn.with_shell(locker .. ' && systemctl hibernate')
+                        awful.spawn.with_shell(suspender .. ' && systemctl hibernate')
                     end,
                 },
                 {
