@@ -45,6 +45,15 @@ Use following if you want to overwrite files in repo: \
 
 `$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
+### Nice to haves
+
+- `autorandr` + `arandr` for managing multiple layouts e.g. for the laptop
+
+- `lazygit` or `gitui`
+
+  - `# dnf copr enable atim/lazygit -y && dnf install lazygit`
+  - `# dnf install gitui` or `$ cargo install gitui`
+
 - Solaar for managing Logitech peripherals
 
 `# dnf install solaar`
