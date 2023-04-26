@@ -64,15 +64,15 @@ fi
 
 # Terminal Specific Aliases
 if [[ $TERM == "xterm-kitty" ]]; then
-  alias connect="kitty +kitten ssh"
+    alias connect="kitty +kitten ssh"
 fi
 
 # linux workstation specific aliases, could move it into subdivided os specific aliases
 case "$(uname -n)" in
     "") # Work specific aliases
-    ;;
+        ;;
     *)
-    ;;
+        ;;
 esac
 
 # Distro specifig aliases
@@ -80,17 +80,17 @@ case "$(lsb_release -i | awk '{print $3}')" in
     Ubuntu) # echo Ubuntu
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
-    ;;
+        ;;
     Debian) # echo Ubuntu
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
-    ;;
+        ;;
     Fedora) # echo Fedora
         alias dnf='sudo dnf'
         alias din='dnf install'
         alias dup='dnf upgrade'
         alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
-    ;;
+        ;;
     *)
-    ;;
+        ;;
 esac

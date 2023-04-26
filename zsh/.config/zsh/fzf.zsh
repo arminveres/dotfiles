@@ -3,11 +3,11 @@
 # Setup fzf
 # ---------
 if [[ ! -f "$ZDOTDIR"/plugins/fzf/bin/fzf ]]; then
-  "$ZDOTDIR"/plugins/fzf/install --bin
+    "$ZDOTDIR"/plugins/fzf/install --bin
 fi
 
 if [[ ! "$PATH" == */home/armin/pers_git/fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}$ZDOTDIR/plugins/fzf/bin"
+    PATH="${PATH:+${PATH}:}$ZDOTDIR/plugins/fzf/bin"
 fi
 
 # Auto-completion

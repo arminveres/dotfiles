@@ -1,4 +1,4 @@
-ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 export VISUAL=nvim
 export EDITOR=nvim
@@ -33,14 +33,15 @@ export ZDOTDIR=$HOME/.config/zsh
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # finally source the real zshrc
-source $ZDOTDIR/.zshrc
+source "$ZDOTDIR"/.zshrc
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 
 [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else

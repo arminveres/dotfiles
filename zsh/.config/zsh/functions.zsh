@@ -1,20 +1,22 @@
 #!/bin/zsh
 
 function convert_heic_to_jpg () {
-    for file in *.(heic|HEIC);
-    do heif-convert $file ${file/%.(heic|HEIC)/.jpg}; done
+    for file in *.(heic|HEIC); do
+        echo $file
+        heif-convert $file ${file/%.(heic|HEIC)/.jpg};
+    done
     if [[ $1 == "-d" ]]; then
         rm *.HEIC
     fi
 }
 
 function git_update_project_in_dir() {
- for file in ./*/;
+    for file in ./*/;
     do
         echo "$file" && \
-        cd $file && \
-        git pull && \
-        cd -
+            cd $file && \
+            git pull && \
+            cd -
     done
 }
 
@@ -24,7 +26,7 @@ function git_update_project_in_dir() {
 # find thermal info loc
 function find_thermal_zone() {
     for i in /sys/class/hwmon/hwmon*/temp*_input;
-        do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
+    do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
     done
 }
 
@@ -39,7 +41,7 @@ function zsh_add_plugin() {
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For plugins
         zsh_safe_source "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_safe_source "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+            zsh_safe_source "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
@@ -58,16 +60,16 @@ function zsh_download_plugin() {
 # Add completion plugins
 function zsh_add_completion() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For completions
-            completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
-            fpath+="$(dirname "${completion_file_path}")"
+        completion_file_path=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        fpath+="$(dirname "${completion_file_path}")"
         zsh_safe_source "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
     else
         git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-            fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
+        fpath+=$(ls $ZDOTDIR/plugins/$PLUGIN_NAME/_*)
         [ -f $ZDOTDIR/.zccompdump ] && $ZDOTDIR/.zccompdump
     fi
-        completion_file="$(basename "${completion_file_path}")"
-        if [ "$2" = true ] && compinit "${completion_file:1}"
+    completion_file="$(basename "${completion_file_path}")"
+    if [ "$2" = true ] && compinit "${completion_file:1}"
 }
