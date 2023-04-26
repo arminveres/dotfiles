@@ -6,7 +6,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
 alias pypip="pypy3 -m pip"
-alias tmux="tmux -2"
+alias tmux="TERM=tmux-256color tmux -2"
 alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
 
 alias flup='flatpak update'
@@ -59,7 +59,7 @@ alias uskb="setxkbmap us"
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
 if [[ $(command -v cargo) ]]; then
-    alias cargoup="cargo-install-update install-update --all"
+    alias cargoup="cargo install-update --all"
 fi
 
 # Terminal Specific Aliases
