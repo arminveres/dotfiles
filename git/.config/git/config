@@ -1,6 +1,7 @@
 [user]
 	email = armin.veres@hotmail.com
 	name = Armin Veres
+	signingkey = 3BAE4906A7048FE6D4CFDD312BA3B858508464E4
 [core]
 	autocrlf = input
 	editor = nvim
@@ -15,6 +16,7 @@
 [merge]
 	tool = "nvim"
 	prompt = false
+[mergetool]
 	keepBackup = false
 [mergetool "nvim"]
 	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
@@ -27,3 +29,5 @@
 	external = difft
 [alias]
 	tree = log --oneline --graph --decorate --branches #--max-count 10
+[commit]
+	gpgsign = true
