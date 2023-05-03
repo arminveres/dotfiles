@@ -208,8 +208,8 @@ awful.util.mymainmenu.wibox:connect_signal('mouse::leave', function()
     if
         not awful.util.mymainmenu.active_child
         or (
-        awful.util.mymainmenu.wibox ~= mouse.current_wibox
-        and awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox
+            awful.util.mymainmenu.wibox ~= mouse.current_wibox
+            and awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox
         )
     then
         awful.util.mymainmenu:hide()
@@ -248,9 +248,6 @@ end)
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
-    -- if s.geometry.width > 1920 then
-    --     s.master_width_factor = 0.7
-    -- end
     require('bars').at_screen_connect(s)
 end)
 
@@ -368,20 +365,25 @@ root.keys(globalkeys)
 
 -- {{{ Signals
 
+-- local man_changed = false
+
 -- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
 local function lain_adjust_mwfact()
-    -- TODO: (aver) Add check for floating clients, so they do not affect mwfact
     local scr = awful.screen.focused()
-    -- local only_one = #scr.tiled_clients == 1
 
-    if awful.layout.get(scr) == lain.layout.centerwork then
-        if #scr.clients == 1 and scr.geometry.width > 1920 then
-            scr.selected_tag.master_width_factor = 0.7
-        else
-            scr.selected_tag.master_width_factor = 0.5
-        end
-    elseif scr.selected_tag ~= nil then
-        scr.selected_tag.master_width_factor = 0.5
+    if awful.layout.get(scr) ~= lain.layout.centerwork then
+        return
+    end
+
+    -- TODO: Only update mwfact when not manually changed and make it possible to revert to autmatic setting
+    -- if man_changed and scr.selected_tag.master_width_factor ~= 0.7 then
+    --     return
+    -- end
+
+    if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
+        scr.selected_tag.master_width_factor = 0.7
+    else
+        scr.selected_tag.master_width_factor = 0.4
     end
 end
 
@@ -452,7 +454,12 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
 -- end)
 
+-- tag.connect_signal('property::master_width_factor', function(c)
+--     man_changed = true
+-- end)
+
 client.connect_signal('property::floating', function(c)
+    lain_adjust_mwfact()
     if c.floating then
         awful.placement.centered(c)
     end
