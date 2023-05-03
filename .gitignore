@@ -6,16 +6,15 @@ tags
 *.bak
 **/vifminfo.json
 **/vifminfo
+GTK/.config/gtk-2.0/gtkfilechooser.ini
+GTK/.config/gtk-3.0/servers
+GTK/.config/gtk-3.0/bookmarks
+GTK/.config/gtk-4.0/servers
+GTK/.config/gtk-4.0/gtk-dark.css
+GTK/.config/gtk-4.0/gtk.css
+GTK/.config/gtk-4.0/assets
+gitui/.config/gitui/theme.ron.old
 
 # general files
 *.log
-dotfiles/GTK/.config/gtk-3.0/bookmarks
-dotfiles/GTK/.config/gtk-4.0/gtk-dark.css
-dotfiles/GTK/.config/gtk-4.0/gtk.css
-dotfiles/GTK/.config/gtk-4.0/assets
-dotfiles/GTK/.config/gtk-3.0/servers
-GTK/.config/gtk-4.0/gtk-dark.css
-GTK/.config/gtk-4.0/gtk.css
-gitui/.config/gitui/theme.ron.old
-GTK/.config/gtk-4.0/assets
 **/.uuid
