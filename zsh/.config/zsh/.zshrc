@@ -1,13 +1,16 @@
+#!/bin/env zsh
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=tmux-256color
 
 # some useful options (man zshoptions)
 setopt AUTO_CD
+setopt AUTO_PUSHD
 setopt EXTENDED_GLOB
 setopt NOMATCH
 setopt MENU_COMPLETE
 setopt GLOB_DOTS
 setopt INTERACTIVE_COMMENTS
+setopt NO_CLOBBER # do not allow truncating existing files e.g, with >, need to use >| instead
 # History
 HISTFILE=$ZDOTDIR/zsh_history
 HISTSIZE=20000
@@ -26,7 +29,6 @@ unsetopt BEEP
 unsetopt menu_complete
 
 # completions
-autoload -Uz compinit
 zstyle ':completion:*' menu select
 # insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -71,16 +73,15 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
-# zsh_add_completion "esc/conda-zsh-completion" false
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^o' 'ranger^M'
-bindkey -s '^f' 'zi^M'
-bindkey -s '^s' 'ncdu --color dark^M'
-bindkey -s '^v' '$HOME/.config/zsh/scripts/fzf_vim.sh^M'
-bindkey -s '^_' '$HOME/.config/zsh/scripts/conf.sh^M'
+bindkey -s '^o' "ranger^M"
+bindkey -s '^f' "zi^M"
+bindkey -s '^s' "ncdu --color dark^M"
+bindkey -s '^v' "$HOME/.config/zsh/scripts/fzf_vim.sh^M"
+bindkey -s '^_' "$HOME/.config/zsh/scripts/conf.sh^M"
 
 bindkey "^[[3~" delete-char
 bindkey "^p" up-line-or-beginning-search # Up
@@ -97,17 +98,14 @@ bindkey -r "^d"
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+zsh_safe_source "/etc/grc.zsh"
+
 if [ "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
 fi
 
-compinit
+# FIXME: (aver) globbing is not case insensitive if sourced way above
+# load completions
+autoload -Uz compinit && compinit
 
-compdef pio
-_pio() {
-  eval $(env COMMANDLINE="${words[1,$CURRENT]}" _PIO_COMPLETE=complete-zsh  pio)
-}
-if [[ "$(basename -- ${(%):-%x})" != "_pio" ]]; then
-  compdef _pio pio
-fi
+# fortune | cowsay -f blowfish | lolcat
