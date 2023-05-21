@@ -18,3 +18,4 @@ gitui/.config/gitui/theme.ron.old
 # general files
 *.log
 **/.uuid
+zsh/.config/zsh/.zhistory

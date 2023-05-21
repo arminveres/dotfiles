@@ -19,22 +19,25 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export JDTLS_HOME="/home/arminveres/.local/share/nvim/lsp_servers/jdtls/"
-export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
-export MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf
+export JDTLS_HOME="$XDG_DATA_HOME/nvim/lsp_servers/jdtls/"
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
+export MANGOHUD_CONFIGFILE=$XDG_CONFIG_HOME/MangoHud/MangoHud.conf
 export GOPATH="$XDG_DATA_HOME"/go
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export _ZO_ECHO=1 # print dir before switching
 
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 
 export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
-export ZDOTDIR=$HOME/.config/zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# History
+export HISTSIZE=20000
+export SAVEHIST=20000
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
 # finally source the real zshrc
-source "$ZDOTDIR"/.zshrc
-
-
-[[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
+source "$ZDOTDIR/.zshrc"

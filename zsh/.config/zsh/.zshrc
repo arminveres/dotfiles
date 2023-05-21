@@ -2,6 +2,11 @@
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=tmux-256color
 
+export HISTFILE="$ZDOTDIR/.zhistory"
+
+# -------------------------------------------------------------------------------------------------
+# Options
+# -------------------------------------------------------------------------------------------------
 # some useful options (man zshoptions)
 setopt AUTO_CD
 setopt AUTO_PUSHD
@@ -11,10 +16,6 @@ setopt MENU_COMPLETE
 setopt GLOB_DOTS
 setopt INTERACTIVE_COMMENTS
 setopt NO_CLOBBER # do not allow truncating existing files e.g, with >, need to use >| instead
-# History
-HISTFILE=$ZDOTDIR/zsh_history
-HISTSIZE=20000
-SAVEHIST=20000
 setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST # first delete duplicate commands if HISTFILE exceeds HISTSIZE
 setopt HIST_IGNORE_DUPS       # ignore duplicate commands
@@ -28,23 +29,34 @@ unsetopt BEEP
 # for gods sake, finally able to fuzzy find the rest of the search
 unsetopt menu_complete
 
-# completions
+# -------------------------------------------------------------------------------------------------
+# Completions Configuration
+# -------------------------------------------------------------------------------------------------
+# FIXME: (aver) globbing is not case insensitive if sourced way above load completions
+autoload -Uz compinit && compinit
+
 zstyle ':completion:*' menu select
 # insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # groups completion commands
 zstyle ':completion:*' group-name ''
 # squeezes slashes: cd ~//Documents => cd ~/*/Documents
+#zstyle ':completion:*' squeeze-slashes true
 # shows current location type
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+
+# Add colors from ls to completions
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)      # Include hidden files.
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
+[ -d "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR"/completion/ $fpath);
+[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath=("$ZDOTDIR"/plugins/zsh-completions/src $fpath);
+
+
+autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
+autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
 
 # Colors
 autoload -Uz colors && colors
@@ -91,21 +103,35 @@ bindkey "^j" down-line-or-beginning-search # Down
 # bindkey -r "^u"
 bindkey -r "^d"
 
-[ -d "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR"/completion/ $fpath);
-[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath=("$ZDOTDIR"/plugins/zsh-completions/src $fpath);
-
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-zsh_safe_source "/etc/grc.zsh"
+# fortune | cowsay -f blowfish | lolcat
+
+[[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 
 if [ "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
+    unalias z
+    function z () {
+        __zoxide_z "$@"
+    }
 fi
 
-# FIXME: (aver) globbing is not case insensitive if sourced way above
-# load completions
-autoload -Uz compinit && compinit
-
-# fortune | cowsay -f blowfish | lolcat
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/arminveres/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/arminveres/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "/home/arminveres/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/arminveres/micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="/home/arminveres/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<

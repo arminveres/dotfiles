@@ -53,7 +53,7 @@ alias dd='dd status=progress'
 
 # kb layout
 alias chkb="setxkbmap 'ch(de)'"
-alias uskb="setxkbmap us"
+alias uskb="setxkbmap eu"
 
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
