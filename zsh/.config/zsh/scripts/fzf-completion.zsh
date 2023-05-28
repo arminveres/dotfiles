@@ -160,19 +160,23 @@ __fzf_generic_path_completion() {
     dir=${dir%/}/
   done
 }
+
 _fzf_path_completion() {
   __fzf_generic_path_completion "$1" "$2" _fzf_compgen_path \
     "-m" "" " "
 }
+
 _fzf_dir_completion() {
   __fzf_generic_path_completion "$1" "$2" _fzf_compgen_dir \
     "" "/" ""
 }
+
 _fzf_feed_fifo() (
   command rm -f "$1"
   mkfifo "$1"
   cat <&0 > "$1" &
 )
+
 _fzf_complete() {
   setopt localoptions ksh_arrays
   # Split arguments around --
@@ -195,12 +199,14 @@ _fzf_complete() {
     shift
     rest=("$@")
   fi
+
   local fifo lbuf cmd matches post
   fifo="${TMPDIR:-/tmp}/fzf-complete-fifo-$$"
   lbuf=${rest[0]}
   cmd=$(__fzf_extract_command "$lbuf")
   post="${funcstack[1]}_post"
   type $post > /dev/null 2>&1 || post=cat
+
   _fzf_feed_fifo "$fifo"
   matches=$(FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_COMPLETION_OPTS-} $str_arg" __fzf_comprun "$cmd" "${args[@]}" -q "${(Q)prefix}" < "$fifo" | $post | tr '\n' ' ')
   if [ -n "$matches" ]; then
@@ -208,12 +214,14 @@ _fzf_complete() {
   fi
   command rm -f "$fifo"
 }
+
 _fzf_complete_telnet() {
   _fzf_complete +m -- "$@" < <(
     command grep -v '^\s*\(#\|$\)' /etc/hosts | command grep -Fv '0.0.0.0' |
         awk '{if (length($2) > 0) {print $2}}' | sort -u
   )
 }
+
 _fzf_complete_ssh() {
   _fzf_complete +m -- "$@" < <(
     setopt localoptions nonomatch
@@ -223,32 +231,40 @@ _fzf_complete_ssh() {
         awk '{if (length($2) > 0) {print $2}}' | sort -u
   )
 }
+
 _fzf_complete_export() {
   _fzf_complete -m -- "$@" < <(
     declare -xp | sed 's/=.*//' | sed 's/.* //'
   )
 }
+
 _fzf_complete_unset() {
   _fzf_complete -m -- "$@" < <(
     declare -xp | sed 's/=.*//' | sed 's/.* //'
   )
 }
+
 _fzf_complete_unalias() {
   _fzf_complete +m -- "$@" < <(
     alias | sed 's/=.*//'
   )
 }
+
 _fzf_complete_kill() {
-  _fzf_complete -m --preview 'echo {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
-    command ps -ef | sed 1d
+  _fzf_complete -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 -- "$@" < <(
+    command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
+      command ps -eo user,pid,ppid,time,args # For BusyBox
   )
 }
+
 _fzf_complete_kill_post() {
   awk '{print $2}'
 }
+
 fzf-completion() {
   local tokens cmd prefix trigger tail matches lbuf d_cmds
   setopt localoptions noshwordsplit noksh_arrays noposixbuiltins
+
   # http://zsh.sourceforge.net/FAQ/zshfaq03.html
   # http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-Flags
   tokens=(${(z)LBUFFER})
@@ -256,22 +272,29 @@ fzf-completion() {
     zle ${fzf_default_completion:-expand-or-complete}
     return
   fi
+
   cmd=$(__fzf_extract_command "$LBUFFER")
+
   # Explicitly allow for empty trigger.
   trigger=${FZF_COMPLETION_TRIGGER-'**'}
   [ -z "$trigger" -a ${LBUFFER[-1]} = ' ' ] && tokens+=("")
+
   # When the trigger starts with ';', it becomes a separate token
   if [[ ${LBUFFER} = *"${tokens[-2]-}${tokens[-1]}" ]]; then
     tokens[-2]="${tokens[-2]-}${tokens[-1]}"
     tokens=(${tokens[0,-2]})
   fi
+
   lbuf=$LBUFFER
   tail=${LBUFFER:$(( ${#LBUFFER} - ${#trigger} ))}
+
   # Trigger sequence given
   if [ ${#tokens} -gt 1 -a "$tail" = "$trigger" ]; then
     d_cmds=(${=FZF_COMPLETION_DIR_COMMANDS:-cd pushd rmdir})
+
     [ -z "$trigger"      ] && prefix=${tokens[-1]} || prefix=${tokens[-1]:0:-${#trigger}}
     [ -n "${tokens[-1]}" ] && lbuf=${lbuf:0:-${#tokens[-1]}}
+
     if eval "type _fzf_complete_${cmd} > /dev/null"; then
       prefix="$prefix" eval _fzf_complete_${cmd} ${(q)lbuf}
       zle reset-prompt
@@ -285,13 +308,16 @@ fzf-completion() {
     zle ${fzf_default_completion:-expand-or-complete}
   fi
 }
+
 [ -z "$fzf_default_completion" ] && {
   binding=$(bindkey '^I')
   [[ $binding =~ 'undefined-key' ]] || fzf_default_completion=$binding[(s: :w)2]
   unset binding
 }
+
 zle     -N   fzf-completion
 bindkey '^I' fzf-completion
+
 } always {
   # Restore the original options.
   eval $__fzf_completion_options
