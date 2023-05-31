@@ -15,6 +15,7 @@ alias flean='flatpak remove --unused'
 alias onefetch='onefetch --include-hidden'
 
 alias lg=lazygit
+alias lad=lazydocker
 
 # exa
 if [[ $(command -v exa) ]]; then
