@@ -15,13 +15,13 @@ setopt NOMATCH
 setopt MENU_COMPLETE
 setopt GLOB_DOTS
 setopt INTERACTIVE_COMMENTS
-setopt NO_CLOBBER # do not allow truncating existing files e.g, with >, need to use >| instead
+setopt NO_CLOBBER             # do not allow truncating existing files e.g, with >, need to use >| instead
 setopt APPEND_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST # first delete duplicate commands if HISTFILE exceeds HISTSIZE
-setopt HIST_IGNORE_DUPS       # ignore duplicate commands
+setopt HIST_IGNORE_ALL_DUPS   # ignore duplicate commands
 setopt HIST_IGNORE_SPACE      # ignore commands starting with space
 setopt HIST_VERIFY            # show command with history expansion to user before running it
-stty stop undef                # Disable ctrl-s to freeze terminal.
+stty stop undef               # Disable ctrl-s to freeze terminal.
 zle_highlight=('paste:none')
 
 # beeping is annoying
