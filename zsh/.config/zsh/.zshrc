@@ -65,7 +65,7 @@ autoload -Uz colors && colors
 source "$ZDOTDIR/functions.zsh"
 
 # safe source cargo env
-zsh_safe_source "$HOME/.cargo/env"
+zsh_safe_source "$CARGO_HOME"/env
 
 # Normal files to source
 # Exports are needed before aliases
@@ -74,9 +74,7 @@ zsh_safe_source "aliases.zsh"
 zsh_safe_source "fzf.zsh"
 
 
-# prompt
-# TODO:Maybe move it into repo anyway
-zsh_download_plugin "woefe/git-prompt.zsh"
+# Prompt
 zsh_safe_source "./plugins/git-prompt.zsh/git-prompt.zsh"
 zsh_safe_source "prompt.zsh"
 
@@ -111,6 +109,7 @@ bindkey '^e' edit-command-line
 
 [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 
+# WARN: Zoxide removed this functionality and broke it for zsh.
 if [ "$(command -v zoxide)" ]; then
     eval "$(zoxide init zsh)"
     unalias z
@@ -119,19 +118,4 @@ if [ "$(command -v zoxide)" ]; then
     }
 fi
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE="/home/arminveres/.local/bin/micromamba";
-export MAMBA_ROOT_PREFIX="/home/arminveres/micromamba";
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    if [ -f "/home/arminveres/micromamba/etc/profile.d/micromamba.sh" ]; then
-        . "/home/arminveres/micromamba/etc/profile.d/micromamba.sh"
-    else
-        export  PATH="/home/arminveres/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
-    fi
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+# zsh_safe_source "scripts/mamba.zsh"

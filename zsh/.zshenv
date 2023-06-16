@@ -9,6 +9,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -29,8 +31,8 @@ export _ZO_ECHO=1 # print dir before switching
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 
-export PATH=$HOME/bin:$HOME/.bin:$HOME/.local/bin:$GOPATH/bin:$CARGO_HOME/bin:/usr/local/bin:/opt/gcc-arm-none-eabi/bin:$PATH
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+path+=("$HOME"/bin "$HOME"/.bin "$HOME"/.local/bin "$GOPATH"/bin "$CARGO_HOME"/bin /usr/local/bin \
+    /opt/gcc-arm-none-eabi/bin "$XDG_DATA_HOME"/bob/nvim-bin)
 
 # History
 export HISTSIZE=20000
@@ -39,5 +41,6 @@ export SAVEHIST=20000
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
+export PATH
 # finally source the real zshrc
-source "$ZDOTDIR/.zshrc"
+source "$ZDOTDIR"/.zshrc
