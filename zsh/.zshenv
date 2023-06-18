@@ -41,6 +41,16 @@ export SAVEHIST=20000
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
+case "$(uname)" in
+    Linux)
+        export DISTRO=$(lsb_release -i | awk '{print $3}')
+        ;;
+    Darwin)
+        # export the distro for scrips and so to use
+        path+=(/opt/homebrew/bin /opt/arm-none-eabi-12/bin)
+        ;;
+esac
+
 export PATH
 # finally source the real zshrc
 source "$ZDOTDIR"/.zshrc

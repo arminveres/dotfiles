@@ -19,3 +19,5 @@ gitui/.config/gitui/theme.ron.old
 *.log
 **/.uuid
 zsh/.config/zsh/.zhistory
+zsh/.config/zsh/.zsh_sessions/_expiration_check_timestamp
+zsh/**/*.session
