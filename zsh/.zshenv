@@ -47,7 +47,11 @@ case "$(uname)" in
         ;;
     Darwin)
         # export the distro for scrips and so to use
-        path+=(/opt/homebrew/bin /opt/arm-none-eabi-12/bin)
+        path+=(
+            /opt/arm-none-eabi-12/bin
+            # "$HOME"/Library/Python/3.11/bin
+        )
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         ;;
 esac
 
