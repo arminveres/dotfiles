@@ -1,6 +1,6 @@
 #!/bin/env zsh
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
-# TERM=tmux-256color
+# TERM=xterm-256color
 
 export HISTFILE="$ZDOTDIR/.zhistory"
 
@@ -87,19 +87,22 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^o' "ranger^M"
+# bindkey -s '^o' "ranger^M"
 bindkey -s '^f' "zi^M"
 bindkey -s '^s' "ncdu --color dark^M"
 bindkey -s '^v' "$HOME/.config/zsh/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "$HOME/.config/zsh/scripts/conf.sh^M"
 
 bindkey "^[[3~" delete-char
-bindkey "^p" up-line-or-beginning-search # Up
-bindkey "^n" down-line-or-beginning-search # Down
-bindkey "^k" up-line-or-beginning-search # Up
-bindkey "^j" down-line-or-beginning-search # Down
-# bindkey -r "^u"
+bindkey '^o' end-of-line
+bindkey '^p' up-line-or-beginning-search # Up
+bindkey '^n' down-line-or-beginning-search # Down
 bindkey -r "^d"
+
+# We are replacing these lines, as they interfere with tmux
+# bindkey \^k up-line-or-beginning-search # Up
+# bindkey \^j down-line-or-beginning-search # Down
+# bindkey -r "^u"
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line

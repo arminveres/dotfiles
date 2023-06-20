@@ -6,7 +6,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
 alias pypip="pypy3 -m pip"
-alias tmux="TERM=tmux-256color tmux -2"
+alias tmux="tmux -2"
 alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
 
 alias flup='flatpak update'
