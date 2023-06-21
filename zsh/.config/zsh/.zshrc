@@ -33,7 +33,7 @@ unsetopt menu_complete
 # Completions Configuration
 # -------------------------------------------------------------------------------------------------
 # FIXME: (aver) globbing is not case insensitive if sourced way above load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit
 
 zstyle ':completion:*' menu select
 # insensitive tab completion
@@ -48,16 +48,17 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # Add colors from ls to completions
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zmodload zsh/complist
-# compinit
+
 _comp_options+=(globdots)      # Include hidden files.
 
 [ -d "$ZDOTDIR"/completion ] && fpath+=("$ZDOTDIR"/completion/);
 [ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath+=("$ZDOTDIR"/plugins/zsh-completions/src);
 
+# Load completions: make all files found be used without asking, use the option -u
+compinit -u
+
 autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
 autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
-
-# Colors
 autoload -Uz colors && colors
 
 # Useful Functions
