@@ -20,10 +20,10 @@ alias lad=lazydocker
 # exa
 if [[ $(command -v exa) ]]; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
-    alias la="exa --color=always --group-directories-first --long --all --header --icons"
-    alias lag="exa --color=always --group-directories-first --long --all --header --grid --icons"
-    alias lsg="exa --color=always --group-directories-first --long --header --grid --icons"
-    alias ll="exa --color=always --group-directories-first --long --header"
+    alias la="exa --color=always --group-directories-first --git --long --all --header --icons"
+    alias lag="exa --color=always --group-directories-first --git --long --all --header --grid --icons"
+    alias lsg="exa --color=always --group-directories-first --git --long --header --grid --icons"
+    alias ll="exa --color=always --group-directories-first --git --long --header"
     alias tree="exa --color=always --group-directories-first --tree --icons"
 else
     alias ls="ls --color=always"
@@ -68,7 +68,7 @@ if [[ $TERM == "xterm-kitty" ]]; then
     alias connect="kitty +kitten ssh"
 fi
 
-if [[ uname == 'Linux' ]]; then
+if [[ $(uname) == 'Linux' ]]; then
     # Distro specifig aliases
     case "$(lsb_release -i | awk '{print $3}')" in
         Ubuntu) # echo Ubuntu

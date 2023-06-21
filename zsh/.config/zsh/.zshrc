@@ -51,9 +51,8 @@ zmodload zsh/complist
 # compinit
 _comp_options+=(globdots)      # Include hidden files.
 
-[ -d "$ZDOTDIR"/completion ] && fpath=("$ZDOTDIR"/completion/ $fpath);
-[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath=("$ZDOTDIR"/plugins/zsh-completions/src $fpath);
-
+[ -d "$ZDOTDIR"/completion ] && fpath+=("$ZDOTDIR"/completion/);
+[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath+=("$ZDOTDIR"/plugins/zsh-completions/src);
 
 autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
 autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
