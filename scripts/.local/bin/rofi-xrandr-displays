@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rofi_cmd="rofi -dmenu"
+rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
 
 displays=$(xrandr | grep -w connected | awk '{print $1}' | $rofi_cmd -p "Select display:")
 

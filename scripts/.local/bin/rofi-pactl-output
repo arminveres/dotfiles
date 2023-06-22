@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source="$(pactl list short sinks | cut -f 2 | rofi -dmenu -p "Change audio:")"
+rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
+
+source="$(pactl list short sinks | cut -f 2 | $rofi_cmd -p "Change audio:")"
 inputs="$(pactl list sink-inputs short | cut -f 1)"
 
 for input in $inputs; do
