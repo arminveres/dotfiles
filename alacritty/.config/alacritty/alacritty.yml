@@ -1,5 +1,41 @@
-import:
-    - ~/.config/alacritty/gruvbox-black.yml
+cursor:
+  style:
+    blinking: On
+    shape: Block
+
+# NOTE: always indent sixe on the same level as normal
+font:
+  normal:
+  #   family: IosevkaTerm Nerd Font Mono
+  # size: 10.5
+  # NOTE: some symbols overlap
+  #   family: JetBrainsMono Nerd Font Mono
+  # size: 9
+  #   family: UbuntuMono Nerd Font Mono
+  # size: 10
+  # family: Hack Nerd Font Mono
+  # family: RobotoMono Nerd Font Mono
+  #   family: NotoSansM Nerd Font
+    family: MesloLGM Nerd Font Mono
+  size: 9
+
+  # -- Bitmap Fonts --
+    # family: TamzenForPowerline
+    # family: DinaRemasterII
+  #   family: Terminus (TTF)
+  # size: 10
+
+scrolling:
+  # Scroll to the bottom when new text is written to the terminal.
+  auto_scroll: false
+
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 3
 
 # Spaces per Tab (changes require restart)
 #
@@ -10,28 +46,14 @@ import:
 # change the `it` value in terminfo when altering this setting.
 tabspaces: 8
 
-font:
-  normal:
-    # family: JetBrainsMono Nerd Font
-    # family: Iosevka
-    family: Tamzen
-    # family: Terminus
-    # family: TerminessTTF Nerd Font
-  size: 15
-# ligatures: true # ->, ==, =>
-
 window:
-
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  padding:
-    x: 5
-    y: 5
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding:  true
+  dynamic_padding: true
 
   # Background opacity
   #
@@ -39,19 +61,12 @@ window:
   # The value `0.0` is completely transparent and `1.0` is opaque.
   opacity: 0.85
 
-scrolling:
-  # Maximum number of lines in the scrollback buffer.
-  # Specifying '0' will disable scrolling.
-  history: 10000
+  padding:
+    x: 5
+    y: 5
 
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
-  multiplier: 3
+import:
+  - ~/.config/alacritty/gruvbox-black.yml
 
-  # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
-
-cursor:
-  style:
-    shape: Block
-    blinking: On
+draw_bold_text_with_bright_colors: true
+custom_cursor_colors: false

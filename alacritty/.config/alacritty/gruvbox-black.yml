@@ -1,9 +1,6 @@
-# Base16 Gruvbox dark, hard 256 - alacritty color config
-# Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 colors:
   # Default colors
   primary:
-    # background: '0x1d2021'
     background: '#000000' # make it fully black
     foreground: '#d5c4a1'
 
