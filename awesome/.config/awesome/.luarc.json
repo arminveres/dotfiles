@@ -9,7 +9,8 @@
             "mouse",
             "screen",
             "root",
-            "clientbuttons"
+            "clientbuttons",
+            "tag"
         ]
     },
     "workspace": {

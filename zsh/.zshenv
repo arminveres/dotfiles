@@ -34,10 +34,6 @@ export VIMTEX_OUTPUT_DIRECTORY=build
 path+=("$HOME"/bin "$HOME"/.bin "$HOME"/.local/bin "$GOPATH"/bin "$CARGO_HOME"/bin /usr/local/bin \
     /opt/gcc-arm-none-eabi/bin "$XDG_DATA_HOME"/bob/nvim-bin)
 
-# History
-export HISTSIZE=20000
-export SAVEHIST=20000
-
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 

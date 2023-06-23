@@ -2,6 +2,9 @@
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=xterm-256color
 
+# History
+export HISTSIZE=20000
+export SAVEHIST=20000
 export HISTFILE="$ZDOTDIR/.zhistory"
 
 # -------------------------------------------------------------------------------------------------
