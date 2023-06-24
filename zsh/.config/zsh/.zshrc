@@ -111,9 +111,10 @@ bindkey -r "^d"
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# fortune | cowsay -f blowfish | lolcat
-
-[[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
+# WARN: don't source Xresources if we are in wayland
+if [[ -n "$DISPLAY" ]]; then
+    [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
+fi
 
 # WARN: Zoxide removed this functionality and broke it for zsh.
 if [ "$(command -v zoxide)" ]; then
@@ -124,4 +125,5 @@ if [ "$(command -v zoxide)" ]; then
     }
 fi
 
+# fortune | cowsay -f blowfish | lolcat
 # zsh_safe_source "scripts/mamba.zsh"
