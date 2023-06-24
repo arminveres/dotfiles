@@ -94,7 +94,7 @@ zsh_add_plugin "hlissner/zsh-autopair"
 bindkey -s '^f' "zi^M"
 bindkey -s '^s' "ncdu --color dark^M"
 bindkey -s '^v' "$HOME/.config/zsh/scripts/fzf_vim.sh^M"
-bindkey -s '^_' "$HOME/.config/zsh/scripts/conf.sh^M"
+bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
 
 bindkey "^[[3~" delete-char
 bindkey '^o' end-of-line

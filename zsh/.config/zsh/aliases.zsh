@@ -39,13 +39,17 @@ alias glo="git log --graph --oneline --decorate"
 alias wt="git worktree"
 alias gco="git checkout"
 alias gsw="git switch"
+alias gg="git pull"
+alias gp="git push"
+alias gpf="git push --force-with-lease"
+
 # alias gsp="git submodule foreach git pull"
 
 # aliasing coreutils
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
-# alias rm="rm -ir"
+alias rma="rm -ir"
 alias ln="ln -i"
 alias mkdir="mkdir -pv"
 alias df='df -h'     # human-readable sizes
@@ -69,6 +73,7 @@ if [[ $TERM == "xterm-kitty" ]]; then
 fi
 
 if [[ $(uname) == 'Linux' ]]; then
+    alias open=xdg-open
     # Distro specifig aliases
     case "$(lsb_release -i | awk '{print $3}')" in
         Ubuntu) # echo Ubuntu
