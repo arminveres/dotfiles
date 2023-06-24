@@ -11,10 +11,10 @@ Handcrafted dotfiles for personal use, currently on Fedora Workstation 38.
 
 | Type                 | Currently in use                                |
 | -------------------- | ----------------------------------------------- |
-| Window Manager       | AwesomeWM                                       |
-| Notifications        | naughty                                         |
+| Window Manager       | AwesomeWM (X11), Hyprland (Wayland)             |
+| Notifications        | naughty, dunst                                  |
 | Shell                | zsh                                             |
-| Editor               | [NeoVIM](https://github.com/arminveres/nvim)    |
+| Editor               | [neovim](https://github.com/arminveres/nvim)    |
 | Terminal Emulator    | kitty, alacritty, wezterm                       |
 | Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux.conf) |
 
@@ -39,6 +39,10 @@ Use following if you want to overwrite files in repo: \
 - [ripgrep](https://github.com/BurntSushi/ripgrep): `$ cargo install ripgrep` or `# dnf install ripgrep`
 
 - [fd](https://github.com/sharkdp/fd): `# dnf install fd-find` or `$ cargo install fd-find`
+
+- hyprland: in addition to the [copr](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/)
+  we also need to have [hyprsome](https://github.com/sopa0/hyprsome) installed, for AwesomeWM like
+  workspace sets
 
 ### Nice to haves
 

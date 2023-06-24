@@ -1,6 +1,10 @@
 #!/bin/bash
 
-rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
+if [[ -n "$DIPLAY" ]]; then
+    rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
+elif [[ -n "$WAYLAND_DISPLAY" ]]; then
+    rofi_cmd="wofi --dmenu -no-show-icons"
+fi
 
 source="$(pactl list short sinks | cut -f 2 | $rofi_cmd -p "Change audio:")"
 inputs="$(pactl list sink-inputs short | cut -f 1)"
