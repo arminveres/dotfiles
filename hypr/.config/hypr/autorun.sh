@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+set -ev
+
 # run "program [some arguments]"
 run() {
     if ! pgrep -f "$1"; then
@@ -7,7 +9,6 @@ run() {
     fi
 }
 
-# setxkbmap de us
 export "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
 gnome-keyring-daemon --daemonize --login
 tmux new -s daemon -d
