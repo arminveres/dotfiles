@@ -46,7 +46,8 @@ awful.rules.rules = {
                 'zoom',
                 'Cisco AnyConnect Secure Mobility Client',
                 'Matplotlib',
-                'matplotlib'
+                'matplotlib',
+                'Gnome-Pomodoro',
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
@@ -72,10 +73,10 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    {
-        rule = { class = 'Firefox' },
-        properties = { screen = 1, tag = awful.util.tagnames[2] },
-    },
+    -- {
+    --     rule_any = { class = { 'Firefox', 'firefox' } },
+    --     properties = { screen = 1, tag = awful.util.tagnames[2] },
+    -- },
     {
         rule_any = { class = { 'microsoft teams - preview', 'Microsoft Teams - Preview' } },
         properties = { tag = awful.util.tagnames[3], minimized = false },
