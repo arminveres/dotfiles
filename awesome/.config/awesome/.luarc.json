@@ -10,7 +10,8 @@
             "screen",
             "root",
             "clientbuttons",
-            "tag"
+            "tag",
+            "vi_focus"
         ]
     },
     "workspace": {

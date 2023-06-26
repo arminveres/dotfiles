@@ -365,25 +365,39 @@ root.keys(globalkeys)
 
 -- {{{ Signals
 
--- local man_changed = false
+-- TODO: (aver) move this function into utilities
+local mwfact_reset = false
 
 -- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
 local function lain_adjust_mwfact()
     local scr = awful.screen.focused()
+    local tag = scr.selected_tag
+    local layout = awful.layout.get(scr)
 
-    if awful.layout.get(scr) ~= lain.layout.centerwork then
-        return
+    if not tag then return end
+
+    if layout == awful.layout.suit.tile.right then
+        if scr.geometry.width > 1920 and #scr.tiled_clients >= 3 then
+            tag.column_count = 2
+            tag.master_width_factor = 0.33333
+            mwfact_reset = false
+        else
+            mwfact_reset = true
+        end
+    elseif layout == lain.layout.centerwork then
+        if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
+            tag.master_width_factor = 0.7
+            mwfact_reset = false
+        else
+            tag.master_width_factor = 0.4
+            mwfact_reset = false
+        end
+    else
+        mwfact_reset = true
     end
 
-    -- TODO: Only update mwfact when not manually changed and make it possible to revert to autmatic setting
-    -- if man_changed and scr.selected_tag.master_width_factor ~= 0.7 then
-    --     return
-    -- end
-
-    if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
-        scr.selected_tag.master_width_factor = 0.7
-    else
-        scr.selected_tag.master_width_factor = 0.4
+    if mwfact_reset then
+        tag.master_width_factor = 0.5
     end
 end
 
@@ -450,13 +464,14 @@ client.connect_signal('request::titlebars', function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
--- end)
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
+end)
 
--- tag.connect_signal('property::master_width_factor', function(c)
---     man_changed = true
--- end)
+tag.connect_signal('property::layout', function(c)
+    lain_adjust_mwfact()
+end)
+
 
 client.connect_signal('property::floating', function(c)
     lain_adjust_mwfact()
