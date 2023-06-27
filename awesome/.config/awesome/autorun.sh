@@ -7,11 +7,12 @@ run() {
     fi
 }
 
-# setxkbmap de us
+# Security related startups
 export "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
 gnome-keyring-daemon --daemonize --login
-
 run /usr/libexec/polkit-gnome-authentication-agent-1
+
+# Tray application
 run udiskie --tray --notify
 run blueman-manager
 run nm-applet
@@ -27,7 +28,7 @@ run picom --daemon --config ~/.config/picom/picom.conf
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
     run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
-    if ! xinput | grep -q M60; then
+    if ! xinput | grep -q M60 && ! xinput | grep -q Sofle; then
         # only swap ctrl and caps lock, if we are not connected to already pre-swapped keyboards
         setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
     fi
@@ -39,6 +40,7 @@ else # only run on desktop
     run corectrl
     run solaar --window hide
 fi
+
 # create a tmux session in the background so that tmux is faster on a cold start
 tmux new -s daemon -d
 setxkbmap eu

@@ -1,0 +1,12 @@
+#!/bin/env bash
+
+set -e
+
+files=$(
+    fd "\.pdf" ~/Projects ~/projects ~/gitfiles ~/Documents ~/Studyfiles |
+    rofi -dmenu -i -config ~/.config/rofi/config-select.rasi
+)
+
+if [[ -n $files ]]; then
+    zathura "$files"
+fi

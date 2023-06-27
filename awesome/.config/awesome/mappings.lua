@@ -28,7 +28,7 @@ M.globalkeys = M.mytable.join(
         awful.spawn('thunar') -- nautilus
     end, { description = 'Gnome Filebrowser', group = 'shortcuts' }),
     awful.key({ modkey }, 'z', function()
-        awful.spawn('zathura')
+        awful.spawn('fd-pdf-zathura')
     end, { description = 'Zathura', group = 'shortcuts' }),
     awful.key({ modkey, 'Control' }, 'o', function()
         awful.spawn.with_shell('~/.local/bin/rofi-pactl-output')
@@ -256,11 +256,11 @@ M.globalkeys = M.mytable.join(
             beautiful.cal.show(7)
         end
     end, { description = 'show calendar', group = 'widgets' }),
-    awful.key({ altkey }, 'h', function()
-        if beautiful.fs then
-            beautiful.fs.show(7)
-        end
-    end, { description = 'show filesystem', group = 'widgets' }),
+    -- awful.key({ altkey }, 'h', function()
+    --     if beautiful.fs then
+    --     beautiful.fs.show(7)
+    -- end
+    -- end, { description = 'show filesystem', group = 'widgets' }),
     awful.key({ altkey }, 'w', function()
         if beautiful.weather then
             beautiful.weather.show(7)
