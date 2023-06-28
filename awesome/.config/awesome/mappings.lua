@@ -28,13 +28,13 @@ M.globalkeys = M.mytable.join(
         awful.spawn('thunar') -- nautilus
     end, { description = 'Gnome Filebrowser', group = 'shortcuts' }),
     awful.key({ modkey }, 'z', function()
-        awful.spawn('fd-pdf-zathura')
+        awful.spawn('rofi-zathura')
     end, { description = 'Zathura', group = 'shortcuts' }),
     awful.key({ modkey, 'Control' }, 'o', function()
-        awful.spawn.with_shell('~/.local/bin/rofi-pactl-output')
+        awful.spawn.with_shell('rofi-pactl-output')
     end, { description = 'select audio sink', group = 'shortcuts' }),
     awful.key({ modkey }, 'p', function()
-        awful.spawn.with_shell('~/.local/bin/rofi-xrandr-displays')
+        awful.spawn.with_shell('rofi-xrandr-displays')
     end, { description = 'select audio sink', group = 'shortcuts' }),
 
     -- Take a screenshot

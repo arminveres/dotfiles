@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/bin/env bash
 
-if [[ -n "$DIPLAY" ]]; then
-    rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
-elif [[ -n "$WAYLAND_DISPLAY" ]]; then
+set -ev
+
+if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     rofi_cmd="wofi --dmenu -no-show-icons"
+else
+    rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
 fi
 
 source="$(pactl list short sinks | cut -f 2 | $rofi_cmd -p "Change audio:")"

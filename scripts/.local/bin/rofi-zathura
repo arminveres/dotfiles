@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+set -e
+
+if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
+    rofi_cmd="wofi --dmenu --insensitive --no-show-icons"
+else
+    rofi_cmd="rofi -no-show-icons -dmenu -i -config ~/.config/rofi/config-select.rasi"
+fi
+
+files=$(
+    fd "\.pdf" ~/Projects ~/projects ~/gitfiles ~/Documents ~/Studyfiles |
+    $rofi_cmd -p "Document:"
+)
+
+if [[ -n $files ]]; then
+    zathura "$files"
+fi
