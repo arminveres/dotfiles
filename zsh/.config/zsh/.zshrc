@@ -90,11 +90,12 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-# bindkey -s '^o' "ranger^M"
 bindkey -s '^f' "zi^M"
 bindkey -s '^s' "ncdu --color dark^M"
 bindkey -s '^v' "$HOME/.config/zsh/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
+# Superseeded by completion
+# bindkey -s '^o' "ranger^M"
 
 bindkey "^[[3~" delete-char
 bindkey '^o' end-of-line
@@ -110,11 +111,6 @@ bindkey -r "^d"
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-# WARN: don't source Xresources if we are in wayland
-if [[ -n "$DISPLAY" ]]; then
-    [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
-fi
 
 # WARN: Zoxide removed this functionality and broke it for zsh.
 if [ "$(command -v zoxide)" ]; then

@@ -20,15 +20,27 @@ function git_update_project_in_dir() {
     done
 }
 
+function open() {
+    if [[ $(uname) == 'Linux' ]]; then
+        xdg-open "$1" & disown
+    elif [[ $(uname) == 'Darwin' ]]; then
+        open "$1" & disown
+    fi
+}
+
 # set and change java versions
 # just use -- sudo alternatives --config java
 
 # find thermal info loc
 function find_thermal_zone() {
-    for i in /sys/class/hwmon/hwmon*/temp*_input;
-    do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
+    for i in /sys/class/hwmon/hwmon*/temp*_input; do
+        echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
     done
 }
+
+# =================================================================================================
+# Manual ZSH plugin manages
+# =================================================================================================
 
 # Function to source files if they exist
 function zsh_safe_source() {

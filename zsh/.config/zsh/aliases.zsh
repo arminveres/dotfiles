@@ -73,7 +73,6 @@ if [[ $TERM == "xterm-kitty" ]]; then
 fi
 
 if [[ $(uname) == 'Linux' ]]; then
-    alias open=xdg-open
     # Distro specifig aliases
     case "$(lsb_release -i | awk '{print $3}')" in
         Ubuntu) # echo Ubuntu

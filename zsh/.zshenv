@@ -39,18 +39,22 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 case "$(uname)" in
     Linux)
-        export DISTRO=$(lsb_release -i | awk '{print $3}')
+        DISTRO=$(lsb_release -i | awk '{print $3}')
+        export DISTRO
         ;;
     Darwin)
         # export the distro for scrips and so to use
-        path+=(
-            /opt/arm-none-eabi-12/bin
-            # "$HOME"/Library/Python/3.11/bin
-        )
+        path+=(/opt/arm-none-eabi-12/bin)
         eval "$(/opt/homebrew/bin/brew shellenv)"
         ;;
 esac
 
+# WARN: don't source Xresources if we are in wayland
+if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
+    [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
+fi
+
 export PATH
+
 # finally source the real zshrc
 source "$ZDOTDIR"/.zshrc
