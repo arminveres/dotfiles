@@ -90,10 +90,11 @@ zsh_add_plugin "hlissner/zsh-autopair"
 # More completions https://github.com/zsh-users/zsh-completions
 
 # Key-bindings
-bindkey -s '^f' "zi^M"
-bindkey -s '^s' "ncdu --color dark^M"
-bindkey -s '^v' "$HOME/.config/zsh/scripts/fzf_vim.sh^M"
+bindkey -s '^f' "^Uzi^M"
+bindkey -s '^v' "^U$HOME/.config/zsh/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
+# Superseeded TMUX prefix bind
+# bindkey -s '^s' "ncdu --color dark^M"
 # Superseeded by completion
 # bindkey -s '^o' "ranger^M"
 

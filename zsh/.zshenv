@@ -1,8 +1,5 @@
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
-export VISUAL=nvim
-export EDITOR=nvim
-
 # setting some XDGs
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
@@ -55,6 +52,9 @@ if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
 fi
 
 export PATH
+
+export EDITOR=$(which nvim)
+export VISUAL=$EDITOR
 
 # finally source the real zshrc
 source "$ZDOTDIR"/.zshrc
