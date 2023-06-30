@@ -9,7 +9,7 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, 'luarocks.loader')
-
+local myutils = require('myutils')
 local awful = require('awful')
 require('awful.autofocus')
 local wibox = require('wibox')
@@ -86,44 +86,11 @@ awful.util.terminal = terminal
 awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
 
 awful.layout.layouts = {
-    lain.layout.centerwork,
     awful.layout.suit.tile.right,
+    lain.layout.centerwork,
     awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    -- bling.layout.centered,
-    -- bling.layout.centered,
-    -- awful.layout.suit.floating,
-    -- awful.layout.suit.tile,
-    -- awful.layout.suit.tile.left,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-    -- lain.layout.cascade,
-    -- lain.layout.cascade.tile,
-    -- lain.layout.centerwork.horizontal,
-    -- lain.layout.termfair,
-    -- lain.layout.termfair.center
 }
-
--- lain.layout.termfair.nmaster           = 3
--- lain.layout.termfair.ncol              = 1
--- lain.layout.termfair.center.nmaster    = 3
--- lain.layout.termfair.center.ncol       = 1
--- lain.layout.cascade.tile.offset_x      = 2
--- lain.layout.cascade.tile.offset_y      = 32
--- lain.layout.cascade.tile.extra_padding = 5
--- lain.layout.cascade.tile.nmaster       = 5
--- lain.layout.cascade.tile.ncol          = 2
 
 awful.util.taglist_buttons = mytable.join(
     awful.button({}, 1, function(t)
@@ -365,42 +332,6 @@ root.keys(globalkeys)
 
 -- {{{ Signals
 
--- TODO: (aver) move this function into utilities
-local mwfact_reset = false
-
--- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
-local function lain_adjust_mwfact()
-    local scr = awful.screen.focused()
-    local tag = scr.selected_tag
-    local layout = awful.layout.get(scr)
-
-    if not tag then return end
-
-    if layout == awful.layout.suit.tile.right then
-        if scr.geometry.width > 1920 and #scr.tiled_clients >= 3 then
-            tag.column_count = 2
-            tag.master_width_factor = 0.33333
-            mwfact_reset = false
-        else
-            mwfact_reset = true
-        end
-    elseif layout == lain.layout.centerwork then
-        if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
-            tag.master_width_factor = 0.7
-            mwfact_reset = false
-        else
-            tag.master_width_factor = 0.4
-            mwfact_reset = false
-        end
-    else
-        mwfact_reset = true
-    end
-
-    if mwfact_reset then
-        tag.master_width_factor = 0.5
-    end
-end
-
 -- Signal function to execute when a new client appears.
 client.connect_signal('manage', function(c)
     -- Set the windows at the slave,
@@ -469,25 +400,25 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 tag.connect_signal('property::layout', function(c)
-    lain_adjust_mwfact()
+    myutils.mw_fact_mgr()
 end)
 
 
 client.connect_signal('property::floating', function(c)
-    lain_adjust_mwfact()
+    myutils.mw_fact_mgr()
     if c.floating then
         awful.placement.centered(c)
     end
 end)
 client.connect_signal('focus', function(c)
-    lain_adjust_mwfact()
+    myutils.mw_fact_mgr()
     c.border_color = beautiful.border_focus
     -- if c.floating then
     --     awful.placement.centered(c)
     -- end
 end)
 client.connect_signal('unfocus', function(c)
-    lain_adjust_mwfact()
+    myutils.mw_fact_mgr()
     c.border_color = beautiful.border_normal
     -- if c.floating then
     --     awful.placement.centered(c)

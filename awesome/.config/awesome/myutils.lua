@@ -1,7 +1,11 @@
 local gears = require('gears')
 local awful = require('awful')
+local lain = require('lain')
 
 local M = {}
+
+local mwfact_change_requested = false
+local mwfact_change_value = 0
 
 --- @brief Hold current maginified client
 M.magnified_client = nil
@@ -53,6 +57,39 @@ function M.mc(c, width_f, height_f)
     else
         M.magnified_client = nil
         c.floating = false
+    end
+end
+
+-- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
+function M.mw_fact_mgr()
+    local scr = awful.screen.focused()
+    local tag = scr.selected_tag
+    local layout = awful.layout.get(scr)
+
+    if not tag then return end
+
+    if layout == awful.layout.suit.tile.right then
+        if scr.geometry.width > 1920 and scr.geometry.height > 1080 and #scr.tiled_clients >= 3 then
+            tag.column_count = 2
+            mwfact_change_value = (1 / 3)
+            mwfact_change_requested = true
+        else
+            mwfact_change_requested = false
+        end
+    elseif layout == lain.layout.centerwork then
+        if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
+            mwfact_change_value = 0.7
+            mwfact_change_requested = true
+        else
+            mwfact_change_value = 0.4
+            mwfact_change_requested = true
+        end
+    else
+        mwfact_change_requested = false
+    end
+
+    if mwfact_change_requested then
+        tag.master_width_factor = mwfact_change_value
     end
 end
 
