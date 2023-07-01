@@ -66,10 +66,19 @@ function M.mw_fact_mgr()
     local tag = scr.selected_tag
     local layout = awful.layout.get(scr)
 
+    -- skip if failure
     if not tag then return end
+    -- don't do anything on Full HD monitors, TODO: add ratio as requirement
+    if not (scr.geometry.width > 1920 and scr.geometry.height > 1080) then
+        return
+    end
 
     if layout == awful.layout.suit.tile.right then
-        if scr.geometry.width > 1920 and scr.geometry.height > 1080 and #scr.tiled_clients >= 3 then
+        if #scr.tiled_clients == 1 then
+            awful.layout.set(lain.layout.centerwork, tag)
+            mwfact_change_value = 0.7
+            mwfact_change_requested = true
+        elseif #scr.tiled_clients > 2 then
             tag.column_count = 2
             mwfact_change_value = (1 / 3)
             mwfact_change_requested = true
@@ -77,7 +86,11 @@ function M.mw_fact_mgr()
             mwfact_change_requested = false
         end
     elseif layout == lain.layout.centerwork then
-        if #scr.tiled_clients == 1 and scr.geometry.width > 1920 then
+        if #scr.tiled_clients > 1 then
+            awful.layout.set(awful.layout.suit.tile.right, tag)
+            mwfact_change_value = 0.5
+            mwfact_change_requested = true
+        elseif #scr.tiled_clients == 1 then
             mwfact_change_value = 0.7
             mwfact_change_requested = true
         else
@@ -85,6 +98,7 @@ function M.mw_fact_mgr()
             mwfact_change_requested = true
         end
     else
+        -- do nothing on other layouts
         mwfact_change_requested = false
     end
 

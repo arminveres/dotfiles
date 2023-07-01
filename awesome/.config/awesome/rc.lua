@@ -399,10 +399,15 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
 end)
 
+-- tag layout changed
 tag.connect_signal('property::layout', function(c)
     myutils.mw_fact_mgr()
 end)
 
+-- tag select, e.g., when concatenated
+tag.connect_signal('property::selected', function(c)
+    myutils.mw_fact_mgr()
+end)
 
 client.connect_signal('property::floating', function(c)
     myutils.mw_fact_mgr()
