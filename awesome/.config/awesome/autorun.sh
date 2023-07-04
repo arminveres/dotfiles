@@ -8,6 +8,7 @@ run() {
 }
 
 # Security related startups
+eval "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
 export "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
 gnome-keyring-daemon --daemonize --login
 run /usr/libexec/polkit-gnome-authentication-agent-1
@@ -17,6 +18,7 @@ run udiskie --tray --notify
 run blueman-manager
 run nm-applet
 run pasystray
+run solaar --window hide
 
 run xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
