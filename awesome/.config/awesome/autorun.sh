@@ -27,6 +27,9 @@ run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0
 run nitrogen --restore
 run picom --daemon --config ~/.config/picom/picom.conf
 
+run thunderbird
+run firefox
+
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
     run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
