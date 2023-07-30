@@ -55,6 +55,7 @@ alias mkdir="mkdir -pv"
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
 alias dd='dd status=progress'
+alias cl=clear
 
 # kb layout
 alias chkb="setxkbmap 'ch(de)'"
