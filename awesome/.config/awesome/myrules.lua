@@ -106,7 +106,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[8] },
     },
     {
-        rule_any = { class = { 'discord', 'Signal', 'Slack' } },
+        rule_any = { class = { 'discord', 'Signal', 'Slack', 'threema-web' } },
         properties = { tag = awful.util.tagnames[9] },
     },
 }
