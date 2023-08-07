@@ -7,9 +7,18 @@
 
 set -e
 
+tmux_running=$(pgrep tmux)
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
+    # if [[ -n $tmux_running ]]; then
+    #     session="$(tmux ls | awk '{print $1}' | fzf)"
+    #     if [[ $? -eq 0 ]]; then
+    #         tmux a -t "$session"
+    #         exit 0
+    #     fi
+    # fi
     selected=$(find ~/Projects ~/projects ~/gitfiles -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
@@ -18,7 +27,6 @@ if [[ -z $selected ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
 
 # If we are not in tmux and tmux is not running, create a new session
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
