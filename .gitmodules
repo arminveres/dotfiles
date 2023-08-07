@@ -40,11 +40,11 @@
 	branch = main
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
-	url = git@github.com:arminveres/nvim.git
+	url = https://github.com/arminveres/nvim.git
 	branch = main
 [submodule "tmux/.config/tmux"]
 	path = tmux/.config/tmux
-	url = git@github.com:arminveres/tmux.conf
+	url = https://github.com/arminveres/tmux.conf
 	branch = main
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
