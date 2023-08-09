@@ -1,6 +1,13 @@
 #!/bin/env bash
 
-set -ev
+set -e
+
+if ! command -v pactl; then
+    message="Pactl not found, install first!"
+    printf "%s" "$message" 1>&2
+    notify-send "$message"
+    exit 1
+fi
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     rofi_cmd="wofi --dmenu -no-show-icons"

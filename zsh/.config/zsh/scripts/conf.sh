@@ -2,9 +2,9 @@
 
 set -e
 
-fdcmd=fd
 case "$DISTRO" in
     Debian | Ubuntu) fdcmd=fdfind ;;
+    *) fdcmd=fd ;;
 esac
 
 # capture files in variable
