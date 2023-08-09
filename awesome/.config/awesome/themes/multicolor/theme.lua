@@ -12,7 +12,7 @@ theme.systray_icon_spacing                           = dpi(7)
 theme.font                                           = "UbuntuMono Nerd Font Mono 12" -- "JetBrainsMono Nerd Font 10"
 theme.bg_normal                                      = "#000000"
 theme.fg_normal                                      = "#aaaaaa"
-theme.bg_focus                                       = "#ff8c00"
+theme.bg_focus                                       = "#d75f00"
 theme.fg_focus                                       = "#000000"
 theme.bg_urgent                                      = "#000000"
 theme.fg_urgent                                      = "#af1d18"
@@ -29,7 +29,7 @@ theme.menu_submenu_icon                              = theme.confdir .. "/icons/
 theme.menu_fg_normal                                 = "#aaaaaa"
 theme.menu_bg_normal                                 = "#050505dd"
 theme.menu_fg_focus                                  = "#000000"
-theme.menu_bg_focus                                  = "#ff8c00"
+theme.menu_bg_focus                                  = theme.bg_focus
 theme.error                                          = "#fb4934"
 theme.widget_temp                                    = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                                  = theme.confdir .. "/icons/ac.png"
@@ -85,7 +85,7 @@ theme.titlebar_maximized_button_normal_active        = theme.confdir .. "/icons/
 theme.titlebar_maximized_button_focus_active         = theme.confdir .. "/icons/titlebar/maximized_focus_active.png"
 
 -- notification
-theme.notification_bg                                = "#ff8c00"
+theme.notification_bg                                = theme.bg_focus
 theme.notification_fg                                = "#000000"
 theme.notification_border_color                      = "#000000"
 theme.notification_icon_size                         = dpi(100)

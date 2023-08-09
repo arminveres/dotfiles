@@ -75,7 +75,6 @@ local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(
             markup.fontfg(theme.font, '#ff3c3c', cpu_now.usage .. '% ')
-            -- markup.fontcolor(theme.font, '#e33a6e', '#ff8c00', cpu_now.usage .. '% ')
         )
     end,
 })
@@ -316,7 +315,7 @@ M.at_screen_connect = function(s)
         buttons = awful.util.tasklist_buttons,
         style = {
             shape_border_width = dpi(1),
-            shape_border_color = '#ff8c00',
+            shape_border_color = theme.bg_focus,
             shape = myutils.custom_rounded,
         },
         layout = {
