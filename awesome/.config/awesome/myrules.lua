@@ -94,7 +94,7 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[5] },
     },
     {
-        rule_any = { class = { 'corectrl', 'steam', 'Steam', 'Lutris' } },
+        rule_any = { class = { 'steam', 'Steam', 'Lutris' } },
         properties = { tag = awful.util.tagnames[6] },
     },
     {

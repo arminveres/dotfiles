@@ -97,6 +97,15 @@ function M.mw_fact_mgr()
             mwfact_change_value = 0.4
             mwfact_change_requested = true
         end
+    elseif layout == awful.layout.suit.max then
+        -- TODO: (aver) add focus by id in max layout
+        -- local modkey = 'Mod4'
+        -- awful.key({ modkey }, 'j', function()
+        --     awful.client.focus.byidx(1)
+        -- end, { description = 'focus next by index', group = 'client' }),
+        -- awful.key({ modkey }, 'k', function()
+        --     awful.client.focus.byidx(-1)
+        -- end, { description = 'focus previous by index', group = 'client' }),
     else
         -- do nothing on other layouts
         mwfact_change_requested = false
