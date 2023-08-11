@@ -60,6 +60,7 @@ function M.mc(c, width_f, height_f)
     end
 end
 
+local was_in_three_dwindle = false
 -- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
 function M.mw_fact_mgr()
     local scr = awful.screen.focused()
@@ -82,8 +83,15 @@ function M.mw_fact_mgr()
             tag.column_count = 2
             mwfact_change_value = (1 / 3)
             mwfact_change_requested = true
+            was_in_three_dwindle = true
         else
             mwfact_change_requested = false
+            -- NOTE: this is meant to keep 50/50 ratio, when returning from a 3 column layout
+            if was_in_three_dwindle then
+                was_in_three_dwindle = not was_in_three_dwindle
+                mwfact_change_value = 0.5
+                mwfact_change_requested = true
+            end
         end
     elseif layout == lain.layout.centerwork then
         if #scr.tiled_clients > 1 then
