@@ -28,7 +28,8 @@ export _ZO_ECHO=1 # print dir before switching
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 
-path+=("$HOME"/bin "$HOME"/.bin "$HOME"/.local/bin "$GOPATH"/bin "$CARGO_HOME"/bin /usr/local/bin \
+# path+=(/usr/local/bin "$HOME"/bin "$HOME"/.bin "$HOME"/.local/bin "$GOPATH"/bin "$CARGO_HOME"/bin \
+path+=(/usr/local/bin "$HOME"/bin "$HOME"/.bin "$HOME"/.local/bin "$GOPATH"/bin \
     /opt/gcc-arm-none-eabi/bin "$XDG_DATA_HOME"/bob/nvim-bin)
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
@@ -51,7 +52,8 @@ if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 fi
 
-export PATH
+# BUG: need to put CARGO_HOME at first place, otherwise system rustc will be used
+export PATH="$CARGO_HOME"/bin:$PATH
 
 export EDITOR=$(which nvim)
 export VISUAL=$EDITOR
