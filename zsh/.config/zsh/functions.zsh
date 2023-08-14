@@ -28,14 +28,17 @@ function open() {
     fi
 }
 
-# set and change java versions
-# just use -- sudo alternatives --config java
-
 # find thermal info loc
 function find_thermal_zone() {
     for i in /sys/class/hwmon/hwmon*/temp*_input; do
         echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
     done
+}
+
+# @brief run something in the background using tmux, alternative could use
+# `nohup $command & disown`, but this way nothing is generated
+function runbg {
+    tmux new -s $1 -d $@
 }
 
 # =================================================================================================

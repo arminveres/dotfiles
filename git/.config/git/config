@@ -27,7 +27,7 @@
 [push]
 	autoSetupRemote = true
 [diff]
-	external = difft
+	external = difft --display inline
 [alias]
 	tree = log --oneline --graph --decorate --branches #--max-count 10
 [commit]

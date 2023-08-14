@@ -42,6 +42,7 @@ alias gsw="git switch"
 alias gg="git pull"
 alias gp="git push"
 alias gpf="git push --force-with-lease"
+alias gf="git fetch"
 
 # alias gsp="git submodule foreach git pull"
 

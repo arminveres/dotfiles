@@ -2,3 +2,4 @@ tags
 tags.*
 .clang-format
 .cache/
+nohup.out
