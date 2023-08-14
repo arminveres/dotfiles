@@ -59,6 +59,12 @@ Use following if you want to overwrite files in repo: \
 
 `$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 
+### Miscellaneous
+
+- I am using GDM as login manager, therefore using `io.github.realmazharhussain.GdmSettings` to
+  customize the login screen is quite nice, although it resets after every reboot and you can only
+  set one background for any number of monitors. Therefore I am not using it anymore.
+
 ## TODO
 
 ### neovim
