@@ -16,25 +16,28 @@ Handcrafted dotfiles for personal use, currently on Fedora Workstation 38.
 | Shell                | zsh                                             |
 | Editor               | [neovim](https://github.com/arminveres/nvim)    |
 | Terminal Emulator    | kitty, alacritty, wezterm                       |
-| Terminal Multiplexer | [TMUX](https://github.com/arminveres/tmux.conf) |
+| Terminal Multiplexer | [tmux](https://github.com/arminveres/tmux.conf) |
 
 ## Usage
 
-first run: \
-Move or delete dotfiles which should be changed and then inside dotfiles do: \
+First run:
+
+Move or delete dotfiles which should be changed and then inside dotfiles do:
+
 `$ stow -vt ~ *`
 
-Use following if you want to overwrite files in repo: \
+Use following if you want to overwrite files in repo:
+
 `$ stow --adopt -vt ~ *`
 
 ## Dependencies
 
-- GNU stow, found either preinstalled or installable on all major distributions.
+- GNU stow, found either pre-installed or installable on all major distributions.
 
 `# dnf install stow`
 
-- [fzf](https://github.com/junegunn/fzf), although it is already downloaded as a submodule under [the zsh
-  plugins](./zsh/.config/zsh/plugins/fzf/).
+- [fzf](https://github.com/junegunn/fzf), although it is already downloaded as a submodule under
+  [the zsh plugins](./zsh/.config/zsh/plugins/fzf/).
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep): `$ cargo install ripgrep` or `# dnf install ripgrep`
 
@@ -50,8 +53,12 @@ Use following if you want to overwrite files in repo: \
 
 - `lazygit` or `gitui`
 
-  - `# dnf copr enable atim/lazygit -y && dnf install lazygit`
+  - `# dnf copr enable atim/lazygit -y && dnf upgrade && dnf install lazygit`
   - `# dnf install gitui` or `$ cargo install gitui`
+
+- `lazydocker`
+
+  - `# dnf copr enable atim/lazydocker && dnf upgrade && dnf install lazydocker -y`
 
 - Solaar for managing Logitech peripherals: `# dnf install solaar`
 
@@ -75,7 +82,7 @@ Use following if you want to overwrite files in repo: \
 
 - [see](./awesome/.config/awesome/README.md)
 
-### zsh
+### Zsh
 
 - [see](./zsh/.config/zsh/README.md)
 

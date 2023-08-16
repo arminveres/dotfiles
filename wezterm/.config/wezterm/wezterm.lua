@@ -2,7 +2,7 @@
 -- More about the configuration ca be found here:
 -- https://wezfurlong.org/wezterm/config/files.html
 --]]
-local wezterm = require 'wezterm'
+local wezterm = require('wezterm')
 
 return {
     enable_tab_bar = true,

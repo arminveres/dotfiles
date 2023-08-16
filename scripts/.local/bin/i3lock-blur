@@ -4,7 +4,7 @@
 
 options=$1
 
-imglock="$HOME/Pictures/blur.png"
+imglock="/tmp/blur.png"
 rm -f "$imglock"
 flameshot full --path "$imglock"
 # maim --hidecursor --quality '10' $imglock # NOTE: maim is a bit slower than the flameshot cli
