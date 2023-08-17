@@ -1,7 +1,4 @@
-alias mktempdir='cd $(mktemp -d)'
 # applications
-alias visudo='sudo visudo'
-
 alias vi="nvim"
 alias vim="nvim"
 alias py="python3"
@@ -18,8 +15,43 @@ alias onefetch='onefetch --include-hidden'
 alias lg='lazygit --git-dir=$(git rev-parse --git-dir) --work-tree=$(realpath .)'
 alias lad=lazydocker
 
+# ================================================================================================
+# git
+# ================================================================================================
+alias gb="git branch"
+alias gls="git status"
+alias ga="git add"
+alias glo="git log --graph --oneline --decorate"
+alias wt="git worktree"
+alias gco="git checkout"
+alias gsw="git switch"
+alias gg="git pull"
+alias gp="git push"
+alias gpf="git push --force-with-lease"
+alias gf="git fetch"
+alias gsup="git submodule foreach 'git checkout main || git checkout master; git pull'"
+alias grc='git rebase --continue'
+alias grc='git rebase --abort'
+alias gri='git rebase --interactive'
+alias gmt='git mergetool'
+
+# ================================================================================================
+# aliasing coreutils
+# ================================================================================================
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv="mv -i"
+alias rma="rm -ir"
+alias ln="ln -i"
+alias mkdir="mkdir -pv"
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+alias dd='dd status=progress'
+alias cl=clear
+alias mktempdir='cd $(mktemp -d)'
+alias visudo='sudo visudo'
 # exa
-if [[ $(command -v exa) ]]; then
+if command -v exa > /dev/null; then
     alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
     alias la="exa --color=always --group-directories-first --git --long --all --header --icons"
     alias lag="exa --color=always --group-directories-first --git --long --all --header --grid --icons"
@@ -32,41 +64,16 @@ else
     alias ll="ls --color=always --long"
 fi
 
-# git
-alias gb="git branch"
-alias gls="git status"
-alias ga="git add"
-alias glo="git log --graph --oneline --decorate"
-alias wt="git worktree"
-alias gco="git checkout"
-alias gsw="git switch"
-alias gg="git pull"
-alias gp="git push"
-alias gpf="git push --force-with-lease"
-alias gf="git fetch"
-
-# alias gsp="git submodule foreach git pull"
-
-# aliasing coreutils
-# confirm before overwriting something
-alias cp="cp -i"
-alias mv="mv -i"
-alias rma="rm -ir"
-alias ln="ln -i"
-alias mkdir="mkdir -pv"
-alias df='df -h'     # human-readable sizes
-alias free='free -m' # show sizes in MB
-alias dd='dd status=progress'
-alias cl=clear
-
+# ================================================================================================
 # kb layout
+# ================================================================================================
 alias chkb="setxkbmap 'ch(de)'"
 alias uskb="setxkbmap eu"
 
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
-if [[ $(command -v cargo) ]]; then
+if command -v cargo > /dev/null; then
     alias cargoup="cargo install-update --all"
 fi
 
@@ -75,8 +82,10 @@ if [[ $TERM == "xterm-kitty" ]]; then
     alias connect="kitty +kitten ssh"
 fi
 
+# ================================================================================================
+# Distro specifig aliases
+# ================================================================================================
 if [[ $(uname) == 'Linux' ]]; then
-    # Distro specifig aliases
     case "$(lsb_release -i | awk '{print $3}')" in
         Ubuntu) # echo Ubuntu
             alias nala='sudo nala'
