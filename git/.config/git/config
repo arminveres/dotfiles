@@ -8,7 +8,7 @@
 	whitespace = trailing-space
 	excludesfile = ~/.config/git/gitignore_global
 [credential]
-	helper = cache
+	helper = store
 [init]
 	defaultBranch = main
 [color]
