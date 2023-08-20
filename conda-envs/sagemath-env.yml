@@ -1,0 +1,9 @@
+name: sage
+
+channel_priority: strict
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - sage
