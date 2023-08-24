@@ -1,11 +1,9 @@
 --[[
-
      Awesome WM configuration template
      github.com/lcpz
-
 --]]
--- Required libraries
 
+-- Required libraries
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, 'luarocks.loader')
@@ -19,9 +17,21 @@ local freedesktop = require('freedesktop')
 local bling = require('bling')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local lain = require('lain')
+local gears = require('gears')
 -- local menubar       = require("menubar")
 -- local vicious       = require('vicious') -- needed to install this via package manager ]]
 -- require("awful.hotkeys_popup.keys.vim") ]]
+
+-- NOTE: Set more specific and efficient GC
+
+---@diagnostic disable-next-line: param-type-mismatch
+collectgarbage('setpause', 160)
+---@diagnostic disable-next-line: param-type-mismatch
+collectgarbage('setstepmul', 400)
+gears.timer.start_new(10, function()
+    collectgarbage('step', 20000)
+    return true
+end)
 
 local mappings = require('mappings')
 local mytable = mappings.mytable
