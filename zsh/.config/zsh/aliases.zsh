@@ -31,7 +31,7 @@ alias gpf="git push --force-with-lease"
 alias gf="git fetch"
 alias gsup="git submodule foreach 'git checkout main || git checkout master; git pull'"
 alias grc='git rebase --continue'
-alias grc='git rebase --abort'
+alias gra='git rebase --abort'
 alias gri='git rebase --interactive'
 alias gmt='git mergetool'
 
@@ -74,7 +74,7 @@ alias uskb="setxkbmap eu"
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
 if command -v cargo > /dev/null; then
-    alias cargoup="cargo install-update --all"
+    alias carup="cargo install-update --all"
 fi
 
 # Terminal Specific Aliases

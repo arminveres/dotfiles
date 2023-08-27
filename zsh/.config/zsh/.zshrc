@@ -124,4 +124,4 @@ if [ "$(command -v zoxide)" ]; then
 fi
 
 # fortune | cowsay -f blowfish | lolcat
-# zsh_safe_source "scripts/mamba.zsh"
+zsh_safe_source "scripts/mamba.zsh"
