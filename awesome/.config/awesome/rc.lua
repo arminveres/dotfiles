@@ -82,7 +82,7 @@ awful.spawn.with_shell('~/.config/awesome/autorun.sh')
 -- {{{ Variable definitions
 
 local themes = {
-    'default',    -- 1
+    'default', -- 1
     'multicolor', -- 2
 }
 
@@ -158,9 +158,9 @@ local myawesomemenu = {
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { 'Manual',      string.format('%s -e man awesome', terminal) },
+    { 'Manual', string.format('%s -e man awesome', terminal) },
     { 'Edit config', string.format('%s -e %s %s', terminal, editor, awesome.conffile) },
-    { 'Restart',     awesome.restart },
+    { 'Restart', awesome.restart },
     {
         'Quit',
         function()
@@ -233,17 +233,17 @@ end)
 -- }}}
 
 bling.widget.window_switcher.enable({
-    type = 'thumbnail',                           -- set to anything other than "thumbnail" to disable client previews
+    type = 'thumbnail', -- set to anything other than "thumbnail" to disable client previews
     -- keybindings (the examples provided are also the default if kept unset)
-    hide_window_switcher_key = 'Escape',          -- The key on which to close the popup
-    minimize_key = 'n',                           -- The key on which to minimize the selected client
-    unminimize_key = 'N',                         -- The key on which to unminimize all clients
-    kill_client_key = 'q',                        -- The key on which to close the selected client
-    cycle_key = 'Tab',                            -- The key on which to cycle through all clients
-    previous_key = 'Left',                        -- The key on which to select the previous client
-    next_key = 'Right',                           -- The key on which to select the next client
-    vim_previous_key = 'l',                       -- Alternative key on which to select the previous client
-    vim_next_key = 'h',                           -- Alternative key on which to select the next client
+    hide_window_switcher_key = 'Escape', -- The key on which to close the popup
+    minimize_key = 'n', -- The key on which to minimize the selected client
+    unminimize_key = 'N', -- The key on which to unminimize all clients
+    kill_client_key = 'q', -- The key on which to close the selected client
+    cycle_key = 'Tab', -- The key on which to cycle through all clients
+    previous_key = 'Left', -- The key on which to select the previous client
+    next_key = 'Right', -- The key on which to select the next client
+    vim_previous_key = 'l', -- Alternative key on which to select the previous client
+    vim_next_key = 'h', -- Alternative key on which to select the next client
     -- filterClients = awful.widget.tasklist.filter.currenttags, -- The function to filter the viewed clients
     cycleClientsByIdx = awful.client.focus.byidx, -- The function to cycle the clients
     -- filterClients = awful.widget.tasklist.filter.allscreen
@@ -254,9 +254,9 @@ root.buttons(mytable.join(
     awful.button({}, 3, function()
         awful.util.mymainmenu:toggle()
     end)
--- NOTE: This got quite annoying when accidentally scrolling on the desktop.
---     awful.button({}, 4, awful.tag.viewnext),
---     awful.button({}, 5, awful.tag.viewprev)
+    -- NOTE: This got quite annoying when accidentally scrolling on the desktop.
+    --     awful.button({}, 4, awful.tag.viewnext),
+    --     awful.button({}, 5, awful.tag.viewprev)
 ))
 
 -- }}}
@@ -326,7 +326,7 @@ clientbuttons = mytable.join(
         -- Only use bottom left/right corner, because dragging titlebar is already mapped to move
         local corners = {
             { c.x + c.width, c.y + c.height },
-            { c.x,           c.y + c.height },
+            { c.x, c.y + c.height },
         }
         local m = mouse.coords()
         local distance = 20
@@ -407,8 +407,8 @@ client.connect_signal('request::titlebars', function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
+client.connect_signal('mouse::enter', function(c)
+    c:emit_signal('request::activate', 'mouse_enter', { raise = vi_focus })
 end)
 
 -- tag layout changed
