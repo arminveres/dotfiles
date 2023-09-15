@@ -72,6 +72,11 @@ Use following if you want to overwrite files in repo:
   customize the login screen is quite nice, although it resets after every reboot and you can only
   set one background for any number of monitors. Therefore I am not using it anymore.
 
+#### Laptop Power Usage
+
+- use enhanced garbage collection on AwesomeWM
+- remove tmux extra stuff, like memory and cpu collection
+
 ## TODO
 
 ### neovim

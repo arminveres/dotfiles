@@ -35,7 +35,8 @@ if uname --nodename | grep -q notebook; then
     run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
     if ! xinput | grep -q M60 && ! xinput | grep -q Sofle; then
         # only swap ctrl and caps lock, if we are not connected to already pre-swapped keyboards
-        setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
+        # setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
+        xremap "$XDG_CONFIG_HOME"/xremap/config.yml
     fi
     xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
     xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1

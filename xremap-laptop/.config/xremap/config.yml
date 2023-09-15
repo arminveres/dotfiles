@@ -1,0 +1,7 @@
+modmap:
+  - name: Global
+    remap:
+      Ctrl_L: CapsLock
+      CapsLock: Ctrl_R
+      Win_L: Alt_L
+      Alt_L: Win_L
