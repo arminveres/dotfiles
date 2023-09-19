@@ -1,7 +1,7 @@
-local lain = require('lain')
 local awful = require('awful')
-local wibox = require('wibox')
+local lain = require('lain')
 local theme = require('beautiful')
+local wibox = require('wibox')
 local markup = lain.util.markup
 
 local M = {}

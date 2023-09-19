@@ -1,5 +1,5 @@
-local gears = require('gears')
 local awful = require('awful')
+local gears = require('gears')
 local lain = require('lain')
 
 local M = {}

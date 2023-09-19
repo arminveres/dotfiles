@@ -1,10 +1,10 @@
 local M = {}
 
+local awful = require('awful')
+local bling = require('bling')
 local gears = require('gears')
 local lain = require('lain')
-local awful = require('awful')
 local wibox = require('wibox')
-local bling = require('bling')
 local dpi = require('beautiful.xresources').apply_dpi
 local theme = require('beautiful')
 
@@ -12,8 +12,8 @@ theme.init(string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HO
 
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local markup = lain.util.markup
-local myutils = require('myutils')
 local bar_modules = require('bar-modules')
+local myutils = require('myutils')
 
 -- Textclock
 os.setlocale(os.getenv('LANG')) -- to localize the clock

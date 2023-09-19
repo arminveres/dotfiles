@@ -1,10 +1,10 @@
-local beautiful = require('beautiful')
-local naughty = require('naughty')
-local gears = require('gears')
 local awful = require('awful')
-local lain = require('lain')
+local beautiful = require('beautiful')
+local gears = require('gears')
 local hotkeys_popup = require('awful.hotkeys_popup')
+local lain = require('lain')
 local myutils = require('myutils')
+local naughty = require('naughty')
 
 local terminal = 'alacritty'
 local modkey = 'Mod4'

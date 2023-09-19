@@ -7,17 +7,17 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, 'luarocks.loader')
-local myutils = require('myutils')
 local awful = require('awful')
+local myutils = require('myutils')
 require('awful.autofocus')
-local wibox = require('wibox')
 local beautiful = require('beautiful')
-local naughty = require('naughty')
-local freedesktop = require('freedesktop')
 local bling = require('bling')
+local freedesktop = require('freedesktop')
+local gears = require('gears')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local lain = require('lain')
-local gears = require('gears')
+local naughty = require('naughty')
+local wibox = require('wibox')
 -- local menubar       = require("menubar")
 -- local vicious       = require('vicious') -- needed to install this via package manager ]]
 -- require("awful.hotkeys_popup.keys.vim") ]]
