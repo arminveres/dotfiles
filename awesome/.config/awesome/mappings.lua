@@ -6,7 +6,7 @@ local lain = require('lain')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local myutils = require('myutils')
 
-local terminal = 'kitty'
+local terminal = 'alacritty'
 local modkey = 'Mod4'
 local altkey = 'Mod1'
 
