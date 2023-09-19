@@ -37,23 +37,27 @@ function M.mc(c, width_f, height_f)
         M.magnified_client = c
         -- c = c or M.magnified_client
 
-        if not c then return end
+        if not c then
+            return
+        end
 
-        c.floating  = true
-        local s     = awful.screen.focused()
-        local mg    = s.workarea
-        local gtry  = {}
+        c.floating = true
+        local s = awful.screen.focused()
+        local mg = s.workarea
+        local gtry = {}
 
         -- local mwfact = width_f or s.selected_tag.master_width_factor or 0.5
         -- g.width      = math.sqrt(mwfact) * mg.width
         -- g.height     = math.sqrt(height_f or mwfact) * mg.height
 
-        gtry.width  = mg.width * 0.6
+        gtry.width = mg.width * 0.6
         gtry.height = mg.height * 0.9
-        gtry.x      = mg.x + (mg.width - gtry.width) / 2
-        gtry.y      = mg.y + (mg.height - gtry.height) / 2
+        gtry.x = mg.x + (mg.width - gtry.width) / 2
+        gtry.y = mg.y + (mg.height - gtry.height) / 2
 
-        if c then c:geometry(gtry) end -- if c is still a valid object
+        if c then
+            c:geometry(gtry)
+        end -- if c is still a valid object
     else
         M.magnified_client = nil
         c.floating = false
@@ -68,9 +72,14 @@ function M.mw_fact_mgr()
     local layout = awful.layout.get(scr)
 
     -- skip if failure
-    if not tag then return end
-    -- don't do anything on Full HD monitors, TODO: add ratio as requirement
-    if not (scr.geometry.width > 1920 and scr.geometry.height > 1080) then
+    if not tag then
+        return
+    end
+
+    -- don't do anything on Full HD monitors
+    local default_ratio = 1920 / 1080
+    local current_ratio = scr.geometry.height / scr.geometry.width
+    if current_ratio <= default_ratio then
         return
     end
 
