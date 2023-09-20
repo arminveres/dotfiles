@@ -78,7 +78,7 @@ function M.mw_fact_mgr()
 
     -- don't do anything on Full HD monitors
     local default_ratio = 1920 / 1080
-    local current_ratio = scr.geometry.height / scr.geometry.width
+    local current_ratio = scr.geometry.width / scr.geometry.height
     if current_ratio <= default_ratio then
         return
     end

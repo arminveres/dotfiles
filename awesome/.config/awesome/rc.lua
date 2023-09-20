@@ -1,8 +1,3 @@
---[[
-     Awesome WM configuration template
-     github.com/lcpz
---]]
-
 -- Required libraries
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
@@ -434,6 +429,15 @@ end)
 client.connect_signal('unfocus', function(c)
     myutils.mw_fact_mgr()
     c.border_color = beautiful.border_normal
+end)
+
+-- NOTE: the `(un)manage` signal is emitted when a client is opened/closed, which is a better factor
+-- for calling our manager function
+client.connect_signal('manage', function(c)
+    myutils.mw_fact_mgr()
+end)
+client.connect_signal('unmanage', function(c)
+    myutils.mw_fact_mgr()
 end)
 
 -- }}}
