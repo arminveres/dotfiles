@@ -94,7 +94,6 @@ awful.layout.layouts = {
     awful.layout.suit.tile.right,
     lain.layout.centerwork,
     awful.layout.suit.max,
-    -- awful.layout.suit.spiral.dwindle,
 }
 
 awful.util.taglist_buttons = mytable.join(

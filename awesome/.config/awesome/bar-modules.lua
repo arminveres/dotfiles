@@ -124,9 +124,9 @@ M.bat = lain.widget.bat({
         local perc = bat_now.perc ~= 'N/A' and bat_now.perc .. '%' or bat_now.perc
         perc = perc .. ' ' .. bat_now.time
         if bat_now.ac_status == 1 then
-            perc = '  ' .. perc
+            perc = ' 󰂏 ' .. perc
         else
-            perc = '  ' .. perc
+            perc = ' 󰂌 ' .. perc
         end
         perc = perc .. ' '
 
