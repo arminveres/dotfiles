@@ -11,25 +11,13 @@ cursor:
 
 # NOTE: always indent sixe on the same level as normal
 font:
+  size: 10
   normal:
-  #   family: IosevkaTerm Nerd Font Mono
-  # size: 10.5
-  # NOTE: some symbols overlap
-  #   family: JetBrainsMono Nerd Font Mono
-  # size: 9
-  #   family: UbuntuMono Nerd Font Mono
-  # size: 10
-  # family: Hack Nerd Font Mono
-  # family: RobotoMono Nerd Font Mono
-  #   family: NotoSansM Nerd Font
-    family: MesloLGM Nerd Font Mono
-  size: 9
-
-  # -- Bitmap Fonts --
-    # family: TamzenForPowerline
+    family: MesloLGS Nerd Font Mono
+    # -- Bitmap Fonts --
+    # family: Terminus (TTF)
     # family: DinaRemasterII
-  #   family: Terminus (TTF)
-  # size: 10
+    # family: TamzenForPowerline
 
   offset:
     x: 0
@@ -65,8 +53,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 1
-    y: 1
+    x: 3
+    y: 3
 
   # Spread additional padding evenly around the terminal content.
   dynamic_padding: true

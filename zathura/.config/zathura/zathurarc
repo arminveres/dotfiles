@@ -1,6 +1,6 @@
 # General Settings
 set selection-clipboard clipboard
-set font 'JetBrainsMono Nerd Font 10'
+set font 'MesloLGS Nerd Font 10'
 set scroll-step 50
 
 # keybinds
