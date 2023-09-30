@@ -1,6 +1,11 @@
-#!/bin/bash -e
+#!/bin/env bash
+#
+# TODO: (aver) add usage printout and port selection
 
-LOCAL_RES=1920x1200
+set -e
+
+LOCAL_RES=1920x1080
+# LOCAL_RES=1920x1200
 
 if [[ ! $1 ]]; then
     OUTPUT=DP-3
@@ -9,4 +14,3 @@ else
 fi
 
 xrandr --output eDP-1 --rate 60 --mode "$LOCAL_RES" --fb "$LOCAL_RES" --panning "$LOCAL_RES"* --output "$OUTPUT" --mode "$LOCAL_RES" --same-as eDP-1
-

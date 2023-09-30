@@ -12,7 +12,7 @@ alias flean='flatpak remove --unused'
 alias onefetch='onefetch --include-hidden'
 
 # WARN: use single quotes
-alias lg='lazygit --git-dir=$(git rev-parse --git-dir) --work-tree=$(realpath .)'
+alias lg=lazygit
 alias lad=lazydocker
 
 # ================================================================================================
