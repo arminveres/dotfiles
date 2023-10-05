@@ -15,7 +15,7 @@ local M = {}
 M.mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
 M.globalkeys = M.mytable.join(
     -- Destroy all notifications
-    awful.key({ 'Control' }, 'space', function()
+    awful.key({ altkey }, 'space', function()
         naughty.destroy_all_notifications()
     end, { description = 'destroy all notifications', group = 'hotkeys' }),
 
