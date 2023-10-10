@@ -9,9 +9,8 @@ cursor:
     blinking: On
     shape: Block
 
-# NOTE: always indent sixe on the same level as normal
 font:
-  size: 10
+  size: 9
   normal:
     family: MesloLGS Nerd Font Mono
     # -- Bitmap Fonts --

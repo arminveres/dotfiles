@@ -1,16 +1,17 @@
 #!/bin/env zsh
 
-function convert_heic_to_jpg () {
+function convert_heic_to_jpg {
     for file in *.(heic|HEIC); do
         echo $file
         heif-convert $file ${file/%.(heic|HEIC)/.jpg};
     done
     if [[ $1 == "-d" ]]; then
-        rm *.HEIC
+        rm -f *.HEIC
+        rm -f *.heic
     fi
 }
 
-function git_update_project_in_dir() {
+function git_update_project_in_dir {
     for file in ./*/;
     do
         echo "$file" && \
@@ -20,7 +21,7 @@ function git_update_project_in_dir() {
     done
 }
 
-function open() {
+function open {
     if [[ $(uname) == 'Linux' ]]; then
         xdg-open "$1" & disown
     elif [[ $(uname) == 'Darwin' ]]; then
@@ -29,7 +30,7 @@ function open() {
 }
 
 # find thermal info loc
-function find_thermal_zone() {
+function find_thermal_zone {
     for i in /sys/class/hwmon/hwmon*/temp*_input; do
         echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)";
     done
@@ -46,12 +47,12 @@ function runbg {
 # =================================================================================================
 
 # Function to source files if they exist
-function zsh_safe_source() {
+function zsh_safe_source {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
 # add normal plugins
-function zsh_add_plugin() {
+function zsh_add_plugin {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For plugins
@@ -63,7 +64,7 @@ function zsh_add_plugin() {
 }
 
 # download plugins but do not source them => irregular plugins
-function zsh_download_plugin() {
+function zsh_download_plugin {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For plugins
@@ -73,7 +74,7 @@ function zsh_download_plugin() {
 }
 
 # Add completion plugins
-function zsh_add_completion() {
+function zsh_add_completion {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         # For completions

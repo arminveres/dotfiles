@@ -2,7 +2,7 @@
 @import "~/.config/rofi/style_small.rasi"
 
 configuration {
-  font: "MesloLGS Nerd Font Mono 10";
+  font: "Cantarell 10";
   show-icons: false;
   case-sensitive: false;
 }

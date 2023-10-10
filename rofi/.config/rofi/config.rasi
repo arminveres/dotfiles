@@ -6,7 +6,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{name}";
-  font: "MesloLGS Nerd Font Mono 10";
+  font: "Cantarell 10";
   modi: "window,drun";
   show-icons: true;
   icon-theme: "Adwaita";
