@@ -78,7 +78,7 @@ awful.rules.rules = {
     --     properties = { screen = 1, tag = awful.util.tagnames[2] },
     -- },
     {
-        rule_any = { class = { 'microsoft teams - preview', 'Microsoft Teams - Preview' } },
+        rule_any = { class = { 'Zotero' } },
         properties = { tag = awful.util.tagnames[3], minimized = false },
     },
     {
@@ -106,7 +106,15 @@ awful.rules.rules = {
         properties = { tag = awful.util.tagnames[8] },
     },
     {
-        rule_any = { class = { 'discord', 'Signal', 'Slack', 'threema-web' } },
-        properties = { tag = awful.util.tagnames[9] },
+        rule_any = {
+            class = { 'discord', 'Signal', 'Slack', 'threema-web' },
+            name = { 'Microsoft Teams*' },
+        },
+        properties = {
+            fullscreen = false,
+            maximized = false,
+            floating = false,
+            tag = awful.util.tagnames[9],
+        },
     },
 }

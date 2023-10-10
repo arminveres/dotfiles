@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # run "program [some arguments]"
-run() {
+function run {
     if ! pgrep -f "$1"; then
         "$@" &
     fi
@@ -24,12 +24,6 @@ run xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0,
 run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0, 1
 
-run nitrogen --restore
-run picom --daemon --config ~/.config/picom/picom.conf
-
-run thunderbird
-run firefox
-
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
     run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
@@ -42,11 +36,23 @@ if uname --nodename | grep -q notebook; then
     xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
     flatpak run com.github.wwmm.easyeffects
 else # only run on desktop
-    # run autorandr --load secoff
     run corectrl
     run solaar --window hide
+
+    # don't run automatically on laptop for less drainage on battery
+    run thunderbird
+    run firefox
+
+    # Running autorandr is too slow on startup
+    # run autorandr --load default
+    # run xrandr --output DisplayPort-0 --mode 3440x1440 --rate 160 --primary
+    # run xrandr --output DisplayPort-1 --mode 1920x1200 --rate
 fi
 
 # create a tmux session in the background so that tmux is faster on a cold start
 tmux new -s daemon -d
+
 setxkbmap eu
+
+run nitrogen --restore
+run picom --daemon --config ~/.config/picom/picom.conf
