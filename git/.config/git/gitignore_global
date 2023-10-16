@@ -3,3 +3,4 @@ tags.*
 .clang-format
 .cache/
 nohup.out
+.null-ls*

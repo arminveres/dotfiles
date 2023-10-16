@@ -1,6 +1,15 @@
 #!/bin/env bash
 
 set -e
+set -o pipefail
+
+directories=(
+    ~/Projects
+    ~/projects
+    ~/gitfiles
+    ~/Documents
+    ~/Studyfiles
+)
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     rofi_cmd="wofi --dmenu --insensitive --no-show-icons"
@@ -9,8 +18,7 @@ else
 fi
 
 files=$(
-    fd "\.pdf" ~/Projects ~/projects ~/gitfiles ~/Documents ~/Studyfiles |
-    $rofi_cmd -p "Document:"
+    fd "\.pdf" "${directories[@]}" | $rofi_cmd -p "Document:"
 )
 
 if [[ -n $files ]]; then
