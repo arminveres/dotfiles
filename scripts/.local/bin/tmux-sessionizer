@@ -8,6 +8,13 @@ tmux_running=$(pgrep tmux || echo "")
 
 if [[ -n $tmux_running ]]; then
     session=$(tmux ls | awk '{print $1}')
+
+    # ignore the daemon session
+    if [[ $session == 'daemon:' ]]; then
+        tmux-projects
+        exit 0
+    fi
+
     session+=$(echo -e "\nNONE")
     session=$(echo "$session" | fzf)
 
