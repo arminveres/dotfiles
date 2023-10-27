@@ -1,8 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar at the bottom of your screen
-    "height": 22, // Waybar height
-    // "width": 1366, // Waybar width
+    "height": 26, // Waybar height
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces"
@@ -19,8 +18,17 @@
         // "icon-size": 21,
         "spacing": 10
     },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{name}"
+        // "format-icons": {
+        //     "default": "",
+        //     "active": "󰮯",
+        //     "urgent": "󰊠"
+        // }
+    },
     "clock": {
-        "format": "{:%a %Y-%m-%d %H:%M}",
+        "format": "{:󰥔  %R   󰃭  %a %d  %b %Y}",
         "tooltip-format": "\n<span size='9pt' font='MesloLGS Nerd Font Mono'>{calendar}</span>",
         "on-click": "swaync-client -t",
         "calendar": {
@@ -52,10 +60,9 @@
             "warning": 30,
             "critical": 15
         },
-        // Connected to AC
         "format": "󱐋 {icon} ", // Icon: bolt
-        // Not connected to AC
-        "format-discharging": "{icon} ",
+        "format-discharging": "{capacity}% {icon}",
+        "format-alt": "{icon} {time}",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -65,47 +72,6 @@
         ],
         "tooltip": true,
         "tooltip-format": "{capacity}% - {timeTo}"
-    },
-    "network": {
-        "interval": 5,
-        "format-wifi": "{icon}",
-        "format-ethernet": "󰌘",
-        "format-disconnected": "󰌙",
-        "tooltip": true,
-        "format-icons": [
-            "󰤯", // Icon: battery-full
-            "󰤟", // Icon: battery-three-quarters
-            "󰤢", // Icon: battery-half
-            "󰤥", // Icon: battery-quarter
-            "󰤨" // Icon: battery-empty
-        ],
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) at {ipaddr}",
-        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "nm-connection-editor",
-        "on-click-right": "if [[ $(nmcli radio wifi) == 'enabled' ]]; then nmcli radio wifi off; else nmcli radio wifi on; fi"
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-bluetooth": " {icon}",
-        "format-muted": "󰸈",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "",
-                ""
-            ]
-        },
-        "scroll-step": 1,
-        "on-click": "pavucontrol",
-        "ignored-sinks": [
-            "Easy Effects Sink"
-        ],
-        "tooltip-format": "{volume}% - {desc}"
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -123,4 +89,4 @@
         ]
     }
 }
-// vim:ft=json
+// vim:ft=jsonc
