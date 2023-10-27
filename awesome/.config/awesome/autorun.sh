@@ -15,7 +15,6 @@ run /usr/libexec/polkit-gnome-authentication-agent-1
 
 # Tray application
 run udiskie --tray --notify
-run blueman-manager
 run nm-applet
 run pasystray
 run solaar --window hide
@@ -26,16 +25,23 @@ run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0
 
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
+    # WARN: (aver) this block needs to first on the laptop
+    run nitrogen --restore
+    run picom --daemon --config ~/.config/picom/picom.conf
+    # create a tmux session in the background so that tmux is faster on a cold start
+    tmux new -s daemon -d
+
+    xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
+    xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
     run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
     if ! xinput | grep -q M60 && ! xinput | grep -q Sofle; then
         # only swap ctrl and caps lock, if we are not connected to already pre-swapped keyboards
         # setxkbmap -option 'ctrl:swapcaps,altwin:swap_alt_win'
         xremap "$XDG_CONFIG_HOME"/xremap/config.yml
     fi
-    xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Tapping Enabled' 1
-    xinput set-prop 'ELAN0672:00 04F3:3187 Touchpad' 'libinput Natural Scrolling Enabled' 1
-    flatpak run com.github.wwmm.easyeffects
+    # flatpak run com.github.wwmm.easyeffects
 else # only run on desktop
+    run blueman-manager
     run corectrl
     run solaar --window hide
 
@@ -48,11 +54,4 @@ else # only run on desktop
     # run xrandr --output DisplayPort-0 --mode 3440x1440 --rate 160 --primary
     # run xrandr --output DisplayPort-1 --mode 1920x1200 --rate
 fi
-
-# create a tmux session in the background so that tmux is faster on a cold start
-tmux new -s daemon -d
-
-setxkbmap eu
-
-run nitrogen --restore
-run picom --daemon --config ~/.config/picom/picom.conf
+# setxkbmap eu
