@@ -63,6 +63,9 @@ else
     alias la="ls --color=always --almost-all"
     alias ll="ls --color=always --long"
 fi
+if command -v exa > /dev/null; then
+    alias cat="bat --style=plain"
+fi
 
 # ================================================================================================
 # kb layout

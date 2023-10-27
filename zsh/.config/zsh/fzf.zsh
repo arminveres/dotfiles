@@ -12,7 +12,6 @@ fi
 
 # Auto-completion
 # ---------------
-# [[ $- == *i* ]] && source "/home/armin/pers_git/fzf/shell/completion.zsh" 2> /dev/null
 [[ $- == *i* ]] && source "$ZDOTDIR/scripts/fzf-completion.zsh" 2> /dev/null
 
 # Key bindings
