@@ -28,13 +28,7 @@
   "hide-on-clear": true,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": [
-    "inhibitors",
-    "title",
-    "dnd",
-    "mpris",
-    "notifications"
-  ],
+  "widgets": ["inhibitors", "title", "dnd", "mpris", "notifications"],
   "widget-config": {
     "inhibitors": {
       "text": "Inhibitors",
@@ -43,7 +37,7 @@
     },
     "title": {
       "text": "Notifications",
-      "clear-all-button": false,
+      "clear-all-button": true,
       "button-text": "Clear All"
     },
     "dnd": {

@@ -1,9 +1,9 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, DinaRemasterII, Helvetica, Arial, sans-serif;
+  font-family: FontAwesome, Terminess Nerd Font, Helvetica, Arial, sans-serif;
   font-size: 16px;
   border: none;
-  border-radius: 0;
+  border-radius: 10px;
 }
 
 window#waybar {
@@ -54,7 +54,6 @@ button:hover {
   color: @theme_fg_color;
 }
 
-
 #window,
 #workspaces {
   margin: 0 4px;
@@ -79,6 +78,7 @@ button:hover {
   color: #ffffff;
   background-color: #26a65b;
 }
+
 #tray {
 }
 
@@ -174,7 +174,6 @@ label:focus {
   background-color: #eb4d4b;
 }
 
-
 #idle_inhibitor {
   background-color: #2d3436;
 }
@@ -233,7 +232,6 @@ label:focus {
   background-color: transparent;
 }
 
-
 #mode,
 #clock,
 #battery,
@@ -254,3 +252,4 @@ label:focus {
   padding: 0 10px;
   color: #ffffff;
 }
+/* vim:ft=less */
