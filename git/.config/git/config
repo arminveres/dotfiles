@@ -6,7 +6,7 @@
 	autocrlf = input
 	editor = nvim
 	whitespace = trailing-space
-	excludesfile = ~/.config/git/gitignore_global
+	excludesfile = ~/.config/git/gitignore
 [credential]
 	helper = store
 [init]

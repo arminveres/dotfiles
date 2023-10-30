@@ -1,6 +1,6 @@
 tags
 tags.*
-.clang-format
 .cache/
 nohup.out
 .null-ls*
+compile_commands.json
