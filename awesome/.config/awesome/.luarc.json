@@ -16,7 +16,8 @@
     },
     "workspace": {
         "library": [
-            "/usr/share/awesome/lib/",
+            "/usr/share/awesome/lib",
+            "/usr/local/share/awesome/lib",
             "./libs/"
         ]
     }

@@ -298,112 +298,38 @@ M.globalkeys = M.mytable.join(
     -- ============================================================================================
     awful.key({}, 'XF86MonBrightnessUp', function()
         if os.getenv('HOSTNAME') == 'fedoraarmin' then
-            awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
-        else
+            -- This is the Dell monitor
+            -- awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-7')
+            -- This is the LG monitor
+            awful.spawn.with_shell('ddccontrol -r 0x10 -W +10 dev:/dev/i2c-6')
+        else -- Laptop or general control
             awful.spawn.with_shell('light -A 5')
         end
     end, { description = 'Increase brightness on main display', group = 'display' }),
     awful.key({}, 'XF86MonBrightnessDown', function()
         if os.getenv('HOSTNAME') == 'fedoraarmin' then
-            awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
-        else
+            -- This is the dell monitor
+            -- awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-7')
+            -- This is the LG monitor
+            awful.spawn.with_shell('ddccontrol -r 0x10 -W -10 dev:/dev/i2c-6')
+        else -- Laptop or general control
             awful.spawn.with_shell('light -U 5')
         end
-    end, { description = 'Decrease brightness on main display', group = 'display' })
+    end, { description = 'Decrease brightness on main display', group = 'display' }),
 
     -- Dropdown application
     -- awful.key({ modkey }, 'q', function()
     --     awful.screen.focused().quake:toggle()
     -- end, { description = 'dropdown application', group = 'launcher' }),
 
-    -- awful.key({ modkey }, 'x', function()
-    --     awful.prompt.run({
-    --         prompt = 'Run Lua code: ',
-    --         textbox = awful.screen.focused().mypromptbox.widget,
-    --         exe_callback = awful.util.eval,
-    --         history_path = awful.util.get_cache_dir() .. '/history_eval',
-    --     })
-    -- end, { description = 'lua execute prompt', group = 'awesome' })
-
-    -- ALSA volume control
-    -- awful.key({ altkey }, "Up",
-    --     function()
-    --         os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     { description = "volume up", group = "hotkeys" }),
-    -- awful.key({ altkey }, "Down",
-    --     function()
-    --         os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     { description = "volume down", group = "hotkeys" }),
-    -- awful.key({ altkey }, "m",
-    --     function()
-    --         os.execute(string.format("amixer -q set %s toggle",
-    --             beautiful.volume.togglechannel or beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     { description = "toggle mute", group = "hotkeys" }),
-    -- awful.key({ altkey, "Control" }, "m",
-    --     function()
-    --         os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     { description = "volume 100%", group = "hotkeys" }),
-    -- awful.key({ altkey, "Control" }, "0",
-    --     function()
-    --         os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-    --         beautiful.volume.update()
-    --     end,
-    --     { description = "volume 0%", group = "hotkeys" }),
-
-    -- -- MPD control
-    -- awful.key({ altkey, "Control" }, "Up",
-    --     function()
-    --         os.execute("mpc toggle")
-    --         beautiful.mpd.update()
-    --     end,
-    --     { description = "mpc toggle", group = "widgets" }),
-    -- awful.key({ altkey, "Control" }, "Down",
-    --     function()
-    --         os.execute("mpc stop")
-    --         beautiful.mpd.update()
-    --     end,
-    --     { description = "mpc stop", group = "widgets" }),
-    -- awful.key({ altkey, "Control" }, "Left",
-    --     function()
-    --         os.execute("mpc prev")
-    --         beautiful.mpd.update()
-    --     end,
-    --     { description = "mpc prev", group = "widgets" }),
-    -- awful.key({ altkey, "Control" }, "Right",
-    --     function()
-    --         os.execute("mpc next")
-    --         beautiful.mpd.update()
-    --     end,
-    --     { description = "mpc next", group = "widgets" }),
-    -- awful.key({ altkey }, "0",
-    --     function()
-    --         local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
-    --         if beautiful.mpd.timer.started then
-    --             beautiful.mpd.timer:stop()
-    --             common.text = common.text .. lain.util.markup.bold("OFF")
-    --         else
-    --             beautiful.mpd.timer:start()
-    --             common.text = common.text .. lain.util.markup.bold("ON")
-    --         end
-    --         naughty.notify(common)
-    --     end,
-    --     { description = "mpc on/off", group = "widgets" }),
-
-    -- NOTE: remocve this function for the moment, since it did not work anyhow
-    -- Copy primary to clipboard (terminals to gtk)
-    -- awful.key({ modkey }, "c", function() awful.spawn.with_shell("xsel | xsel -i -b") end,
-    --     { description = "copy terminal to gtk", group = "hotkeys" }),
-    -- -- Copy clipboard to primary (gtk to terminals)
-    -- awful.key({ modkey }, "v", function() awful.spawn.with_shell("xsel -b | xsel") end,
-    --     { description = "copy gtk to terminal", group = "hotkeys" }),
+    awful.key({ modkey }, 'x', function()
+        awful.prompt.run({
+            prompt = 'Run Lua code: ',
+            textbox = awful.screen.focused().mypromptbox.widget,
+            exe_callback = awful.util.eval,
+            history_path = awful.util.get_cache_dir() .. '/history_eval',
+        })
+    end, { description = 'lua execute prompt', group = 'awesome' })
 
     -- awful.key({ modkey, "Control" }, "j", function() awful.screen.focus_relative(1) end,
     --     { description = "focus the next screen", group = "screen" }),
@@ -489,19 +415,18 @@ M.clientkeys = M.mytable.join(
     end, { description = 'minimize', group = 'client' }),
 
     awful.key({ modkey }, 'm', function(c)
-        c.maximized = not c.maximized
+        -- Weird fix needed for maximization to work and not get stuck in each mode.
+        if c.maximized then
+            c.maximized = false
+            c.maximized_horizontal = false
+            c.maximized_vertical = false
+        else
+            c.maximized = true
+            c.maximized_horizontal = true
+            c.maximized_vertical = true
+        end
         c:raise()
-    end, { description = '(un)maximize', group = 'client' }),
-
-    awful.key({ modkey, 'Control' }, 'm', function(c)
-        c.maximized_vertical = not c.maximized_vertical
-        c:raise()
-    end, { description = '(un)maximize vertically', group = 'client' }),
-
-    awful.key({ modkey, 'Shift' }, 'm', function(c)
-        c.maximized_horizontal = not c.maximized_horizontal
-        c:raise()
-    end, { description = '(un)maximize horizontally', group = 'client' })
+    end, { description = '(un)maximize', group = 'client' })
 )
 
 return M

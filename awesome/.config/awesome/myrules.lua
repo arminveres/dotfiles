@@ -72,14 +72,6 @@ awful.rules.rules = {
         properties = { titlebars_enabled = false },
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- WARN: (aver) needed to disable all window features because it kept being stuck in unalterable
-    -- maximized mode
-    {
-        rule_any = { class = { 'Firefox', 'firefox' } },
-        properties = { minimized = false, maximized = false, floating = false },
-    },
-
     -- NOTE: Tag specific rules
     {
         rule_any = { class = { 'Zotero' } },
