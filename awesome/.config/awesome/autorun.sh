@@ -8,8 +8,7 @@ function run {
 }
 
 # Security related startups
-eval "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
-export "$(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)"
+systemctl --user start gnome-keyring-daemon.service
 gnome-keyring-daemon --daemonize --login
 run /usr/libexec/polkit-gnome-authentication-agent-1
 
@@ -45,13 +44,16 @@ else # only run on desktop
     run corectrl
     run solaar --window hide
 
-    # don't run automatically on laptop for less drainage on battery
-    run thunderbird
-    run firefox
+    # Running autorandr is too slow on startup and messes everything up
+    run "$HOME/.screenlayout/default.sh"
 
-    # Running autorandr is too slow on startup
-    # run autorandr --load default
-    # run xrandr --output DisplayPort-0 --mode 3440x1440 --rate 160 --primary
-    # run xrandr --output DisplayPort-1 --mode 1920x1200 --rate
+    # WARN: (aver) this block below needs to run later than on the laptop
+    # create a tmux session in the background so that tmux is faster on a cold start
+    tmux new -s daemon -d
+    setxkbmap eu
+    run nitrogen --restore
+    run picom --daemon --config ~/.config/picom/picom.conf
 fi
-# setxkbmap eu
+
+# Repeat rate for Xorg
+xset r rate 250 25

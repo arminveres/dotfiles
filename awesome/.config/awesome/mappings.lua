@@ -484,20 +484,12 @@ M.clientkeys = M.mytable.join(
     end, { description = 'toggle make sticky', group = 'client' }),
 
     awful.key({ modkey }, 'n', function(c)
-        -- The client currently has the input focus, so it cannot be
-        -- minimized, since minimized clients can't have the focus.
+        -- The client currently has the input focus, so it cannot be minimized, since minimized clients can't have the focus.
         c.minimized = true
     end, { description = 'minimize', group = 'client' }),
 
     awful.key({ modkey }, 'm', function(c)
-        -- c.maximized = not c.maximized
-        if c.maximized_horizontal or c.maximized_vertical then
-            c.maximized_horizontal = false
-            c.maximized_vertical = false
-        else
-            c.maximized_horizontal = true
-            c.maximized_vertical = true
-        end
+        c.maximized = not c.maximized
         c:raise()
     end, { description = '(un)maximize', group = 'client' }),
 

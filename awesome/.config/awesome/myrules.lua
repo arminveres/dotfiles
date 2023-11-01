@@ -79,16 +79,14 @@ awful.rules.rules = {
         rule_any = { class = { 'Firefox', 'firefox' } },
         properties = { minimized = false, maximized = false, floating = false },
     },
+
+    -- NOTE: Tag specific rules
     {
         rule_any = { class = { 'Zotero' } },
         properties = { tag = awful.util.tagnames[3], minimized = false },
     },
     {
-        rule_any = { class = { 'Blueman-manager', 'easyeffects' } },
-        properties = { tag = awful.util.tagnames[4], minimized = true },
-    },
-    {
-        rule_any = { class = { 'Spotify' } },
+        rule_any = { class = { 'Spotify', 'Blueman-manager', 'easyeffects' } },
         properties = { tag = awful.util.tagnames[4], minimized = false },
     },
     {
