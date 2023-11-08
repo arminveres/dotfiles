@@ -254,11 +254,6 @@ M.globalkeys = M.mytable.join(
     --     beautiful.fs.show(7)
     -- end
     -- end, { description = 'show filesystem', group = 'widgets' }),
-    awful.key({ altkey }, 'w', function()
-        if beautiful.weather then
-            beautiful.weather.show(7)
-        end
-    end, { description = 'show weather', group = 'widgets' }),
 
     awful.key({ modkey }, 'r', function()
         awful.spawn.with_shell('rofi -show drun')

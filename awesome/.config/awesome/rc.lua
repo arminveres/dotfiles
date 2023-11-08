@@ -92,8 +92,9 @@ awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm'
 
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
-    lain.layout.centerwork,
     awful.layout.suit.max,
+    lain.layout.centerwork,
+    awful.layout.suit.tile.bottom,
 }
 
 awful.util.taglist_buttons = mytable.join(
@@ -221,6 +222,12 @@ end)
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
+    -- Set bottom layout for screens with higher height than width
+    if s.geometry.width < s.geometry.height then
+        awful.tag(awful.util.tagnames, s, awful.layout.suit.tile.bottom)
+    else
+        awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
+    end
     require('bars').at_screen_connect(s)
 end)
 
