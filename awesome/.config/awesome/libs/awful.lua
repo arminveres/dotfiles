@@ -1,1 +1,1 @@
-return require('awful.init')
+return require("awful.init")

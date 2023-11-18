@@ -1,6 +1,6 @@
-local awful = require('awful')
-local gears = require('gears')
-local lain = require('lain')
+local awful = require("awful")
+local gears = require("gears")
+local lain = require("lain")
 
 local M = {}
 
@@ -18,12 +18,12 @@ end
 --- @brief returns the name of the current system i.e. node
 M.get_nodename = function()
     local uname_handle = function()
-        local handle = io.popen('uname --nodename')
+        local handle = io.popen("uname --nodename")
         if handle ~= nil then
             return handle
         end
     end
-    local nodename = uname_handle():read('*a')
+    local nodename = uname_handle():read("*a")
     uname_handle:close()
 
     return nodename

@@ -1,18 +1,18 @@
 -- Required libraries
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, 'luarocks.loader')
-local awful = require('awful')
-local myutils = require('myutils')
-require('awful.autofocus')
-local beautiful = require('beautiful')
-local bling = require('bling')
-local freedesktop = require('freedesktop')
-local gears = require('gears')
-local hotkeys_popup = require('awful.hotkeys_popup')
-local lain = require('lain')
-local naughty = require('naughty')
-local wibox = require('wibox')
+pcall(require, "luarocks.loader")
+local awful = require("awful")
+local myutils = require("myutils")
+require("awful.autofocus")
+local beautiful = require("beautiful")
+local bling = require("bling")
+local freedesktop = require("freedesktop")
+local gears = require("gears")
+local hotkeys_popup = require("awful.hotkeys_popup")
+local lain = require("lain")
+local naughty = require("naughty")
+local wibox = require("wibox")
 -- local menubar       = require("menubar")
 -- local vicious       = require('vicious') -- needed to install this via package manager ]]
 -- require("awful.hotkeys_popup.keys.vim") ]]
@@ -20,18 +20,18 @@ local wibox = require('wibox')
 -- NOTE: Set more specific and efficient GC
 
 ---@diagnostic disable-next-line: param-type-mismatch
-collectgarbage('setpause', 160)
+collectgarbage("setpause", 160)
 ---@diagnostic disable-next-line: param-type-mismatch
-collectgarbage('setstepmul', 400)
+collectgarbage("setstepmul", 400)
 gears.timer.start_new(10, function()
-    collectgarbage('step', 20000)
+    collectgarbage("step", 20000)
     return true
 end)
 
-local mappings = require('mappings')
+local mappings = require("mappings")
 local mytable = mappings.mytable
 local globalkeys = mappings.globalkeys
-local dpi = require('beautiful.xresources').apply_dpi
+local dpi = require("beautiful.xresources").apply_dpi
 
 -- Notification configuration
 naughty.config.defaults.border_width = dpi(2)
@@ -47,7 +47,7 @@ naughty.config.defaults.timeout = 5
 if awesome.startup_errors then
     naughty.notify({
         preset = naughty.config.presets.critical,
-        title = 'Oops, there were errors during startup!',
+        title = "Oops, there were errors during startup!",
         text = awesome.startup_errors,
     })
 end
@@ -55,14 +55,14 @@ end
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.connect_signal('debug::error', function(err)
+    awesome.connect_signal("debug::error", function(err)
         if in_error then
             return
         end
         in_error = true
         naughty.notify({
             preset = naughty.config.presets.critical,
-            title = 'Oops, an error happened!',
+            title = "Oops, an error happened!",
             text = tostring(err),
         })
         in_error = false
@@ -72,23 +72,20 @@ end
 -- }}}
 
 -- or use universal shell script
-awful.spawn.with_shell('~/.config/awesome/autorun.sh')
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
 -- {{{ Variable definitions
 
-local themes = {
-    'default', -- 1
-    'multicolor', -- 2
-}
+local themes = { "multicolor" }
 
-local chosen_theme = themes[2]
-local modkey = 'Mod4'
-local altkey = 'Mod1'
-local terminal = 'kitty'
-local editor = os.getenv('EDITOR') or 'nvim'
+local chosen_theme = themes[1]
+local modkey = "Mod4"
+local altkey = "Mod1"
+local terminal = "alacritty"
+local editor = os.getenv("EDITOR") or "nvim"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { 'code', 'www', 'res', 'mus', 'mail', 'game', 'tor', 'vm', 'msg' }
+awful.util.tagnames = { "code", "www", "res", "mus", "mail", "game", "tor", "vm", "msg" }
 
 awful.layout.layouts = {
     awful.layout.suit.tile.right,
@@ -125,7 +122,7 @@ awful.util.tasklist_buttons = mytable.join(
         if c == client.focus then
             c.minimized = true
         else
-            c:emit_signal('request::activate', 'tasklist', { raise = true })
+            c:emit_signal("request::activate", "tasklist", { raise = true })
         end
     end),
     awful.button({}, 3, function()
@@ -140,7 +137,7 @@ awful.util.tasklist_buttons = mytable.join(
 )
 
 beautiful.init(
-    string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), chosen_theme)
+    string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 )
 -- }}}
 
@@ -148,16 +145,16 @@ beautiful.init(
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
     {
-        'Hotkeys',
+        "Hotkeys",
         function()
             hotkeys_popup.show_help(nil, awful.screen.focused())
         end,
     },
-    { 'Manual', string.format('%s -e man awesome', terminal) },
-    { 'Edit config', string.format('%s -e %s %s', terminal, editor, awesome.conffile) },
-    { 'Restart', awesome.restart },
+    { "Manual", string.format("%s -e man awesome", terminal) },
+    { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+    { "Restart", awesome.restart },
     {
-        'Quit',
+        "Quit",
         function()
             awesome.quit()
         end,
@@ -166,17 +163,17 @@ local myawesomemenu = {
 
 awful.util.mymainmenu = freedesktop.menu.build({
     before = {
-        { 'Awesome', myawesomemenu, beautiful.awesome_icon },
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
     },
     after = {
-        { 'Open terminal', terminal },
+        { "Open terminal", terminal },
         -- other triads can be put here
     },
 })
 
 -- Hide the menu when the mouse leaves it
-awful.util.mymainmenu.wibox:connect_signal('mouse::leave', function()
+awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
     if
         not awful.util.mymainmenu.active_child
         or (
@@ -186,7 +183,7 @@ awful.util.mymainmenu.wibox:connect_signal('mouse::leave', function()
     then
         awful.util.mymainmenu:hide()
     else
-        awful.util.mymainmenu.active_child.wibox:connect_signal('mouse::leave', function()
+        awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave", function()
             if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
                 awful.util.mymainmenu:hide()
             end
@@ -223,28 +220,29 @@ end)
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
     -- Set bottom layout for screens with higher height than width
-    if s.geometry.width < s.geometry.height then
+    -- if s.geometry.width < s.geometry.height then
+    if s.index == 2 then
         awful.tag(awful.util.tagnames, s, awful.layout.suit.tile.bottom)
     else
         awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
     end
-    require('bars').at_screen_connect(s)
+    require("bars").at_screen_connect(s)
 end)
 
 -- }}}
 
 bling.widget.window_switcher.enable({
-    type = 'thumbnail', -- set to anything other than "thumbnail" to disable client previews
+    type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
     -- keybindings (the examples provided are also the default if kept unset)
-    hide_window_switcher_key = 'Escape', -- The key on which to close the popup
-    minimize_key = 'n', -- The key on which to minimize the selected client
-    unminimize_key = 'N', -- The key on which to unminimize all clients
-    kill_client_key = 'q', -- The key on which to close the selected client
-    cycle_key = 'Tab', -- The key on which to cycle through all clients
-    previous_key = 'Left', -- The key on which to select the previous client
-    next_key = 'Right', -- The key on which to select the next client
-    vim_previous_key = 'l', -- Alternative key on which to select the previous client
-    vim_next_key = 'h', -- Alternative key on which to select the next client
+    hide_window_switcher_key = "Escape", -- The key on which to close the popup
+    minimize_key = "n", -- The key on which to minimize the selected client
+    unminimize_key = "N", -- The key on which to unminimize all clients
+    kill_client_key = "q", -- The key on which to close the selected client
+    cycle_key = "Tab", -- The key on which to cycle through all clients
+    previous_key = "Left", -- The key on which to select the previous client
+    next_key = "Right", -- The key on which to select the next client
+    vim_previous_key = "l", -- Alternative key on which to select the previous client
+    vim_next_key = "h", -- Alternative key on which to select the next client
 
     -- cycleClientsByIdx = awful.client.focus.global_bydirection, -- The function to cycle the clients
     -- filterClients = awful.widget.tasklist.filter.allscreen,
@@ -269,52 +267,52 @@ for i = 1, 9 do
     globalkeys = mytable.join(
         globalkeys,
         -- View tag only.
-        awful.key({ modkey }, '#' .. i + 9, function()
+        awful.key({ modkey }, "#" .. i + 9, function()
             local screen = awful.screen.focused()
             local tag = screen.tags[i]
             if tag then
                 tag:view_only()
             end
-        end, { description = 'view tag #' .. i, group = 'tag' }),
+        end, { description = "view tag #" .. i, group = "tag" }),
         -- Toggle tag display.
-        awful.key({ modkey, 'Control' }, '#' .. i + 9, function()
+        awful.key({ modkey, "Control" }, "#" .. i + 9, function()
             local screen = awful.screen.focused()
             local tag = screen.tags[i]
             if tag then
                 awful.tag.viewtoggle(tag)
             end
-        end, { description = 'toggle tag #' .. i, group = 'tag' }),
+        end, { description = "toggle tag #" .. i, group = "tag" }),
         -- Move client to tag.
-        awful.key({ modkey, 'Shift' }, '#' .. i + 9, function()
+        awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
             if client.focus then
                 local tag = client.focus.screen.tags[i]
                 if tag then
                     client.focus:move_to_tag(tag)
                 end
             end
-        end, { description = 'move focused client to tag #' .. i, group = 'tag' }),
+        end, { description = "move focused client to tag #" .. i, group = "tag" }),
         -- Toggle tag on focused client.
-        awful.key({ modkey, 'Control', 'Shift' }, '#' .. i + 9, function()
+        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
             if client.focus then
                 local tag = client.focus.screen.tags[i]
                 if tag then
                     client.focus:toggle_tag(tag)
                 end
             end
-        end, { description = 'toggle focused client on tag #' .. i, group = 'tag' })
+        end, { description = "toggle focused client on tag #" .. i, group = "tag" })
     )
 end
 
 clientbuttons = mytable.join(
     awful.button({}, 1, function(c)
-        c:emit_signal('request::activate', 'mouse_click', { raise = true })
+        c:emit_signal("request::activate", "mouse_click", { raise = true })
     end),
     awful.button({ modkey }, 1, function(c)
-        c:emit_signal('request::activate', 'mouse_click', { raise = true })
+        c:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.move(c)
     end),
     awful.button({ modkey }, 3, function(c)
-        c:emit_signal('request::activate', 'mouse_click', { raise = true })
+        c:emit_signal("request::activate", "mouse_click", { raise = true })
         awful.mouse.client.resize(c)
     end),
     awful.button({}, 1, function(c)
@@ -346,7 +344,7 @@ root.keys(globalkeys)
 -- {{{ Signals
 
 -- Signal function to execute when a new client appears.
-client.connect_signal('manage', function(c)
+client.connect_signal("manage", function(c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
@@ -357,7 +355,7 @@ client.connect_signal('manage', function(c)
     end
 end)
 
-client.connect_signal('request::titlebars', function(c)
+client.connect_signal("request::titlebars", function(c)
     -- Custom
     if beautiful.titlebar_fun then
         beautiful.titlebar_fun(c)
@@ -368,11 +366,11 @@ client.connect_signal('request::titlebars', function(c)
     -- buttons for the titlebar
     local buttons = mytable.join(
         awful.button({}, 1, function()
-            c:emit_signal('request::activate', 'titlebar', { raise = true })
+            c:emit_signal("request::activate", "titlebar", { raise = true })
             awful.mouse.client.move(c)
         end),
         awful.button({}, 3, function()
-            c:emit_signal('request::activate', 'titlebar', { raise = true })
+            c:emit_signal("request::activate", "titlebar", { raise = true })
             awful.mouse.client.resize(c)
         end)
     )
@@ -388,7 +386,7 @@ client.connect_signal('request::titlebars', function(c)
             -- Middle
             {
                 -- Title
-                align = 'center',
+                align = "center",
                 widget = awful.titlebar.widget.titlewidget(c),
             },
             buttons = buttons,
@@ -408,46 +406,49 @@ client.connect_signal('request::titlebars', function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal('mouse::enter', function(c)
-    c:emit_signal('request::activate', 'mouse_enter', { raise = vi_focus })
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
 end)
 
 -- tag layout changed
-tag.connect_signal('property::layout', function(c)
+tag.connect_signal("property::layout", function(c)
     myutils.mw_fact_mgr()
 end)
 
 -- tag select, e.g., when concatenated
-tag.connect_signal('property::selected', function(c)
+tag.connect_signal("property::selected", function(c)
     myutils.mw_fact_mgr()
 end)
 
-client.connect_signal('property::floating', function(c)
+client.connect_signal("property::floating", function(c)
     myutils.mw_fact_mgr()
     if c.floating then
         awful.placement.centered(c)
     end
 end)
-client.connect_signal('focus', function(c)
+
+client.connect_signal("focus", function(c)
     myutils.mw_fact_mgr()
     c.border_color = beautiful.border_focus
 end)
-client.connect_signal('unfocus', function(c)
+
+client.connect_signal("unfocus", function(c)
     myutils.mw_fact_mgr()
     c.border_color = beautiful.border_normal
 end)
 
 -- NOTE: the `(un)manage` signal is emitted when a client is opened/closed, which is a better factor
 -- for calling our manager function
-client.connect_signal('manage', function(c)
+client.connect_signal("manage", function(c)
     myutils.mw_fact_mgr()
 end)
-client.connect_signal('unmanage', function(c)
+
+client.connect_signal("unmanage", function(c)
     myutils.mw_fact_mgr()
 end)
 
 -- }}}
 
 -- {{{ Rules
-require('myrules')
+require("myrules")
 -- }}}

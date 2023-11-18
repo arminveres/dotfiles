@@ -1,6 +1,6 @@
-local awful = require('awful')
-local beautiful = require('beautiful')
-local clientkeys = require('mappings').clientkeys
+local awful = require("awful")
+local beautiful = require("beautiful")
+local clientkeys = require("mappings").clientkeys
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -26,39 +26,39 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                'DTA', -- Firefox addon DownThemAll.
-                'copyq', -- Includes session name in class.
-                'pinentry',
+                "DTA", -- Firefox addon DownThemAll.
+                "copyq", -- Includes session name in class.
+                "pinentry",
             },
             class = {
-                'Arandr',
-                'gnome-calculator',
-                'nm-connection-editor',
-                'Gpick',
-                'Kruler',
-                'MessageWin', -- kalarm.
-                'Sxiv',
-                'Tor Browser', -- Needs a fixed window size to avoid fingerprinting by screen size.
-                'Wpa_gui',
-                'veromix',
-                'xtightvncviewer',
-                'origin.exe',
-                'zoom',
-                'Cisco AnyConnect Secure Mobility Client',
-                'Matplotlib',
-                'matplotlib',
-                'Gnome-Pomodoro',
+                "Arandr",
+                "gnome-calculator",
+                "nm-connection-editor",
+                "Gpick",
+                "Kruler",
+                "MessageWin", -- kalarm.
+                "Sxiv",
+                "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+                "Wpa_gui",
+                "veromix",
+                "xtightvncviewer",
+                "origin.exe",
+                "zoom",
+                "Cisco AnyConnect Secure Mobility Client",
+                "Matplotlib",
+                "matplotlib",
+                "Gnome-Pomodoro",
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown there might not match defined rules here.
             name = {
-                'Event Tester', -- xev.
+                "Event Tester", -- xev.
             },
             role = {
-                'AlarmWindow', -- Thunderbird's calendar.
-                'ConfigManager', -- Thunderbird's about:config.
-                'pop-up', -- e.g. Google Chrome's (detached) Developer Tools.
-                'Network Connections',
+                "AlarmWindow", -- Thunderbird's calendar.
+                "ConfigManager", -- Thunderbird's about:config.
+                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "Network Connections",
             },
         },
         properties = {
@@ -68,39 +68,39 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     {
-        rule_any = { type = { 'normal', 'dialog' } },
+        rule_any = { type = { "normal", "dialog" } },
         properties = { titlebars_enabled = false },
     },
 
     -- NOTE: Tag specific rules
     {
-        rule_any = { class = { 'Zotero' } },
+        rule_any = { class = { "Zotero" } },
         properties = { tag = awful.util.tagnames[3], minimized = false },
     },
     {
-        rule_any = { class = { 'Spotify', 'Blueman-manager', 'easyeffects' } },
+        rule_any = { class = { "Spotify", "Blueman-manager", "easyeffects" } },
         properties = { tag = awful.util.tagnames[4], minimized = false },
     },
     {
-        rule_any = { class = { 'Geary', 'thunderbird', 'mail' } },
+        rule_any = { class = { "Geary", "thunderbird", "mail" } },
         properties = { tag = awful.util.tagnames[5] },
     },
     {
-        rule_any = { class = { 'steam', 'Steam', 'Lutris' } },
+        rule_any = { class = { "steam", "Steam", "Lutris" } },
         properties = { tag = awful.util.tagnames[6] },
     },
     {
-        rule_any = { class = { 'qBittorrent', 'qbittorrent' } },
+        rule_any = { class = { "qBittorrent", "qbittorrent" } },
         properties = { tag = awful.util.tagnames[7] },
     },
     {
-        rule_any = { class = { 'corectrl', 'virt-manager', 'Virt-manager' } },
+        rule_any = { class = { "corectrl", "virt-manager", "Virt-manager" } },
         properties = { tag = awful.util.tagnames[8] },
     },
     {
         rule_any = {
-            class = { 'discord', 'Signal', 'Slack', 'threema-web' },
-            name = { 'Microsoft Teams*' },
+            class = { "discord", "Signal", "Slack", "threema-web" },
+            name = { "Microsoft Teams*" },
         },
         properties = {
             fullscreen = false,

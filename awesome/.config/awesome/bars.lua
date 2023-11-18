@@ -1,25 +1,25 @@
 local M = {}
 
-local awful = require('awful')
-local bling = require('bling')
-local gears = require('gears')
-local lain = require('lain')
-local wibox = require('wibox')
-local dpi = require('beautiful.xresources').apply_dpi
-local theme = require('beautiful')
+local awful = require("awful")
+local bling = require("bling")
+local gears = require("gears")
+local lain = require("lain")
+local wibox = require("wibox")
+local dpi = require("beautiful.xresources").apply_dpi
+local theme = require("beautiful")
 
-theme.init(string.format('%s/.config/awesome/themes/%s/theme.lua', os.getenv('HOME'), 'multicolor'))
+theme.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "multicolor"))
 
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local markup = lain.util.markup
-local bar_modules = require('bar-modules')
-local myutils = require('myutils')
+local bar_modules = require("bar-modules")
+local myutils = require("myutils")
 
 -- Textclock
-os.setlocale(os.getenv('LANG')) -- to localize the clock
+os.setlocale(os.getenv("LANG")) -- to localize the clock
 
 local mytextclock = wibox.widget.textclock(
-    markup('#7788af', '%A %d %B ') .. markup('#ab7367', '>') .. markup('#de5e1e', ' %H:%M')
+    markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M")
 )
 mytextclock.font = theme.font
 
@@ -35,9 +35,9 @@ theme.cal = lain.widget.cal({
 
 -- PlayerCTL
 local playerctl_widget = wibox.widget({
-    markup = '',
-    align = 'center',
-    valign = 'center',
+    markup = "",
+    align = "center",
+    valign = "center",
     font = theme.font,
     widget = wibox.widget.textbox,
 })
@@ -47,14 +47,14 @@ local pctl_ok, playerctl = pcall(bling.signal.playerctl.lib)
 if pctl_ok then
     -- Get Song Info
     playerctl:connect_signal(
-        'metadata',
+        "metadata",
         function(_, title, artist, album_path, album, new, player_name)
             -- Set player name, title and artist widgets
-            if player_name == 'spotify' then
-                player_name = ' '
+            if player_name == "spotify" then
+                player_name = " "
             end
             playerctl_widget:set_markup(
-                markup.fontfg(theme.font, '#e0da37', player_name .. ' ' .. title .. ' - ' .. artist)
+                markup.fontfg(theme.font, "#e0da37", player_name .. " " .. title .. " - " .. artist)
             )
         end
     )
@@ -63,17 +63,17 @@ else -- try the cli if the lib fails
     if pctl_ok then
         -- Get Song Info
         playerctl:connect_signal(
-            'metadata',
+            "metadata",
             function(_, title, artist, album_path, album, new, player_name)
                 -- Set player name, title and artist widgets
-                if player_name == 'spotify' then
-                    player_name = ' '
+                if player_name == "spotify" then
+                    player_name = " "
                 end
                 playerctl_widget:set_markup(
                     markup.fontfg(
                         theme.font,
-                        '#e0da37',
-                        player_name .. ' ' .. title .. ' - ' .. artist
+                        "#e0da37",
+                        player_name .. " " .. title .. " - " .. artist
                     )
                 )
             end
@@ -81,8 +81,8 @@ else -- try the cli if the lib fails
     end
 end
 
-local brightness_widget = require('awesome-wm-widgets.brightness-widget.brightness')
-local spotify_widget = require('awesome-wm-widgets.spotify-widget.spotify')
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
 local space = wibox.widget.textbox()
 space.forced_width = dpi(18)
@@ -93,7 +93,7 @@ M.at_screen_connect = function(s)
 
     -- If wallpaper is a function, call it with the screen
     local wallpaper = theme.wallpaper
-    if type(wallpaper) == 'function' then
+    if type(wallpaper) == "function" then
         wallpaper = wallpaper(s)
     end
     gears.wallpaper.maximized(wallpaper, s, true)
@@ -130,7 +130,7 @@ M.at_screen_connect = function(s)
         buttons = awful.util.taglist_buttons,
         style = {
             shape_border_width = dpi(0),
-            shape_border_color = '#000000',
+            shape_border_color = "#000000",
             shape = myutils.custom_rounded,
         },
         -- layout = {
@@ -156,15 +156,15 @@ M.at_screen_connect = function(s)
         },
     })
 
-    local transparency = 'FF'
+    local transparency = "FF"
     -- Create the wibox
     s.mainbar = awful.wibar({
-        position = 'bottom',
+        position = "bottom",
         screen = s,
         -- either increase height or add border for better distinction of tags
         height = dpi(21),
         border_width = dpi(5),
-        border_color = '#000000' .. transparency,
+        border_color = "#000000" .. transparency,
         bg = theme.bg_normal .. transparency,
         fg = theme.fg_normal,
     })
@@ -189,15 +189,15 @@ M.at_screen_connect = function(s)
             layout = wibox.layout.fixed.horizontal,
             space,
             spotify_widget({
-                play_icon = '/usr/share/icons/Papirus/24x24/categories/spotify.svg',
-                pause_icon = '/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg',
+                play_icon = "/usr/share/icons/Papirus/24x24/categories/spotify.svg",
+                pause_icon = "/usr/share/icons/Papirus/24x24/panel/spotify-indicator.svg",
                 font = theme.font,
             }), -- playerctl_widget, --  NOTE: (aver) replaced with spotify widget
             space,
             bar_modules.volicon,
             theme.volume.widget,
-            -- space,
-            -- bar_modules.ip_widget,
+            space,
+            bar_modules.ip_widget,
             -- bar_modules.memicon,
             -- bar_modules.memory.widget,
             -- bar_modules.cpuicon,

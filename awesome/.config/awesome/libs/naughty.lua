@@ -1,1 +1,1 @@
-return require('naughty.init')
+return require("naughty.init")
