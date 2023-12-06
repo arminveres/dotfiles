@@ -93,7 +93,7 @@ zsh_add_plugin "hlissner/zsh-autopair"
 bindkey -s '^f' "^Uzi^M"
 bindkey -s '^v' "^U$HOME/.config/zsh/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
-bindkey -s '^s' "tmux-sessionizer^M"
+bindkey -s '^s' "^Utmux-sessionizer^M"
 # Superseeded TMUX prefix bind
 # bindkey -s '^s' "ncdu --color dark^M"
 # Superseeded by completion

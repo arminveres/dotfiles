@@ -50,20 +50,20 @@ alias dd='dd status=progress'
 alias cl=clear
 alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
-# exa
-if command -v exa > /dev/null; then
-    alias ls="exa --color=always --group-directories-first --icons" # my preferred listing
-    alias la="exa --color=always --group-directories-first --git --long --all --header --icons"
-    alias lag="exa --color=always --group-directories-first --git --long --all --header --grid --icons"
-    alias lsg="exa --color=always --group-directories-first --git --long --header --grid --icons"
-    alias ll="exa --color=always --group-directories-first --git --long --header"
-    alias tree="exa --color=always --group-directories-first --tree --icons"
+# eza
+if command -v eza > /dev/null; then
+    alias ls="eza --color=always --group-directories-first --icons" # my preferred listing
+    alias la="eza --color=always --group-directories-first --git --long --all --header --icons"
+    alias lag="eza --color=always --group-directories-first --git --long --all --header --grid --icons"
+    alias lsg="eza --color=always --group-directories-first --git --long --header --grid --icons"
+    alias ll="eza --color=always --group-directories-first --git --long --header"
+    alias tree="eza --color=always --group-directories-first --tree --icons"
 else
     alias ls="ls --color=always"
     alias la="ls --color=always --almost-all"
     alias ll="ls --color=always --long"
 fi
-if command -v exa > /dev/null; then
+if command -v bat > /dev/null; then
     alias cat="bat --style=plain"
 fi
 
