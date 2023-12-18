@@ -43,10 +43,10 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 # groups completion commands
 zstyle ':completion:*' group-name ''
-# squeezes slashes: cd ~//Documents => cd ~/*/Documents
-#zstyle ':completion:*' squeeze-slashes true
 # shows current location type
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+# squeezes slashes: cd ~//Documents => cd ~/*/Documents
+# zstyle ':completion:*' squeeze-slashes true
 
 # Add colors from ls to completions
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -54,68 +54,70 @@ zmodload zsh/complist
 
 _comp_options+=(globdots)      # Include hidden files.
 
-[ -d "$ZDOTDIR"/completion ] && fpath+=("$ZDOTDIR"/completion/);
-[ -d "$ZDOTDIR"/plugins/zsh-completions ] && fpath+=("$ZDOTDIR"/plugins/zsh-completions/src);
+fpath+=(
+    "$ZDOTDIR"/completion/
+    "$ZDOTDIR"/plugins/zsh-completions/src
+)
 
 # Load completions: make all files found be used without asking, use the option -u
 compinit -u
 
-autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
-autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
 autoload -Uz colors && colors
+
+# ==================================================================================================
+# Sourcing plugins and custom scripts
+# ==================================================================================================
 
 # Useful Functions
 source "$ZDOTDIR/functions.zsh"
 
-# safe source cargo env
-zsh_safe_source "$CARGO_HOME"/env
-
 # Normal files to source
 # Exports are needed before aliases
-zsh_safe_source "vim_mode.zsh"
-zsh_safe_source "aliases.zsh"
-zsh_safe_source "fzf.zsh"
-
+source "$ZDOTDIR/vim_mode.zsh"
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/fzf.zsh"
 
 # Prompt
-zsh_safe_source "./plugins/git-prompt.zsh/git-prompt.zsh"
-zsh_safe_source "prompt.zsh"
+source "$ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh"
+source "$ZDOTDIR/prompt.zsh"
 
 # Plugins
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-zsh_add_plugin "hlissner/zsh-autopair"
-
+# zsh_add_plugin "zsh-users/zsh-autosuggestions"
+# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+# zsh_add_plugin "hlissner/zsh-autopair"
+source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
 # For more plugins: https://github.com/unixorn/awesome-zsh-plugins
-# More completions https://github.com/zsh-users/zsh-completions
 
+# ==================================================================================================
 # Key-bindings
+# ==================================================================================================
 bindkey -s '^f' "^Uzi^M"
 bindkey -s '^v' "^U$HOME/.config/zsh/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
 bindkey -s '^s' "^Utmux-sessionizer^M"
-# Superseeded TMUX prefix bind
-# bindkey -s '^s' "ncdu --color dark^M"
-# Superseeded by completion
-# bindkey -s '^o' "ranger^M"
 
 bindkey "^[[3~" delete-char
 bindkey '^o' end-of-line
-bindkey '^p' up-line-or-beginning-search # Up
-bindkey '^n' down-line-or-beginning-search # Down
-bindkey -r "^d"
-
-# We are replacing these lines, as they interfere with tmux
-# bindkey \^k up-line-or-beginning-search # Up
-# bindkey \^j down-line-or-beginning-search # Down
+# bindkey -r "^d"
 # bindkey -r "^u"
 
+# search using a prefix, e.g., `cd` only searches history including cd
+autoload -U up-line-or-beginning-search && zle -N up-line-or-beginning-search
+autoload -U down-line-or-beginning-search && zle -N down-line-or-beginning-search
+bindkey "^p" up-line-or-beginning-search # Up
+bindkey "^n" down-line-or-beginning-search # Down
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+
+# ==================================================================================================
+# Custom sourcing and functions
+# ==================================================================================================
 # WARN: Zoxide removed this functionality and broke it for zsh.
-if [ "$(command -v zoxide)" ]; then
+if command -v zoxide > /dev/null; then
     eval "$(zoxide init zsh)"
     unalias z
     function z () {
@@ -123,5 +125,6 @@ if [ "$(command -v zoxide)" ]; then
     }
 fi
 
-# fortune | cowsay -f blowfish | lolcat
-zsh_safe_source "scripts/mamba.zsh"
+# safe source cargo env
+source "$CARGO_HOME"/env
+source "$ZDOTDIR/scripts/mamba.zsh"

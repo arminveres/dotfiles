@@ -50,19 +50,20 @@ alias dd='dd status=progress'
 alias cl=clear
 alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
-# eza
+
 if command -v eza > /dev/null; then
     alias ls="eza --color=always --group-directories-first --icons" # my preferred listing
-    alias la="eza --color=always --group-directories-first --git --long --all --header --icons"
-    alias lag="eza --color=always --group-directories-first --git --long --all --header --grid --icons"
-    alias lsg="eza --color=always --group-directories-first --git --long --header --grid --icons"
-    alias ll="eza --color=always --group-directories-first --git --long --header"
+    alias la="eza --color=always --group-directories-first --long --all --header --icons"
+    alias lag="eza --color=always --group-directories-first --long --all --header --grid --icons"
+    alias lsg="eza --color=always --group-directories-first --long --header --grid --icons"
+    alias ll="eza --color=always --group-directories-first --long --header"
     alias tree="eza --color=always --group-directories-first --tree --icons"
 else
     alias ls="ls --color=always"
     alias la="ls --color=always --almost-all"
     alias ll="ls --color=always --long"
 fi
+
 if command -v bat > /dev/null; then
     alias cat="bat --style=plain"
 fi
@@ -90,11 +91,7 @@ fi
 # ================================================================================================
 if [[ $(uname) == 'Linux' ]]; then
     case "$(lsb_release -i | awk '{print $3}')" in
-        Ubuntu) # echo Ubuntu
-            alias nala='sudo nala'
-            alias upd='sudo apt update && sudo apt upgrade'
-            ;;
-        Debian) # echo Ubuntu
+        Ubuntu | Debian)
             alias nala='sudo nala'
             alias upd='sudo apt update && sudo apt upgrade'
             ;;
