@@ -1,7 +1,5 @@
 [user]
-	email = armin.veres@hotmail.com
 	name = Armin Veres
-	signingkey = 3BAE4906A7048FE6D4CFDD312BA3B858508464E4
 [core]
 	autocrlf = input
 	editor = nvim
