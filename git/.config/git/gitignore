@@ -1,6 +1,0 @@
-tags
-tags.*
-.cache/
-nohup.out
-.null-ls*
-compile_commands.json
