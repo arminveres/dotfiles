@@ -215,8 +215,8 @@ theme.tooltip_margin = "top"
 theme.taglist_bg = theme.bg_color
 theme.taglist_bg_focus = theme.bg_3
 theme.taglist_fg_focus = theme.accent
-theme.taglist_bg_urgent = theme.red_color
-theme.taglist_fg_urgent = theme.red_2
+theme.taglist_bg_urgent = theme.red_2
+theme.taglist_fg_urgent = theme.bg_color
 theme.taglist_bg_occupied = theme.bg_color
 theme.taglist_fg_occupied = theme.fg_color
 theme.taglist_bg_empty = theme.bg_color
@@ -247,6 +247,8 @@ theme.awesome_dock_color_bg = theme.bg_color
 theme.awesome_dock_disabled = false
 theme.awesome_dock_spacing = 10
 theme.awesome_dock_timeout = 1.2
+
+theme.systray_icon_spacing = dpi(4)
 
 -- init
 -- ~~~~

@@ -7,8 +7,27 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
 local helpers = require("helpers")
+local lain = require("lain")
 local wibox = require("wibox")
 local dpi = beautiful.xresources.apply_dpi
+
+-- Create a container for the systray
+local systray = wibox.widget.systray()
+systray.base_size = dpi(27)
+
+local vertical_systray = wibox.widget({
+    {
+        {
+            systray,
+            layout = wibox.layout.fixed.vertical,
+        },
+        direction = "east",
+        widget = wibox.container.rotate,
+    },
+    valign = "center",
+    halign = "center",
+    widget = wibox.container.place,
+})
 
 -- connect to screen
 -- ~~~~~~~~~~~~~~~~~
@@ -148,6 +167,16 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.fixed.vertical,
         spacing = dpi(3),
     })
+    -- Calendar
+    beautiful.cal = lain.widget.cal({
+        attach_to = { clock },
+        notification_preset = {
+            font = beautiful.font,
+            fg = beautiful.fg_normal,
+            bg = beautiful.bg_normal,
+        },
+    })
+
     -- Eo clock
     ------------------------------------------
 
@@ -190,31 +219,34 @@ awful.screen.connect_for_each_screen(function(s)
     -- bar setup
     s.wibar_wid:setup({
         {
+            -- region 1
             {
                 taglist,
                 margins = { left = dpi(8), right = dpi(8) },
                 widget = wibox.container.margin,
             },
+            -- region 2
             {
                 tasklist,
                 margins = { left = dpi(8), right = dpi(8) },
                 widget = wibox.container.margin,
             },
-            -- {
-            --     {
-            --         battery,
-            --         margins = {left = dpi(8), right = dpi(8)},
-            --         widget = wibox.container.margin
-            --     },
-            --     {
-            --     cc_ic,
-            --         layout = wibox.layout.fixed.vertical,
-            --         spacing = dpi(20),
-            --     },
-            --     layout = wibox.layout.fixed.vertical,
-            --     spacing = dpi(20),
-            -- },
-            clock,
+            -- region 3
+            {
+                -- {
+                --     battery,
+                --     margins = {left = dpi(8), right = dpi(8)},
+                --     widget = wibox.container.margin
+                -- },
+                {
+                    vertical_systray,
+                    clock,
+                    layout = wibox.layout.fixed.vertical,
+                    spacing = dpi(20),
+                },
+                layout = wibox.layout.fixed.vertical,
+                spacing = dpi(20),
+            },
             layout = wibox.layout.align.vertical,
             expand = "none",
         },
