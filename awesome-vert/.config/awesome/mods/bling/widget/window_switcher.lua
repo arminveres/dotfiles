@@ -10,25 +10,6 @@ local window_switcher_first_client -- The client that was focused when the windo
 local window_switcher_minimized_clients = {} -- The clients that were minimized when the window switcher was activated
 local window_switcher_grabber
 
-local get_num_clients = function()
-    local minimized_clients_in_tag = 0
-    local matcher = function(c)
-        return awful.rules.match(
-            c,
-            {
-                minimized = true,
-                skip_taskbar = false,
-                hidden = false,
-                first_tag = awful.screen.focused().selected_tag,
-            }
-        )
-    end
-    for c in awful.client.iterate(matcher) do
-        minimized_clients_in_tag = minimized_clients_in_tag + 1
-    end
-    return minimized_clients_in_tag + #awful.screen.focused().clients
-end
-
 local window_switcher_hide = function(window_switcher_box)
     -- Add currently focused client to history
     if client.focus then
@@ -84,12 +65,14 @@ local function draw_widget(
     name_focus_color,
     icon_valign,
     icon_width,
-    mouse_keys
+    mouse_keys,
+    filterClients
 )
+    filterClients = filterClients or awful.widget.tasklist.filter.currenttags
     local tasklist_widget = type == "thumbnail"
             and awful.widget.tasklist({
                 screen = awful.screen.focused(),
-                filter = awful.widget.tasklist.filter.currenttags,
+                filter = filterClients,
                 buttons = mouse_keys,
                 style = {
                     font = name_font,
@@ -167,7 +150,7 @@ local function draw_widget(
             })
         or awful.widget.tasklist({
             screen = awful.screen.focused(),
-            filter = awful.widget.tasklist.filter.currenttags,
+            filter = filterClients,
             buttons = mouse_keys,
             style = {
                 font = name_font,
@@ -274,6 +257,9 @@ local enable = function(opts)
     local scroll_previous_key = opts.scroll_previous_key or 4
     local scroll_next_key = opts.scroll_next_key or 5
 
+    local cycleClientsByIdx = opts.cycleClientsByIdx or awful.client.focus.byidx
+    local filterClients = opts.filterClients or awful.widget.tasklist.filter.currenttags
+
     local window_switcher_box = awful.popup({
         bg = "#00000000",
         visible = false,
@@ -308,7 +294,7 @@ local enable = function(opts)
             modifiers = { "Any" },
             button = scroll_previous_key,
             on_press = function()
-                awful.client.focus.byidx(-1)
+                cycleClientsByIdx(-1)
             end,
         }),
 
@@ -316,7 +302,7 @@ local enable = function(opts)
             modifiers = { "Any" },
             button = scroll_next_key,
             on_press = function()
-                awful.client.focus.byidx(1)
+                cycleClientsByIdx(1)
             end,
         })
     )
@@ -343,39 +329,38 @@ local enable = function(opts)
         end,
 
         [cycle_key] = function()
-            awful.client.focus.byidx(1)
+            cycleClientsByIdx(1)
         end,
 
         [previous_key] = function()
-            awful.client.focus.byidx(1)
+            cycleClientsByIdx(1)
         end,
         [next_key] = function()
-            awful.client.focus.byidx(-1)
+            cycleClientsByIdx(-1)
         end,
 
         [vim_previous_key] = function()
-            awful.client.focus.byidx(1)
+            cycleClientsByIdx(1)
         end,
         [vim_next_key] = function()
-            awful.client.focus.byidx(-1)
+            cycleClientsByIdx(-1)
         end,
     }
 
     window_switcher_box:connect_signal("property::width", function()
-        if window_switcher_box.visible and get_num_clients() == 0 then
+        if window_switcher_box.visible and #awful.screen.focused().selected_tag:clients() == 0 then
             window_switcher_hide(window_switcher_box)
         end
     end)
 
     window_switcher_box:connect_signal("property::height", function()
-        if window_switcher_box.visible and get_num_clients() == 0 then
+        if window_switcher_box.visible and #awful.screen.focused().selected_tag:clients() == 0 then
             window_switcher_hide(window_switcher_box)
         end
     end)
 
     awesome.connect_signal("bling::window_switcher::turn_on", function()
-        local number_of_clients = get_num_clients()
-        if number_of_clients == 0 then
+        if #awful.screen.focused().selected_tag:clients() == 0 then
             return
         end
 
@@ -445,8 +430,10 @@ local enable = function(opts)
             name_focus_color,
             icon_valign,
             icon_width,
-            mouse_keys
+            mouse_keys,
+            filterClients
         )
+        window_switcher_box.screen = awful.screen.focused()
         window_switcher_box.visible = true
     end)
 end

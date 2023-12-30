@@ -24,10 +24,13 @@ bling.widget.window_switcher.enable {
     next_key = "Right",                  -- The key on which to select the next client
     vim_previous_key = "h",              -- Alternative key on which to select the previous client
     vim_next_key = "l",                  -- Alternative key on which to select the next client
+
+    cycleClientsByIdx = awful.client.focus.byidx,               -- The function to cycle the clients
+    filterClients = awful.widget.tasklist.filter.currenttags,   -- The function to filter the viewed clients
 }
 ```
 
-To run the window swicher you have to emit this signal from within your configuration (usually using a keybind).
+To run the window swicher, emit this signal (usually with a keybind):
 
 ```lua
 awesome.emit_signal("bling::window_switcher::turn_on")

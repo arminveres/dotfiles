@@ -3,7 +3,9 @@ local machi_editor = require(this_package.."editor")
 local awful = require("awful")
 local gobject = require("gears.object")
 local capi = {
-    screen = screen
+    screen = screen,
+    client = client,
+    mouse = mouse,
 }
 
 local ERROR = 2
@@ -122,15 +124,42 @@ function module.set_geometry(c, area_lu, area_rd, useless_gap, border_width)
     end
 end
 
--- TODO: the string need to be updated when its screen geometry changed.
 local function get_machi_tag_string(tag)
-    if tag.machi_tag_string == nil then
-        tag.machi_tag_string =
-            tostring(tag.screen.geometry.width) .. "x" .. tostring(tag.screen.geometry.height) .. "+" ..
-            tostring(tag.screen.geometry.x) .. "+" .. tostring(tag.screen.geometry.y) .. '+' .. tag.name
-    end
-    return tag.machi_tag_string
+    return tostring(tag.screen.geometry.width) .. "x" .. tostring(tag.screen.geometry.height) .. "+" ..
+        tostring(tag.screen.geometry.x) .. "+" .. tostring(tag.screen.geometry.y) .. '+' .. tag.name
 end
+
+local function sanitize_geometry(geo, parent_area)
+    local x = geo.x
+    local width = geo.width
+
+    if x + width > parent_area.x + parent_area.width then
+        x = parent_area.x + parent_area.width - width
+    end
+    if x < parent_area.x then
+        x = parent_area.x
+    end
+    if x + width > parent_area.x + parent_area.width then
+        width = parent_area.x + parent_area.width - x
+    end
+    geo.x = x
+    geo.width = width
+
+    local y = geo.y
+    local height = geo.height
+    if y + height > parent_area.y + parent_area.height then
+        y = parent_area.y + parent_area.height - height
+    end
+    if y < parent_area.y then
+        y = parent_area.y
+    end
+    if y + height > parent_area.y + parent_area.height then
+        height = parent_area.y + parent_area.height - y
+    end
+    geo.y = y
+    geo.height = height
+end
+
 
 function module.create(args_or_name, editor, default_cmd)
     local args
@@ -171,7 +200,7 @@ function module.create(args_or_name, editor, default_cmd)
                 layout = layout,
                 cmd = persistent and args.editor.get_last_cmd(name) or nil,
                 areas_cache = {},
-                tag_data = {},
+                nested_tags = {},
                 client_data = setmetatable({}, {__mode="k"}),
             }
             if instances[name].cmd == nil then
@@ -195,7 +224,7 @@ function module.create(args_or_name, editor, default_cmd)
                 return
             end
         end
-        return instance.client_data, instance.tag_data, instance.areas_cache[key], instance, args.new_placement_cb
+        return instance.client_data, instance.nested_tags, instance.areas_cache[key], instance, args.new_placement_cb
     end
 
     local function set_cmd(cmd, tag, keep_instance_data)
@@ -203,11 +232,11 @@ function module.create(args_or_name, editor, default_cmd)
         if instance.cmd ~= cmd then
             instance.cmd = cmd
             instance.areas_cache = {}
-            for _, tag in pairs(instance.tag_data) do
+            for _, tag in pairs(instance.nested_tags) do
                 tag:emit_signal("property::layout")
             end
             if not keep_instance_data then
-                instance.tag_data = {}
+                instance.nested_tags = {}
                 instance.client_data = setmetatable({}, {__mode="k"})
             end
         end
@@ -218,13 +247,17 @@ function module.create(args_or_name, editor, default_cmd)
 
     clean_up = function (tag)
         local screen = tag.screen
-        local _cd, _td, _areas, instance, _new_placement_cb = get_instance_data(screen, tag)
+        if not screen then
+            -- This could happen when deleting tag.
+            return
+        end
+        local _cd, _nt, _areas, instance, _new_placement_cb = get_instance_data(screen, tag)
 
         if tag_data[tag].regsitered then
             tag_data[tag].regsitered = false
             tag:disconnect_signal("property::layout", clean_up)
-            tag:connect_signal("property::selected", clean_up)
-            for _, tag in pairs(instance.tag_data) do
+            tag:disconnect_signal("property::selected", clean_up)
+            for _, tag in pairs(instance.nested_tags) do
                 tag:emit_signal("property::layout")
             end
         end
@@ -240,7 +273,7 @@ function module.create(args_or_name, editor, default_cmd)
         local wa = screen.workarea -- get the real workarea without the gap (instead of p.workarea)
         local cls = p.clients
         local tag = p.tag or screen.selected_tag
-        local cd, td, areas, instance, new_placement_cb = get_instance_data(screen, tag)
+        local cd, nt, areas, instance, new_placement_cb = get_instance_data(screen, tag)
 
         if not tag_data[tag] then tag_data[tag] = {} end
         if not tag_data[tag].registered then
@@ -283,6 +316,12 @@ function module.create(args_or_name, editor, default_cmd)
                     width = c.width + c.border_width * 2,
                     height = c.height + c.border_width * 2,
                 }
+
+                if not c.machi_no_sanitize_geometry then
+                    sanitize_geometry(geo, screen.workarea)
+                else
+                    c.machi_no_sanitize_geometry = nil
+                end
 
                 if not cd[c].placement and new_placement_cb then
                     cd[c].placement = true
@@ -374,9 +413,9 @@ function module.create(args_or_name, editor, default_cmd)
         local function arrange_nested_layout(area, clients)
             local nested_layout = machi_editor.nested_layouts[areas[area].layout]
             if not nested_layout then return end
-            if td[area] == nil then
+            if nt[area] == nil then
                 local tag = gobject{}
-                td[area] = tag
+                nt[area] = tag
                 -- TODO: Make the default more flexible.
                 tag.layout = nested_layout
                 tag.column_count = 1
@@ -390,7 +429,7 @@ function module.create(args_or_name, editor, default_cmd)
                 }
             end
             local nested_params = {
-                tag = td[area],
+                tag = nt[area],
                 screen = p.screen,
                 clients = clients,
                 padding = 0,
@@ -437,7 +476,7 @@ function module.create(args_or_name, editor, default_cmd)
         local tag = c.screen.selected_tag
         local instance = get_instance_(tag)
         local cd = instance.client_data
-        local cd, td, areas, _placement_cb = get_instance_data(c.screen, tag)
+        local cd, nt, areas, _placement_cb = get_instance_data(c.screen, tag)
 
         if areas == nil then return end
 
@@ -593,5 +632,32 @@ end
 function module.placement.empty_then_fair(c, instance, areas, geometry)
     empty_then_maybe_fair(c, instance, areas, geometry, true)
 end
+
+local function patch_awful_layout()
+    local old_alayout_move_handler = awful.layout.move_handler
+    if old_alayout_move_handler == nil then return end
+    -- Mostly the original one but does not swap clients in machi layouts.
+    function awful.layout.move_handler(c, context, ...)
+        if not c.floating and context == "mouse.move" then
+            local s = capi.mouse.screen
+            if s.selected_tag and s.selected_tag.layout and
+                s.selected_tag.layout.machi_get_instance_data then
+                local cd, nt, areas, instance, new_placement_cb = s.selected_tag.layout.machi_get_instance_data(s, s.selected_tag)
+                if cd and cd[c] and cd[c].area and areas[cd[c].area].layout then
+                    -- Falling through in a nested layout.
+                else
+                    if c.screen ~= s then
+                        c.screen = s
+                    end
+                    return
+                end
+            end
+        end
+        return old_alayout_move_handler(c, context, ...)
+    end
+    capi.client.disconnect_signal("request::geometry", old_alayout_move_handler)
+    capi.client.connect_signal("request::geometry", awful.layout.move_handler)
+end
+patch_awful_layout()
 
 return module

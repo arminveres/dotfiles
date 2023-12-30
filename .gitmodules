@@ -49,3 +49,18 @@
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
 	url = git@github.com:arminveres/dotfiles-secret
+[submodule "awesome-vert/.config/awesome/mods/rubato"]
+	path = awesome-vert/.config/awesome/mods/rubato
+	url = https://github.com/andOrlando/rubato.git
+[submodule "awesome-vert/.config/awesome/mods/bling"]
+	path = awesome-vert/.config/awesome/mods/bling
+	url = https://github.com/BlingCorp/bling.git
+[submodule "awesome-vert/.config/awesome/mods/battery-widget"]
+	path = awesome-vert/.config/awesome/mods/battery-widget
+	url = https://github.com/deficient/battery-widget.git
+[submodule "awesome-vert/.config/awesome/mods/layout-machi"]
+	path = awesome-vert/.config/awesome/mods/layout-machi
+	url = https://github.com/xinhaoyuan/layout-machi.git
+[submodule "awesome-vert/.config/awesome/mods/lua-pam"]
+	path = awesome-vert/.config/awesome/mods/lua-pam
+	url = https://github.com/RMTT/lua-pam.git
