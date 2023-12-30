@@ -132,8 +132,7 @@ local lock_screen_box = wibox({
 
 -- Create the lock screen wibox (extra)
 local function create_extender(s)
-    local lock_screen_box_ext
-    wibox({
+    local lock_screen_box_ext = wibox({
         visible = false,
         ontop = true,
         type = "splash",
@@ -141,9 +140,7 @@ local function create_extender(s)
         fg = beautiful.fg_color,
         screen = s,
     })
-
     awful.placement.maximize(lock_screen_box_ext)
-
     return lock_screen_box_ext
 end
 
@@ -151,19 +148,18 @@ awful.placement.maximize(lock_screen_box)
 
 -- Add lockscreen to each screen
 awful.screen.connect_for_each_screen(function(s)
-    if s.index == 2 then
+    if s.index >= 2 then
         s.mylockscreenext = create_extender(s)
-        s.mylockscreen = lock_screen_box
-    else
-        s.mylockscreen = lock_screen_box
     end
+    s.mylockscreen = lock_screen_box
 end)
 
 local function set_visibility(v)
     for s in screen do
-        s.mylockscreen.visible = v
         if s.mylockscreenext then
             s.mylockscreenext.visible = v
+        else
+            s.mylockscreen.visible = v
         end
     end
 end
