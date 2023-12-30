@@ -2,26 +2,28 @@
 -- hhahahahaahahah
 
 local awful = require("awful")
-local gears = require("gears")
 local beautiful = require("beautiful")
+local gears = require("gears")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local wibox = require("wibox")
+local lain = require("lain")
 local naughty = require("naughty")
+local wibox = require("wibox")
 local helpers = {}
 
 function helpers.contains(_table, _c)
-	for _, c in ipairs(_table) do
-		if _c == c then
-			return true
-		end
-	end
-	return false
+    for _, c in ipairs(_table) do
+        if _c == c then
+            return true
+        end
+    end
+    return false
 end
 
-
 function helpers.find(rule)
-    local function matcher(c) return awful.rules.match(c, rule) end
+    local function matcher(c)
+        return awful.rules.match(c, rule)
+    end
     local clients = client.get()
     local findex = gears.table.hasitem(clients, client.focus) or 1
     local start = gears.math.cycle(#clients, findex + 1)
@@ -40,7 +42,7 @@ function helpers.screen_mask(s, bg)
         visible = false,
         ontop = true,
         type = "splash",
-        screen = s
+        screen = s,
     })
     awful.placement.maximize(mask)
     mask.bg = bg
@@ -77,7 +79,7 @@ helpers.resize_padding = function(amt)
         left = l + amt,
         right = r + amt,
         top = t + amt,
-        bottom = b + amt
+        bottom = b + amt,
     }
     awful.layout.arrange(awful.screen.focused())
 end
@@ -110,8 +112,7 @@ end
 
 helpers.prrect = function(radius, tl, tr, br, bl)
     return function(cr, width, height)
-        gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl,
-                                           radius)
+        gears.shape.partially_rounded_rect(cr, width, height, tl, tr, br, bl, radius)
     end
 end
 
@@ -126,7 +127,6 @@ end
 -- Markup helper
 
 function helpers.colorize_text(txt, fg)
-
     if fg == "" then
         fg = "#ffffff"
     end
@@ -142,7 +142,7 @@ function helpers.client_menu_toggle()
             instance:hide()
             instance = nil
         else
-            instance = awful.menu.clients({theme = {width = dpi(250)}})
+            instance = awful.menu.clients({ theme = { width = dpi(250) } })
         end
     end
 end
@@ -151,22 +151,21 @@ end
 -- tags. Modified from:
 -- https://github.com/kernelsauce/turbo/blob/master/turbo/escape.lua
 function helpers.pango_escape(s)
-    return (string.gsub(s, "[&<>]",
-                        {["&"] = "&amp;", ["<"] = "&lt;", [">"] = "&gt;"}))
+    return (string.gsub(s, "[&<>]", { ["&"] = "&amp;", ["<"] = "&lt;", [">"] = "&gt;" }))
 end
 
 function helpers.vertical_pad(height)
-    return wibox.widget {
+    return wibox.widget({
         forced_height = height,
-        layout = wibox.layout.fixed.vertical
-    }
+        layout = wibox.layout.fixed.vertical,
+    })
 end
 
 function helpers.horizontal_pad(width)
-    return wibox.widget {
+    return wibox.widget({
         forced_width = width,
-        layout = wibox.layout.fixed.horizontal
-    }
+        layout = wibox.layout.fixed.horizontal,
+    })
 end
 
 -- Maximizes client and also respects gaps
@@ -176,9 +175,8 @@ function helpers.maximize(c)
         awful.placement.maximize(c, {
             honor_padding = true,
             honor_workarea = true,
-            margins = beautiful.useless_gap * 2
+            margins = beautiful.useless_gap * 2,
         })
-
     end
     c:raise()
 end
@@ -191,7 +189,7 @@ function helpers.move_to_edge(c, direction)
         awful.placement.top(c, {
             honor_padding = true,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = true,
         })
         c.x = old_x
         -- c:geometry({ nil, y = workarea.y + beautiful.screen_margin * 2, nil, nil })
@@ -200,7 +198,7 @@ function helpers.move_to_edge(c, direction)
         awful.placement.bottom(c, {
             honor_padding = true,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = true,
         })
         c.x = old_x
         -- c:geometry({ nil, y = workarea.height + workarea.y - client_geometry.height - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil })
@@ -209,7 +207,7 @@ function helpers.move_to_edge(c, direction)
         awful.placement.left(c, {
             honor_padding = true,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = true,
         })
         c.y = old_y
         -- c:geometry({ x = workarea.x + beautiful.screen_margin * 2, nil, nil, nil })
@@ -218,7 +216,7 @@ function helpers.move_to_edge(c, direction)
         awful.placement.right(c, {
             honor_padding = true,
             honor_workarea = true,
-            honor_padding = true
+            honor_padding = true,
         })
         c.y = old_y
         -- c:geometry({ x = workarea.width + workarea.x - client_geometry.width - beautiful.screen_margin * 2 - beautiful.border_width * 2, nil, nil, nil })
@@ -238,7 +236,9 @@ function helpers.single_double_tap(single_tap_function, double_tap_function)
     double_tap_timer = gears.timer.start_new(0.20, function()
         double_tap_timer = nil
         -- naughty.notify({text = "We got a single tap"})
-        if single_tap_function then single_tap_function() end
+        if single_tap_function then
+            single_tap_function()
+        end
         return false
     end)
 end
@@ -247,7 +247,9 @@ end
 -- instead of following it.
 -- Rofi has access to the X window id of the client.
 function helpers.rofi_move_client_here(window)
-    local win = function(c) return awful.rules.match(c, {window = window}) end
+    local win = function(c)
+        return awful.rules.match(c, { window = window })
+    end
 
     for c in awful.client.iterate(win) do
         c.minimized = false
@@ -268,12 +270,16 @@ function helpers.add_hover_cursor(w, hover_cursor)
 
     w:connect_signal("mouse::enter", function()
         local w = _G.mouse.current_wibox
-        if w then w.cursor = hover_cursor end
+        if w then
+            w.cursor = hover_cursor
+        end
     end)
 
     w:connect_signal("mouse::leave", function()
         local w = _G.mouse.current_wibox
-        if w then w.cursor = original_cursor end
+        if w then
+            w.cursor = original_cursor
+        end
     end)
 end
 
@@ -297,7 +303,7 @@ function helpers.tag_back_and_forth(tag_index)
         end
 
         local urgent_clients = function(c)
-            return awful.rules.match(c, {urgent = true, first_tag = tag})
+            return awful.rules.match(c, { urgent = true, first_tag = tag })
         end
 
         for c in awful.client.iterate(urgent_clients) do
@@ -314,8 +320,7 @@ local floating_resize_amount = dpi(20)
 local tiling_resize_factor = 0.05
 ---------------
 function helpers.resize_dwim(c, direction)
-    if awful.layout.get(mouse.screen) == awful.layout.suit.floating or
-        (c and c.floating) then
+    if awful.layout.get(mouse.screen) == awful.layout.suit.floating or (c and c.floating) then
         if direction == "up" then
             c:relative_move(0, 0, 0, -floating_resize_amount)
         elseif direction == "down" then
@@ -342,24 +347,30 @@ end
 function helpers.move_to_edge(c, direction)
     local workarea = awful.screen.focused().workarea
     if direction == "up" then
-        c:geometry({nil, y = workarea.y + beautiful.useless_gap * 2, nil, nil})
+        c:geometry({ nil, y = workarea.y + beautiful.useless_gap * 2, nil, nil })
     elseif direction == "down" then
         c:geometry({
             nil,
-            y = workarea.height + workarea.y - c:geometry().height -
-                beautiful.useless_gap * 2 - beautiful.border_width * 2,
+            y = workarea.height
+                + workarea.y
+                - c:geometry().height
+                - beautiful.useless_gap * 2
+                - beautiful.border_width * 2,
             nil,
-            nil
+            nil,
         })
     elseif direction == "left" then
-        c:geometry({x = workarea.x + beautiful.useless_gap * 2, nil, nil, nil})
+        c:geometry({ x = workarea.x + beautiful.useless_gap * 2, nil, nil, nil })
     elseif direction == "right" then
         c:geometry({
-            x = workarea.width + workarea.x - c:geometry().width -
-                beautiful.useless_gap * 2 - beautiful.border_width * 2,
+            x = workarea.width
+                + workarea.x
+                - c:geometry().width
+                - beautiful.useless_gap * 2
+                - beautiful.border_width * 2,
             nil,
             nil,
-            nil
+            nil,
         })
     end
 end
@@ -369,8 +380,7 @@ end
 -- Swap by index if maximized
 -- Else swap client by direction
 function helpers.move_client_dwim(c, direction)
-    if c.floating or
-        (awful.layout.get(mouse.screen) == awful.layout.suit.floating) then
+    if c.floating or (awful.layout.get(mouse.screen) == awful.layout.suit.floating) then
         helpers.move_to_edge(c, direction)
     elseif awful.layout.get(mouse.screen) == awful.layout.suit.max then
         if direction == "up" or direction == "left" then
@@ -388,44 +398,48 @@ function helpers.float_and_edge_snap(c, direction)
     -- if not c.floating then
     --     c.floating = true
     -- end
-    naughty.notify({text = "double tap"})
+    naughty.notify({ text = "double tap" })
     c.floating = true
     local workarea = awful.screen.focused().workarea
     if direction == "up" then
-        local axis = 'horizontally'
-        local f = awful.placement.scale + awful.placement.top +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        local axis = "horizontally"
+        local f = awful.placement.scale
+            + awful.placement.top
+            + (axis and awful.placement["maximize_" .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
-            to_percent = 0.5
+            to_percent = 0.5,
         })
     elseif direction == "down" then
-        local axis = 'horizontally'
-        local f = awful.placement.scale + awful.placement.bottom +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        local axis = "horizontally"
+        local f = awful.placement.scale
+            + awful.placement.bottom
+            + (axis and awful.placement["maximize_" .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
-            to_percent = 0.5
+            to_percent = 0.5,
         })
     elseif direction == "left" then
-        local axis = 'vertically'
-        local f = awful.placement.scale + awful.placement.left +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        local axis = "vertically"
+        local f = awful.placement.scale
+            + awful.placement.left
+            + (axis and awful.placement["maximize_" .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
-            to_percent = 0.5
+            to_percent = 0.5,
         })
     elseif direction == "right" then
-        local axis = 'vertically'
-        local f = awful.placement.scale + awful.placement.right +
-                      (axis and awful.placement['maximize_' .. axis] or nil)
+        local axis = "vertically"
+        local f = awful.placement.scale
+            + awful.placement.right
+            + (axis and awful.placement["maximize_" .. axis] or nil)
         local geo = f(client.focus, {
             honor_padding = true,
             honor_workarea = true,
-            to_percent = 0.5
+            to_percent = 0.5,
         })
     end
 end
@@ -437,12 +451,14 @@ function helpers.round(number, decimals)
 end
 
 function helpers.fake_escape()
-    root.fake_input('key_press', "Escape")
-    root.fake_input('key_release', "Escape")
+    root.fake_input("key_press", "Escape")
+    root.fake_input("key_release", "Escape")
 end
 
 function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
-    local matcher = function(c) return awful.rules.match(c, match) end
+    local matcher = function(c)
+        return awful.rules.match(c, match)
+    end
 
     -- Find and raise
     local found = false
@@ -460,12 +476,16 @@ function helpers.run_or_raise(match, move, spawn_cmd, spawn_args)
     end
 
     -- Spawn if not found
-    if not found then awful.spawn(spawn_cmd, spawn_args) end
+    if not found then
+        awful.spawn(spawn_cmd, spawn_args)
+    end
 end
 
 function helpers.pad(size)
     local str = ""
-    for i = 1, size do str = str .. " " end
+    for i = 1, size do
+        str = str .. " "
+    end
     local pad = wibox.widget.textbox(str)
     return pad
 end
@@ -473,12 +493,11 @@ end
 function helpers.float_and_resize(c, width, height)
     c.width = width
     c.height = height
-    awful.placement.centered(c, {honor_workarea = true, honor_padding = true})
-    awful.client.property.set(c, 'floating_geometry', c:geometry())
+    awful.placement.centered(c, { honor_workarea = true, honor_padding = true })
+    awful.client.property.set(c, "floating_geometry", c:geometry())
     c.floating = true
     c:raise()
 end
-
 
 -- Useful for periodically checking the output of a command that
 -- requires internet access.
@@ -490,70 +509,85 @@ end
 function helpers.remote_watch(command, interval, output_file, callback)
     local run_the_thing = function()
         -- Pass output to callback AND write it to file
-        awful.spawn.easy_async_with_shell(command.." | tee "..output_file, function(out) callback(out) end)
+        awful.spawn.easy_async_with_shell(command .. " | tee " .. output_file, function(out)
+            callback(out)
+        end)
     end
 
     local timer
-    timer = gears.timer {
+    timer = gears.timer({
         timeout = interval,
         call_now = true,
         autostart = true,
         single_shot = false,
         callback = function()
-            awful.spawn.easy_async_with_shell("date -r "..output_file.." +%s", function(last_update, _, __, exitcode)
-                -- Probably the file does not exist yet (first time
-                -- running after reboot)
-                if exitcode == 1 then
-                    run_the_thing()
-                    return
-                end
-
-                local diff = os.time() - tonumber(last_update)
-                if diff >= interval then
-                    run_the_thing()
-                else
-                    -- Pass the date saved in the file since it is fresh enough
-                    awful.spawn.easy_async_with_shell("cat "..output_file, function(out) callback(out) end)
-
-                    -- Schedule an update for when the remaining time to complete the interval passes
-                    timer:stop()
-                    gears.timer.start_new(interval - diff, function()
+            awful.spawn.easy_async_with_shell(
+                "date -r " .. output_file .. " +%s",
+                function(last_update, _, __, exitcode)
+                    -- Probably the file does not exist yet (first time
+                    -- running after reboot)
+                    if exitcode == 1 then
                         run_the_thing()
-                        timer:again()
-                    end)
-                end
-            end)
-        end
-    }
-end
+                        return
+                    end
 
+                    local diff = os.time() - tonumber(last_update)
+                    if diff >= interval then
+                        run_the_thing()
+                    else
+                        -- Pass the date saved in the file since it is fresh enough
+                        awful.spawn.easy_async_with_shell("cat " .. output_file, function(out)
+                            callback(out)
+                        end)
+
+                        -- Schedule an update for when the remaining time to complete the interval passes
+                        timer:stop()
+                        gears.timer.start_new(interval - diff, function()
+                            run_the_thing()
+                            timer:again()
+                        end)
+                    end
+                end
+            )
+        end,
+    })
+end
 
 -- prompt
 local prompt_font = "Roboto 11"
 function helpers.prompt(action, textbox, prompt, callback)
     if action == "run" then
-        awful.prompt.run {
-            prompt       = prompt,
-            textbox      = textbox,
+        awful.prompt.run({
+            prompt = prompt,
+            textbox = textbox,
             font = prompt_font,
             done_callback = callback,
             exe_callback = awful.spawn,
             completion_callback = awful.completion.shell,
-            history_path = awful.util.get_cache_dir() .. "/history"
-        }
+            history_path = awful.util.get_cache_dir() .. "/history",
+        })
     elseif action == "web_search" then
-        awful.prompt.run {
-            prompt       = prompt,
-            textbox      = textbox,
+        awful.prompt.run({
+            prompt = prompt,
+            textbox = textbox,
             font = prompt_font,
             history_path = awful.util.get_cache_dir() .. "/history_web",
             done_callback = callback,
             exe_callback = function(input)
-                if not input or #input == 0 then return end
-                awful.spawn.with_shell("noglob ".."xdg-open https://www.google.com/search?q=".."'"..input.."'")
-                naughty.notify { title = "Searching the web for", text = input, icon = nil, urgency = "low" }
-            end
-        }
+                if not input or #input == 0 then
+                    return
+                end
+                awful.spawn.with_shell(
+                    "noglob " .. "xdg-open https://www.google.com/search?q=" .. "'" .. input .. "'"
+                )
+                naughty.notify({
+                    title = "Searching the web for",
+                    text = input,
+                    icon = nil,
+                    urgency = "low",
+                })
+            end,
+        })
     end
 end
 
@@ -589,6 +623,78 @@ function helpers.mc(c, width_f, height_f)
     else
         helpers.magnified_client = nil
         c.floating = false
+    end
+end
+
+local mwfact_change_requested = false
+local mwfact_change_value = 0
+local was_in_three_dwindle = false
+-- @brief adjusts the master_width_factor if we are using the lain layout, quite useful for ultrawide monitors
+function helpers.mw_fact_mgr()
+    local scr = awful.screen.focused()
+    local tag = scr.selected_tag
+    local layout = awful.layout.get(mouse.screen) --awful.layout.get(scr)
+
+    -- skip if failure
+    if not tag then
+        return
+    end
+
+    -- don't do anything on Full HD monitors
+    local default_ratio = 1920 / 1080
+    local current_ratio = scr.geometry.width / scr.geometry.height
+    if current_ratio <= default_ratio then
+        return
+    end
+
+    -- if layout == awful.layout.suit.tile.right then
+    if layout ~= lain.layout.centerwork then
+        if #scr.tiled_clients == 1 then
+            awful.layout.set(lain.layout.centerwork, tag)
+            mwfact_change_value = 0.7
+            mwfact_change_requested = true
+        elseif #scr.tiled_clients > 2 then
+            tag.column_count = 2
+            mwfact_change_value = (1 / 3)
+            mwfact_change_requested = true
+            was_in_three_dwindle = true
+        else
+            mwfact_change_requested = false
+            -- NOTE: this is meant to keep 50/50 ratio, when returning from a 3 column layout
+            if was_in_three_dwindle then
+                was_in_three_dwindle = not was_in_three_dwindle
+                mwfact_change_value = 0.5
+                mwfact_change_requested = true
+            end
+        end
+    elseif layout == lain.layout.centerwork then
+        if #scr.tiled_clients > 1 then
+            awful.layout.set(awful.layout.suit.tile.right, tag)
+            mwfact_change_value = 0.5
+            mwfact_change_requested = true
+        elseif #scr.tiled_clients == 1 then
+            mwfact_change_value = 0.7
+            mwfact_change_requested = true
+        else
+            mwfact_change_value = 0.4
+            mwfact_change_requested = true
+        end
+    elseif layout == awful.layout.suit.max then
+        -- TODO: (aver) add focus by id in max layout
+        -- local modkey = 'Mod4'
+        -- awful.key({ modkey }, 'j', function()
+        --     awful.client.focus.byidx(1)
+        -- end, { description = 'focus next by index', group = 'client' }),
+        -- awful.key({ modkey }, 'k', function()
+        --     awful.client.focus.byidx(-1)
+        -- end, { description = 'focus previous by index', group = 'client' }),
+    else
+        -- do nothing on other layouts
+        mwfact_change_requested = false
+    end
+
+    if mwfact_change_requested then
+        tag.master_width_factor = mwfact_change_value
     end
 end
 

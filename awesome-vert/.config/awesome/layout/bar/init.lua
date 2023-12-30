@@ -21,6 +21,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- taglist
     local taglist = require("layout.bar.taglist")(s)
+    local tasklist = require("layout.bar.tasklist")(s)
 
     -- launcher {{
     local launcher = wibox.widget({
@@ -33,7 +34,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     launcher:buttons(gears.table.join({
         awful.button({}, 1, function()
-            awful.spawn.with_shell(require("misc").rofiCommand, false)
+            awful.spawn.with_shell(require("misc").rofiCommand)
         end),
     }))
     -- }}
@@ -195,20 +196,25 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin,
             },
             {
-                -- {
-                --     battery,
-                --     margins = {left = dpi(8), right = dpi(8)},
-                --     widget = wibox.container.margin
-                -- },
-                {
-                    cc_ic,
-                    clock,
-                    layout = wibox.layout.fixed.vertical,
-                    spacing = dpi(20),
-                },
-                layout = wibox.layout.fixed.vertical,
-                spacing = dpi(20),
+                tasklist,
+                margins = { left = dpi(8), right = dpi(8) },
+                widget = wibox.container.margin,
             },
+            -- {
+            --     {
+            --         battery,
+            --         margins = {left = dpi(8), right = dpi(8)},
+            --         widget = wibox.container.margin
+            --     },
+            --     {
+            --     cc_ic,
+            --         layout = wibox.layout.fixed.vertical,
+            --         spacing = dpi(20),
+            --     },
+            --     layout = wibox.layout.fixed.vertical,
+            --     spacing = dpi(20),
+            -- },
+            clock,
             layout = wibox.layout.align.vertical,
             expand = "none",
         },

@@ -2,6 +2,13 @@
     "diagnostics.globals": [
         "awesome",
         "screen",
-        "client"
-    ]
+        "client",
+        "mouse",
+        "tag"
+    ],
+    "workspace.library": [
+        "/usr/local/share/awesome/lib/"
+    ],
+    "runtime.version": "Lua 5.4",
+    "hint.enable": true
 }

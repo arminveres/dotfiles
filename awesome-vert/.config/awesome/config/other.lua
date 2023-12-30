@@ -23,9 +23,10 @@ local bar_size = beautiful.bar_size
 bling.widget.tag_preview.enable({
     show_client_content = false,
     placement_fn = function(c)
-        awful.placement.left(c, {
+        awful.placement.top_left(c, {
             margins = {
                 left = bar_size + beautiful.useless_gap * 4,
+                top = bar_size + beautiful.useless_gap * 4,
             },
         })
     end,

@@ -83,11 +83,14 @@ theme.wallpaper = theme.images.wall
 -- ~~~~
 theme.font = theme.font_var .. "12"
 
+theme.border_normal = "#1c2022"
+theme.border_focus = "#b8bb26" -- "#606060"
+
 -- initial colors
 -- ~~~~~~~~~~~~~~
 theme.bg_normal = theme.bg_color
 theme.bg_focus = theme.bg_2
-theme.bg_urgent = theme.red_2
+theme.bg_urgent = theme.red_color
 theme.bg_minimize = theme.bg_2
 theme.bg_systray = theme.bg_c2
 
@@ -110,6 +113,8 @@ theme.notification_font = theme.font_var .. "12"
 theme.notification_spacing = dpi(theme.useless_gap * 2.2)
 theme.notification_border_radius = dpi(theme.rounded)
 theme.notification_border_width = dpi(0)
+-- theme.notification_max_width = 200
+-- theme.notification_max_height = 200
 
 -- titlebar
 -- ~~~~~~~~
@@ -119,6 +124,7 @@ theme.titlebars_enabled = true
 
 -- Layout icons
 -- ~~~~~~~~~~~~
+theme.layout_centerwork = gears.color.recolor_image(theme.images.layouts.centerwork, theme.fg_color)
 theme.layout_floating = gears.color.recolor_image(theme.images.layouts.floating, theme.fg_color)
 theme.layout_tile = gears.color.recolor_image(theme.images.layouts.tile, theme.fg_color)
 theme.layout_fairh = gears.color.recolor_image(theme.images.layouts.flair, theme.fg_color)
@@ -230,8 +236,8 @@ theme.awesome_dock_size = 80
 theme.awesome_dock_pinned = {
     { USER_PREF.term },
     { USER_PREF.music, "gnome-music" },
+    { USER_PREF.files },
     { "galculator" },
-    { "thunar" },
 }
 theme.awesome_dock_color_active = theme.accent
 theme.awesome_dock_color_inactive = theme.fg_color .. "66"

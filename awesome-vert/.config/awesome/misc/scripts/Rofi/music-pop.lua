@@ -32,7 +32,7 @@ function popup.execute()
         -- check what the output is with 'buttons' table
         for i, v in ipairs(buttons) do
             if v == stdout:gsub("%s+", "") then
-                awful.spawn.with_shell(commands[i], false)
+                awful.spawn.with_shell(commands[i])
             end
         end
     end)

@@ -1,32 +1,31 @@
 -- sussy images
 -- ~~~~~~~~~~~~
 
-
 -- misc/vars
 -- ~~~~~~~~~
-local directory = os.getenv("HOME") .. "/.config/awesome/images/sus/"
+local dir = os.getenv("XDG_CONFIG_HOME") .. "/awesome/images/sus/"
 local ui_vars = require("theme.ui_vars")
-
 
 -- init
 -- ~~~~
 return {
 
     -- images
-    bell = directory .. "bell.png",
-    profile = directory .. "profile.jpg",
-    music_icon = directory .. "music.png",
-    album_art = directory .. "album-art.png",
-    awesome = directory .. "awesome.png",
+    bell = dir .. "bell.png",
+    profile = dir .. "profile.jpg",
+    music_icon = dir .. "music.png",
+    album_art = dir .. "album-art.png",
+    awesome = dir .. "awesome.png",
 
     -- layouts
     layouts = {
-        flair = directory .. "layouts/flair.png",
-        floating = directory .. "layouts/floating.png",
-        tile = directory .. "layouts/tile.png",
-        layoutMachi = directory .. "layouts/layout-machi.png"
+        flair = dir .. "layouts/flair.png",
+        floating = dir .. "layouts/floating.png",
+        tile = dir .. "layouts/tile.png",
+        layoutMachi = dir .. "layouts/layout-machi.png",
+        centerwork = dir .. "layouts/centerwork.png",
     },
 
     -- wallpapers
-    wall = directory .."walls/" .. ui_vars.color_scheme .. ".png",
+    wall = dir .. "walls/" .. ui_vars.color_scheme .. ".png",
 }

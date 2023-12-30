@@ -152,7 +152,7 @@ awful.placement.maximize(lock_screen_box)
 -- Add lockscreen to each screen
 awful.screen.connect_for_each_screen(function(s)
     if s.index == 2 then
-        s.mylockscreenext = create_extender(2)
+        s.mylockscreenext = create_extender(s)
         s.mylockscreen = lock_screen_box
     else
         s.mylockscreen = lock_screen_box

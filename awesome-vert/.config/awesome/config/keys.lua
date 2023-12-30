@@ -42,8 +42,7 @@ awful.keyboard.append_global_keybindings({
         awful.spawn.with_shell(USER_PREF.web)
     end, { description = "open web browser", group = "launcher" }),
 
-    awful.key({ modkey }, "e", function()
-        -- awful.spawn(misc.rofiCommand)
+    awful.key({ modkey }, "r", function()
         awful.spawn.with_shell("rofi -show drun")
     end, { description = "open rofi", group = "launcher" }),
 
@@ -54,6 +53,15 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "d", function()
         lock_screen_show()
     end, { description = "show lockscreen", group = "launcher" }),
+
+    -- Take a screenshot
+    awful.key({ modkey, "Shift" }, "s", function()
+        awful.util.spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Pictures/screenshots/")
+    end, { description = "take a screenshot", group = "utils" }),
+
+    awful.key({ modkey, "Shift" }, "p", function()
+        awful.util.spawn("flameshot gui --clipboard")
+    end, { description = "take a screenshot", group = "utils" }),
 
     -- awful.key({ modkey }, "s", function()
     -- 	awful.spawn(user_likes.music)
@@ -404,18 +412,18 @@ awful.keyboard.append_global_keybindings({
         end,
     }),
 
-    awful.key({
-        modifiers = { modkey },
-        keygroup = "numpad",
-        description = "select layout directly",
-        group = "layout",
-        on_press = function(index)
-            local t = awful.screen.focused().selected_tag
-            if t then
-                t.layout = t.layouts[index] or t.layout
-            end
-        end,
-    }),
+    -- awful.key({
+    --     modifiers = { modkey },
+    --     keygroup = "numpad",
+    --     description = "select layout directly",
+    --     group = "layout",
+    --     on_press = function(index)
+    --         local t = awful.screen.focused().selected_tag
+    --         if t then
+    --             t.layout = t.layouts[index] or t.layout
+    --         end
+    --     end,
+    -- }),
 })
 
 -- mouse mgmt
