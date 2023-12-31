@@ -14,7 +14,7 @@ local update_interval = 6
 -- import network info
 local net_cmd = [[
   bash -c "
-  nmcli g | tail -n 1 | awk '{ print $1 }'
+  nmcli g | tail -n 1 | awk '{ print $4 }'
   "
 ]]
 
@@ -24,7 +24,7 @@ local net_cmd = [[
     local net_status = true
 
     -- update networks status
-    if net_ssid == "disconnected" then
+    if net_ssid == "disabled" then
         net_status = false
     end
 
