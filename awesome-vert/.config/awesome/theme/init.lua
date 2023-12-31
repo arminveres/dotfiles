@@ -244,9 +244,9 @@ theme.awesome_dock_color_inactive = theme.fg_color .. "66"
 theme.awesome_dock_color_minimized = theme.accent .. "33"
 theme.awesome_dock_color_hover = theme.fg_color .. "33"
 theme.awesome_dock_color_bg = theme.bg_color
-theme.awesome_dock_disabled = false
 theme.awesome_dock_spacing = 10
 theme.awesome_dock_timeout = 1.2
+theme.awesome_dock_disabled = true
 
 theme.systray_icon_spacing = dpi(4)
 

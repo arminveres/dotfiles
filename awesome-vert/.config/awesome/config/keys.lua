@@ -63,6 +63,14 @@ awful.keyboard.append_global_keybindings({
         awful.util.spawn("flameshot gui --clipboard")
     end, { description = "take a screenshot", group = "utils" }),
 
+    awful.key({ modkey }, "F3", function()
+        awful.spawn.with_shell("autorandr --load default")
+    end, { description = "Turn on the secondary monitor", group = "utils" }),
+
+    awful.key({ modkey }, "F4", function()
+        awful.spawn.with_shell("autorandr --load secoff")
+    end, { description = "turn off secondary monitor", group = "utils" }),
+
     -- awful.key({ modkey }, "s", function()
     -- 	awful.spawn(user_likes.music)
     -- end,

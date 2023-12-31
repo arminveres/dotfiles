@@ -1,5 +1,6 @@
 -- a minimal bar
 -- ~~~~~~~~~~~~~
+local M = {}
 
 -- requirements
 -- ~~~~~~~~~~~~
@@ -31,19 +32,15 @@ local vertical_systray = wibox.widget({
 
 -- connect to screen
 -- ~~~~~~~~~~~~~~~~~
-awful.screen.connect_for_each_screen(function(s)
-    -- screen width
+
+--- Create a wibar for displays and redraw them if necessary
+function M.create_wibar(s)
     local screen_height = s.geometry.height
-
-    -- widgets
-    -- ~~~~~~~
-
-    -- taglist
     local taglist = require("layout.bar.taglist")(s)
     local tasklist = require("layout.bar.tasklist")(s)
 
     -- launcher {{
-    local launcher = wibox.widget({
+    --[[ local launcher = wibox.widget({
         widget = wibox.widget.textbox,
         markup = helpers.colorize_text("", beautiful.fg_color),
         font = beautiful.icon_var .. "21",
@@ -55,17 +52,17 @@ awful.screen.connect_for_each_screen(function(s)
         awful.button({}, 1, function()
             awful.spawn.with_shell(require("misc").rofiCommand)
         end),
-    }))
+    })) ]]
     -- }}
 
     -- wifi
-    local wifi = wibox.widget({
+    --[[ local wifi = wibox.widget({
         markup = "",
         font = beautiful.icon_var .. "15",
         valign = "center",
         align = "center",
         widget = wibox.widget.textbox,
-    })
+    }) ]]
 
     -- cc
     local cc_ic = wibox.widget({
@@ -78,6 +75,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     --------------------
     -- battery widget
+    --[[
     local bat_icon = wibox.widget({
         markup = "<span foreground='" .. beautiful.black_color .. "'></span>",
         font = beautiful.icon_var .. "10",
@@ -138,6 +136,7 @@ awful.screen.connect_for_each_screen(function(s)
         widget = wibox.container.margin,
         margins = { left = dpi(7.47), right = dpi(7.47) },
     })
+    ]]
     -- Eo battery
     -----------------------------------------------------
 
@@ -182,6 +181,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- update widgets accordingly
     -- ~~~~~~~~~~~~~~~~~~~~~~~~~~
+    --[[
     awesome.connect_signal("signal::battery", function(value, state)
         battery_progress.value = value
 
@@ -191,7 +191,9 @@ awful.screen.connect_for_each_screen(function(s)
             bat_icon.visible = false
         end
     end)
+    ]]
 
+    --[[
     awesome.connect_signal("signal::wifi", function(value)
         if value then
             wifi.markup = helpers.colorize_text("", beautiful.fg_color .. "CC")
@@ -199,6 +201,13 @@ awful.screen.connect_for_each_screen(function(s)
             wifi.markup = helpers.colorize_text("", beautiful.fg_color .. "99")
         end
     end)
+    ]]
+
+    if s.wibar_wid then
+        -- Remove the existing wibar
+        s.wibar_wid.visible = false
+        s.wibar_wid = nil
+    end
 
     -- wibar
     s.wibar_wid = awful.wibar({
@@ -213,8 +222,19 @@ awful.screen.connect_for_each_screen(function(s)
     })
 
     -- wibar placement
-    awful.placement.left(s.wibar_wid, { margins = beautiful.useless_gap })
-    s.wibar_wid:struts({ left = s.wibar_wid.width + beautiful.useless_gap })
+    -- if s == screen.primary then
+        awful.placement.left(s.wibar_wid, { margins = beautiful.useless_gap })
+        s.wibar_wid:struts({ left = s.wibar_wid.width + beautiful.useless_gap })
+    --[[
+    else
+        -- put bar to the right
+        -- TODO: (aver)
+        awful.placement.right(s.wibar_wid, { margins = beautiful.useless_gap })
+        s.wibar_wid:struts({ right = s.wibar_wid.width + beautiful.useless_gap })
+    end
+    ]]
+    -- s.wibar_wid:struts({ left = s.wibar_wid.width + beautiful.useless_gap })
+    -- require("naughty").notify({ title = tostring(s.geometry.y) })
 
     -- bar setup
     s.wibar_wid:setup({
@@ -253,4 +273,8 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.container.margin,
         margins = { top = dpi(10), bottom = dpi(14) },
     })
-end)
+end
+
+awful.screen.connect_for_each_screen(M.create_wibar)
+
+return M

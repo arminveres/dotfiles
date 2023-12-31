@@ -36,11 +36,12 @@ tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
         lain.layout.centerwork,
         l.tile,
-        l.floating,
         lmachi.default_layout,
+        l.tile.bottom,
         equal,
         mstab,
         deck,
+        -- l.floating,
     })
 end)
 
@@ -50,6 +51,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
     if s == screen.primary then
         awful.tag(names, s, awful.layout.layouts[1])
     else
-        awful.tag(names, s, awful.layout.suit.tile.bottom)
+        awful.tag(names, s, l.tile.bottom)
     end
 end)
