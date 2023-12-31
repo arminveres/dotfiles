@@ -47,5 +47,9 @@ end)
 -- set tags
 screen.connect_signal("request::desktop_decoration", function(s)
     screen[s].padding = { left = 0, right = 0, top = 0, bottom = 0 }
-    awful.tag(names, s, awful.layout.layouts[1])
+    if s == screen.primary then
+        awful.tag(names, s, awful.layout.layouts[1])
+    else
+        awful.tag(names, s, awful.layout.suit.tile.bottom)
+    end
 end)

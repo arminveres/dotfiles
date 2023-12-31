@@ -42,9 +42,34 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule({
         id = "floating",
         rule_any = {
-            class = { "Sxiv", "Zathura", "Galculator", "Xarchiver" },
-            role = { "pop-up" },
-            instance = { "spad", "discord", "music" },
+            class = {
+                "Sxiv",
+                "Zathura",
+                "Galculator",
+                "Xarchiver",
+                "gnome-calculator",
+                "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+                "origin.exe",
+                "zoom",
+                "Cisco AnyConnect Secure Mobility Client",
+                "Matplotlib",
+                "matplotlib",
+                "Gnome-Pomodoro",
+            },
+            role = {
+                "AlarmWindow", -- Thunderbird's calendar.
+                "ConfigManager", -- Thunderbird's about:config.
+                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "Network Connections",
+            },
+            name = {
+                "Event Tester", -- xev.
+            },
+            instance = {
+                "spad",
+                "music",
+                -- "discord",
+            },
         },
         properties = { floating = true, placement = awful.placement.centered },
     })
@@ -93,12 +118,50 @@ ruled.client.connect_signal("request::rules", function()
     })
 end)
 
--- Music client
-ruled.client.append_rule({
-    rule_any = { class = { "music" }, instance = { "music" } },
-    properties = {
-        floating = true,
-        width = 700,
-        height = 444,
+-- applications
+ruled.client.append_rules({
+    {
+        rule_any = { class = { "music" }, instance = { "music" } },
+        properties = {
+            floating = true,
+            width = 700,
+            height = 444,
+        },
+    },
+    {
+        rule_any = { class = { "Zotero" } },
+        properties = { tag = "3", minimized = false },
+    },
+    {
+        rule_any = { class = { "Spotify", "Blueman-manager", "easyeffects" } },
+        properties = { tag = "4", minimized = false },
+    },
+    {
+        rule_any = { class = { "Geary", "thunderbird", "mail" } },
+        properties = { tag = "5" },
+    },
+    {
+        rule_any = { class = { "steam", "Steam", "Lutris" } },
+        properties = { tag = "6" },
+    },
+    {
+        rule_any = { class = { "qBittorrent", "qbittorrent" } },
+        properties = { tag = "7" },
+    },
+    {
+        rule_any = { class = { "corectrl", "virt-manager", "Virt-manager" } },
+        properties = { tag = "8" },
+    },
+    {
+        rule_any = {
+            class = { "discord", "Signal", "Slack", "threema-web" },
+            name = { "Microsoft Teams*" },
+        },
+        properties = {
+            fullscreen = false,
+            maximized = false,
+            floating = false,
+            tag = "9",
+        },
     },
 })
