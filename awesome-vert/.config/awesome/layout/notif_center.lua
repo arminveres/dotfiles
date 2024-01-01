@@ -4,7 +4,7 @@ local gears = require("gears")
 local helpers = require("helpers")
 local lain = require("lain")
 local naughty = require("naughty")
-local rubato = require("mods.rubato")
+local rubato = require("rubato")
 local wibox = require("wibox")
 
 local markup = lain.util.markup

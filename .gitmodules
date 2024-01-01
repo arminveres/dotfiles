@@ -49,9 +49,6 @@
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
 	url = git@github.com:arminveres/dotfiles-secret
-[submodule "awesome-vert/.config/awesome/mods/rubato"]
-	path = awesome-vert/.config/awesome/mods/rubato
-	url = https://github.com/andOrlando/rubato.git
 [submodule "awesome-vert/.config/awesome/mods/bling"]
 	path = awesome-vert/.config/awesome/mods/bling
 	url = https://github.com/BlingCorp/bling.git

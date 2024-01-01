@@ -9,7 +9,7 @@ local dpi = beautiful.xresources.apply_dpi
 local gears = require("gears")
 local helpers = require("helpers")
 local readwrite = require("misc.scripts.read_writer")
-local rubato = require("mods.rubato")
+local rubato = require("rubato")
 local wibox = require("wibox")
 
 --[[ few stuffs to note

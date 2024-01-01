@@ -8,7 +8,7 @@
     ],
     "workspace.library": [
         "/usr/local/share/awesome/lib/",
-        "~/.luarocks/share/lua/5.4/lain"
+        "~/.luarocks/share/lua/5.4"
     ],
     "runtime.version": "Lua 5.4",
     "hint.enable": true

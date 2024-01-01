@@ -153,7 +153,7 @@ function M.create_wibar(s)
     local clock = wibox.widget({
         {
             widget = wibox.widget.textclock,
-            format = "%I",
+            format = "%H",
             font = beautiful.font_var .. "Bold 12",
             valign = "center",
             align = "center",
