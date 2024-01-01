@@ -50,6 +50,11 @@ awful.keyboard.append_global_keybindings({
         cc_toggle(screen.primary)
     end, { description = "toggle control center", group = "launcher" }),
 
+    awful.key({ modkey, ctrl }, "o", function()
+        awesome.emit_signal("open::notif_center")
+    end, { description = "Open Notification Center", group = "launcher" }),
+
+
     awful.key({ modkey }, "d", function()
         lock_screen_show()
     end, { description = "show lockscreen", group = "launcher" }),

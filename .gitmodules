@@ -64,3 +64,6 @@
 [submodule "awesome-vert/.config/awesome/mods/lua-pam"]
 	path = awesome-vert/.config/awesome/mods/lua-pam
 	url = https://github.com/RMTT/lua-pam.git
+[submodule "awesome-vert/.config/awesome/mods/awesome-battery_widget"]
+	path = awesome-vert/.config/awesome/mods/awesome-battery_widget
+	url = https://github.com/Aire-One/awesome-battery_widget.git

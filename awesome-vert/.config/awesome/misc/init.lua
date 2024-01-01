@@ -47,7 +47,7 @@ end)
 
 -- theme applier
 -- TODO: (aver) switch to other gtk theme
-require("misc.scripts.theme-applier")
+-- require("misc.scripts.theme-applier")
 
 return {
     -- launchers

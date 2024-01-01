@@ -26,7 +26,7 @@ colors.black = "#000000"
 colors.ext_white_bg = "#EBF0FF"
 
 -- accents
-colors.accent = "#d75f00" --"#8ab4f8"
+colors.accent = "#d75f00"   --"#8ab4f8"
 colors.accent_2 = colors.accent .. "66"
 colors.accent_3 = "#FE8019" -- "#4a5861"
 
