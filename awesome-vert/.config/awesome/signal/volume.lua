@@ -14,7 +14,6 @@ local function emit_volume_info()
     -- contain the volume level and muted state respectively
     -- This is why we are using `awk` to print them.
     awful.spawn.easy_async_with_shell(
-    -- "pacmd list-sinks | awk '/\\* index: /{nr[NR+7];nr[NR+11]}; NR in nr'",
         "pactl get-sink-mute @DEFAULT_SINK@; pactl get-sink-volume @DEFAULT_SINK@",
         function(stdout)
             local volume = stdout:match("(%d+)%% /")

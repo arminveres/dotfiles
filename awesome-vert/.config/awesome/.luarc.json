@@ -7,7 +7,8 @@
         "tag"
     ],
     "workspace.library": [
-        "/usr/local/share/awesome/lib/"
+        "/usr/local/share/awesome/lib/",
+        "~/.luarocks/share/lua/5.4/lain"
     ],
     "runtime.version": "Lua 5.4",
     "hint.enable": true

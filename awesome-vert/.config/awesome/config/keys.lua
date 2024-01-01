@@ -7,6 +7,7 @@ local awful = require("awful")
 local bling = require("mods.bling")
 local helpers = require("helpers")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local lain = require("lain")
 local lmachi = require("mods.layout-machi")
 local misc = require("misc")
 require("layout.lockscreen").init()
@@ -42,6 +43,10 @@ awful.keyboard.append_global_keybindings({
         awful.spawn.with_shell(USER_PREF.web)
     end, { description = "open web browser", group = "launcher" }),
 
+    awful.key({ modkey }, "b", function()
+        awful.spawn.with_shell(USER_PREF.files)
+    end, { description = "open file browser", group = "launcher" }),
+
     awful.key({ modkey }, "r", function()
         awful.spawn.with_shell("rofi -show drun")
     end, { description = "open rofi", group = "launcher" }),
@@ -53,7 +58,6 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey, ctrl }, "o", function()
         awesome.emit_signal("open::notif_center")
     end, { description = "Open Notification Center", group = "launcher" }),
-
 
     awful.key({ modkey }, "d", function()
         lock_screen_show()
@@ -208,12 +212,13 @@ awful.keyboard.append_global_keybindings({
         { description = "view next", group = "tags" }
     ),
     -- -- Non-empty tag browsing
-    -- awful.key({ altkey }, "Left", function()
-    --     lain.util.tag_view_nonempty(-1)
-    -- end, { description = "view  previous nonempty", group = "tag" }),
-    -- awful.key({ altkey }, "Right", function()
-    --     lain.util.tag_view_nonempty(1)
-    -- end, { description = "view  previous nonempty", group = "tag" }),
+    awful.key({ alt }, "Left", function()
+        lain.util.tag_view_nonempty(-1)
+    end, { description = "view  previous nonempty", group = "tag" }),
+
+    awful.key({ alt }, "Right", function()
+        lain.util.tag_view_nonempty(1)
+    end, { description = "view  previous nonempty", group = "tag" }),
 })
 
 -- Focus related keybindings

@@ -1,11 +1,15 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
+local helpers = require("helpers")
 local lain = require("lain")
 local naughty = require("naughty")
+local rubato = require("mods.rubato")
 local wibox = require("wibox")
 
 local markup = lain.util.markup
+
+-- TODO: (aver) Add rubato animation
 
 -- notification list --
 
@@ -19,7 +23,7 @@ local label = wibox.widget({
 })
 
 local notifs_clear = wibox.widget({
-    markup = markup.fg.color(beautiful.red_color, ""), --helpers.ui.colorizeText("", beautiful.red),
+    markup = markup.fg.color(beautiful.red_color, ""),
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox,
@@ -233,12 +237,13 @@ local notif_center = awful.popup({
     minimum_width = 490,
     maximum_width = 490,
     placement = function(d)
-        awful.placement.bottom_left(d, {
+        awful.placement.bottom_right(d, {
             honor_workarea = true,
             margins = beautiful.useless_gap * 4 + beautiful.border_width * 2,
         })
     end,
     widget = main,
+    shape = helpers.rrect(beautiful.rounded),
 })
 
 -- summon functions --
