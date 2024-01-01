@@ -6,8 +6,10 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local gears = require("gears")
+local helpers = require("helpers")
 local wibox = require("wibox")
 local xresources = require("beautiful.xresources")
+
 local dpi = xresources.apply_dpi
 
 -- default modkey
@@ -41,8 +43,9 @@ local get_taglist = function(s)
     local the_taglist = awful.widget.taglist({
         screen = s,
         filter = awful.widget.taglist.filter.all,
-        style = { shape = gears.shape.circle },
-        layout = { spacing = dpi(10), layout = wibox.layout.fixed.vertical },
+        -- style = { shape = gears.shape.circle },
+        style = { shape = helpers.rrect(3) },
+        layout = { spacing = dpi(3), layout = wibox.layout.fixed.vertical },
         widget_template = {
             {
                 {

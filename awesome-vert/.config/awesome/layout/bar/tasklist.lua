@@ -30,8 +30,9 @@ return function(s)
         filter = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
         style = {
-            shape_border_width = dpi(2),
-            shape_border_color = theme.accent,
+            shape_border_width = dpi(1),
+            shape_border_color = theme.bg_color,
+            shape_border_color_focus = theme.accent,
             shape = helpers.rrect(4),
         },
         layout = {
