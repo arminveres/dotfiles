@@ -12,6 +12,8 @@ local lain = require("lain")
 local wibox = require("wibox")
 local dpi = beautiful.xresources.apply_dpi
 
+local markup = lain.util.markup
+
 -- Create a container for the systray
 local systray = wibox.widget.systray()
 systray.base_size = dpi(27)
@@ -77,7 +79,7 @@ function M.create_wibar(s)
     -- battery widget
     --[[
     local bat_icon = wibox.widget({
-        markup = "<span foreground='" .. beautiful.black_color .. "'></span>",
+        markup = markup.fg.color(beautiful.black_color, ""),
         font = beautiful.icon_var .. "10",
         align = "center",
         valign = "center",
@@ -218,7 +220,7 @@ function M.create_wibar(s)
         width = dpi(48),
         shape = helpers.rrect(beautiful.rounded - 5),
         bg = beautiful.bg_color,
-        height = screen_height - beautiful.useless_gap * 2,
+        height = screen_height - beautiful.useless_gap * 4,
     })
 
     -- wibar placement
