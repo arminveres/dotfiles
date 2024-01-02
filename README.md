@@ -3,7 +3,7 @@
 > **Warning**: Although I have not encountered any issues until now, the source code in this repo may
 > not always be stable, even in the stable branch.
 
-![2023-05-06_13-02](https://user-images.githubusercontent.com/45210978/236620337-46d11a9e-6e77-4816-ae22-03f9bc13bc32.png)
+![2024-01-02_12-42](https://github.com/arminveres/dotfiles/assets/45210978/77f283ba-20aa-442b-8685-b8fdb516d20f)
 
 ## Description
 
