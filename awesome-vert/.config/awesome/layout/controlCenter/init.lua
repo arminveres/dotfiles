@@ -24,9 +24,10 @@ local wibox = require("wibox")
 
 awful.screen.connect_for_each_screen(function(s)
     -- we skip the seconday screen otherwise it the widget is not shown completely
-    if s.index == 2 then
+    if s ~= screen.primary then
         return
     end
+
     -- Mainbox
     --~~~~~~~~~~~~~~~~~
     control_c = wibox({

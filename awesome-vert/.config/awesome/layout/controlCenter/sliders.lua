@@ -39,7 +39,7 @@ local brightness_icon = wibox.widget({
 local brightness_text = wibox.widget({
     widget = wibox.widget.textbox,
     markup = helpers.colorize_text("10%", beautiful.fg_color),
-    font = beautiful.font_var .. "13",
+    font = beautiful.font_var .. "12",
     align = "center",
     valign = "center",
 })
@@ -97,7 +97,7 @@ local volume_icon = wibox.widget({
 local volume_text = wibox.widget({
     widget = wibox.widget.textbox,
     markup = helpers.colorize_text("10%", beautiful.fg_color),
-    font = beautiful.font_var .. "13",
+    font = beautiful.font_var .. "12",
     align = "center",
     valign = "center",
 })

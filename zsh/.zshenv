@@ -39,6 +39,7 @@ path+=(
     "$GOPATH"/bin
     "$CARGO_HOME"/bin
     "$XDG_DATA_HOME"/bob/nvim-bin
+    "$HOME"/.luarocks/bin
 )
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'

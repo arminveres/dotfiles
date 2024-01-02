@@ -24,3 +24,4 @@ zsh/**/*.session
 
 .comments/
 GTK/.config/gtk-3.0/custom-papers
+awesome-vert/.config/awesome/misc/.information
