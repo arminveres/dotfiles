@@ -99,7 +99,7 @@ M.temp_widget = lain.widget.temp({
 })
 
 -- TODO: (aver) add interface recognition, akin to what I did before `b3122db2f4df5a5056ff9518c6710571cb2e72e0`
-local interface = 'wlp0s20f3'
+local interface = "eno1"
 M.ip_widget = awful.widget.watch(
     'bash -c "ifconfig '
         .. interface

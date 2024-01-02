@@ -2,15 +2,15 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
-local awful = require("awful")
-local myutils = require("myutils")
 require("awful.autofocus")
+local awful = require("awful")
 local beautiful = require("beautiful")
 local bling = require("bling")
 local freedesktop = require("freedesktop")
 local gears = require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local lain = require("lain")
+local myutils = require("myutils")
 local naughty = require("naughty")
 local wibox = require("wibox")
 -- local menubar       = require("menubar")
@@ -72,13 +72,16 @@ end
 -- }}}
 
 -- or use universal shell script
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell(os.getenv("XDG_CONFIG_HOME") .. "/awesome/autorun.sh")
 
 -- {{{ Variable definitions
 
 local themes = { "multicolor" }
 
-local chosen_theme = themes[1]
+-- local chosen_theme = themes[1]
+-- string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), themes[1])
+beautiful.init(os.getenv("XDG_CONFIG_HOME") .. "/awesome/themes/" .. themes[1] .. "/theme.lua")
+
 local modkey = "Mod4"
 local altkey = "Mod1"
 local terminal = "alacritty"
@@ -134,10 +137,6 @@ awful.util.tasklist_buttons = mytable.join(
     awful.button({}, 5, function()
         awful.client.focus.byidx(-1)
     end)
-)
-
-beautiful.init(
-    string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 )
 -- }}}
 
