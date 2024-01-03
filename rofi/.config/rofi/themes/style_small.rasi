@@ -1,4 +1,4 @@
-@theme "/dev/null"
+// @theme "/dev/null"
 @import "~/.config/rofi/colors/black.rasi"
 // @import "~/.config/rofi/colors/gruvbox.rasi"
 

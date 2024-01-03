@@ -1,12 +1,11 @@
 @theme "/dev/null"
-// @import "~/.config/rofi/style_small.rasi"
-@import "~/.config/rofi/style_fullscreen.rasi"
+@import "~/.config/rofi/themes/style_fullscreen.rasi"
 
 configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{name}";
-  font: "Cantarell 10";
+  font: "Roboto Bold 10";
   modi: "window,drun";
   show-icons: true;
   icon-theme: "Adwaita";

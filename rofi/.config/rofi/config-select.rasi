@@ -1,8 +1,8 @@
 @theme "/dev/null"
-@import "~/.config/rofi/style_small.rasi"
+@import "~/.config/rofi/themes/rounded-dark.rasi"
 
 configuration {
-  font: "Cantarell 10";
+  font: "Roboto Bold 11";
   show-icons: false;
   case-sensitive: false;
 }

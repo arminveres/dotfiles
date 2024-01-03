@@ -1,26 +1,42 @@
 #!/bin/env bash
-
 set -e
 set -o pipefail
 
-directories=(
-    ~/Projects
-    ~/projects
-    ~/gitfiles
-    ~/Documents
-    ~/Studyfiles
+# =================================================================================================
+# Constants
+# =================================================================================================
+
+DIRECTORIES=(
+	"$HOME/Projects"
+	"$HOME/projects"
+	"$HOME/gitfiles"
+	"$HOME/Documents"
+	"$HOME/Downloads"
+	"$HOME/Studyfiles"
 )
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
-    rofi_cmd="wofi --dmenu --insensitive --no-show-icons"
+	ROFI_CMD="wofi --dmenu --insensitive --no-show-icons"
 else
-    rofi_cmd="rofi -no-show-icons -dmenu -i -config ~/.config/rofi/config-select.rasi"
+	ROFI_CMD="rofi -no-show-icons -dmenu -i -config ~/.config/rofi/config-select.rasi"
 fi
 
-files=$(
-    fd "\.pdf" "${directories[@]}" | $rofi_cmd -p "Document:"
-)
+TRIM_PATH="$HOME/"
 
-if [[ -n $files ]]; then
-    zathura "$files"
+# =================================================================================================
+# Logic
+# =================================================================================================
+
+# search for files
+found_files=$(fd "\.pdf" "${DIRECTORIES[@]}")
+# trim the path
+trimmed_files=$(echo "$found_files" | sed "s|^$TRIM_PATH||")
+# add a newline for rofi to handle
+items_string=$(printf '%s\n' "$trimmed_files")
+# show in rofi
+file=$(echo "$items_string" | $ROFI_CMD -p "Document:")
+# open file
+if [[ -n $file ]]; then
+	# reinsert the removed path prefix
+	zathura "$TRIM_PATH$file"
 fi
