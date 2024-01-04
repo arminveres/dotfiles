@@ -11,8 +11,6 @@ local lain = require("lain")
 local lmachi = require("mods.layout-machi")
 local misc = require("misc")
 require("layout.lockscreen").init()
--- vars/misc
--- ~~~~~~~~~
 
 -- modkey
 local modkey = "Mod4"

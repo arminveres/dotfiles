@@ -167,6 +167,28 @@ theme.tag_preview_widget_border_color = theme.bg_2
 theme.tag_preview_widget_border_width = 0
 theme.tag_preview_widget_margin = dpi(5)
 
+-- Window scwitcher
+
+theme.window_switcher_widget_bg = theme.bg_color -- The bg color of the widget
+theme.window_switcher_widget_border_width = 1 -- The border width of the widget
+theme.window_switcher_widget_border_radius = 14 -- The border radius of the widget
+theme.window_switcher_widget_border_color = theme.green_color -- The border color of the widget
+theme.window_switcher_clients_spacing = 20 -- The space between each client item
+theme.window_switcher_client_icon_horizontal_spacing = 5 -- The space between client icon and text
+theme.window_switcher_client_width = 150 -- The width of one client widget
+theme.window_switcher_client_height = 250 -- The height of one client widget
+theme.window_switcher_client_margins = 10 -- The margin between the content and the border of the widget
+theme.window_switcher_thumbnail_margins = 10 -- The margin between one client thumbnail and the rest of the widget
+theme.thumbnail_scale = false -- If set to true, the thumbnails fit policy will be set to "fit" instead of "auto"
+theme.window_switcher_name_margins = 10 -- The margin of one clients title to the rest of the widget
+theme.window_switcher_name_valign = "center" -- How to vertically align one clients title
+theme.window_switcher_name_forced_width = 200 -- The width of one title
+theme.window_switcher_name_font = theme.font_var .. "Bold 10" -- The font of all titles
+theme.window_switcher_name_normal_color = "#ffffff" -- The color of one title if the client is unfocused
+theme.window_switcher_name_focus_color = theme.error -- The color of one title if the client is focused
+theme.window_switcher_icon_valign = "center" -- How to vertically align the one icon
+theme.window_switcher_icon_width = 40 -- The width of one icon
+
 -- drop down Menu
 -- ~~~~~~~~~~~~~~
 theme.menu_font = theme.font_var .. "9"

@@ -12,7 +12,8 @@ return {
 
     -- images
     bell = dir .. "bell.png",
-    profile = dir .. "profile.jpg",
+    -- profile = dir .. "profile.jpg",
+    profile = os.getenv("HOME") .. "/Documents/profile.jpg",
     music_icon = dir .. "music.png",
     album_art = dir .. "album-art.png",
     awesome = dir .. "awesome.png",
