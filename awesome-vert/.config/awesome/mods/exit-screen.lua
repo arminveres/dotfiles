@@ -24,6 +24,7 @@ local icons = {
     suspend = "",
     reboot = "",
     exit = "",
+    lock = "",
 }
 
 -- Commands
@@ -44,6 +45,13 @@ end
 
 local exit_command = function()
     awesome.quit()
+end
+
+local lock_command = function()
+    local locker = "i3lock-blur && xset dpms force off"
+    -- local suspender = "i3lock-blur"
+    awesome.emit_signal("module::exit_screen:hide")
+    awful.spawn.with_shell(locker)
 end
 
 -- helper function for buttons
@@ -115,6 +123,7 @@ local poweroff = cr_btn("poweroff", icons.poweroff, beautiful.accent, poweroff_c
 local reboot = cr_btn("reboot", icons.reboot, beautiful.accent, reboot_command)
 local suspend = cr_btn("suspend", icons.suspend, beautiful.accent, suspend_command)
 local exit = cr_btn("exit", icons.exit, beautiful.accent, exit_command)
+local lock = cr_btn("lock", icons.lock, beautiful.accent, exit_command)
 
 -- exit screen
 local exit_screen_f = function(s)
@@ -165,6 +174,11 @@ local exit_screen_f = function(s)
                             spacing = dpi(45),
                             layout = wibox.layout.fixed.horizontal,
                         },
+                        {
+                            lock,
+                            spacing = dpi(45),
+                            layout = wibox.layout.fixed.horizontal,
+                        },
                         layout = wibox.layout.fixed.horizontal,
                         spacing = dpi(45),
                     },
@@ -203,6 +217,8 @@ local exit_screen_grabber = awful.keygrabber({
             poweroff_command()
         elseif key == "r" then
             reboot_command()
+        elseif key == "l" then
+            lock_command()
         elseif key == "Escape" or key == "q" or key == "v" then
             awesome.emit_signal("module::exit_screen:hide")
         end

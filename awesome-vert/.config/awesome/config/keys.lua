@@ -10,7 +10,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local lain = require("lain")
 local lmachi = require("mods.layout-machi")
 local misc = require("misc")
-require("layout.lockscreen").init()
+-- require("layout.lockscreen").init()
+
 
 -- modkey
 local modkey = "Mod4"
@@ -57,10 +58,6 @@ awful.keyboard.append_global_keybindings({
         awesome.emit_signal("open::notif_center")
     end, { description = "Open Notification Center", group = "launcher" }),
 
-    awful.key({ modkey }, "d", function()
-        lock_screen_show()
-    end, { description = "show lockscreen", group = "launcher" }),
-
     -- Take a screenshot
     awful.key({ modkey, "Shift" }, "s", function()
         awful.util.spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Pictures/screenshots/")
@@ -77,6 +74,10 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey }, "F4", function()
         awful.spawn.with_shell("autorandr --load secoff")
     end, { description = "turn off secondary monitor", group = "utils" }),
+
+    -- awful.key({ modkey }, "d", function()
+    --     lock_screen_show()
+    -- end, { description = "show lockscreen", group = "launcher" }),
 
     -- awful.key({ modkey }, "s", function()
     -- 	awful.spawn(user_likes.music)
@@ -174,7 +175,8 @@ awful.keyboard.append_global_keybindings({
         { description = "quit awesome", group = "awesome" }
     ),
 
-    awful.key({ modkey }, "v", function()
+    -- awful.key({ modkey }, "v", function()
+    awful.key({ alt }, "Escape", function()
         require("mods.exit-screen")
         awesome.emit_signal("module::exit_screen:show")
     end, { description = "show exit screen", group = "modules" }),
