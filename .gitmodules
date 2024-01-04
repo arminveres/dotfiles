@@ -1,17 +1,17 @@
 [submodule "awesome/.config/awesome/awesome-wm-widgets"]
-	path = awesome/.config/awesome/awesome-wm-widgets
+	path = awesome-old/.config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets.git
 	branch = main
 [submodule "awesome/.config/awesome/bling"]
-	path = awesome/.config/awesome/bling
+	path = awesome-old/.config/awesome/bling
 	url = https://github.com/BlingCorp/bling.git
 	branch = main
 [submodule "awesome/.config/awesome/freedesktop"]
-	path = awesome/.config/awesome/freedesktop
+	path = awesome-old/.config/awesome/freedesktop
 	url = https://github.com/lcpz/awesome-freedesktop.git
 	branch = main
 [submodule "awesome/.config/awesome/lain"]
-	path = awesome/.config/awesome/lain
+	path = awesome-old/.config/awesome/lain
 	url = https://github.com/lcpz/lain.git
 	branch = main
 [submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]

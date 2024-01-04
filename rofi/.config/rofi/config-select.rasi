@@ -2,7 +2,7 @@
 @import "~/.config/rofi/themes/rounded-dark.rasi"
 
 configuration {
-  font: "Roboto Bold 11";
+  font: "Roboto Bold 10";
   show-icons: false;
   case-sensitive: false;
 }
