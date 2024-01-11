@@ -12,7 +12,6 @@ local lmachi = require("mods.layout-machi")
 local misc = require("misc")
 -- require("layout.lockscreen").init()
 
-
 -- modkey
 local modkey = "Mod4"
 
@@ -69,11 +68,21 @@ awful.keyboard.append_global_keybindings({
 
     awful.key({ modkey }, "F3", function()
         awful.spawn.with_shell("autorandr --load default")
+        -- awful.spawn.with_shell("nitrogen --restore")
     end, { description = "Turn on the secondary monitor", group = "utils" }),
 
     awful.key({ modkey }, "F4", function()
         awful.spawn.with_shell("autorandr --load secoff")
+        -- awful.spawn.with_shell("nitrogen --restore")
     end, { description = "turn off secondary monitor", group = "utils" }),
+
+    awful.key({ modkey }, "p", function()
+        awful.spawn.with_shell("rofi-pactl-output")
+    end, { description = "show lockscreen", group = "launcher" }),
+
+    awful.key({ modkey }, "z", function()
+        awful.spawn.with_shell("rofi-zathura")
+    end, { description = "show lockscreen", group = "launcher" }),
 
     -- awful.key({ modkey }, "d", function()
     --     lock_screen_show()

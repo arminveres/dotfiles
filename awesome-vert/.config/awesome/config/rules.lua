@@ -64,12 +64,16 @@ ruled.client.connect_signal("request::rules", function()
             },
             name = {
                 "Event Tester", -- xev.
+                "Friends List",
             },
             instance = {
                 "spad",
                 "music",
                 -- "discord",
             },
+        },
+        except_any = {
+            name = { "Microsoft Teams*" },
         },
         properties = { floating = true, placement = awful.placement.centered },
     })

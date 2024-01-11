@@ -180,6 +180,7 @@ M.globalkeys = M.mytable.join(
     awful.key({ modkey }, "Tab", function()
         awesome.emit_signal("bling::window_switcher::turn_on")
     end, { description = "Workspace local window switcher", group = "client" }),
+
     awful.key({ altkey }, "Tab", function()
         awful.spawn.with_shell("rofi -show window")
     end, { description = "Global window switcher", group = "client" }),
