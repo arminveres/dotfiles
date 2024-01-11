@@ -1,0 +1,48 @@
+# more settings under: https://alacritty.org/config-alacritty.html
+import = ["/home/arminveres/.config/alacritty/gruvbox-black.toml"]
+# custom_cursor_colors = false
+# tabspaces = 8
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[font]
+size = 12
+builtin_box_drawing = true
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "Terminess Nerd Font Mono"
+# family = "DinaRemasterII"
+# family = "TamzenForPowerline"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+# auto_scroll = false
+history = 10000
+multiplier = 3
+
+[window]
+dynamic_padding = true
+opacity = 0.9
+# option_as_alt = "OnlyLeft"
+
+[window.padding]
+x = 3
+y = 3
+
+[mouse]
+hide_when_typing = true
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.0"
