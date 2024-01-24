@@ -95,7 +95,7 @@ end)
 
 -- layoutlist popup widget --
 local ll = awful.widget.layoutlist({
-    source = awful.widget.layoutlist.source.default_layouts,
+    source = awful.widget.layoutlist.source.current_screen, -- source.default_layouts,
     spacing = dpi(24),
     base_layout = wibox.widget({
         spacing = dpi(24),

@@ -35,12 +35,13 @@ local l = awful.layout.suit
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
         lain.layout.centerwork,
-        l.tile,
-        lmachi.default_layout,
+        l.tile.right,
         l.tile.bottom,
-        equal,
-        mstab,
-        deck,
+        l.max,
+        -- lmachi.default_layout,
+        -- equal,
+        -- mstab,
+        -- deck,
         -- l.floating,
     })
 end)
@@ -48,6 +49,7 @@ end)
 -- set tags
 screen.connect_signal("request::desktop_decoration", function(s)
     screen[s].padding = { left = 0, right = 0, top = 0, bottom = 0 }
+    -- TODO: (aver) add geometry ratio check, replacing simple primary check
     if s == screen.primary then
         awful.tag(names, s, awful.layout.layouts[1])
     else

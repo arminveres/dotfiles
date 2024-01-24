@@ -44,7 +44,7 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = {
             class = {
                 "Sxiv",
-                "Zathura",
+                -- "Zathura",
                 "Galculator",
                 "Xarchiver",
                 "gnome-calculator",
