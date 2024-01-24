@@ -40,6 +40,11 @@ function M.create_wibar(s)
     local screen_height = s.geometry.height
     local taglist = require("layout.bar.taglist")(s)
     local tasklist = require("layout.bar.tasklist")(s)
+    local layoutbox = {
+        awful.widget.layoutbox(s),
+        margins = { left = dpi(12), right = dpi(12) },
+        widget = wibox.container.margin,
+    }
 
     -- launcher {{
     --[[ local launcher = wibox.widget({
@@ -225,8 +230,8 @@ function M.create_wibar(s)
 
     -- wibar placement
     -- if s == screen.primary then
-        awful.placement.left(s.wibar_wid, { margins = beautiful.useless_gap })
-        s.wibar_wid:struts({ left = s.wibar_wid.width + beautiful.useless_gap })
+    awful.placement.left(s.wibar_wid, { margins = beautiful.useless_gap })
+    s.wibar_wid:struts({ left = s.wibar_wid.width + beautiful.useless_gap })
     --[[
     else
         -- put bar to the right
@@ -262,6 +267,7 @@ function M.create_wibar(s)
                 -- },
                 {
                     vertical_systray,
+                    layoutbox,
                     clock,
                     layout = wibox.layout.fixed.vertical,
                     spacing = dpi(20),
