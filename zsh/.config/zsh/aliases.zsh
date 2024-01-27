@@ -1,5 +1,6 @@
 # applications
 alias vi="nvim"
+alias viup="nvim --headless "+Lazy! sync" +qa"
 alias vim="nvim"
 alias py="python3"
 alias pypip="pypy3 -m pip"
@@ -12,7 +13,7 @@ alias flean='flatpak remove --unused'
 alias onefetch='onefetch --include-hidden'
 
 # WARN: use single quotes
-alias lg='pushd $(realpath .);lazygit;popd'
+alias lg='pushd $(realpath .); lazygit; popd'
 alias lad=lazydocker
 
 # ================================================================================================

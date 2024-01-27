@@ -1,7 +1,5 @@
 # more settings under: https://alacritty.org/config-alacritty.html
 import = ["/home/arminveres/.config/alacritty/gruvbox-black.toml"]
-# custom_cursor_colors = false
-# tabspaces = 8
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -39,10 +37,10 @@ opacity = 0.9
 
 [window.padding]
 x = 3
-y = 3
 
 [mouse]
 hide_when_typing = true
 
 [env]
+# allows for same font size on monitors with different resolutions
 WINIT_X11_SCALE_FACTOR = "1.0"

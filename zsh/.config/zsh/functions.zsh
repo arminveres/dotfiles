@@ -11,6 +11,12 @@ function convert_heic_to_jpg {
     fi
 }
 
+function convert_webp_to_png {
+    for x in `\ls -1 *.webp`; do
+        dwebp {} -o ${x%.*}.png ::: $x;
+    done
+}
+
 function git_update_project_in_dir {
     for file in ./*/;
     do
@@ -40,6 +46,16 @@ function find_thermal_zone {
 # `nohup $command & disown`, but this way nothing is generated
 function runbg {
     tmux new -s $1 -d $@
+}
+
+# neat directly viewer and changer for git worktrees
+function wtz {
+    dir=$(git worktree list | fzf | awk '{print $1}')
+    if [[ -n $dir ]]; then
+        z $dir
+    else
+        echo "Nothing selected"
+    fi
 }
 
 # =================================================================================================
