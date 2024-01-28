@@ -12,6 +12,9 @@ systemctl --user start gnome-keyring-daemon.service
 gnome-keyring-daemon --daemonize --login
 run /usr/libexec/polkit-gnome-authentication-agent-1
 
+# Repeat rate for Xorg
+xset r rate 250 25
+
 # Tray application
 run udiskie --tray --notify
 run nm-applet
@@ -56,6 +59,3 @@ else # only run on desktop
 	run nitrogen --restore
 	run picom --daemon --config "$XDG_CONFIG_HOME"/picom/picom.conf
 fi
-
-# Repeat rate for Xorg
-xset r rate 250 25

@@ -252,24 +252,6 @@ theme.playerctl_player = { "mpd", "%any" }
 theme.playerctl_update_on_activity = true
 theme.playerctl_position_update_interval = 1
 
--- Awesome dock
--- ~~~~~~~~~~~~
-theme.awesome_dock_size = 80
-theme.awesome_dock_pinned = {
-    { USER_PREF.term },
-    { USER_PREF.music, "gnome-music" },
-    { USER_PREF.files },
-    { "galculator" },
-}
-theme.awesome_dock_color_active = theme.accent
-theme.awesome_dock_color_inactive = theme.fg_color .. "66"
-theme.awesome_dock_color_minimized = theme.accent .. "33"
-theme.awesome_dock_color_hover = theme.fg_color .. "33"
-theme.awesome_dock_color_bg = theme.bg_color
-theme.awesome_dock_spacing = 10
-theme.awesome_dock_timeout = 1.2
-theme.awesome_dock_disabled = true
-
 theme.systray_icon_spacing = dpi(4)
 
 -- init

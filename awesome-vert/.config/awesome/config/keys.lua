@@ -10,7 +10,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local lain = require("lain")
 local lmachi = require("mods.layout-machi")
 local misc = require("misc")
--- require("layout.lockscreen").init()
 
 -- modkey
 local modkey = "Mod4"
@@ -78,15 +77,11 @@ awful.keyboard.append_global_keybindings({
 
     awful.key({ modkey }, "p", function()
         awful.spawn.with_shell("rofi-pactl-output")
-    end, { description = "show lockscreen", group = "launcher" }),
+    end, { description = "show audio output", group = "launcher" }),
 
     awful.key({ modkey }, "z", function()
         awful.spawn.with_shell("rofi-zathura")
-    end, { description = "show lockscreen", group = "launcher" }),
-
-    -- awful.key({ modkey }, "d", function()
-    --     lock_screen_show()
-    -- end, { description = "show lockscreen", group = "launcher" }),
+    end, { description = "show pdf picker", group = "launcher" }),
 
     -- awful.key({ modkey }, "s", function()
     -- 	awful.spawn(user_likes.music)

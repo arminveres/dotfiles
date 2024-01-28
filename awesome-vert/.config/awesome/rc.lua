@@ -23,5 +23,5 @@ require("layout")
 
 require("mods.bling").widget.window_switcher.enable({
     vim_previous_key = "l", -- Alternative key on which to select the previous client
-    vim_next_key = "h", -- Alternative key on which to select the next client
+    vim_next_key = "h",     -- Alternative key on which to select the next client
 })

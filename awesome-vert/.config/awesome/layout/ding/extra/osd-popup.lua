@@ -1,5 +1,6 @@
--- popup notif --
--- ~~~~~~~~~~~ --
+--
+-- OSD
+--
 
 -- requirements
 -- ~~~~~~~~~~~~
@@ -53,7 +54,7 @@ local pop = wibox({
 -- placement
 awful.placement.right(pop, { margins = { right = beautiful.useless_gap * 2 } })
 
--- tuemout
+-- timeout
 local timeout = gears.timer({
     autostart = true,
     timeout = 2.4,
@@ -102,13 +103,13 @@ awesome.connect_signal("signal::volume", function(value, muted)
     if first_V or control_c.visible then
         first_V = false
     else
-        icon.markup = "<span foreground='" .. beautiful.accent .. "'></span>"
+        icon.markup = markup.fg.color(beautiful.accent, "") --"<span foreground='" .. beautiful.accent .. "'></span>"
         bar.value = value
 
         if muted or value == 0 then
             bar.handle_color = beautiful.red_color
             bar.bar_active_color = beautiful.red_color
-            icon.markup = "<span foreground='" .. beautiful.red_color .. "'></span>"
+            icon.markup = markup.fg.color(beautiful.red_color, "") -- "<span foreground='" .. beautiful.red_color .. "'></span>"
         else
             bar.handle_color = beautiful.accent
             bar.bar_active_color = beautiful.accent

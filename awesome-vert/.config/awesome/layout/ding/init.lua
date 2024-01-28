@@ -17,7 +17,7 @@ local ruled = require("ruled")
 -- ~~~~~~
 
 require("layout.ding.extra.music")
-require("layout.ding.extra.popup")
+require("layout.ding.extra.osd-popup")
 
 -- configuration
 -- ~~~~~~~~~~~~~

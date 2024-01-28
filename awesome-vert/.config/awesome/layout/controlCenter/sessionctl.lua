@@ -43,8 +43,7 @@ lock_button:buttons(gears.table.join(awful.button({}, 1, function()
     if control_c.visible then
         cc_toggle()
     end
-    require("layout.lockscreen").init()
-    lock_screen_show()
+    awful.spawn.with_shell("i3lock-blur")
 end)))
 
 --~~~~~~~~~~~~~~~~~~~

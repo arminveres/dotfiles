@@ -49,7 +49,6 @@ end
 
 local lock_command = function()
     local locker = "i3lock-blur && xset dpms force off"
-    -- local suspender = "i3lock-blur"
     awesome.emit_signal("module::exit_screen:hide")
     awful.spawn.with_shell(locker)
 end
