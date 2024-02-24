@@ -14,6 +14,9 @@ run /usr/libexec/polkit-gnome-authentication-agent-1
 
 # Repeat rate for Xorg
 xset r rate 250 25
+xset s 3600 3600
+xset dpms 3600 3600 3600
+run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
 
 # Tray application
 run udiskie --tray --notify
@@ -25,8 +28,6 @@ run thunar --daemon
 run xinput --set-prop 'Logitech MX Master 3' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'Logitech G Pro' 'libinput Accel Profile Enabled' 0, 1
 run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0, 1
-
-run xss-lock --transfer-sleep-lock -- i3lock-blur --nofork # locks screen when closing the lid
 
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then

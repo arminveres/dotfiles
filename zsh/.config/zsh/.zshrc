@@ -118,11 +118,11 @@ bindkey '^e' edit-command-line
 # ==================================================================================================
 # WARN: Zoxide removed this functionality and broke it for zsh.
 if command -v zoxide > /dev/null; then
-    eval "$(zoxide init zsh)"
-    unalias z
-    function z () {
-        __zoxide_z "$@"
-    }
+    eval "$(zoxide init zsh --cmd cd)"
+    # unalias z
+    # function z () {
+    #     __zoxide_z "$@"
+    # }
 fi
 
 # safe source cargo env

@@ -56,6 +56,10 @@ awful.keyboard.append_global_keybindings({
         awesome.emit_signal("open::notif_center")
     end, { description = "Open Notification Center", group = "launcher" }),
 
+    awful.key({ modkey }, "z", function()
+        awful.spawn.with_shell("rofi-zathura")
+    end, { description = "start pdf search", group = "launcher" }),
+
     -- Take a screenshot
     awful.key({ modkey, "Shift" }, "s", function()
         awful.util.spawn("flameshot gui -p " .. os.getenv("HOME") .. "/Pictures/screenshots/")
@@ -134,8 +138,9 @@ awful.keyboard.append_global_keybindings({
         awful.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
     end, { description = "mute volume", group = "control" }),
 
-    awful.key({}, "XF86AudioMicMute", function()
-        awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@")
+    -- awful.key({}, "XF86AudioMicMute", function()
+    awful.key({}, "F20", function()
+        awful.spawn("pactl set-source-mute @DEFAULT_SOURCE@ toggle")
     end, { description = "Toggle Mic Mute", group = "audio" }),
 
     awful.key({}, "XF86AudioPlay", function()
