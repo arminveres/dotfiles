@@ -243,6 +243,7 @@ awful.keyboard.append_global_keybindings({
         if client.focus then
             client.focus:raise()
         end
+        bling.module.tabbed.iter(1)
         bling.module.flash_focus.flashfocus(client.focus)
     end, { description = "focus down", group = "client" }),
 
@@ -256,6 +257,7 @@ awful.keyboard.append_global_keybindings({
         if client.focus then
             client.focus:raise()
         end
+        bling.module.tabbed.iter(-1)
         bling.module.flash_focus.flashfocus(client.focus)
     end, { description = "focus up", group = "client" }),
 
@@ -505,7 +507,7 @@ client.connect_signal("request::default_keybindings", function()
             c:move_to_screen()
         end, { description = "move to screen", group = "client" }),
 
-        awful.key({ modkey }, "t", function(c)
+        awful.key({ modkey, shift }, "t", function(c)
             c.ontop = not c.ontop
         end, { description = "toggle keep on top", group = "client" }),
 
@@ -517,5 +519,13 @@ client.connect_signal("request::default_keybindings", function()
             c.maximized = not c.maximized
             c:raise()
         end, { description = "(un)maximize", group = "client" }),
+
+        awful.key({ modkey }, "t", function(c)
+            bling.module.tabbed.pick()
+        end, { description = "tab a client", group = "client" }),
+
+        awful.key({ modkey, ctrl }, "t", function(c)
+            bling.module.tabbed.pop()
+        end, { description = "remove client from tab group", group = "client" }),
     })
 end)

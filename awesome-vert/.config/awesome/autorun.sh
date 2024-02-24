@@ -31,7 +31,7 @@ run xinput --set-prop 'pointer:Logitech G305' 'libinput Accel Profile Enabled' 0
 
 # Laptop/Notebook specific settings
 if uname --nodename | grep -q notebook; then
-	# WARN: (aver) this block needs to first on the laptop
+	# WARN(aver): This block needs to first on the laptop
 	run nitrogen --restore
 	run picom --daemon --config ~/.config/picom/picom.conf
 	# create a tmux session in the background so that tmux is faster on a cold start
@@ -53,7 +53,7 @@ else # only run on desktop
 	# Running autorandr is too slow on startup and messes everything up
 	run "$HOME/.screenlayout/default.sh"
 
-	# WARN: (aver) this block below needs to run later than on the laptop
+	# WARN(aver): this block below needs to run later than on the laptop
 	# create a tmux session in the background so that tmux is faster on a cold start
 	tmux new -s daemon -d
 	setxkbmap eu
