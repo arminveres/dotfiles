@@ -90,8 +90,8 @@ fi
 # ================================================================================================
 # Distro specifig aliases
 # ================================================================================================
-if [[ $(uname) == 'Linux' ]]; then
-    case "$(lsb_release -i | awk '{print $3}')" in
+if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
+    case "$DISTRO" in
         Ubuntu | Debian)
             alias nala='sudo nala'
             alias upd='sudo apt update && sudo apt upgrade'

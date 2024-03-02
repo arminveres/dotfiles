@@ -45,17 +45,19 @@ path+=(
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-case "$(uname)" in
-    Linux)
-        DISTRO=$(lsb_release -i | awk '{print $3}')
-        export DISTRO
-        ;;
-    Darwin)
-        # export the distro for scrips and so to use
-        path+=(/opt/arm-none-eabi-12/bin)
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-        ;;
-esac
+if command -v lsb_release > /dev/null; then
+    case "$(uname)" in
+        Linux)
+            DISTRO=$(lsb_release -i | awk '{print $3}')
+            export DISTRO
+            ;;
+        Darwin)
+            # export the distro for scrips and so to use
+            path+=(/opt/arm-none-eabi-12/bin)
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+            ;;
+    esac
+fi
 
 # WARN: don't source Xresources if we are in wayland
 if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
