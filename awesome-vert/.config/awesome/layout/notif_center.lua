@@ -249,6 +249,14 @@ local notif_center = awful.popup({
 -- summon functions --
 
 awesome.connect_signal("open::notif_center", function()
+    -- clean up otherwise the center gets incredibly slow
+    -- TODO: (aver) instead of deleteling all, find a way to remove all notifications except for the last 30
+    if notifs_count > 35 then
+        _G.notif_center_reset_notifs_container()
+        notifs_count = 0
+        awesome.emit_signal("notifs::count", notifs_count)
+    end
+
     awesome.emit_signal("bar::notif_center")
     notif_center.visible = not notif_center.visible
 end)

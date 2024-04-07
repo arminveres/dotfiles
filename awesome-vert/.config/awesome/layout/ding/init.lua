@@ -16,7 +16,7 @@ local ruled = require("ruled")
 -- extras
 -- ~~~~~~
 
-require("layout.ding.extra.music")
+-- require("layout.ding.extra.music")
 require("layout.ding.extra.osd-popup")
 
 -- configuration
@@ -40,8 +40,9 @@ end)
 naughty.config.defaults.ontop = true
 naughty.config.defaults.screen = awful.screen.focused()
 naughty.config.defaults.timeout = 3
-naughty.config.defaults.title = "Ding!"
-naughty.config.defaults.position = "top_right"
+-- naughty.config.defaults.title = "Ding!"
+-- Values: "top_right", "top_left", "bottom_left", "bottom_right", "top_middle"
+naughty.config.defaults.position = "bottom_right"
 
 -- Timeouts
 naughty.config.presets.low.timeout = 3

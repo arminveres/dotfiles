@@ -7,7 +7,6 @@ local display_high = true
 local display_low = true
 local display_charge = true
 
-
 awesome.connect_signal("signal::battery", function(percentage, state)
     local value = percentage
 
@@ -34,6 +33,8 @@ awesome.connect_signal("signal::battery", function(percentage, state)
         display_high = true
     end
 
-    if state == 2 then display_charge = true end
-
+    if state == 2 then
+        display_charge = true
+    end
 end)
+
