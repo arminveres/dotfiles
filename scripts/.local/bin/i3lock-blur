@@ -3,11 +3,13 @@
 # TODO: add option for static image
 
 options=$1
-
 imglock="/tmp/blur.png"
+
 rm -f "$imglock"
+
+# NOTE: maim is a bit slower than the flameshot cli
+# maim --hidecursor --quality '10' $imglock
 flameshot full --path "$imglock"
-# maim --hidecursor --quality '10' $imglock # NOTE: maim is a bit slower than the flameshot cli
 
 # blur help page: https://www.imagemagick.org/Usage/blur/#blur_args
 convert "$imglock" -blur "0x8" -resize "$(

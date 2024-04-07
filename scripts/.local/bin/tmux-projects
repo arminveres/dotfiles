@@ -12,14 +12,13 @@ tmux_running=$(pgrep tmux || echo "")
 # Directories to search in
 project_locations=(
     ~/Projects
-    ~/projects
     ~/gitfiles
 )
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find "${project_locations[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find "${project_locations[@]}" -mindepth 1 -maxdepth 1 -type d | $HOME/.config/zsh/plugins/fzf/bin/fzf)
 fi
 
 if [[ -z $selected ]]; then

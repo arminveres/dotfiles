@@ -1,10 +1,12 @@
 #!/bin/env bash
-
-set e
+#
+# Updates outdates pip packages
+set -e
+set -o pipefail
 
 printf "Following packages are outdated:\n"
-pip list --user --outdated
+/usr/bin/pip3 list --user --outdated
 
 read -r -p "Continue? (y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 
-/usr/bin/pip3 install --user --upgrade $(pip list --user --outdated | awk 'NR>2 {print $1}' | tr '\n' ' ')
+/usr/bin/pip3 install --user --upgrade $(/usr/bin/pip3 list --user --outdated | awk 'NR>2 {print $1}' | tr '\n' ' ')
