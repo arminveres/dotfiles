@@ -9,7 +9,7 @@ blinking = "On"
 shape = "Block"
 
 [font]
-size = 12
+size = 10
 builtin_box_drawing = true
 
 [font.glyph_offset]
@@ -17,7 +17,8 @@ x = 0
 y = 0
 
 [font.normal]
-family = "Terminess Nerd Font Mono"
+family = "MesloLGS Nerd Font Mono"
+# family = "Terminess Nerd Font Mono"
 # family = "DinaRemasterII"
 # family = "TamzenForPowerline"
 

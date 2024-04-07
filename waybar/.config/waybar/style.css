@@ -1,7 +1,7 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, Terminess Nerd Font, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: FontAwesome, MesloLGS Nerd Font, Helvetica, Arial, sans-serif;
+  font-size: 14px;
   border: none;
   border-radius: 10px;
 }

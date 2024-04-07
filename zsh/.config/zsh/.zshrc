@@ -126,5 +126,5 @@ if command -v zoxide > /dev/null; then
 fi
 
 # safe source cargo env
-zsh_safe_source "$CARGO_HOME"/env
-zsh_safe_source "$ZDOTDIR/scripts/mamba.zsh"
+# zsh_safe_source "$CARGO_HOME"/env
+# zsh_safe_source "$ZDOTDIR/scripts/mamba.zsh"

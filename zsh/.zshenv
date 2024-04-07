@@ -69,3 +69,5 @@ EDITOR=$(which nvim)
 export EDITOR
 export VISUAL=$EDITOR
 export MINICOM='-con'
+
+eval "$(direnv hook zsh)"

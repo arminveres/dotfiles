@@ -58,6 +58,12 @@ function wtz {
     fi
 }
 
+function rebuild() {
+    word="$(uname --nodename)"
+    IFS='-' read -r part1 part2 <<< "$word"
+    sudo nixos-rebuild switch --flake "$HOME/nix-conf/#$part2"
+}
+
 # =================================================================================================
 # Manual ZSH plugin manages
 # =================================================================================================
