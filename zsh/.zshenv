@@ -68,3 +68,4 @@ fi
 EDITOR=$(which nvim)
 export EDITOR
 export VISUAL=$EDITOR
+export MINICOM='-con'

@@ -1,19 +1,20 @@
 # specific files
 **/zsh_history
-tags
 **/.zcompdump
-**/packer_compiled.lua
 *.bak
 **/vifminfo.json
 **/vifminfo
 GTK/.config/gtk-2.0/gtkfilechooser.ini
 GTK/.config/gtk-3.0/servers
+GTK/.config/gtk-3.0/custom-papers
 GTK/.config/gtk-3.0/bookmarks
 GTK/.config/gtk-4.0/servers
 GTK/.config/gtk-4.0/gtk-dark.css
 GTK/.config/gtk-4.0/gtk.css
 GTK/.config/gtk-4.0/assets
 gitui/.config/gitui/theme.ron.old
+.comments/
+awesome-vert/.config/awesome/misc/.information
 
 # general files
 *.log
@@ -21,7 +22,3 @@ gitui/.config/gitui/theme.ron.old
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zsh_sessions/_expiration_check_timestamp
 zsh/**/*.session
-
-.comments/
-GTK/.config/gtk-3.0/custom-papers
-awesome-vert/.config/awesome/misc/.information

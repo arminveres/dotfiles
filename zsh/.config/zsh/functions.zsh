@@ -29,7 +29,7 @@ function git_update_project_in_dir {
 
 function open {
     if [[ $(uname) == 'Linux' ]]; then
-        xdg-open "$1" & disown
+        xdg-open "$1" & disown >/dev/null
     elif [[ $(uname) == 'Darwin' ]]; then
         open "$1" & disown
     fi
