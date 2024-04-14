@@ -1,16 +1,21 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: FontAwesome, MesloLGS Nerd Font, Helvetica, Arial, sans-serif;
+  font-family:
+    FontAwesome,
+    MesloLGS Nerd Font,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 14px;
   border: none;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 window#waybar {
   /* transparency needs to be set in the backround */
   background: @theme_base_color;
   color: @theme_text_color;
-  border-bottom: 1px solid @unfocused_borders;
+  border-bottom: 0px solid @unfocused_borders;
 }
 
 window#waybar.hidden {
