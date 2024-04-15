@@ -18,7 +18,6 @@ y = 0
 
 [font.normal]
 family = "MesloLGS Nerd Font Mono"
-# family = "Terminess Nerd Font Mono"
 # family = "DinaRemasterII"
 # family = "TamzenForPowerline"
 
@@ -45,3 +44,7 @@ hide_when_typing = true
 [env]
 # allows for same font size on monitors with different resolutions
 WINIT_X11_SCALE_FACTOR = "1.0"
+
+[shell]
+program = "/usr/bin/env"
+args = ["tmux"]

@@ -53,12 +53,12 @@ alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
 
 if command -v eza > /dev/null; then
-    alias ls="eza --color=always --group-directories-first --icons" # my preferred listing
-    alias la="eza --color=always --group-directories-first --long --all --header --icons"
-    alias lag="eza --color=always --group-directories-first --long --all --header --grid --icons"
-    alias lsg="eza --color=always --group-directories-first --long --header --grid --icons"
-    alias ll="eza --color=always --group-directories-first --long --header"
-    alias tree="eza --color=always --group-directories-first --tree --icons"
+    alias ls="eza --colour=always --group-directories-first --icons=always" # my preferred listing
+    alias la="eza --colour=always --group-directories-first --long --all --header --icons=always"
+    alias lag="eza --colour=always --group-directories-first --long --all --header --grid --icons=always"
+    alias lsg="eza --colour=always --group-directories-first --long --header --grid --icons=always"
+    alias ll="eza --colour=always --group-directories-first --long --header"
+    alias tree="eza --colour=always --group-directories-first --tree --icons=always"
 else
     alias ls="ls --color=always"
     alias la="ls --color=always --almost-all"
