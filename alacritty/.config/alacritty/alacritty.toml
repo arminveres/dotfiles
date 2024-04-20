@@ -9,7 +9,7 @@ blinking = "On"
 shape = "Block"
 
 [font]
-size = 10
+size = 13
 builtin_box_drawing = true
 
 [font.glyph_offset]
@@ -33,7 +33,7 @@ multiplier = 3
 [window]
 dynamic_padding = true
 opacity = 0.9
-# option_as_alt = "OnlyLeft"
+option_as_alt = "OnlyLeft"
 
 [window.padding]
 x = 3
@@ -47,4 +47,9 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 
 [shell]
 program = "/usr/bin/env"
-args = ["tmux"]
+args = ["zsh", "-lc", "tmux"]
+
+[keyboard]
+bindings = [
+  { key = "Slash", mods = "Control", chars = "\u001f" },
+]

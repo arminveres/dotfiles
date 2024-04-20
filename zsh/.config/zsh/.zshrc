@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/usr/bin/env zsh
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=xterm-256color
 
@@ -35,6 +35,12 @@ unsetopt menu_complete
 # -------------------------------------------------------------------------------------------------
 # Completions Configuration
 # -------------------------------------------------------------------------------------------------
+
+if command -v brew > /dev/null; then
+    # add brew completion
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 # FIXME: (aver) globbing is not case insensitive if sourced way above load completions
 autoload -Uz compinit
 

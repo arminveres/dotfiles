@@ -59,9 +59,16 @@ function wtz {
 }
 
 function rebuild() {
-    word="$(uname --nodename)"
-    part2=${word#*-}
-    sudo nixos-rebuild switch --flake "$HOME/nix-conf/#$part2"
+    case "$(uname)" in
+        Linux)
+            word="$(uname --nodename)"
+            part2=${word#*-}
+            sudo nixos-rebuild switch --flake "$HOME/nix-conf/#$part2"
+            ;;
+        Darwin)
+            darwin-rebuild switch --flake "$HOME/nix-conf#armins-macbook"
+            ;;
+    esac
 }
 
 # =================================================================================================

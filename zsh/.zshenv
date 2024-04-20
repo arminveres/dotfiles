@@ -6,7 +6,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent
 
 # this enables the automatic sourcing of zshrc in the config dir
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -47,19 +46,20 @@ path+=(
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-if command -v lsb_release > /dev/null; then
-    case "$(uname)" in
-        Linux)
-            DISTRO=$(lsb_release -i | awk '{print $3}')
-            export DISTRO
-            ;;
-        Darwin)
-            # export the distro for scrips and so to use
-            path+=(/opt/arm-none-eabi-12/bin)
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-            ;;
-    esac
-fi
+case "$(uname)" in
+    Linux)
+        DISTRO=$(lsb_release -i | awk '{print $3}')
+        export DISTRO
+        ;;
+    Darwin)
+        # export the distro for scrips and so to use
+        path+=(/opt/arm-none-eabi-12/bin)
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
+        export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
+        export VCPKG_ROOT="$HOME/vcpkg"
+        ;;
+esac
 
 # WARN: don't source Xresources if we are in wayland
 if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
@@ -72,4 +72,6 @@ export EDITOR
 export VISUAL=$EDITOR
 export MINICOM='-con'
 
-eval "$(direnv hook zsh)"
+if command -v direnv; then
+    eval "$(direnv hook zsh)"
+fi

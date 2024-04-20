@@ -22,3 +22,6 @@ awesome-vert/.config/awesome/misc/.information
 zsh/.config/zsh/.zhistory
 zsh/.config/zsh/.zsh_sessions/_expiration_check_timestamp
 zsh/**/*.session
+.zcompcache
+
+.DS_Store
