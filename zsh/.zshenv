@@ -72,6 +72,6 @@ export EDITOR
 export VISUAL=$EDITOR
 export MINICOM='-con'
 
-if command -v direnv; then
+if command -v direnv >/dev/null; then
     eval "$(direnv hook zsh)"
 fi

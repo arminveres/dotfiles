@@ -1,6 +1,6 @@
 # specific files
 **/zsh_history
-**/.zcompdump
+**/.zcompdump*
 *.bak
 **/vifminfo.json
 **/vifminfo
