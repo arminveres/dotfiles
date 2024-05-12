@@ -12,39 +12,66 @@
     "modules-right": [
         "backlight",
         "battery",
+        "gamemode",
         "tray"
     ],
     "tray": {
         "icon-size": 20,
         "spacing": 10
     },
+    "gamemode": {
+        "format": "{glyph}",
+        "format-alt": "{glyph} {count}",
+        "glyph": "",
+        "hide-not-running": true,
+        "use-icon": true,
+        "icon-name": "input-gaming-symbolic",
+        "icon-spacing": 4,
+        "icon-size": 20,
+        "tooltip": true,
+        "tooltip-format": "Games running: {count}"
+    },
     "hyprland/workspaces": {
         "on-click": "activate",
-        "format": "{name}"
-        // "format-icons": {
-        //     "default": "",
-        //     "active": "󰮯",
-        //     "urgent": "󰊠"
-        // }
+        // "format": "{name}"
+        "format": "{icon}",
+        "format-icons": {
+            "1": "code",
+            "11": "code",
+
+            "2": "www",
+            "12": "www",
+
+            "3": "res",
+            "13": "res",
+
+            "4": "mus",
+            "14": "mus",
+
+            "5": "game",
+            "15": "game",
+
+            "6": "mail",
+            "16": "mail",
+
+            "7": "vm",
+            "17": "vm",
+
+            "8": "tor",
+            "18": "tor",
+
+            "9": "msg",
+            "19": "msg",
+
+            // "active": "",
+            // "default": ""
+        }
     },
     "clock": {
-        "format": "󰥔  {:%R   󰃭  %a %d  %b %Y}",
+        "format": "󰥔  {:%R  󰃭  %a %d  %b %Y}",
+        "tooltip": false,
         "tooltip-format": "\n<span size='12pt' font='MesloLGS Nerd Font Mono'>{calendar}</span>",
         "on-click": "swaync-client -t",
-        // "calendar": {
-        //     "mode": "year",
-        //     "mode-mon-col": 3,
-        //     "weeks-pos": "left",
-        //     "on-scroll": 1,
-        //     "on-click-right": "mode",
-        //     "format": {
-        //         "months": "<span color='#d8dee9'><b>{}</b></span>",
-        //         "days": "<span color='#d8dee9'><b>{}</b></span>",
-        //         "weeks": "<span color='#a3be8c'><b>W{}</b></span>",
-        //         "weekdays": "<span color='#81a1c1'><b>{}</b></span>",
-        //         "today": "<span color='#bf616a'><b><u>{}</u></b></span>"
-        //     }
-        // },
         "actions": {
             "on-click-right": "mode",
             "on-click-forward": "tz_up",
