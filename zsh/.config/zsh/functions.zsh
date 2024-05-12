@@ -58,6 +58,10 @@ function wtz {
     fi
 }
 
+# =================================================================================================
+# Nix specific functions
+# =================================================================================================
+
 function rebuild() {
     case "$(uname)" in
         Linux)
@@ -69,6 +73,16 @@ function rebuild() {
             darwin-rebuild switch --flake "$HOME/nix-conf#armins-macbook"
             ;;
     esac
+}
+
+function flakify() {
+  if [ ! -e flake.nix ]; then
+    nix flake new -t github:nix-community/nix-direnv .
+  elif [ ! -e .envrc ]; then
+    echo "use flake" > .envrc
+    direnv allow
+  fi
+  ${EDITOR:-vim} flake.nix
 }
 
 # =================================================================================================
