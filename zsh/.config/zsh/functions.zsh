@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/usr/bin/env zsh
 
 function convert_heic_to_jpg {
     for file in *.(heic|HEIC); do
