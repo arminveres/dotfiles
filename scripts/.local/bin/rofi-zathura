@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 set -e
 set -o pipefail
 
@@ -16,7 +16,7 @@ DIRECTORIES=(
 )
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
-	ROFI_CMD="wofi --dmenu --insensitive --no-show-icons"
+	ROFI_CMD="fuzzel --dmenu"
 else
 	ROFI_CMD="rofi -no-show-icons -dmenu -i -config ~/.config/rofi/config-select.rasi"
 fi

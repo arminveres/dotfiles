@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
 

@@ -11,7 +11,7 @@ if ! command -v pactl; then
 fi
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
-    rofi_cmd="wofi --dmenu -no-show-icons"
+    rofi_cmd="fuzzel --dmenu"
 else
     rofi_cmd="rofi -dmenu -config ~/.config/rofi/config-select.rasi -no-show-icons"
 fi
