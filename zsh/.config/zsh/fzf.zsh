@@ -1,9 +1,11 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Setup fzf
 # ---------
-if [[ ! -f "$ZDOTDIR"/plugins/fzf/bin/fzf ]]; then
-    "$ZDOTDIR"/plugins/fzf/install --bin
+if ! command -v fzf > /dev/null; then
+    if [[ ! -f "$ZDOTDIR"/plugins/fzf/bin/fzf ]]; then
+        "$ZDOTDIR"/plugins/fzf/install --bin
+    fi
 fi
 
 if [[ ! "$PATH" == */home/armin/pers_git/fzf/bin* ]]; then
@@ -12,7 +14,7 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$ZDOTDIR/scripts/fzf-completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$ZDOTDIR/scripts/fzf-completion.zsh" 2>/dev/null
 
 # Key bindings
 # ------------
