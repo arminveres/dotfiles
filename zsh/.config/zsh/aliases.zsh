@@ -52,7 +52,7 @@ alias cl=clear
 alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
 
-if command -v eza > /dev/null; then
+if command -v eza >/dev/null; then
     alias ls="eza --colour=always --group-directories-first --icons=always" # my preferred listing
     alias la="eza --colour=always --group-directories-first --long --all --header --icons=always"
     alias lag="eza --colour=always --group-directories-first --long --all --header --grid --icons=always"
@@ -65,7 +65,7 @@ else
     alias ll="ls --color=always --long"
 fi
 
-if command -v bat > /dev/null; then
+if command -v bat >/dev/null; then
     alias cat="bat --style=plain"
 fi
 
@@ -78,7 +78,7 @@ alias uskb="setxkbmap eu"
 # restart resolve service, e.g. after Cisco VPN disconnect
 alias restart_resolve="sudo systemctl restart systemd-resolved.service"
 
-if command -v cargo > /dev/null; then
+if command -v cargo >/dev/null; then
     alias carup="cargo install-update --all"
 fi
 
@@ -92,19 +92,20 @@ fi
 # ================================================================================================
 if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
     case "$DISTRO" in
-        Ubuntu | Debian)
-            alias nala='sudo nala'
-            alias upd='sudo apt update && sudo apt upgrade'
-            ;;
-        Fedora) # echo Fedora
-            alias dnf='sudo dnf'
-            alias din='dnf install'
-            alias dup='dnf upgrade'
-            alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
-            ;;
-        *)
-            ;;
+    Ubuntu | Debian)
+        alias nala='sudo nala'
+        alias upd='sudo apt update && sudo apt upgrade'
+        ;;
+    Fedora) # echo Fedora
+        alias dnf='sudo dnf'
+        alias din='dnf install'
+        alias dup='dnf upgrade'
+        alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
+        ;;
+    NixOS)
+        alias nxfclean='nix-collect-garbage -d && nix-store --optimize'
+        alias nxclean='nix-collect-garbage && nix-store --optimize'
+        ;;
+    *) ;;
     esac
 fi
-alias nxfclean='nix-collect-garbage -d && nix-store --optimize'
-alias nxclean='nix-collect-garbage && nix-store --optimize'

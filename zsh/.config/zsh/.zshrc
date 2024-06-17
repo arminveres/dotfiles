@@ -36,13 +36,8 @@ unsetopt menu_complete
 # Completions Configuration
 # -------------------------------------------------------------------------------------------------
 
-if command -v brew > /dev/null; then
-    # add brew completion
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
 # FIXME: (aver) globbing is not case insensitive if sourced way above load completions
-autoload -Uz compinit
+# autoload -Uz compinit
 
 zstyle ':completion:*' menu select
 # insensitive tab completion
@@ -66,9 +61,9 @@ fpath+=(
 )
 
 # Load completions: make all files found be used without asking, use the option -u
-compinit -u
-
-autoload -Uz colors && colors
+# use -C for a compiled version, blazingly fast!!!
+autoload -Uz compinit; compinit -C
+autoload -Uz colors; colors
 
 # ==================================================================================================
 # Sourcing plugins and custom scripts
@@ -88,9 +83,6 @@ source "$ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh"
 source "$ZDOTDIR/prompt.zsh"
 
 # Plugins
-# zsh_add_plugin "zsh-users/zsh-autosuggestions"
-# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-# zsh_add_plugin "hlissner/zsh-autopair"
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
@@ -117,19 +109,3 @@ bindkey "^n" down-line-or-beginning-search # Down
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-
-# ==================================================================================================
-# Custom sourcing and functions
-# ==================================================================================================
-# WARN: Zoxide removed this functionality and broke it for zsh.
-if command -v zoxide > /dev/null; then
-    # eval "$(zoxide init zsh --cmd z)"
-    eval "$(zoxide init zsh --no-cmd)"
-    function z () {
-        __zoxide_z "$@"
-    }
-    function zi () {
-        __zoxide_zi "$@"
-    }
-fi
