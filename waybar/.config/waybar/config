@@ -37,31 +37,20 @@
         "format": "{icon}",
         "format-icons": {
             "1": "code",
-            "11": "code",
 
             "2": "www",
-            "12": "www",
 
-            "3": "res",
-            "13": "res",
+            "3": "mail",
 
-            "4": "mus",
-            "14": "mus",
+            "4": "game",
 
-            "5": "game",
-            "15": "game",
+            "5": "res",
 
-            "6": "mail",
-            "16": "mail",
+            "6": "msg",
 
-            "7": "vm",
-            "17": "vm",
+            "7": "mus",
 
-            "8": "tor",
-            "18": "tor",
 
-            "9": "msg",
-            "19": "msg",
 
             // "active": "",
             // "default": ""

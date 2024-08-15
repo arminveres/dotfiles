@@ -17,6 +17,7 @@ DIRECTORIES=(
 
 if echo "$XDG_SESSION_TYPE" | grep wayland -q; then
 	ROFI_CMD="fuzzel --dmenu"
+	# ROFI_CMD="wofi --dmenu --insensitive --no-show-icons"
 else
 	ROFI_CMD="rofi -no-show-icons -dmenu -i -config ~/.config/rofi/config-select.rasi"
 fi

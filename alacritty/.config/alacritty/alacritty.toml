@@ -9,7 +9,7 @@ blinking = "On"
 shape = "Block"
 
 [font]
-size = 13
+size = 12
 builtin_box_drawing = true
 
 [font.glyph_offset]
@@ -17,9 +17,8 @@ x = 0
 y = 0
 
 [font.normal]
-family = "MesloLGS Nerd Font Mono"
-# family = "DinaRemasterII"
 # family = "TamzenForPowerline"
+family = "Terminus"
 
 [font.offset]
 x = 0
@@ -47,9 +46,7 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 
 [shell]
 program = "/usr/bin/env"
-args = ["zsh", "-lc", "tmux"]
+args = ["tmux"]
 
 [keyboard]
-bindings = [
-  { key = "Slash", mods = "Control", chars = "\u001f" },
-]
+bindings = [{ key = "Slash", mods = "Control", chars = "\u001f" }]
