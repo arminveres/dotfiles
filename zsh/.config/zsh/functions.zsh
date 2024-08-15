@@ -62,17 +62,23 @@ function wtz {
 # Nix specific functions
 # =================================================================================================
 
-function rebuild() {
+function lrebuild() {
     case "$(uname)" in
         Linux)
-            word="$(uname --nodename)"
-            part2=${word#*-}
-            sudo nixos-rebuild switch --flake "$HOME/nix-conf/#$part2"
+            sudo nixos-rebuild switch --flake "$FLAKE#$(hostname)"
             ;;
         Darwin)
             darwin-rebuild switch --flake "$HOME/nix-conf#armins-macbook"
             ;;
     esac
+}
+
+# @brief rebuilds the system on my remote server
+function rrebuild() {
+    nixos-rebuild switch \
+        --flake "$FLAKE#$(hostname)" \
+        --build-host arminserver-zt \
+        --use-remote-sudo
 }
 
 function flakify() {

@@ -10,8 +10,7 @@ esac
 sel_conf=$("$fdcmd" --max-depth 1 . "$XDG_CONFIG_HOME" | fzf)
 
 if [[ -n $sel_conf ]]; then
-	# nvim -c "Telescope find_files search_dirs=$sel_conf"
-	nvim "$sel_conf"
+	nvim -c "chdir $sel_conf" #-c "Telescope find_files search_dirs=$sel_conf"
 else
 	printf "Nothing selected!\n"
 fi

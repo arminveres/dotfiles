@@ -36,7 +36,7 @@ unsetopt menu_complete
 # Completions Configuration
 # -------------------------------------------------------------------------------------------------
 
-# FIXME: (aver) globbing is not case insensitive if sourced way above load completions
+# FIXME(aver): globbing is not case insensitive if sourced way above load completions
 # autoload -Uz compinit
 
 zstyle ':completion:*' menu select
