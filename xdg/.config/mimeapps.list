@@ -1,15 +1,19 @@
 [Added Associations]
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;firefox.desktop
-x-scheme-handler/mailto=userapp-Thunderbird-MLTWL2.desktop
-x-scheme-handler/mid=userapp-Thunderbird-MLTWL2.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-MLTWL2.desktop;userapp-Thunderbird-2UP5R2.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-MLTWL2.desktop;userapp-Thunderbird-2UP5R2.desktop;
 text/plain=nvim.desktop;
+image/jpeg=org.gnome.gThumb.desktop;
+image/png=org.gnome.gThumb.desktop;
 
 [Default Applications]
 application/pdf=firefox.desktop
-message/rfc822=userapp-Thunderbird-MLTWL2.desktop
+message/rfc822=userapp-Thunderbird-2UP5R2.desktop
 text/markdown=nvim.desktop
-x-scheme-handler/mailto=userapp-Thunderbird-MLTWL2.desktop
-x-scheme-handler/mid=userapp-Thunderbird-MLTWL2.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-2UP5R2.desktop
+x-scheme-handler/mid=userapp-Thunderbird-2UP5R2.desktop
 text/plain=nvim.desktop
+image/jpeg=org.gnome.gThumb.desktop
+image/png=org.gnome.gThumb.desktop
 
 [Removed Associations]

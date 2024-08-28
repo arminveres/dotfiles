@@ -105,6 +105,7 @@ if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
     NixOS)
         alias nxfclean='nix-collect-garbage -d && nix-store --optimize'
         alias nxclean='nix-collect-garbage && nix-store --optimize'
+        function resprg() { pkill $1; hyprctl dispatch exec $1 }
         ;;
     *) ;;
     esac
