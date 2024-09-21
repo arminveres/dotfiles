@@ -27,6 +27,8 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 # export _ZO_ECHO=1 # print dir before switching
+#
+export MANPAGER='nvim +Man!'
 
 # BUG: need to put CARGO_HOME at first place, otherwise system rustc will be used
 # export PATH="$CARGO_HOME"/bin:$PATH

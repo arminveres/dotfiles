@@ -37,27 +37,22 @@
         "format": "{icon}",
         "format-icons": {
             "1": "code",
-
             "2": "www",
-
-            "3": "mail",
-
-            "4": "game",
-
-            "5": "res",
+            "3": "game",
+            "4": "res",
+            "5": "misc",
 
             "6": "msg",
-
-            "7": "mus",
-
-
+            "7": "mail",
+            "8": "mus",
+            "9": "oc",
 
             // "active": "",
             // "default": ""
         }
     },
     "clock": {
-        "format": "󰥔  {:%R  󰃭  %a %d  %b %Y}",
+        "format": "󰥔  {:%R  󰃭  %a %d %b %Y}",
         "tooltip": false,
         "tooltip-format": "\n<span size='12pt' font='MesloLGS Nerd Font Mono'>{calendar}</span>",
         "on-click": "swaync-client -t",
