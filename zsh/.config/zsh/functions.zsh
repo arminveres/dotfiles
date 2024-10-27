@@ -1,9 +1,13 @@
 #!/usr/bin/env zsh
 
 function convert_heic_to_jpg {
+    if ! command -v magick > /dev/null; then
+        printf "magic missing, aborting"
+        return
+    fi
     for file in *.(heic|HEIC); do
         echo $file
-        heif-convert $file ${file/%.(heic|HEIC)/.jpg};
+        magick $file ${file/%.(heic|HEIC)/.jpg};
     done
     if [[ $1 == "-d" ]]; then
         rm -f *.HEIC

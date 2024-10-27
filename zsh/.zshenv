@@ -24,6 +24,9 @@ export MANGOHUD_CONFIGFILE=$XDG_CONFIG_HOME/MangoHud/MangoHud.conf
 export GOPATH="$XDG_DATA_HOME"/go
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 
+# FIXME(aver): for some reason, this does get set automatically
+export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
+
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 # export _ZO_ECHO=1 # print dir before switching
