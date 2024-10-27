@@ -1,5 +1,5 @@
 # more settings under: https://alacritty.org/config-alacritty.html
-import = ["/home/arminveres/.config/alacritty/gruvbox-black.toml"]
+general.import = ["/home/arminveres/.config/alacritty/gruvbox-black.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -44,7 +44,7 @@ hide_when_typing = true
 # allows for same font size on monitors with different resolutions
 WINIT_X11_SCALE_FACTOR = "1.0"
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/env"
 args = ["tmux"]
 

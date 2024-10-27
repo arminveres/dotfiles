@@ -1,8 +1,8 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family:
-    FontAwesome,
     Iosevka Nerd Font Propo,
+    FontAwesome,
     sans-serif;
   font-size: 15px;
   border: none;
@@ -254,5 +254,9 @@ label:focus {
 #mpd {
   padding: 0 10px;
   color: #ffffff;
+}
+
+#custom-notification {
+  font-family: Iosevka Nerd Font Propo;
 }
 /* vim:ft=less */

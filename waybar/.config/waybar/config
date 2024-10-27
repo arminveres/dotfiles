@@ -7,7 +7,8 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "clock",
+        "custom/notification"
     ],
     "modules-right": [
         "backlight",
@@ -41,28 +42,17 @@
             "3": "game",
             "4": "res",
             "5": "misc",
-
             "6": "msg",
             "7": "mail",
             "8": "mus",
-            "9": "oc",
-
+            "9": "oc"
             // "active": "",
             // "default": ""
         }
     },
     "clock": {
-        "format": "󰥔  {:%R  󰃭  %a %d %b %Y}",
-        "tooltip": false,
-        "tooltip-format": "\n<span size='12pt' font='MesloLGS Nerd Font Mono'>{calendar}</span>",
-        "on-click": "swaync-client -t",
-        "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
-        }
+        "format": "󰥔 {:%R  󰃭 %a %d %b %Y}",
+        "tooltip": false
     },
     "battery": {
         "bat": "BAT0",
@@ -98,6 +88,26 @@
             "",
             ""
         ]
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": " ",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": " ",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": " ",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": " "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }
 // vim:ft=jsonc
