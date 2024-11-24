@@ -109,3 +109,23 @@ bindkey "^n" down-line-or-beginning-search # Down
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# ================================================================================================
+# Distro specifig setup
+# ================================================================================================
+if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
+    case "$DISTRO" in
+    Ubuntu | Debian)
+        alias nala='sudo nala'
+        alias upd='sudo apt update && sudo apt upgrade'
+        ;;
+    Fedora) # echo Fedora
+        alias dnf='sudo dnf'
+        alias din='dnf install'
+        alias dup='dnf upgrade'
+        alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
+        ;;
+    NixOS) source "$ZDOTDIR/nix.zsh" ;;
+    *) ;;
+    esac
+fi

@@ -63,39 +63,6 @@ function wtz {
 }
 
 # =================================================================================================
-# Nix specific functions
-# =================================================================================================
-
-function lrebuild() {
-    case "$(uname)" in
-        Linux)
-            sudo nixos-rebuild switch --flake "$FLAKE#$(hostname)"
-            ;;
-        Darwin)
-            darwin-rebuild switch --flake "$HOME/nix-conf#armins-macbook"
-            ;;
-    esac
-}
-
-# @brief rebuilds the system on my remote server
-function rrebuild() {
-    nixos-rebuild switch \
-        --flake "$FLAKE#$(hostname)" \
-        --build-host arminserver-zt \
-        --use-remote-sudo
-}
-
-function flakify() {
-  if [ ! -e flake.nix ]; then
-    nix flake new -t github:nix-community/nix-direnv .
-  elif [ ! -e .envrc ]; then
-    echo "use flake" > .envrc
-    direnv allow
-  fi
-  ${EDITOR:-vim} flake.nix
-}
-
-# =================================================================================================
 # Manual ZSH plugin manages
 # =================================================================================================
 

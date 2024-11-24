@@ -20,7 +20,7 @@ alias lad=lazydocker
 # git
 # ================================================================================================
 alias gb="git branch"
-alias gls="git status"
+alias gs="git status"
 alias ga="git add"
 alias glo="git log --graph --oneline --decorate"
 alias wt="git worktree"
@@ -87,26 +87,9 @@ if [[ $TERM == "xterm-kitty" ]]; then
     alias connect="kitty +kitten ssh"
 fi
 
-# ================================================================================================
-# Distro specifig aliases
-# ================================================================================================
-if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
-    case "$DISTRO" in
-    Ubuntu | Debian)
-        alias nala='sudo nala'
-        alias upd='sudo apt update && sudo apt upgrade'
-        ;;
-    Fedora) # echo Fedora
-        alias dnf='sudo dnf'
-        alias din='dnf install'
-        alias dup='dnf upgrade'
-        alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
-        ;;
-    NixOS)
-        alias nxfclean='nix-collect-garbage -d && nix-store --optimize'
-        alias nxclean='nix-collect-garbage && nix-store --optimize'
-        function resprg() { pkill $1; hyprctl dispatch exec $1 }
-        ;;
-    *) ;;
-    esac
+if command -v hyprctl >/dev/null; then
+    function resprg() {
+        pkill $1
+        hyprctl dispatch exec $1
+    }
 fi

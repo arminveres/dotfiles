@@ -90,12 +90,5 @@ fi
 
 # WARN(aver): Zoxide removed this functionality and broke it for zsh.
 if command -v zoxide > /dev/null; then
-    # eval "$(zoxide init zsh --cmd z)"
-    eval "$(zoxide init zsh --no-cmd)"
-    function z () {
-        __zoxide_z "$@"
-    }
-    function zi () {
-        __zoxide_zi "$@"
-    }
+    eval "$(zoxide init zsh --cmd cd)"
 fi
