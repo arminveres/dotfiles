@@ -1,3 +1,0 @@
-- [ ] Add calendar dropdown
-- [ ] Add better structuring with import modules (config)
-- [ ] Restructure bar e.g. move display brightness, volume and battery level into own component (visuals)

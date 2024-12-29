@@ -58,8 +58,8 @@
         "bat": "BAT0",
         "interval": 10,
         "states": {
-            "warning": 30,
-            "critical": 15
+            "warning": 20,
+            "critical": 5
         },
         "format": "󱐋 {icon} ", // Icon: bolt
         "format-discharging": "{capacity}% {icon}",

@@ -1,1 +1,0 @@
-require("lain.init")
