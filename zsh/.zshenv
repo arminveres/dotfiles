@@ -1,8 +1,8 @@
 # setting some XDGs
-export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CONFIG_HOME=$HOME/.config
-export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
 
 export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 export WINEPREFIX="$XDG_DATA_HOME"/wine
@@ -11,7 +11,7 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export PSQL_HISTORY="$XDG_DATA_HOME/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
@@ -21,8 +21,11 @@ export MANGOHUD_CONFIGFILE=$XDG_CONFIG_HOME/MangoHud/MangoHud.conf
 export GOPATH="$XDG_DATA_HOME"/go
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 
+export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
 # FIXME(aver): for some reason, this does get set automatically
-export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
+# export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
 
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
@@ -43,9 +46,6 @@ path+=(
     "$XDG_DATA_HOME"/bob/nvim-bin
     "$HOME"/.luarocks/bin
 )
-
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 case "$(uname)" in
 Linux)
@@ -71,21 +71,9 @@ if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 fi
 
-EDITOR=$(which nvim)
-export EDITOR
+export EDITOR=$(which nvim)
 export VISUAL=$EDITOR
 export MINICOM='-con'
 
-if command -v direnv >/dev/null; then
-    eval "$(direnv hook zsh)"
-fi
-
-if command -v brew > /dev/null; then
-    # add brew completion
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
-# WARN(aver): Zoxide removed this functionality and broke it for zsh.
-if command -v zoxide > /dev/null; then
-    eval "$(zoxide init zsh --cmd cd)"
-fi
+export NINJA_STATUS="[%f/%t %p, %oe/s, %es] "
+export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-18
