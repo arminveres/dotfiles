@@ -17,26 +17,6 @@ alias lg='pushd $(realpath .); lazygit; popd'
 alias lad=lazydocker
 
 # ================================================================================================
-# git
-# ================================================================================================
-alias gb="git branch"
-alias gs="git status"
-alias ga="git add"
-alias glo="git log --graph --oneline --decorate"
-alias wt="git worktree"
-alias gco="git checkout"
-alias gsw="git switch"
-alias gg="git pull"
-alias gp="git push"
-alias gpf="git push --force-with-lease"
-alias gf="git fetch"
-alias gsup="git submodule foreach 'git checkout main || git checkout master; git pull'"
-alias grc='git rebase --continue'
-alias gra='git rebase --abort'
-alias gri='git rebase --interactive'
-alias gmt='git mergetool'
-
-# ================================================================================================
 # aliasing coreutils
 # ================================================================================================
 # confirm before overwriting something

@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # Setup fzf
 # ---------
 if ! command -v fzf >/dev/null; then

@@ -77,6 +77,7 @@ source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/vim_mode.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/fzf.zsh"
+source "$ZDOTDIR/git.zsh"
 
 # Prompt
 source "$ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh"
