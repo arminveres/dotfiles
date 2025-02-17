@@ -86,7 +86,7 @@ esac
 ;;
 (install)
 _arguments "${_arguments_options[@]}" \
-'--profile=[]: :(minimal default complete)' \
+'--profile=[]: : ' \
 '*--no-self-update[Don'\''t perform self-update when running the `rustup install` command]' \
 '*--force[Force an update, even if some components are missing]' \
 '*--force-non-host[Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains]' \
@@ -149,7 +149,7 @@ _arguments "${_arguments_options[@]}" \
 ;;
 (install)
 _arguments "${_arguments_options[@]}" \
-'--profile=[]: :(minimal default complete)' \
+'--profile=[]: : ' \
 '*-c+[Add specific components on installation]: : ' \
 '*--component=[Add specific components on installation]: : ' \
 '*-t+[Add specific targets on installation]: : ' \
@@ -444,14 +444,14 @@ _arguments "${_arguments_options[@]}" \
 _arguments "${_arguments_options[@]}" \
 '-h[Print help information]' \
 '--help[Print help information]' \
-':profile-name:(minimal default complete)' \
+':profile-name:' \
 && ret=0
 ;;
 (auto-self-update)
 _arguments "${_arguments_options[@]}" \
 '-h[Print help information]' \
 '--help[Print help information]' \
-':auto-self-update-mode:(enable disable check-only)' \
+':auto-self-update-mode:' \
 && ret=0
 ;;
 (help)
@@ -467,8 +467,8 @@ esac
 _arguments "${_arguments_options[@]}" \
 '-h[Print help information]' \
 '--help[Print help information]' \
-'::shell:(bash elvish fish powershell zsh)' \
-'::command:(rustup cargo)' \
+'::shell:' \
+'::command:' \
 && ret=0
 ;;
 (help)

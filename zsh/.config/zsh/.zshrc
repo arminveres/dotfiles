@@ -56,13 +56,13 @@ zmodload zsh/complist
 _comp_options+=(globdots)      # Include hidden files.
 
 fpath+=(
-    "$ZDOTDIR"/completion/
-    "$ZDOTDIR"/plugins/zsh-completions/src
+    "$ZDOTDIR/plugins/zsh-completions/src"
+    "$ZDOTDIR/completion"
 )
 
 # Load completions: make all files found be used without asking, use the option -u
 # use -C for a compiled version, blazingly fast!!!
-autoload -Uz compinit; compinit -C
+autoload -Uz compinit; compinit
 autoload -Uz colors; colors
 
 # ==================================================================================================

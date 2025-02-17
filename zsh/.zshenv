@@ -24,17 +24,12 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-# FIXME(aver): for some reason, this does get set automatically
-# export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
-
 # always compile tex in a build directory
 export VIMTEX_OUTPUT_DIRECTORY=build
 # export _ZO_ECHO=1 # print dir before switching
 #
 export MANPAGER='nvim +Man!'
 
-# BUG: need to put CARGO_HOME at first place, otherwise system rustc will be used
-# export PATH="$CARGO_HOME"/bin:$PATH
 path+=(
     /usr/local/bin
     /opt/gcc-arm-none-eabi/bin
