@@ -12,9 +12,12 @@ alias flean='flatpak remove --unused'
 
 alias onefetch='onefetch --include-hidden'
 
-# WARN: use single quotes
-alias lg='pushd $(realpath .); lazygit; popd'
 alias lad=lazydocker
+function lg() {
+    pushd $(realpath .) >/dev/null
+    lazygit
+    popd >/dev/null
+}
 
 # ================================================================================================
 # aliasing coreutils
@@ -28,21 +31,22 @@ alias mkdir="mkdir -pv"
 alias df='df -h'     # human-readable sizes
 alias free='free -m' # show sizes in MB
 alias dd='dd status=progress'
-alias cl=clear
 alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
 
 if command -v eza >/dev/null; then
-    alias ls="eza --colour=always --group-directories-first --icons=always" # my preferred listing
-    alias la="eza --colour=always --group-directories-first --long --all --header --icons=always"
-    alias lag="eza --colour=always --group-directories-first --long --all --header --grid --icons=always"
-    alias lsg="eza --colour=always --group-directories-first --long --header --grid --icons=always"
-    alias ll="eza --colour=always --group-directories-first --long --header"
-    alias tree="eza --colour=always --group-directories-first --tree --icons=always"
+    local EZAOPTIONS="--colour=always --group-directories-first --icons=always"
+    alias ls="eza $EZAOPTIONS" # my preferred listing
+    alias la="eza $EZAOPTIONS --long --all --header"
+    alias lag="eza $EZAOPTIONS --long --all --header --grid"
+    alias lsg="eza $EZAOPTIONS --long --header --grid"
+    alias ll="eza $EZAOPTIONS --long --header"
+    alias tree="eza $EZAOPTIONS --tree"
 else
-    alias ls="ls --color=always"
-    alias la="ls --color=always --almost-all"
-    alias ll="ls --color=always --long"
+    local LSOPTIONS="--color=always -H"
+    alias ls="ls $LSOPTIONS"
+    alias la="ls $LSOPTIONS --almost-all"
+    alias ll="ls $LSOPTIONS -L"
 fi
 
 if command -v bat >/dev/null; then
