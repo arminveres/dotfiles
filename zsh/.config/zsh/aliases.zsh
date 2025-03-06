@@ -1,7 +1,9 @@
 # applications
-alias vi="nvim"
-alias viup="nvim --headless "+Lazy! sync" +qa"
-alias vim="nvim"
+if command -v nvim >/dev/null; then
+    alias vi="nvim"
+    alias viup="nvim --headless "+Lazy! sync" +qa"
+    alias vim="nvim"
+fi
 alias py="python3"
 alias pypip="pypy3 -m pip"
 alias tmux="tmux -2"
@@ -45,12 +47,8 @@ if command -v eza >/dev/null; then
 else
     local LSOPTIONS="--color=always -H"
     alias ls="ls $LSOPTIONS"
-    alias la="ls $LSOPTIONS --almost-all"
+    alias la="ls $LSOPTIONS -L --almost-all"
     alias ll="ls $LSOPTIONS -L"
-fi
-
-if command -v bat >/dev/null; then
-    alias cat="bat --style=plain"
 fi
 
 # ================================================================================================
