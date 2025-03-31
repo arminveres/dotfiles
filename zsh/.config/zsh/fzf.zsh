@@ -4,16 +4,15 @@ if ! command -v fzf >/dev/null; then
     if [[ ! -f "$ZDOTDIR"/plugins/fzf/bin/fzf ]]; then
         "$ZDOTDIR"/plugins/fzf/install --bin
     fi
-    if [[ ! "$PATH" == */home/armin/pers_git/fzf/bin* ]]; then
-        PATH="${PATH:+${PATH}:}$ZDOTDIR/plugins/fzf/bin"
+    if [[ ! "$path" == *fzf/bin* ]]; then
+        path+="$ZDOTDIR/plugins/fzf/bin"
     fi
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "$ZDOTDIR/scripts/fzf-completion.zsh" 2>/dev/null
+[[ $- == *i* ]] && source "$ZDOTDIR/plugins/fzf/shell/completion.zsh" 2>/dev/null
 
 # Key bindings
 # ------------
-# source "/home/armin/pers_git/fzf/shell/key-bindings.zsh"
-source "$ZDOTDIR/scripts/fzf-keybindings.zsh"
+source "$ZDOTDIR/plugins/fzf/shell/key-bindings.zsh"

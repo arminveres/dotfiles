@@ -14,10 +14,6 @@
 	path = zsh/.config/zsh/plugins/zsh-autopair
 	url = https://github.com/hlissner/zsh-autopair.git
 	branch = main
-[submodule "zsh/.config/zsh/plugins/fzf"]
-	path = zsh/.config/zsh/plugins/fzf
-	url = https://github.com/junegunn/fzf.git
-	branch = main
 [submodule "zsh/.config/zsh/plugins/zsh-completions"]
 	path = zsh/.config/zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
@@ -33,3 +29,6 @@
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
 	url = git@github.com:arminveres/dotfiles-secret
+[submodule "zsh/.config/zsh/plugins/fzf"]
+	path = zsh/.config/zsh/plugins/fzf
+	url = https://github.com/junegunn/fzf
