@@ -27,7 +27,6 @@ function lg() {
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv="mv -i"
-alias rma="rm -ir"
 alias ln="ln -i"
 alias mkdir="mkdir -pv"
 alias df='df -h'     # human-readable sizes
@@ -35,6 +34,16 @@ alias free='free -m' # show sizes in MB
 alias dd='dd status=progress'
 alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
+
+# alias rma="rm -irf"
+### Verbosely remove directories recursively
+function rmv() {
+    printf "Removing:\n"
+    for val in "$@"; do
+        printf "  %s\n" $(readlink --canonicalize "$val")
+    done
+    rm --recursive --force --interactive=once "$@"
+}
 
 if command -v eza >/dev/null; then
     local EZAOPTIONS="--colour=always --group-directories-first --icons=always"

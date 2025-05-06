@@ -20,6 +20,7 @@ export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
 export MANGOHUD_CONFIGFILE=$XDG_CONFIG_HOME/MangoHud/MangoHud.conf
 export GOPATH="$XDG_DATA_HOME"/go
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export NETRC_FILE="$XDG_CONFIG_HOME"/netrc
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
