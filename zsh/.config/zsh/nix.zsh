@@ -2,6 +2,13 @@
 # =================================================================================================
 # Nix specific functions
 # =================================================================================================
+# FIXME(aver): for some reason, this does get set automatically
+export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
+
+# Pretty print log messages
+function log() {
+    printf "\n<<<< $1 >>>>\n\n"
+}
 
 function lrebuild() {
     case "$(uname)" in
@@ -37,13 +44,13 @@ function flakify() {
 function nxup() {
     local GIT_REPO=$HOME/nix-conf
 
-    printf "\n<<<< Running NixOS system update >>>>\n\n"
-    if ! nh os switch --update; then
-        printf "Update failed"
+    log "Running NixOS system update"
+    if ! nh os boot --update; then
+        log "Update failed!"
         return
     fi
 
-    printf "\n\n<<<< Creating commit for update >>>>\n\n"
+    log "Creating commit for update"
     pushd $GIT_REPO
     git commit $GIT_REPO/flake.lock \
         -m "build(flake): update lockfile $(date -u +%Y-%m-%dT%H:%M%Z)"
@@ -52,10 +59,8 @@ function nxup() {
             -m "build(flake): update lockfile $(date -u +%Y-%m-%dT%H:%M%Z)"
     fi
     popd
+    log "Update successful!"
 }
 
 alias nxfclean='nix-collect-garbage -d && nix-store --optimize'
 alias nxclean='nix-collect-garbage && nix-store --optimize'
-
-# FIXME(aver): for some reason, this does get set automatically
-# export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH"
