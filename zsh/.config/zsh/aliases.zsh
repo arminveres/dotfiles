@@ -1,7 +1,7 @@
 # applications
 if command -v nvim >/dev/null; then
     alias vi="nvim"
-    alias viup="nvim --headless "+Lazy! sync" +qa"
+    alias viup="nvim --headless '+Lazy! sync' +qa"
     alias vim="nvim"
 fi
 alias py="python3"
