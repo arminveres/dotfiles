@@ -1,12 +1,10 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family:
-  Terminus,
-    FontAwesome,
     Iosevka Nerd Font Propo,
     FontAwesome,
     sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   border: none;
   border-radius: 0px;
 }
