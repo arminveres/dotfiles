@@ -7,6 +7,7 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
+        "custom/sleep-toggle",
         "clock",
         "custom/notification"
     ],
@@ -108,6 +109,12 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "custom/sleep-toggle": {
+        "on-click": "~/.config/waybar/inhibit-sleep-toggle.sh",
+        "return-type": "json",
+        "interval": 30,
+        "exec": "~/.config/waybar/get-sleep-status.sh",
     }
 }
 // vim:ft=jsonc
