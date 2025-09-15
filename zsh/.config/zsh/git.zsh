@@ -24,13 +24,18 @@ alias gmt='git mergetool'
 # Pull the main or master branch for each submodule in a repo
 # NOTE(aver): this is non-recursive, consider adding an option for recursive if necessary
 function gsup() {
-    git submodule foreach '
-  if git show-ref --verify --quiet refs/heads/main; then
-    git checkout main && git pull origin main;
-  elif git show-ref --verify --quiet refs/heads/master; then
-    git checkout master && git pull origin master;
-  else
-    echo "Neither main nor master branch exists in submodule at $sm_path";
-  fi
+  git submodule foreach '
+    if git show-ref --verify --quiet refs/heads/main; then
+      git checkout main && git pull origin main;
+    elif git show-ref --verify --quiet refs/heads/master; then
+      git checkout master && git pull origin master;
+    else
+      echo "Neither main nor master branch exists in submodule at $sm_path";
+    fi
 '
+}
+
+function wtcd() {
+  local dir="$(git worktree list | fzf | awk '{print $1}')"
+  [[ -n "$dir" ]] && cd $dir
 }

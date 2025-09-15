@@ -92,10 +92,10 @@ source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
 # ==================================================================================================
 # Key-bindings
 # ==================================================================================================
-bindkey -s '^f' "^Uzi^M"
 bindkey -s '^v' "^U$ZDOTDIR/scripts/fzf_vim.sh^M"
 bindkey -s '^_' "^U$ZDOTDIR/scripts/conf.sh^M"
-bindkey -s '^s' "^Utmux-sessionizer^M"
+bindkey -s '^f' "^Ucdi^M"
+# bindkey -s '^s' "^Utmux-sessionizer^M"
 
 bindkey "^[[3~" delete-char
 bindkey '^o' end-of-line
@@ -114,8 +114,8 @@ bindkey '^e' edit-command-line
 # ================================================================================================
 # Distro specifig setup
 # ================================================================================================
-if [[ $(uname) == 'Linux' ]] && [[ -n $DISTRO ]]; then
-    case "$DISTRO" in
+if [[ "$(uname)" == "Linux" ]] && [[ -n "$DIST" ]]; then
+    case "$DIST" in
     Ubuntu | Debian)
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
@@ -141,7 +141,7 @@ if command -v zoxide >/dev/null; then
 fi
 
 if command -v keychain >/dev/null; then
-    eval "$(keychain --quiet --quick --eval id_rsa gh)"
+    eval "$(keychain --noask --quiet --eval id_rsa gh)"
 fi
 
 ulimit -n $((2 ** 16))
