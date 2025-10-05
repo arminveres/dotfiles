@@ -93,8 +93,8 @@ source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
 # Key-bindings
 # ==================================================================================================
 bindkey -s '^f' "^Uzi^M"
-bindkey -s '^v' "^U$HOME/.config/zsh/scripts/fzf_vim.sh^M"
-bindkey -s '^_' "^U$HOME/.config/zsh/scripts/conf.sh^M"
+bindkey -s '^v' "^U$ZDOTDIR/scripts/fzf_vim.sh^M"
+bindkey -s '^_' "^U$ZDOTDIR/scripts/conf.sh^M"
 bindkey -s '^s' "^Utmux-sessionizer^M"
 
 bindkey "^[[3~" delete-char

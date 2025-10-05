@@ -12,7 +12,7 @@ fi
 sel_conf=$("$FDCMD" --max-depth 1 . "$XDG_CONFIG_HOME" | fzf)
 
 if [[ -n $sel_conf ]]; then
-	nvim -c "chdir $sel_conf" #-c "Telescope find_files search_dirs=$sel_conf"
+	nvim -c "lua Snacks.picker.files({ hidden = true, dirs = { '$sel_conf' } })"
 else
 	echo "INFO: Nothing selected!"
 fi
