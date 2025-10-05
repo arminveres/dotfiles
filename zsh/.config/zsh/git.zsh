@@ -2,9 +2,13 @@
 # git
 # ================================================================================================
 alias gb="git branch"
-alias gs="git status"
+alias gs="git status --short"
 alias ga="git add"
+alias gap="git add --patch"
+alias gc="git commit"
+# alias glo="git log --graph --oneline --decorate"
 alias glo="git log --graph --oneline --decorate"
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(auto)  %D%n%s%n"'
 alias wt="git worktree"
 alias gco="git checkout"
 alias gsw="git switch"

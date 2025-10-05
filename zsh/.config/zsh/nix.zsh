@@ -2,7 +2,8 @@
 # =================================================================================================
 # Nix specific functions
 # =================================================================================================
-# FIXME(aver): for some reason, this does get set automatically
+#
+# TODO(AVE): move this to nix config directly
 export LD_LIBRARY_PATH="$NIX_LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
 
 # Pretty print log messages
