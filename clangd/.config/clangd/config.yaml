@@ -1,0 +1,8 @@
+InlayHints:
+  BlockEnd: true
+Documentation:
+  CommentFormat: Doxygen
+# Diagnostics:
+#   Suppress:
+#     - init_conversion_failed
+#     - bad_reinterpret_cast_small_int
