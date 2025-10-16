@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Open WSL files with native application in the Windows host
+#
+# Script may fail if a file is passed that does not have a proper default Windows Application.
+set -euo pipefail
+
+# Ensure only a single parameter is provided
+if [ "$#" -ne 1 ]; then
+	echo "[ERROR] This script accepts exactly one parameter. Provided: $#"
+	echo
+	echo "Usage: wsl-open <file-path-on-wsl>"
+	echo "Example: wsl-open /home/user/example.txt"
+	echo
+	exit 1
+fi
+
+# Use default PowerShell
+PWSH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+if ! command -v "$PWSH" >/dev/null; then
+	# Try falling back to newer PowerShell 7 if possible
+	# shellcheck disable=2089
+	PWSH="/mnt/c/Program\ Files/PowerShell/7/pwsh.exe"
+	if ! command -v "$PWSH" >/dev/null; then
+		echo "[ERROR] No PowerShell found..."
+		exit 1
+	fi
+fi
+
+PATH_PARAM=$1
+if command -v wslpath >/dev/null; then
+	# convert parameter to absolute Windows path
+	PATH_PARAM=$(wslpath -w "$1")
+else
+	echo "[WARN] Consider installing 'wslpath' for proper path conversion..."
+fi
+
+# shellcheck disable=2090
+$PWSH -c start "'$PATH_PARAM'"
