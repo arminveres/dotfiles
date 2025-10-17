@@ -43,31 +43,13 @@ path+=(
     "$HOME"/.luarocks/bin
 )
 
-case "$(uname)" in
-Linux)
-    DISTRO=$(lsb_release -i | awk '{print $3}')
-    export DISTRO
-    ;;
-Darwin)
-    # export the distro for scrips and so to use
-    path+=(/opt/arm-none-eabi-12/bin)
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"
-    export VCPKG_ROOT="$HOME/vcpkg"
-    if command -v brew >/dev/null; then
-        # add brew completion
-        FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    fi
-    ;;
-esac
-
 # WARN: don't source Xresources if we are in wayland
 if ! echo "$XDG_SESSION_TYPE" | grep wayland -q; then
     [[ -f "$XDG_CONFIG_HOME"/X11/Xresources ]] && xrdb "$XDG_CONFIG_HOME"/X11/Xresources
 fi
 
-export EDITOR=$(which nvim)
+EDITOR=$(which nvim)
+export EDITOR
 export VISUAL=$EDITOR
 export MINICOM='-con'
 

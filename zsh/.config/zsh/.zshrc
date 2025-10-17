@@ -126,7 +126,6 @@ if [[ "$(uname)" == "Linux" ]] && [[ -n "$DIST" ]]; then
         alias dup='dnf upgrade'
         alias doffup='dnf offline-upgrade download -y && dnf offline-upgrade reboot'
         ;;
-    NixOS) source "$ZDOTDIR/nix.zsh" ;;
     *) ;;
     esac
 fi
