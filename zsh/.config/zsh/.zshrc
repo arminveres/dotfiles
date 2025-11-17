@@ -77,10 +77,10 @@ source "$ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh"
 source "$ZDOTDIR/prompt.zsh"
 
 # Plugins
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 source "$ZDOTDIR/plugins/zsh-autopair/zsh-autopair.plugin.zsh"
-# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
 
 # ==================================================================================================
 # Key-bindings

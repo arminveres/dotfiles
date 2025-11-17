@@ -40,10 +40,9 @@ autoload -U colors && colors
 # PROMPT="
 # %{$reset_color%}%{$fg[red]%}%m%{$reset_color%}::%{$fg[blue]%}%n %{$reset_color%}in %{$fg[cyan]%}%~%{$reset_color%} "
 
-PROMPT="
-%{$fg[red]%}[%{$reset_color%}%n %{$fg[red]%}at %{$reset_color%}%m%{$fg[red]%}]%{$reset_color%} %{$fg[blue]%}in %{$fg[cyan]%}%~%{$reset_color%} "
+PROMPT="%{$fg[red]%}[%{$reset_color%}%n %{$fg[red]%}at %{$reset_color%}%m%{$fg[red]%}]%{$reset_color%} %{$fg[blue]%}in %{$fg[cyan]%}%~%{$reset_color%} "
 PROMPT+='$(gitprompt)' # plugin git prompt, alternative default: "\$vcs_info_msg_0_ " # Default git prompt
 PROMPT+="
 %(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 
-RPROMPT="%t"
+RPROMPT="%(?..[%?])%{$reset_color%}%t"
