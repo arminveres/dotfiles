@@ -114,8 +114,8 @@ bindkey '^e' edit-command-line
 # ================================================================================================
 # Distro specifig setup
 # ================================================================================================
-if [[ "$(uname)" == "Linux" ]] && [[ -n "$DIST" ]]; then
-    case "$DIST" in
+if [[ "$(uname)" == "Linux" ]] && [[ -n "$DISTRO" ]]; then
+    case "$DISTRO" in
     Ubuntu | Debian)
         alias nala='sudo nala'
         alias upd='sudo apt update && sudo apt upgrade'
