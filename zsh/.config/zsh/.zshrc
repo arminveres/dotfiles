@@ -2,6 +2,8 @@
 # used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
 # TERM=xterm-256color
 
+zsh_start_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
+
 # History
 export HISTSIZE=20000
 export SAVEHIST=20000
@@ -35,10 +37,6 @@ unsetopt menu_complete
 # -------------------------------------------------------------------------------------------------
 # Completions Configuration
 # -------------------------------------------------------------------------------------------------
-
-# FIXME(aver): globbing is not case insensitive if sourced way above load completions
-# autoload -Uz compinit
-
 zstyle ':completion:*' menu select
 # insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -59,11 +57,6 @@ fpath+=(
     "$ZDOTDIR/plugins/zsh-completions/src"
     "$ZDOTDIR/completion"
 )
-
-# Load completions: make all files found be used without asking, use the option -u
-# use -C for a compiled version, blazingly fast!!!
-autoload -Uz compinit; compinit
-autoload -Uz colors; colors
 
 # ==================================================================================================
 # Sourcing plugins and custom scripts
@@ -143,4 +136,5 @@ if command -v keychain >/dev/null; then
     eval "$(keychain --noask --quiet --eval id_rsa gh)"
 fi
 
-ulimit -n $((2 ** 16))
+zsh_end_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
+echo "Shell init time: $((zsh_end_time - zsh_start_time)) ms"
