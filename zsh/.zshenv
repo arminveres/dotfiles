@@ -1,3 +1,8 @@
+#!/usr/bin/env zsh
+
+# /etc/zsh/zshrc may try to init compinit before we can, therefore skip that, we are handling it.
+export skip_global_compinit=1
+
 # setting some XDGs
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache

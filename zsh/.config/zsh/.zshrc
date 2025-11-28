@@ -57,12 +57,8 @@ fpath+=(
     "$ZDOTDIR/plugins/zsh-completions/src"
     "$ZDOTDIR/completion"
 )
-# Speed up compinit by checking cache only once daily
-autoload -Uz compinit
-for dump in "$ZDOTDIR"/.zcompdump(N.mh+24); do
-  compinit
-done
-compinit -C
+
+autoload -Uz compinit && compinit
 
 # ==================================================================================================
 # Sourcing plugins and custom scripts
