@@ -1,0 +1,4 @@
+include = ["alacritty.toml", "gruvbox-black.toml"]
+
+[schema]
+path = "https://raw.githubusercontent.com/distinction-dev/alacritty-schema/main/alacritty/reference.json"
