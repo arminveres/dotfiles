@@ -1,6 +1,4 @@
 #!/usr/bin/env zsh
-# used because tmux was acting up, next time try: https://mbuffett.com/posts/setting-up-tmux-and-kitty-for-true-color-support/
-# TERM=xterm-256color
 
 zsh_start_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
 
@@ -52,13 +50,6 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zmodload zsh/complist
 
 _comp_options+=(globdots)      # Include hidden files.
-
-fpath+=(
-    "$ZDOTDIR/plugins/zsh-completions/src"
-    "$ZDOTDIR/completion"
-)
-
-autoload -Uz compinit && compinit
 
 # ==================================================================================================
 # Sourcing plugins and custom scripts

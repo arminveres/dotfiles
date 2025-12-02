@@ -19,3 +19,9 @@ esac
 
 # this enables the automatic sourcing of zshrc in the config dir, could also be put inot /etc/zsh/
 export ZDOTDIR="$HOME/.config/zsh"
+
+# We need to set fpath here, because it gets loaded by /etc/zsh* very early
+fpath+=(
+    "$ZDOTDIR/plugins/zsh-completions/src"
+    "$ZDOTDIR/completion"
+)
