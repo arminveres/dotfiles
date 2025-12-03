@@ -51,6 +51,8 @@ zmodload zsh/complist
 
 _comp_options+=(globdots)      # Include hidden files.
 
+autoload -Uz compinit && compinit
+
 # ==================================================================================================
 # Sourcing plugins and custom scripts
 # ==================================================================================================
