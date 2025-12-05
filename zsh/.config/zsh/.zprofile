@@ -1,3 +1,7 @@
+#
+# Set fpath here to properly initialize with compinit
+#
+
 case "$(uname)" in
 Linux)
     DISTRO=$(lsb_release -i | awk '{print $3}')
@@ -12,13 +16,10 @@ Darwin)
     export VCPKG_ROOT="$HOME/vcpkg"
     if command -v brew >/dev/null; then
         # add brew completion
-        FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+        fpath+=("$(brew --prefix)/share/zsh/site-functions")
     fi
     ;;
 esac
-
-# this enables the automatic sourcing of zshrc in the config dir, could also be put inot /etc/zsh/
-export ZDOTDIR="$HOME/.config/zsh"
 
 # We need to set fpath here, because it gets loaded by /etc/zsh* very early
 fpath+=(

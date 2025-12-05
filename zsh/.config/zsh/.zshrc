@@ -51,7 +51,7 @@ zmodload zsh/complist
 
 _comp_options+=(globdots)      # Include hidden files.
 
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
 
 # ==================================================================================================
 # Sourcing plugins and custom scripts
@@ -130,6 +130,9 @@ fi
 if command -v keychain >/dev/null; then
     eval "$(keychain --noask --quiet --eval id_rsa gh)"
 fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 zsh_end_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
 echo "Shell init time: $((zsh_end_time - zsh_start_time)) ms"

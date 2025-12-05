@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# this enables the automatic sourcing of zshrc in the config dir, could also be put inot /etc/zsh/
+export ZDOTDIR="$HOME/.config/zsh"
+
 # setting some XDGs
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -57,3 +60,7 @@ export MINICOM='-con'
 
 export NINJA_STATUS="[%f/%t %p, %oe/s, %es] "
 export LLVM_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-18
+
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export DOTNET_ROOT="$HOME/.dotnet"
+path+="$DOTNET_ROOT"
