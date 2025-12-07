@@ -1,7 +1,7 @@
 # dotfiles
 
-> **Warning**: Although I have not encountered any issues until now, the source code in this repo may
-> not always be stable, even in the stable branch.
+> [!WARNING]
+> The information below may be outdated, since I moved my system over to NixOS.
 
 ![2024-01-02_12-42](https://github.com/arminveres/dotfiles/assets/45210978/77f283ba-20aa-442b-8685-b8fdb516d20f)
 
@@ -11,11 +11,12 @@ Handcrafted dotfiles for personal use, currently on Fedora Workstation 38.
 
 | Type                 | Currently in use                                |
 | -------------------- | ----------------------------------------------- |
-| Window Manager       | AwesomeWM (X11), Hyprland (Wayland)             |
-| Notifications        | naughty, dunst                                  |
+| Distro               | [NixOS](https://github.com/arminveres/nix-conf) |
+| Window Manager       | Hyprland (Wayland)                              |
+| Notifications        | SwayNC                                          |
 | Shell                | zsh                                             |
 | Editor               | [neovim](https://github.com/arminveres/nvim)    |
-| Terminal Emulator    | kitty, alacritty, wezterm                       |
+| Terminal Emulator    | alacritty, wezterm, ghostty, kitty              |
 | Terminal Multiplexer | [tmux](https://github.com/arminveres/tmux.conf) |
 
 ## Usage
@@ -52,12 +53,10 @@ Use following if you want to overwrite files in repo:
 - `autorandr` + `arandr` for managing multiple monitor layouts e.g. for the laptop
 
 - `lazygit` or `gitui`
-
   - `# dnf copr enable atim/lazygit -y && dnf upgrade && dnf install lazygit`
   - `# dnf install gitui` or `$ cargo install gitui`
 
 - `lazydocker`
-
   - `# dnf copr enable atim/lazydocker && dnf upgrade && dnf install lazydocker -y`
 
 - Solaar for managing Logitech peripherals: `# dnf install solaar`
@@ -65,32 +64,3 @@ Use following if you want to overwrite files in repo:
 - I usually use cargo to manage some rust application therefore:
 
 `$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-
-### Miscellaneous
-
-- I am using GDM as login manager, therefore using `io.github.realmazharhussain.GdmSettings` to
-  customize the login screen is quite nice, although it resets after every reboot and you can only
-  set one background for any number of monitors. Therefore I am not using it anymore.
-
-#### Laptop Power Usage
-
-- use enhanced garbage collection on AwesomeWM
-- remove tmux extra stuff, like memory and cpu collection
-
-## TODO
-
-### neovim
-
-- [see](https://github.com/arminveres/nvim)
-
-### awesome
-
-- [see](./awesome/.config/awesome/README.md)
-
-### Zsh
-
-- [see](./zsh/.config/zsh/README.md)
-
-### tmux
-
-- [see](https://github.com/arminveres/tmux.conf)
