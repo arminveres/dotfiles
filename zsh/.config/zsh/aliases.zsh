@@ -42,7 +42,7 @@ function rmv() {
     for val in "$@"; do
         printf "  %s\n" $(readlink --canonicalize "$val")
     done
-    rm --recursive --force --interactive=once "$@"
+    rm --recursive --force "$@"
 }
 
 if command -v eza >/dev/null; then
