@@ -49,4 +49,7 @@ program = "/usr/bin/env"
 args = ["tmux"]
 
 [keyboard]
-bindings = [{ key = "Slash", mods = "Control", chars = "\u001f" }]
+bindings = [
+    # { key = "Slash", mods = "Control", chars = "\u001f" }, # MacOS does not handle Ctrl-/ properly
+    # { key = "Space", mods = "Control", chars = "\u0000" }, # Windows does not handle Ctrl-Space properly
+]
