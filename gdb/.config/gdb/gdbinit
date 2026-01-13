@@ -1,0 +1,23 @@
+tui enable
+# layout asm
+# layout reg
+layout src
+
+set disassembly-flavor intel
+
+set print static-members off
+set print pretty on
+# https://stackoverflow.com/questions/1768620/how-do-i-show-what-fields-a-struct-has-in-gdb#comment78715348_1770422
+macro define offsetof(t, f) &((t *) 0)->f)
+
+define hook-continue
+  refresh
+end
+
+define hook-next
+  refresh
+end
+
+define hook-run
+  refresh
+end
