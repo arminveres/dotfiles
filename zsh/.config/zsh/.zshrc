@@ -136,3 +136,10 @@ fi
 
 zsh_end_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
 echo "Shell init time: $((zsh_end_time - zsh_start_time)) ms"
+
+if [[ -n $SSH_CONNECTION ]]; then
+    # Set window name to hostname when in SSH
+    printf '\033k%s\033\\' "$(hostname -s)"
+    # Reset window name on exit
+    trap 'printf "\033k\033\\"' EXIT
+fi
