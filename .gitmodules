@@ -25,6 +25,3 @@
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
 	url = git@github.com:arminveres/dotfiles-secret
-[submodule "zsh/.config/zsh/plugins/fzf"]
-	path = zsh/.config/zsh/plugins/fzf
-	url = https://github.com/junegunn/fzf

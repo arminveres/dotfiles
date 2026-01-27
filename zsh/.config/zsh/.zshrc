@@ -64,7 +64,6 @@ source "$ZDOTDIR/functions.zsh"
 # Exports are needed before aliases
 source "$ZDOTDIR/vim_mode.zsh"
 source "$ZDOTDIR/aliases.zsh"
-source "$ZDOTDIR/fzf.zsh"
 source "$ZDOTDIR/git.zsh"
 
 # Prompt
