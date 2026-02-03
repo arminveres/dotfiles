@@ -36,14 +36,6 @@ alias mktempdir='cd $(mktemp -d)'
 alias visudo='sudo visudo'
 
 # alias rma="rm -irf"
-### Verbosely remove directories recursively
-function rmv() {
-    printf "Removing:\n"
-    for val in "$@"; do
-        printf "  %s\n" $(readlink --canonicalize "$val")
-    done
-    rm --recursive --force "$@"
-}
 
 if command -v eza >/dev/null; then
     local EZAOPTIONS="--colour=always --group-directories-first --icons=always"

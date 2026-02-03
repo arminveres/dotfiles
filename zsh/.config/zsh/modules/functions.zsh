@@ -21,16 +21,6 @@ function convert_webp_to_png {
     done
 }
 
-function git_update_project_in_dir {
-    for file in ./*/;
-    do
-        echo "$file" && \
-            cd $file && \
-            git pull && \
-            cd -
-    done
-}
-
 function open {
     if [[ $(uname) == 'Linux' ]]; then
         xdg-open "$1" & disown >/dev/null
@@ -46,20 +36,23 @@ function find_thermal_zone {
     done
 }
 
-# @brief run something in the background using tmux, alternative could use
+#
+# Run something in the background using tmux, alternative could use
 # `nohup $command & disown`, but this way nothing is generated
+#
 function runbg {
     tmux new -s $1 -d $@
 }
 
-# neat directly viewer and changer for git worktrees
-function wtz {
-    dir=$(git worktree list | fzf | awk '{print $1}')
-    if [[ -n $dir ]]; then
-        z $dir
-    else
-        echo "Nothing selected"
-    fi
+#
+# Verbosely remove directories recursively
+#
+function rmv() {
+    printf "Removing:\n"
+    for val in "$@"; do
+        printf "  %s\n" $(readlink --canonicalize "$val")
+    done
+    rm --recursive --force "$@"
 }
 
 # =================================================================================================
