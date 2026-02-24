@@ -52,3 +52,13 @@ bindkey -M vicmd cs change-surround
 bindkey -M vicmd ds delete-surround
 bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
+
+# Ensure pastes never execute vicmd commands like '~' (swap-case)
+autoload -Uz bracketed-paste-magic
+
+_bracketed_paste_viins() {
+  [[ $KEYMAP == vicmd ]] && zle vi-insert
+  bracketed-paste-magic
+}
+
+zle -N bracketed-paste _bracketed_paste_viins
