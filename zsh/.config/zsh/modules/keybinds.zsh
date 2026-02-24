@@ -49,3 +49,5 @@ bindkey '^v' __fzf_editor_files
 # zle -N __zoxide_interactive
 # bindkey '^f' __zoxide_interactive
 bindkey -s '^f' '^Ucdi^M'
+
+bindkey -s '^z' '^Uwtcd^M'
