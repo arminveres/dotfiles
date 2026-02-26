@@ -23,7 +23,10 @@ bindkey '^_' __search_dot_config
 # Fuzzy find local files and open them in editor
 #
 function __fzf_editor_files() {
-    local output=$(fd --type f | fzf --preview 'bat --color=always {}')
+    local output=$(
+        fd --type=file --hidden --exclude="*.png" --exclude="*.svc" --exclude="*.jpg" --exclude="*.jpeg" |
+            fzf --preview 'bat --color=always {}'
+    )
 
     if [[ -n $output ]]; then
         $EDITOR "$output"
