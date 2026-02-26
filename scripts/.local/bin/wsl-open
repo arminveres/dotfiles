@@ -14,6 +14,7 @@ if [ "$#" -ne 1 ]; then
 	echo
 	exit 1
 fi
+PATH_PARAM=$1
 
 # Use default PowerShell
 PWSH="/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
@@ -27,13 +28,18 @@ if ! command -v "$PWSH" >/dev/null; then
 	fi
 fi
 
-PATH_PARAM=$1
-if command -v wslpath >/dev/null; then
-	# convert parameter to absolute Windows path
-	PATH_PARAM=$(wslpath -w "$1")
+# check if we are parsing an URL
+if [[ "$PATH_PARAM" =~ ^https:// ]]; then
+	# shellcheck disable=2090
+	$PWSH -c Start-Process "'$PATH_PARAM'"
 else
-	echo "[WARN] Consider installing 'wslpath' for proper path conversion..."
+	# otherwise try to parse the path to windows and powershell handle the rest
+	if command -v wslpath >/dev/null; then
+		# convert parameter to absolute Windows path
+		PATH_PARAM=$(wslpath -w "$1")
+	else
+		echo "[WARN] Consider installing 'wslpath' for proper path conversion..."
+	fi
+	# shellcheck disable=2090
+	$PWSH -c start "'$PATH_PARAM'"
 fi
-
-# shellcheck disable=2090
-$PWSH -c start "'$PATH_PARAM'"
