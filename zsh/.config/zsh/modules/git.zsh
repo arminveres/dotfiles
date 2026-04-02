@@ -35,7 +35,32 @@ function gsup() {
 '
 }
 
+# Worktree helpers
+
+# Change path to one of the worktrees
 function wtcd() {
   local dir="$(git worktree list | fzf | awk '{print $1}')"
   [[ -n "$dir" ]] && cd $dir
+}
+
+# Add a custom branch to a subdir
+# Param:
+# - branch name
+# - path [ optional ]
+function wtadd() {
+  local branch=$1
+  if [[ -z "$branch" ]]; then
+    echo "No branch specified"
+    return
+  fi
+  local wt_path=${2:-./.wt}
+  local destination="$wt_path/$branch"
+
+  echo
+  echo ">>> Adding Worktree: $destination"
+  echo
+
+  git worktree add "$destination" -b $branch
+  cd $destination
+  git submodule update --init --recursive
 }
