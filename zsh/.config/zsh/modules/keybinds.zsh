@@ -54,3 +54,5 @@ bindkey '^v' __fzf_editor_files
 bindkey -s '^f' '^Ucdi^M'
 
 bindkey -s '^z' '^Uwtcd^M'
+
+bindkey '^o' end-of-line
