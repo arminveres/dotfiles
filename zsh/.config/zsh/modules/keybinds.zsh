@@ -18,6 +18,7 @@ function __search_dot_config() {
 }
 zle -N __search_dot_config
 bindkey '^_' __search_dot_config
+bindkey $'\e[47;5u' __search_dot_config
 
 #
 # Fuzzy find local files and open them in editor

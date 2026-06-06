@@ -50,6 +50,6 @@ args = ["tmux"]
 
 [keyboard]
 bindings = [
-    # { key = "Slash", mods = "Control", chars = "\u001f" }, # MacOS does not handle Ctrl-/ properly
+    { key = "Slash", mods = "Control", chars = "\u001b[47;5u" }, # distinct CSI-u sequence, distinguishable from Ctrl-_
     # { key = "Space", mods = "Control", chars = "\u0000" }, # Windows does not handle Ctrl-Space properly
 ]
