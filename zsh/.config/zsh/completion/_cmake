@@ -156,6 +156,17 @@ _cmake_build_presets() {
   _describe 'build presets' list_presets
 }
 
+# --------------------------
+# _cmake_preset_build_dir
+#
+# Finds the build directory by locating the nearest CMakeCache.txt.
+# --------------------------
+(( $+functions[_cmake_preset_build_dir] )) ||
+_cmake_preset_build_dir() {
+  find . -maxdepth 5 -name CMakeCache.txt -print -quit | xargs -I{} dirname {}
+}
+
+
 # --------------
 # _cmake_presets
 # --------------
@@ -266,10 +277,15 @@ _cmake_on_build() {
     # after --build --preset, complete build presets
     _cmake_build_presets && return 0
   elif [[ $words[(($CURRENT - 1))] == --target ]] ; then
-    # after --build <dir> --target, suggest targets
-    local _tgt_dir=$words[(($build_at + 1))]
-    [[ $_tgt_dir == --* ]] && return 0
-    _cmake_targets $_tgt_dir && return 0
+    # after --build <dir|--preset name> --target, suggest targets
+    local _tgt_first=$words[(($build_at + 1))]
+    if [[ $_tgt_first == --preset ]]; then
+      local _tgt_dir=$(_cmake_preset_build_dir "$words[(($build_at + 2))]")
+      [[ -n "$_tgt_dir" ]] && _cmake_targets "$_tgt_dir"
+    elif [[ $_tgt_first != --* ]]; then
+      _cmake_targets "$_tgt_first"
+    fi
+    return 0
   elif [[ $words[(($CURRENT - 1))] == --config ]] ; then
     # after --build <dir> --config, no idea
     return 0
