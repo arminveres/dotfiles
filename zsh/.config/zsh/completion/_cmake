@@ -159,9 +159,8 @@ _cmake_build_presets() {
 # ----------------------
 # _cmake_json_field
 #
-# Pure-zsh JSON helper. Given a JSON string $1, returns the string value of
-# the first  "<key>": "<value>"  pair, where key is $2. Handles arbitrary
-# whitespace/newlines between tokens. Returns empty if not found.
+# Given a JSON string $1, returns the string value of the first  "<key>": "<value>"  pair, where key is $2.
+# Handles arbitrary whitespace/newlines between tokens. Returns empty if not found.
 # ----------------------
 (( $+functions[_cmake_json_field] )) ||
 _cmake_json_field() {
@@ -175,15 +174,14 @@ _cmake_json_field() {
 # ----------------------
 # _cmake_json_preset_dir
 #
-# Pure-zsh resolver: build-preset name -> binaryDir, no awk/jq/python.
+# build-preset name -> binaryDir
 #   $1 = full JSON text (both preset files concatenated)
 #   $2 = build preset name
 #
 # Steps:
-#   a) Slice out the build preset object (from its "name" entry up to the next
-#      "name" entry) and read its "configurePreset".
-#   b) Slice out that configure preset object the same way and read its
-#      "binaryDir".
+#   a) Slice out the build preset object (from its "name" entry up to the next "name" entry)
+#      and read its "configurePreset".
+#   b) Slice out that configure preset object the same way and read its "binaryDir".
 #   c) Expand the ${sourceDir} macro and strip a trailing slash.
 # Inheritance ("inherits") is not resolved; the caller's glob fallback covers
 # those uncommon setups.
@@ -202,12 +200,12 @@ _cmake_json_preset_dir() {
   # look inside this preset.
   local block="${after%%\"name\"[[:space:]]#:*}"
 
-  local cp
-  cp=$(_cmake_json_field "$block" configurePreset)
-  [[ -z $cp ]] && return
+  local configPreset
+  configPreset=$(_cmake_json_field "$block" configurePreset)
+  [[ -z $configPreset ]] && return
 
   # --- b) locate that configure preset object, read its binaryDir ---
-  after="${json#*\"name\"[[:space:]]#:[[:space:]]#\"$cp\"}"
+  after="${json#*\"name\"[[:space:]]#:[[:space:]]#\"$configPreset\"}"
   [[ $after == "$json" ]] && return
   block="${after%%\"name\"[[:space:]]#:*}"
 
@@ -226,17 +224,15 @@ _cmake_json_preset_dir() {
 #
 # Resolves the build directory for a given build preset name.
 #
-# Strategy (pure zsh, no external deps beyond the cmake/make/ninja already
-# used elsewhere in this file):
+# Strategy (no external deps beyond the cmake/make/ninja already used elsewhere in this file):
 #   1. Read CMakePresets.json / CMakeUserPresets.json as one string and pull
 #      out, with zsh parameter expansion + the (M)/regex flags:
 #        build preset "<name>"  ->  its "configurePreset"
 #        that configure preset  ->  its "binaryDir"
 #      Then expand the ${sourceDir} macro.
-#      Inherited binaryDir (preset "inherits") is intentionally NOT followed
-#      here — it is rare and the glob fallback below handles those cases.
-#   2. Fall back to a BFS glob for the nearest CMakeCache.txt (still pure
-#      zsh, no subprocess) when step 1 finds nothing.
+#      Inherited binaryDir (preset "inherits") is intentionally NOT followed here —
+#      it is rare and the glob fallback below handles those cases.
+#   2. Fall back to a BFS glob for the nearest CMakeCache.txt when step 1 finds nothing.
 # --------------------------
 (( $+functions[_cmake_preset_build_dir] )) ||
 _cmake_preset_build_dir() {
