@@ -64,3 +64,9 @@ function wtadd() {
   cd $destination
   git submodule update --init --recursive
 }
+
+function greset() {
+  local file=$(fzf)
+  git checkout main -- "$file" ||
+    git checkout master -- "$file"
+}
