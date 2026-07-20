@@ -58,7 +58,5 @@ bindkey -s '^z' '^Uwtcd^M'
 
 bindkey '^o' end-of-line
 
-# Fix ctrl-w deleting full words
-__backward-kill-word-alphanumeric() { local WORDCHARS='_'; zle backward-kill-word }
-zle -N __backward-kill-word-alphanumeric
-zvm_after_init_commands+=('bindkey -M viins "^W" __backward-kill-word-alphanumeric')
+# Fix ctrl-w: kill back to previous whitespace only (vi-style)
+zvm_after_init_commands+=('bindkey -M viins "^W" vi-backward-kill-word')
