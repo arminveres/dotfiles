@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# Credit for the original version to ThePrimeagen: https://github.com/ThePrimeagen/.dotfiles
+# Extended by me for proper attachment while outside tmux
+#
+# This script searches given project folders and creates a tmux session if not existing
+
+if [[ -n "$DEBUG" ]]; then
+    set -x
+fi
+
+set -euo pipefail
+
+# Directories to search in
+PROJECT_LOCATIONS=(
+    ~/
+    ~/Projects
+    ~/gitfiles
+)
+
+function fail() {
+    printf '%s\n' "$1" >&2 ## Send message to stderr. Exclude >&2 if you don't want it that way.
+    exit "${2-1}"          ## Return a code specified by $2 or 1 by default.
+}
+
+function has() {
+    # Check if a command is in $PATH
+    command -v "$@" >/dev/null 2>&1
+}
+
+tmp() {
+    local selected
+    local selected_name
+
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        selected=$(find "${PROJECT_LOCATIONS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --exit-0) || true
+    fi
+
+    if [[ -z $selected ]]; then
+        exit 0
+    fi
+
+    selected_name=$(basename "$selected" | tr . _)
+
+    # If we are not in tmux and tmux is not running, create a new session
+    if [[ -z ${TMUX:-} && -z "$(pgrep tmux || echo "")" ]]; then
+        tmux new-session -s "$selected_name" -c "$selected"
+        exit 0
+    fi
+
+    # Create a session if it doesn't exist
+    if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+        tmux new-session -ds "$selected_name" -c "$selected"
+    fi
+
+    if [[ -n ${TMUX:-} ]]; then
+        tmux switch-client -t "$selected_name"
+    else
+        tmux attach-session -t "$selected_name"
+    fi
+}
+
+if has tmux; then
+    tmp "$@"
+else
+    fail "Can't find tmux in $PATH"
+fi
