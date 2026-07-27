@@ -1,4 +1,5 @@
-# specific files
+# Files
+.DS_Store
 **/zsh_history
 **/.zcompdump*
 *.bak
@@ -13,10 +14,6 @@ GTK/.config/gtk-4.0/gtk-dark.css
 GTK/.config/gtk-4.0/gtk.css
 GTK/.config/gtk-4.0/assets
 gitui/.config/gitui/theme.ron.old
-.comments/
-awesome-vert/.config/awesome/misc/.information
-
-# general files
 *.log
 **/.uuid
 zsh/.config/zsh/.zhistory
@@ -24,4 +21,6 @@ zsh/.config/zsh/.zsh_sessions/_expiration_check_timestamp
 zsh/**/*.session
 .zcompcache
 
-.DS_Store
+# Directories
+.direnv/
+.comments/
