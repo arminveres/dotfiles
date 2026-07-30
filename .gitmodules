@@ -25,3 +25,6 @@
 [submodule "dotfiles-secret"]
 	path = dotfiles-secret
 	url = git@github.com:arminveres/dotfiles-secret
+[submodule "zsh/.config/zsh/plugins/zsh-vi-mode"]
+	path = zsh/.config/zsh/plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode.git

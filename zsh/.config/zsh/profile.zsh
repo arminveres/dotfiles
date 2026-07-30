@@ -1,14 +1,9 @@
 #
-# Set fpath here to properly initialize with compinit
+# Login shell setup. Runs after .zshenv, before .zshrc.
 #
 
 case "$(uname)" in
-Linux)
-    DISTRO=$(lsb_release -i | awk '{print $3}')
-    export DISTRO
-    ;;
 Darwin)
-    # export the distro for scrips and so to use
     path+=(/opt/arm-none-eabi-12/bin)
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export LDFLAGS="-L/opt/homebrew/opt/libomp/lib"
@@ -20,9 +15,3 @@ Darwin)
     fi
     ;;
 esac
-
-# We need to set fpath here, because it gets loaded by /etc/zsh* very early
-fpath+=(
-    "$ZDOTDIR/plugins/zsh-completions/src"
-    "$ZDOTDIR/completion"
-)

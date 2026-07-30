@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+#
+# Vendored plugins, checked out as git submodules under $ZDOTDIR/plugins.
+# For more plugins: https://github.com/unixorn/awesome-zsh-plugins
+#
+# NOTE(aver): order matters, zsh-syntax-highlighting must be sourced last.
+
+source "$ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "$ZDOTDIR/plugins/git-prompt.zsh/git-prompt.zsh"
+# autopair.zsh self-initializes at the end of the file, no autopair-init needed.
+source "$ZDOTDIR/plugins/zsh-autopair/autopair.zsh"
+
+source "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

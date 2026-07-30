@@ -22,6 +22,14 @@ function lg() {
 }
 
 # ================================================================================================
+# nix
+# ================================================================================================
+if command -v nh >/dev/null; then
+    alias nxfclean="nh clean all --keep 3 --optimise"
+    alias nxclean="nh clean user --keep 3 --optimise"
+fi
+
+# ================================================================================================
 # aliasing coreutils
 # ================================================================================================
 # confirm before overwriting something
@@ -38,19 +46,21 @@ alias visudo='sudo visudo'
 # alias rma="rm -irf"
 
 if command -v eza >/dev/null; then
-    local EZAOPTIONS="--colour=always --group-directories-first --icons=always"
+    EZAOPTIONS="--colour=always --group-directories-first --icons=always"
     alias ls="eza $EZAOPTIONS" # my preferred listing
-    alias la="eza $EZAOPTIONS --long --all --header"
+    alias la="eza $EZAOPTIONS --all --header"
+    alias lla="eza $EZAOPTIONS --long --all --header"
     alias lag="eza $EZAOPTIONS --long --all --header --grid"
     alias lsg="eza $EZAOPTIONS --long --header --grid"
     alias ll="eza $EZAOPTIONS --long --header"
     alias tree="eza $EZAOPTIONS --tree"
 else
-    local LSOPTIONS="--color=always -H"
+    LSOPTIONS="--color=always -H"
     alias ls="ls $LSOPTIONS"
     alias la="ls $LSOPTIONS -L --almost-all"
     alias ll="ls $LSOPTIONS -L"
 fi
+unset EZAOPTIONS LSOPTIONS
 
 if command -v bat >/dev/null; then
     alias cat=bat
