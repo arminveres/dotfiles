@@ -46,7 +46,7 @@ alias visudo='sudo visudo'
 # alias rma="rm -irf"
 
 if command -v eza >/dev/null; then
-    EZAOPTIONS="--colour=always --group-directories-first --icons=always"
+    local EZAOPTIONS="--colour=always --group --group-directories-first --icons=always"
     alias ls="eza $EZAOPTIONS" # my preferred listing
     alias la="eza $EZAOPTIONS --all --header"
     alias lla="eza $EZAOPTIONS --long --all --header"
