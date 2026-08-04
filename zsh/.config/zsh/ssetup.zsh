@@ -94,7 +94,7 @@ main() {
 
   run mkdir --parents "$ZDOTDIR"
 
-  write_file "export ${ZDOTDIR}
+  write_file "export ZDOTDIR=${ZDOTDIR}
 source ${ZDOTDIR}/env.zsh" "$HOME/.zshenv"
   write_file "source ${ZDOTDIR}/.zshenv" "$ZDOTDIR/.zshenv"
   write_file "source ${ZDOTDIR}/logout.zsh" "$ZDOTDIR/.zlogout"
