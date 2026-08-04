@@ -100,11 +100,25 @@ source ${ZDOTDIR}/env.zsh" "$HOME/.zshenv"
   write_file "source ${ZDOTDIR}/logout.zsh" "$ZDOTDIR/.zlogout"
   write_file "source ${ZDOTDIR}/profile.zsh" "$ZDOTDIR/.zprofile"
   write_file "source ${ZDOTDIR}/rc.zsh" "$ZDOTDIR/.zshrc"
-  local -a stow_args
-  stow_args=(--verbose --target="$ZDOTDIR" --dir="$SCRIPT_PATH/..")
-  ((DRY_RUN)) && stow_args+=(--no)
-  ((FORCE)) && clear_stow_conflicts "$SCRIPT_PATH" "$ZDOTDIR"
-  stow "${stow_args[@]}" zsh
+  # On Windows/MSYS (git-bash, MSYS2, Cygwin), stow's symlinks often don't
+  # work without elevated privileges/developer mode, so use winstow instead:
+  # https://github.com/MathiasCodes/winstow
+  case "$(uname -s)" in
+  MSYS* | MINGW* | CYGWIN*)
+    local -a winstow_args
+    winstow_args=(-v -t "$ZDOTDIR" -d "$SCRIPT_PATH/..")
+    ((DRY_RUN)) && winstow_args+=(-n)
+    ((FORCE)) && winstow_args+=(--override)
+    winstow "${winstow_args[@]}" zsh
+    ;;
+  *)
+    local -a stow_args
+    stow_args=(--verbose --target="$ZDOTDIR" --dir="$SCRIPT_PATH/..")
+    ((DRY_RUN)) && stow_args+=(--no)
+    ((FORCE)) && clear_stow_conflicts "$SCRIPT_PATH" "$ZDOTDIR"
+    stow "${stow_args[@]}" zsh
+    ;;
+  esac
 }
 
 main "$@"
