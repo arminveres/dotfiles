@@ -66,3 +66,22 @@ function greset() {
   git checkout main -- "$file" ||
     git checkout master -- "$file"
 }
+
+#
+# Gets a bullet point list of commints in the submodule compared to the main branch.
+#
+# param:
+# - 1: submodule dir
+function gsdiff() {
+  local submod="$1"
+
+  [[ -z "$submod" ]] && return 1
+  local old=$(git rev-parse "origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'):$submod")
+  local new=$(git rev-parse "HEAD:$submod")
+  local default_branch=$(git -C "$submod" symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  local changes=$(git -C $submod log --pretty='- %s' "$old..$new")
+
+  [[ -z "$changes" ]] && echo "No changes" && return 1
+  echo "$submod updated to $default_branch:"
+  echo "$changes"
+}
