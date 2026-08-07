@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#
+# pi-agent-sidebar
+#
+# Lists every pi agent pane across all tmux sessions/windows with a colored
+# status icon:
+#   ● green  - ready, needs a prompt
+#   ● yellow - working
+#   ● grey   - idle (pane running pi, no status reported yet)
+#
+# Status is reported by the `tmux-agent-status` pi extension into
+# $XDG_CACHE_HOME/pi-agent-sidebar/<pane>.json. This script just reads those
+# files and cross-references them with live tmux panes.
+#
+# Usage:
+#   pi-agent-sidebar          # render once
+#   pi-agent-sidebar --watch  # render every 2s (for use in a split pane)
+
+set -euo pipefail
+
+STATE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/pi-agent-sidebar"
+mkdir -p "$STATE_DIR"
+
+color() {
+    case "$1" in
+    working) printf '\e[33m●\e[0m' ;; # yellow
+    ready) printf '\e[32m●\e[0m' ;;   # green
+    *) printf '\e[90m●\e[0m' ;;       # grey/idle
+    esac
+}
+
+render() {
+    # pane_id session target current_command
+    local found=0
+    local last_session=""
+    while IFS='|' read -r pane_id session target comm; do
+        [[ "$comm" == pi ]] || continue
+        found=1
+        if [[ "$session" != "$last_session" ]]; then
+            printf ' \e[1m%s\e[0m\n' "$session"
+            last_session="$session"
+        fi
+        local f="$STATE_DIR/${pane_id/\%/p}.json"
+        local status="idle"
+        local name=""
+        if [[ -f "$f" ]]; then
+            status=$(sed -n 's/.*"status":"\([a-z]*\)".*/\1/p' "$f")
+            name=$(sed -n 's/.*"name":"\([^"]*\)".*/\1/p' "$f")
+        fi
+        printf '   %s  %-25s  %s\n' "$(color "$status")" "${name:-$target}" "$pane_id"
+    done < <(tmux list-panes -a -F '#{pane_id}|#{session_name}|#{session_name}:#{window_index}.#{pane_index}|#{pane_current_command}' | sort -t'|' -k2,2)
+
+    ((found)) || printf ' (no pi agents running)\n'
+
+    # prune state files for panes that no longer exist
+    local alive
+    alive=$(tmux list-panes -a -F '#{pane_id}' | sed 's/%/p/')
+    for f in "$STATE_DIR"/*.json; do
+        [[ -e "$f" ]] || continue
+        local id
+        id=$(basename "$f" .json)
+        grep -qx "$id" <<<"$alive" || rm -f "$f"
+    done
+}
+
+if [[ "${1:-}" == "--watch" ]]; then
+    interval=$(tmux show-option -gv status-interval)
+    while true; do
+        # if we're the only pane left in the window, close the window
+        if [[ "$(tmux list-panes -F '#P' | wc -l)" -eq 1 ]]; then
+            tmux kill-window
+            exit 0
+        fi
+        clear
+        printf 'pi agents\n\n'
+        render
+        sleep "$interval"
+    done
+else
+    render
+fi
