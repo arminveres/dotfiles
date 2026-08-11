@@ -35,7 +35,7 @@ tmp() {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(find "${PROJECT_LOCATIONS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --exit-0) || true
+        selected=$(find "${PROJECT_LOCATIONS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --tmux --exit-0) || true
     fi
 
     if [[ -z $selected ]]; then

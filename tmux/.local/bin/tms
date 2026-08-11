@@ -34,7 +34,7 @@ tmp() {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(grep -iE "^Host " ${HOSTS[*]} | awk '{print $2}' | grep -v '\*' | fzf) || true
+        selected=$(grep -iE "^Host " ${HOSTS[*]} | awk '{print $2}' | grep -v '\*' | fzf --tmux) || true
     fi
 
     if [[ -z $selected ]]; then
