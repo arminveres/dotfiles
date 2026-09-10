@@ -35,7 +35,14 @@ tmp() {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(find "${PROJECT_LOCATIONS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf --tmux --exit-0) || true
+        local projects worktrees
+        projects=$(find "${PROJECT_LOCATIONS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null) || true
+        # For git projects, also list their worktrees so they can be selected directly.
+        worktrees=$(while IFS= read -r dir; do
+            [[ -e "$dir/.git" ]] || continue
+            timeout 2 git -C "$dir" worktree list --porcelain 2>/dev/null | awk '/^worktree /{print $2}'
+        done <<<"$projects") || true
+        selected=$(printf '%s\n' "$projects" "$worktrees" | awk 'NF' | sort -u | fzf --tmux --exit-0) || true
     fi
 
     if [[ -z $selected ]]; then
