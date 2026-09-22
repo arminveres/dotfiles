@@ -46,6 +46,10 @@ function _zvm_keybinds {
     bindkey '^e' edit-command-line
 
     command -v fzf >/dev/null && source <(fzf --zsh)
+
+    # Must run after fzf --zsh, which rebinds ^I to fzf-completion.
+    bindkey '^I' expand-dots-then-expand-or-complete
+    bindkey '^M' expand-dots-then-accept-line
 }
 zvm_after_init_commands+=(_zvm_keybinds)
 

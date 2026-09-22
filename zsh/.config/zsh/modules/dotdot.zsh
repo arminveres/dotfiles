@@ -12,7 +12,11 @@ function expand-dots() {
 
 function expand-dots-then-expand-or-complete() {
     zle expand-dots
-    zle expand-or-complete
+    if (( ${+widgets[fzf-completion]} )); then
+        zle fzf-completion
+    else
+        zle expand-or-complete
+    fi
 }
 
 function expand-dots-then-accept-line() {
@@ -23,5 +27,3 @@ function expand-dots-then-accept-line() {
 zle -N expand-dots
 zle -N expand-dots-then-expand-or-complete
 zle -N expand-dots-then-accept-line
-bindkey '^I' expand-dots-then-expand-or-complete
-bindkey '^M' expand-dots-then-accept-line
