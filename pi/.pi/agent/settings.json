@@ -1,0 +1,11 @@
+{
+  "defaultModel": "claude-sonnet-5",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:@narumitw/pi-plan-mode",
+    "npm:@dietrichgebert/ponytail",
+    "npm:pi-caveman"
+  ],
+  "lastChangelogVersion": "0.86.0",
+  "defaultProvider": "github-copilot"
+}
