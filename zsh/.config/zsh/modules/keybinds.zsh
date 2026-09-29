@@ -17,8 +17,6 @@ function __search_dot_config() {
     zle redisplay
 }
 zle -N __search_dot_config
-bindkey '^_' __search_dot_config
-bindkey $'\e[47;5u' __search_dot_config
 
 #
 # Fuzzy find local files and open them in editor
@@ -37,7 +35,6 @@ function __fzf_editor_files() {
     zle redisplay
 }
 zle -N __fzf_editor_files
-bindkey '^v' __fzf_editor_files
 
 #
 # Interactively cd through zoxide.
@@ -52,11 +49,25 @@ bindkey '^v' __fzf_editor_files
 # # Zoxide binding
 # zle -N __zoxide_interactive
 # bindkey '^f' __zoxide_interactive
-bindkey -s '^f' '^Ucdi^M'
 
-bindkey -s '^z' '^Uwtcd^M'
+# NOTE(aver): zsh-vi-mode re-initializes keymaps on the first precmd, which
+# runs *after* this file is sourced, wiping out any plain top-level `bindkey`
+# call. Everything below must go through `zvm_after_init_commands` (see
+# https://github.com/jeffreytse/zsh-vi-mode#execute-extra-commands) so the
+# bindings survive.
+function _keybinds_zvm_setup() {
+    bindkey '^_' __search_dot_config
+    bindkey $'\e[47;5u' __search_dot_config
 
-bindkey '^o' end-of-line
+    bindkey '^v' __fzf_editor_files
 
-# Fix ctrl-w: kill back to previous whitespace only (vi-style)
-zvm_after_init_commands+=('bindkey -M viins "^W" vi-backward-kill-word')
+    bindkey -s '^f' '^Ucdi^M'
+
+    bindkey -s '^z' '^Uwtcd^M'
+
+    bindkey '^o' end-of-line
+
+    # Fix ctrl-w: kill back to previous whitespace only (vi-style)
+    bindkey -M viins "^W" vi-backward-kill-word
+}
+zvm_after_init_commands+=(_keybinds_zvm_setup)
