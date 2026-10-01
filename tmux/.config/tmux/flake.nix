@@ -19,12 +19,12 @@
 
         lsp-tree-sitter = pkgs.python3.pkgs.buildPythonPackage  {
           pname = "lsp-tree-sitter";
-          version = "0.2.3";
+          version = "0.2.19";
           format = "wheel";
 
           src = pkgs.fetchurl {
-            url = "https://files.pythonhosted.org/packages/ad/fc/5a2a08649a183bdece99ef937e60a9c06cd5532aaa045c03d8980198212b/lsp_tree_sitter-0.2.3-py3-none-any.whl";
-            hash = "sha256-M9rZM7IYIW4udGaR4l+s4NLdPvZzPXM4wDF99ghMb90=";
+            url = "https://files.pythonhosted.org/packages/c3/3b/5e3eccab0f59ab7523efe31469903147cdd24b02880fbc725e37245a9840/lsp_tree_sitter-0.2.19-py3-none-any.whl";
+            hash = "sha256-vkcoImOyM9kaVKqBdbrFuN9aA5Y/0C76Km8k6xdwl0U=";
           };
 
           dontCheckRuntimeDeps = true;
@@ -57,13 +57,14 @@
             (python3.withPackages (ps: [
               (ps.buildPythonPackage  {
                 pname = "tmux-language-server";
-                version = "0.1.0";
+                version = "0.1.3";
 
                 src = pkgs.fetchFromGitHub {
-                  owner = "Freed-Wu";
+                # TODO: reset once fixed upstream
+                  owner = "arminveres";
                   repo = "tmux-language-server";
-                  rev = "b42a4dc7bb4aed634eacf1f6cc1b231e374f8037";
-                  hash = "sha256-2avKCv9rSSiBvzwx7NWnY1+ciRidKOhURcHe2EQL0jA=";
+                  rev = "cfe283dda882a912c712c76d5348f7b28c09fed3";
+                  hash = "sha256-m06iVn3iDS5BXzFQzhrcl+CYcO0pPSZUJ8f9ybeLcLI=";
                 };
 
                 pyproject = true;
