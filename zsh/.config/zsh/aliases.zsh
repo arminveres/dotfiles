@@ -6,7 +6,6 @@ if command -v nvim >/dev/null; then
 fi
 alias py="python3"
 alias pypip="pypy3 -m pip"
-alias tmux="tmux -2"
 alias jupnote="tmux new -s jupyter -d 'jupyter notebook'"
 
 alias flup='flatpak update'
