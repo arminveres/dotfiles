@@ -34,7 +34,8 @@ tmp() {
     if [[ $# -eq 1 ]]; then
         selected=$1
     else
-        selected=$(grep -iE "^Host " ${HOSTS[*]} | awk '{print $2}' | grep -v '\*' | fzf --tmux) || true
+        local preview='awk -v h={} '"'"'/^[Hh]ost /{p=0; for(i=2;i<=NF;i++) if($i==h) p=1} p'"'"' ~/.ssh/config ~/.ssh/config.d/* 2>/dev/null'
+        selected=$(grep -iE "^Host " ${HOSTS[*]} | awk '{print $2}' | grep -v '\*' | fzf --tmux --preview "$preview") || true
     fi
 
     if [[ -z $selected ]]; then

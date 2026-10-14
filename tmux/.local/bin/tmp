@@ -42,7 +42,7 @@ tmp() {
             [[ -e "$dir/.git" ]] || continue
             timeout 2 git -C "$dir" worktree list --porcelain 2>/dev/null | awk '/^worktree /{print $2}'
         done <<<"$projects") || true
-        selected=$(printf '%s\n' "$projects" "$worktrees" | awk 'NF' | sort -u | fzf --tmux --exit-0) || true
+        selected=$(printf '%s\n' "$projects" "$worktrees" | awk 'NF' | sort -u | fzf --tmux --exit-0 --preview 'git -C {} log --oneline --color=always -n 20 2>/dev/null || ls -A --color=always {}') || true
     fi
 
     if [[ -z $selected ]]; then
