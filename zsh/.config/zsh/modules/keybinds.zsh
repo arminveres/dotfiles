@@ -61,13 +61,35 @@ function _keybinds_zvm_setup() {
 
     bindkey '^v' __fzf_editor_files
 
-    bindkey -s '^f' '^Ucdi^M'
+    zle -N cdi
+    bindkey '^f' cdi
 
-    bindkey -s '^z' '^Uwtcd^M'
+    zle -N wtcd
+    bindkey '^z' wtcd
 
     bindkey '^o' end-of-line
 
     # Fix ctrl-w: kill back to previous whitespace only (vi-style)
     bindkey -M viins "^W" vi-backward-kill-word
+
+    # search using a prefix, e.g., `cd` only searches history including cd
+    autoload -U up-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    bindkey "^p" up-line-or-beginning-search
+
+    autoload -U down-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey "^n" down-line-or-beginning-search
+
+    # Edit line in vim with ctrl-e:
+    autoload edit-command-line
+    zle -N edit-command-line
+    bindkey '^e' edit-command-line
+
+    command -v fzf >/dev/null && source <(fzf --zsh)
+
+    # Must run after fzf --zsh, which rebinds ^I to fzf-completion.
+    bindkey '^I' expand-dots-then-expand-or-complete
+    bindkey '^M' expand-dots-then-accept-line
 }
 zvm_after_init_commands+=(_keybinds_zvm_setup)

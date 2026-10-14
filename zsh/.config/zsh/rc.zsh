@@ -29,30 +29,6 @@ source "$ZDOTDIR/distro.zsh"
 # ==================================================================================================
 source "$ZMODULES/keybinds.zsh"
 
-# https://github.com/jeffreytse/zsh-vi-mode#execute-extra-commands
-function _zvm_keybinds {
-    # search using a prefix, e.g., `cd` only searches history including cd
-    autoload -U up-line-or-beginning-search
-    zle -N up-line-or-beginning-search
-    bindkey "^p" up-line-or-beginning-search
-
-    autoload -U down-line-or-beginning-search
-    zle -N down-line-or-beginning-search
-    bindkey "^n" down-line-or-beginning-search
-
-    # Edit line in vim with ctrl-e:
-    autoload edit-command-line
-    zle -N edit-command-line
-    bindkey '^e' edit-command-line
-
-    command -v fzf >/dev/null && source <(fzf --zsh)
-
-    # Must run after fzf --zsh, which rebinds ^I to fzf-completion.
-    bindkey '^I' expand-dots-then-expand-or-complete
-    bindkey '^M' expand-dots-then-accept-line
-}
-zvm_after_init_commands+=(_zvm_keybinds)
-
 # ==================================================================================================
 # Theming
 # ==================================================================================================
