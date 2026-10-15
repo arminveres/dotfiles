@@ -50,6 +50,21 @@ zle -N __fzf_editor_files
 # zle -N __zoxide_interactive
 # bindkey '^f' __zoxide_interactive
 
+# Run interactive commands from a widget: take over tty, then redraw prompt.
+function __cdi_widget() {
+    zle -I
+    cdi </dev/tty
+    zle reset-prompt
+}
+zle -N __cdi_widget
+
+function __wtcd_widget() {
+    zle -I
+    wtcd </dev/tty
+    zle reset-prompt
+}
+zle -N __wtcd_widget
+
 # NOTE(aver): zsh-vi-mode re-initializes keymaps on the first precmd, which
 # runs *after* this file is sourced, wiping out any plain top-level `bindkey`
 # call. Everything below must go through `zvm_after_init_commands` (see
@@ -61,11 +76,8 @@ function _keybinds_zvm_setup() {
 
     bindkey '^v' __fzf_editor_files
 
-    zle -N cdi
-    bindkey '^f' cdi
-
-    zle -N wtcd
-    bindkey '^z' wtcd
+    bindkey '^f' __cdi_widget
+    bindkey '^z' __wtcd_widget
 
     bindkey '^o' end-of-line
 
