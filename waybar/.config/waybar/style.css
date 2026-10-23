@@ -1,10 +1,10 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family:
-    Iosevka Nerd Font Propo,
+    Mononoki Nerd Font Propo,
     FontAwesome,
     sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   border: none;
   border-radius: 0px;
 }
@@ -34,7 +34,7 @@ button:hover {
   box-shadow: inherit;
 }
 
-#workspaces button {
+#custom-ws {
   padding: 0px 5px;
   /* background-color: transparent; */
   /* color: #ffffff; */
@@ -42,34 +42,18 @@ button:hover {
   border-radius: 5px;
 }
 
-#workspaces button:hover {
+#custom-ws:hover {
   background: @theme_fg_color;
   color: @theme_base_color;
 }
 
-#workspaces button.active {
+#custom-ws.active {
   background: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
 }
 
-#workspaces button.urgent {
-  background: @error_color;
-  color: @theme_fg_color;
-}
-
-#window,
-#workspaces {
+#window {
   margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
 }
 
 #backlight,

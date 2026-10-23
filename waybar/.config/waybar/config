@@ -4,7 +4,15 @@
     "height": 26, // Waybar height
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces"
+        "custom/ws#w1",
+        "custom/ws#w2",
+        "custom/ws#w3",
+        "custom/ws#w4",
+        "custom/ws#w5",
+        "custom/ws#w6",
+        "custom/ws#w7",
+        "custom/ws#w8",
+        "custom/ws#w9"
     ],
     "modules-center": [
         "custom/sleep-toggle",
@@ -33,23 +41,51 @@
         "tooltip": true,
         "tooltip-format": "Games running: {count}"
     },
-    "hyprland/workspaces": {
-        "on-click": "activate",
-        // "format": "{name}"
-        "format": "{icon}",
-        "format-icons": {
-            "1": "code",
-            "2": "www",
-            "3": "game",
-            "4": "res",
-            "5": "misc",
-            "6": "msg",
-            "7": "mail",
-            "8": "mus",
-            "9": "oc"
-            // "active": "",
-            // "default": ""
-        }
+    // hyprland/workspaces on-click broken with Hyprland Lua IPC, see ws.sh
+    "custom/ws#w1": {
+        "exec": "~/.config/waybar/ws.sh 1 code",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+    },
+    "custom/ws#w2": {
+        "exec": "~/.config/waybar/ws.sh 2 www",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+    },
+    "custom/ws#w3": {
+        "exec": "~/.config/waybar/ws.sh 3 game",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+    },
+    "custom/ws#w4": {
+        "exec": "~/.config/waybar/ws.sh 4 res",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+    },
+    "custom/ws#w5": {
+        "exec": "~/.config/waybar/ws.sh 5 misc",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
+    },
+    "custom/ws#w6": {
+        "exec": "~/.config/waybar/ws.sh 6 msg",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'"
+    },
+    "custom/ws#w7": {
+        "exec": "~/.config/waybar/ws.sh 7 mail",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 7 })'"
+    },
+    "custom/ws#w8": {
+        "exec": "~/.config/waybar/ws.sh 8 mus",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 8 })'"
+    },
+    "custom/ws#w9": {
+        "exec": "~/.config/waybar/ws.sh 9 oc",
+        "return-type": "json",
+        "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 9 })'"
     },
     "clock": {
         "format": "󰥔 {:%R  󰃭 %a %d %b %Y}",
