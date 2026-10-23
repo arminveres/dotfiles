@@ -1,12 +1,14 @@
 # tmux.conf
 
-Fresh tmux config for Personal use, intended as successor of my fork of [samoshkin's tmux config](https://github.com/arminveres/tmux-config)
+Simple tmux config based with a flew plugins.
 
-![image](https://user-images.githubusercontent.com/45210978/214135521-e0a729af-9aed-4fac-81c5-79f189b74374.png)
+## Requirements
 
-## TODO
+- tmux >=3.8
+  - With the recent release, we create the tmux theme from the terminal colors.
+- usual UNIX suspects
+  - awk, sed, bash, etc.
 
-- Add install script
-- Beef up documentation
-- Add SSH remote config, [akin to the fork](https://github.com/arminveres/tmux-config/blob/main/tmux/.config/tmux/tmux.remote.conf)
-- Add laptop config, that does not employ so many plugins, for improved battery life
+## Acknowledgements
+
+- [samoshkin's tmux config](https://github.com/arminveres/tmux-config)
