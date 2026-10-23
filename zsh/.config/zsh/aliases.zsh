@@ -82,9 +82,7 @@ if [[ $TERM == "xterm-kitty" ]]; then
     alias connect="kitty +kitten ssh"
 fi
 
-if command -v hyprctl >/dev/null; then
-    function resprg() {
-        pkill $1
-        hyprctl dispatch exec $1
-    }
-fi
+function resprg() {
+    pkill "$1" && pidwait "$1"
+    setsid --fork "$@" >/dev/null 2>&1
+}
