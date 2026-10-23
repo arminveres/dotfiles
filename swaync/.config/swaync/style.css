@@ -1,21 +1,27 @@
-@define-color cc-bg rgba(46, 46, 46, 1.0);
-@define-color noti-border-color rgba(255, 255, 255, 0.15);
-@define-color noti-bg rgba(48, 48, 48, 1.0);
-@define-color noti-bg-opaque rgb(48, 48, 48);
-@define-color noti-bg-darker rgb(38, 38, 38);
-@define-color noti-bg-hover rgb(56, 56, 56);
-@define-color noti-bg-hover-opaque rgb(56, 56, 56);
-@define-color noti-bg-focus rgba(68, 68, 68, 0.6);
-@define-color noti-close-bg rgba(255, 255, 255, 0.1);
-@define-color noti-close-bg-hover rgba(255, 255, 255, 0.15);
-@define-color text-color rgb(255, 255, 255);
-@define-color text-color-disabled rgb(150, 150, 150);
-@define-color bg-selected rgb(255, 105, 0);
+/* Colors follow the GTK theme, same as waybar */
+@define-color cc-bg @theme_base_color;
+@define-color noti-border-color mix(@theme_bg_color, @theme_fg_color, 0.12);
+@define-color noti-bg mix(@theme_bg_color, @theme_fg_color, 0.05);
+@define-color noti-bg-opaque @noti-bg;
+@define-color noti-bg-alt mix(@theme_bg_color, @theme_fg_color, 0.08);
+@define-color noti-bg-darker @theme_base_color;
+@define-color noti-bg-hover mix(@theme_bg_color, @theme_fg_color, 0.12);
+@define-color noti-bg-hover-opaque @noti-bg-hover;
+@define-color noti-bg-focus mix(@theme_bg_color, @theme_fg_color, 0.08);
+@define-color noti-close-bg mix(@theme_bg_color, @theme_fg_color, 0.1);
+@define-color noti-close-bg-hover mix(@theme_bg_color, @theme_fg_color, 0.15);
+@define-color text-color @theme_text_color;
+@define-color text-color-disabled mix(@theme_bg_color, @theme_text_color, 0.5);
+@define-color bg-selected @theme_selected_bg_color;
 .notification-row {
   outline: none;
 }
 
 .notification-row:focus, .notification-row:hover {
+  background: transparent;
+}
+
+.notification-row:focus .notification, .notification-row:hover .notification {
   background: @noti-bg-focus;
 }
 
@@ -262,6 +268,7 @@
   /* The Control Center which contains the old notifications + widgets */
   background: @cc-bg;
   color: @text-color;
+  border: 1px solid @noti-border-color;
   border-radius: 12px;
 }
 
@@ -270,8 +277,14 @@
   opacity: 0.5;
 }
 
-.control-center .control-center-list {
-  /* List of notifications */
+.control-center .control-center-list,
+.control-center .control-center-list list,
+.control-center .control-center-list row,
+.control-center .control-center-list viewport,
+.control-center .control-center-list .notification-group,
+.control-center .control-center-list .notification-row,
+.control-center .control-center-list .notification-background {
+  /* List of notifications; GTK theme otherwise paints a lighter backdrop behind entries */
   background: transparent;
 }
 
@@ -358,8 +371,8 @@
 }
 
 /* Mpris widget */
-@define-color mpris-album-art-overlay rgba(0, 0, 0, 0.55);
-@define-color mpris-button-hover rgba(0, 0, 0, 0.50);
+@define-color mpris-album-art-overlay @noti-bg;
+@define-color mpris-button-hover @noti-bg-hover;
 .widget-mpris {
   /* The parent to all players */
 }
