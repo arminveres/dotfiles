@@ -6,7 +6,8 @@
     "npm:@dietrichgebert/ponytail",
     "npm:pi-caveman"
   ],
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.3.0",
   "defaultProvider": "github-copilot",
-  "theme": "dark"
+  "theme": "system",
+  "tuiMode": "regular"
 }
