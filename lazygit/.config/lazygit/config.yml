@@ -1,0 +1,14 @@
+git:
+  overrideGpg: true
+  autoStageResolvedConflicts: false
+  diffRenderers:
+    - command: delta --paging=never
+    - command: delta --paging=never --side-by-side
+    - command: difft --color=always --syntax-highlight=off
+      type: extDiff
+    # TODO: lg does not support delta with inline comparison
+  branchPrefix: '{{ runCommand "bash -c ''[[ \"$(git remote -v)\" =~ \"varian\" ]] && printf \"u/ave/\" || true''" }}'
+os:
+  # OSC52; tmux (set-clipboard on + Ms feature) forwards it to alacritty
+  copyToClipboardCmd: |
+    printf '\033]52;c;%s\a' "$(printf '%s' {{text}} | base64 | tr -d '\n')" > /dev/tty
