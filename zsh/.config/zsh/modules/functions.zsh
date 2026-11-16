@@ -55,6 +55,14 @@ function rmv() {
     rm --recursive --force "$@"
 }
 
+# Sync plugins and commit the updated lazy-lock.json
+function viup() {
+    nvim --headless '+Lazy! sync' +qa || return
+    local lock="$HOME/nix-conf/dotfiles/nvim/.config/nvim/lazy-lock.json"
+    git -C "${lock:h}" diff --quiet -- "$lock" && return
+    git -C "${lock:h}" commit "$lock" -m "build(nvim): update lazy lockfile $(date -u +%Y-%m-%dT%H:%M%Z)"
+}
+
 # =================================================================================================
 # Manual ZSH plugin manages
 # =================================================================================================
