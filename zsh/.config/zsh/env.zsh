@@ -29,14 +29,29 @@ export MANGOHUD_CONFIGFILE="$XDG_CONFIG_HOME/MangoHud/MangoHud.conf"
 export GOPATH="$XDG_DATA_HOME/go"
 export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 export NETRC_FILE="$XDG_CONFIG_HOME/netrc"
+export OMNISHARPHOME="$XDG_CONFIG_HOME"/omnisharp
+export GDBHISTFILE="$XDG_CONFIG_HOME"/gdb/gdb_history
+export PYTHON_HISTORY="$XDG_STATE_HOME"/python_history
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME"/azure
+export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME"/pi/agent
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+export SQLITE_HISTORY="$XDG_STATE_HOME"/sqlite_history
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 
 # -------------------------------------------------------------------------------------------------
 # Misc tooling
 # -------------------------------------------------------------------------------------------------
 export MINICOM="-con"
 export NINJA_STATUS="[%f/%t %p, %oe/s, %es] "
-export DOTNET_ROOT="$HOME/.dotnet"
 export MANPAGER="nvim +Man!"
+
+# dotNET variables
+# https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-environment-variables
+export DOTNET_CLI_HOME="$XDG_STATE_HOME"/dotnet
+export DOTNET_ROOT="$XDG_STATE_HOME/dotnet"
+
 # always compile tex into a build directory
 export VIMTEX_OUTPUT_DIRECTORY="build"
 
