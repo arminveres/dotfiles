@@ -1,0 +1,17 @@
+{
+  "defaultModel": "claude-sonnet-5.5",
+  "packages": [
+    "npm:pi-subagents",
+    "npm:@narumitw/pi-plan-mode",
+    "npm:@dietrichgebert/ponytail",
+    "npm:pi-caveman"
+  ],
+  "lastChangelogVersion": "1.5.2",
+  "defaultProvider": "github-copilot",
+  "theme": "system",
+  "tuiMode": "regular",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1",
+    "{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.60.1"
+  }
+}
