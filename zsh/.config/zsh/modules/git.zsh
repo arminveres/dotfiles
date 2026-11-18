@@ -71,9 +71,9 @@ function greset() {
 # Gets a bullet point list of commints in the submodule compared to the main branch.
 #
 # param:
-# - 1: submodule dir
+# - 1: submodule dir (optional, picked with fzf if omitted)
 function gsdiff() {
-  local submod="$1"
+  local submod="${1:-$(git config --file .gitmodules --get-regexp '\.path$' | cut -d' ' -f2- | fzf --prompt='submodule> ')}"
 
   [[ -z "$submod" ]] && return 1
   local old=$(git rev-parse "origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'):$submod")
@@ -82,6 +82,17 @@ function gsdiff() {
   local changes=$(git -C $submod log --pretty='- %s' "$old..$new")
 
   [[ -z "$changes" ]] && echo "No changes" && return 1
-  echo "$submod updated to $default_branch:"
-  echo "$changes"
+  local out="$submod updated to $default_branch:"$'\n'"$changes"
+  echo "$out"
+
+  # copy to clipboard: tmux (-w sends to terminal clipboard via OSC52), wl-copy (Wayland), xclip (X11), pbcopy (macOS)
+  if [[ -n $TMUX ]]; then
+    print -rn -- "$out" | tmux load-buffer -w -
+  elif [[ -n $WAYLAND_DISPLAY ]] && (($+commands[wl - copy])); then
+    print -rn -- "$out" | wl-copy
+  elif [[ -n $DISPLAY ]] && (($+commands[xclip])); then
+    print -rn -- "$out" | xclip -selection clipboard
+  elif (($+commands[pbcopy])); then
+    print -rn -- "$out" | pbcopy
+  fi
 }
