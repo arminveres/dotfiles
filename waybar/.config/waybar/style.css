@@ -34,7 +34,7 @@ button:hover {
   box-shadow: inherit;
 }
 
-#custom-ws {
+#workspaces button {
   padding: 0px 5px;
   /* background-color: transparent; */
   /* color: #ffffff; */
@@ -42,14 +42,19 @@ button:hover {
   border-radius: 5px;
 }
 
-#custom-ws:hover {
+#workspaces button:hover {
   background: @theme_fg_color;
   color: @theme_base_color;
 }
 
-#custom-ws.active {
+#workspaces button.active {
   background: @theme_selected_bg_color;
   color: @theme_selected_fg_color;
+}
+
+#workspaces button.urgent {
+  background: @error_color;
+  color: @theme_fg_color;
 }
 
 #window {
